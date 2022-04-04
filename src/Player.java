@@ -8,10 +8,9 @@ public class Player extends MovingObject {
 		
 	} 
 
-	@Override
-	public void draw() {
+	public void draw(PApplet surface) {
 		
-		super.getPApplet().ellipse(getX(), getY(), getX(), getY());
+		surface.ellipse(getX(), getY(), getX(), getY());
 		
 	}
 

@@ -18,7 +18,7 @@ public abstract class GameObject {
     	return p;
     }
 
-    public abstract void draw();
+    //public abstract void draw();
  
 
 }
