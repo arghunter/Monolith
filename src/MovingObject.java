@@ -1,11 +1,39 @@
-public abstract class MovingObject extends GameObject {
+import java.awt.event.ActionListener;
+
+
+import processing.core.PApplet;
+
+
+public abstract class MovingObject extends GameObject  {
+
+	//Enums
+	enum Direction
+	{
+		NORTH,
+		SOUTH,
+		EAST,
+		WEST,
+		NORTHWEST,
+		SOUTHWEST,
+		SOUTHEAST,
+		NORTHEAST
+		
+		
+	}
 	
 	//Fields
 	private int x;
 	private int y;
+	private int movementDelay;// In milliseconds
+	private long lastMovement;
+	private int currentMovementDelay;
 	
-	public MovingObject(int startX,int startY,int id) {
-		super(id);
+	
+	
+	public MovingObject(int startX,int startY,int movementDelay,int id,PApplet p) {
+		super(id,p);
+		setMovementDelay(movementDelay);
+		
 		setCoords(startX,startY);
 	}
 	
@@ -13,6 +41,11 @@ public abstract class MovingObject extends GameObject {
 	public void setCoords(int x,int y) {
 		this.x=x;
 		this.y=y;
+	}
+	public void setMovementDelay(int movementDelay) 
+	{
+		this.movementDelay=movementDelay;
+		this.currentMovementDelay=currentMovementDelay;
 	}
 	
 	//Returns the current x coordinate
@@ -30,25 +63,34 @@ public abstract class MovingObject extends GameObject {
 	// 6 5 4
 	//Given a direction and velocity, moves velocity units in the direction
 	//Scales to prevent strafing from being faster
-	public void move(int direction,int velocity) {
-		if(direction%2==0) {
-			velocity=(int)(velocity/1.414213562);
+	public void move(Direction direction,int velocity) {
+		
+		if(System.currentTimeMillis()-lastMovement<this.currentMovementDelay) {
+			return;
+		}
+		if(direction==Direction.NORTHEAST||direction==Direction.SOUTHWEST||direction==Direction.SOUTHEAST||direction==Direction.NORTHWEST) {
+			this.currentMovementDelay=(int)(this.movementDelay*1.414213562);
+		}else 
+		{
+			this.currentMovementDelay=this.movementDelay;
 		}
 		
 		int newX=getX();
 		int newY=getY();
-		if(direction==1 || direction==2 || direction==8) {
+		if(direction==Direction.NORTH || direction==Direction.NORTHEAST || direction==Direction.NORTHWEST) {
 			newY--;
-		}else if(direction==4 || direction==5 || direction==6) {
+		}else if(direction==Direction.SOUTHWEST || direction==Direction.SOUTHEAST || direction==Direction.SOUTH) {
 			newY++;
 		}
 		
-		if(direction==2 || direction==3 || direction==4) {
+		if(direction==Direction.NORTHEAST || direction==Direction.NORTHWEST || direction==Direction.EAST) {
 			newX++;
-		}else if(direction==8 || direction==7 || direction==6) {
+		}else if(direction==Direction.SOUTHWEST || direction==Direction.NORTHWEST || direction==Direction.WEST) {
 			newX--;
 		}
 		setCoords(newX,newY);
+		lastMovement=System.currentTimeMillis();
+		
 	}
 	
 }
