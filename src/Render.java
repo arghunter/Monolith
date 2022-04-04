@@ -1,3 +1,4 @@
+
 import processing.core.PApplet;
 
 public class Render extends PApplet {
@@ -19,10 +20,16 @@ public class Render extends PApplet {
 		fill(10,200,10);
 		p1.draw();
 		p2.draw();
+		
 	}
 	
 	public void mousePressed(){
 		background(64);
+
+		p1.move(Direction.SOUTH);
+		p2.move(Direction.NORTHWEST);
+		
+		
 	}
 
 }

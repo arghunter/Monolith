@@ -3,30 +3,31 @@ import java.awt.event.ActionListener;
 
 import processing.core.PApplet;
 
+//Enums
+enum Direction
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	NORTHWEST,
+	SOUTHWEST,
+	SOUTHEAST,
+	NORTHEAST
+	
+	
+}
 
 public abstract class MovingObject extends GameObject  {
 
-	//Enums
-	enum Direction
-	{
-		NORTH,
-		SOUTH,
-		EAST,
-		WEST,
-		NORTHWEST,
-		SOUTHWEST,
-		SOUTHEAST,
-		NORTHEAST
-		
-		
-	}
+
 	
 	//Fields
 	private int x;
 	private int y;
-	private int movementDelay;// In milliseconds
+	private int movementDelay;// In milliseconds Time between subsequent movements
 	private long lastMovement;
-	private int currentMovementDelay;
+	private int currentMovementDelay;// Changes based on dirrection
 	
 	
 	
@@ -58,12 +59,10 @@ public abstract class MovingObject extends GameObject  {
 		return y;
 	}
 	
-	// 8 1 2
-	// 7 + 3
-	// 6 5 4
-	//Given a direction and velocity, moves velocity units in the direction
+
+	//Given a direction 1 unit in the direction
 	//Scales to prevent strafing from being faster
-	public void move(Direction direction,int velocity) {
+	public void move(Direction direction) {
 		
 		if(System.currentTimeMillis()-lastMovement<this.currentMovementDelay) {
 			return;

@@ -4,7 +4,7 @@ public class Player extends MovingObject {
 	
 	//Note the speed will come from skill tree
 	public Player(int x, int y, int id,PApplet p) {
-		super(x, y,50 ,id,p);
+		super(x, y,5 ,id,p);
 		
 	}
 
