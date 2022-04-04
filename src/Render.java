@@ -7,5 +7,5 @@ public class Render {
 		String[] processingArgs = {"Monolith"};
 		Screen screen = new Screen();
 		PApplet.runSketch(processingArgs, screen);
-	}
+	} 
 }
