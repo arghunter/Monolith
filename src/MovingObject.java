@@ -1,8 +1,10 @@
+import processing.core.PApplet;
+
 public abstract class MovingObject extends GameObject {
     private int[] pos;
 
-    public MovingObject(int[] pos, int id) {
-        super(id);
+    public MovingObject(int[] pos, int id, PApplet p) {
+        super(id,p);
         if (pos.length == 2) {
             this.pos = pos;
         } else {
@@ -10,8 +12,8 @@ public abstract class MovingObject extends GameObject {
         }
     }
 
-    public MovingObject(int x, int y, int id) {
-        super(id);
+    public MovingObject(int x, int y, int id, PApplet p) {
+        super(id,p);
         pos = new int[2];
         this.pos[0] = x;
 
@@ -37,6 +39,7 @@ public abstract class MovingObject extends GameObject {
     public int getY() {
         return pos[1];
     }
+
 
     public void move(String direction) {
         char[] moves = direction.toCharArray();
