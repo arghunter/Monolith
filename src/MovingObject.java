@@ -1,74 +1,54 @@
-import processing.core.PApplet;
-
 public abstract class MovingObject extends GameObject {
-    private int[] pos;
-
-    public MovingObject(int[] pos, int id, PApplet p) {
-        super(id,p);
-        if (pos.length == 2) {
-            this.pos = pos;
-        } else {
-            throw new IllegalArgumentException("Not a coordinate");
-        }
-    }
-
-    public MovingObject(int x, int y, int id, PApplet p) {
-        super(id,p);
-        pos = new int[2];
-        this.pos[0] = x;
-
-        this.pos[1] = y;
-    }
-
-    public int[] getPos() {
-        return pos;
-    }
-
-    public void setPos(int[] pos) {
-        if (pos.length == 2) {
-            this.pos = pos;
-        } else {
-            throw new IllegalArgumentException("Not a coordinate");
-        }
-    }
-
-    public int getX() {
-        return pos[0];
-    }
-
-    public int getY() {
-        return pos[1];
-    }
-
-
-    public void move(String direction) {
-        char[] moves = direction.toCharArray();
-        for (int i = 0; i < moves.length; i++) {
-            switch (moves[i]) {
-                case 'N':
-                    if (pos[0] > 0) {
-                        pos[0]--;
-                    }
-                    break;
-                case 'S':
-                    // if (pos[0]<Map.Legth-1)
-                    // {
-                    pos[0]++;
-                    // }
-                    break;
-                case 'W':
-                    if (pos[1] > 0) {
-                        pos[1]--;
-                    }
-                    break;
-                case 'E':
-                    // if(pos[1]<Map[0].length-1)
-                    // {
-                    pos[1]++;
-                    // }
-            }
-        }
-
-    }
-
+	
+	//Fields
+	private int x;
+	private int y;
+	
+	public MovingObject(int startX,int startY,int id) {
+		super(id);
+		setCoords(startX,startY);
+	}
+	
+	//Sets the x and y coordinates to the passed values
+	public void setCoords(int x,int y) {
+		this.x=x;
+		this.y=y;
+	}
+	
+	//Returns the current x coordinate
+	public int getX() {
+		return x;
+	}
+	
+	//Returns the current y coordinate
+	public int getY() {
+		return y;
+	}
+	
+	// 8 1 2
+	// 7 + 3
+	// 6 5 4
+	//Given a direction and velocity, moves velocity units in the direction
+	//Scales to prevent strafing from being faster
+	public void move(int direction,int velocity) {
+		if(direction%2==0) {
+			velocity=(int)(velocity/1.414213562);
+		}
+		
+		int newX=getX();
+		int newY=getY();
+		if(direction==1 || direction==2 || direction==8) {
+			newY--;
+		}else if(direction==4 || direction==5 || direction==6) {
+			newY++;
+		}
+		
+		if(direction==2 || direction==3 || direction==4) {
+			newX++;
+		}else if(direction==8 || direction==7 || direction==6) {
+			newX--;
+		}
+		setCoords(newX,newY);
+	}
+	
 }
