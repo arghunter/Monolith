@@ -25,9 +25,9 @@ public abstract class MovingObject extends GameObject  {
 	//Fields
 	private int x;
 	private int y;
-	private int movementDelay;// In milliseconds Time between subsequent movements
+	private double movementDelay;// In milliseconds Time between subsequent movements
 	private long lastMovement;
-	private int currentMovementDelay;// Changes based on dirrection
+	private double currentMovementDelay;// Changes based on dirrection
 	
 	
 	
@@ -43,10 +43,10 @@ public abstract class MovingObject extends GameObject  {
 		this.x=x;
 		this.y=y;
 	}
-	public void setMovementDelay(int movementDelay) 
+	public void setMovementDelay(double movementDelay) 
 	{
 		this.movementDelay=movementDelay;
-		this.currentMovementDelay=currentMovementDelay;
+		this.currentMovementDelay=movementDelay;
 	}
 	
 	//Returns the current x coordinate
@@ -65,12 +65,12 @@ public abstract class MovingObject extends GameObject  {
 	public void move(Direction direction) {
 		
 		if(System.currentTimeMillis()-lastMovement<this.currentMovementDelay) {
+			System.out.println("1");
 			return;
 		}
 		if(direction==Direction.NORTHEAST||direction==Direction.SOUTHWEST||direction==Direction.SOUTHEAST||direction==Direction.NORTHWEST) {
-			this.currentMovementDelay=(int)(this.movementDelay*1.414213562);
-		}else 
-		{
+			this.currentMovementDelay=(this.movementDelay*1.414213562);
+		}else {
 			this.currentMovementDelay=this.movementDelay;
 		}
 		
