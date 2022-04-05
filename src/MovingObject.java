@@ -82,7 +82,7 @@ public abstract class MovingObject extends GameObject  {
 			newY++;
 		}
 		
-		if(direction==Direction.NORTHEAST || direction==Direction.NORTHWEST || direction==Direction.EAST) {
+		if(direction==Direction.NORTHEAST || direction==Direction.SOUTHEAST || direction==Direction.EAST) {
 			newX++;
 		}else if(direction==Direction.SOUTHWEST || direction==Direction.NORTHWEST || direction==Direction.WEST) {
 			newX--;
