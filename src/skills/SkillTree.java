@@ -17,6 +17,10 @@ public class SkillTree {
 	{
 		
 	}
+	public SkillTree(SkillTree tree) 
+	{
+		this.skills=tree.skills;
+	}
 	
 	private void addSkill(int index,int[] values,int[] tiers) 
 	{
