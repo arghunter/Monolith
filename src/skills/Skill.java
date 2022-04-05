@@ -1,38 +1,40 @@
 package skills;
 
+import java.awt.Graphics;
+
 public class Skill extends GenericSkill {
 	GenericSkill skill;
 
-	public Skill(SkillType type,int percent,int tier) {
-		super(type);
+	public Skill(SkillType type,String name,int percent,int tier) {
+		super(type,name,tier);
 		switch(type) 
 		{
 		case ACCURACY:
-			skill=new AccuracySkill(type,percent,tier);
+			skill=new AccuracySkill(type,name, percent,tier);
 			break;
 		case ARMOR:
-			skill=new ArmorSkill(type,percent,tier);
+			skill=new ArmorSkill(type,name, percent,tier);
 			break;
 		case ATTACKSPEED:
-			skill=new AttackSpeedSkill(type,percent,tier);
+			skill=new AttackSpeedSkill(type,name, percent,tier);
 			break;
 		case HEALTH:
-			skill=new HealthSkill(type,percent,tier);
+			skill=new HealthSkill(type,name, percent,tier);
 			break;
 		case POWER:
-			skill=new PowerSkill(type,percent,tier);
+			skill=new PowerSkill(type,name, percent,tier);
 			break;
 		case REGEN:
-			skill=new RegenSkill(type,percent,tier);
+			skill=new RegenSkill(type,name, percent,tier);
 			break;
 		case SHIELD:
-			skill=new ShieldSkill(type,percent,tier);
+			skill=new ShieldSkill(type,name, percent,tier);
 			break;
 		case SPEED:
-			skill=new SpeedSkill(type,percent,tier);
+			skill=new SpeedSkill(type,name, percent,tier);
 			break;
 		case STRENGTH:
-			skill=new StrengthSkill(type,percent,tier);
+			skill=new StrengthSkill(type,name, percent,tier);
 			break;
 		case MISC:
 			break;
@@ -47,6 +49,12 @@ public class Skill extends GenericSkill {
 	public int apply(int value) {
 		
 		return skill.apply(value);
+	}
+
+	@Override
+	public void render(Graphics g) {
+		skill.render(g);
+		
 	}
 	
 	

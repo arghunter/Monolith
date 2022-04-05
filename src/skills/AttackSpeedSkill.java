@@ -1,12 +1,14 @@
 package skills;
 
+import java.awt.Graphics;
+
 public class AttackSpeedSkill extends GenericSkill{
 	private int attackSpeed;
-	private int tier;
+
 	private int modifiedAttackSpeed;
 
-	public AttackSpeedSkill(SkillType type, int attackSpeed,int tier) {
-		super(type);
+	public AttackSpeedSkill(SkillType type,String name, int attackSpeed,int tier) {
+		super(type, name, tier);
 		this.attackSpeed=attackSpeed;
 		this.tier=tier;
 		this.modifiedAttackSpeed=attackSpeed*(int)(tier/2.0+0.5);
@@ -23,6 +25,12 @@ public class AttackSpeedSkill extends GenericSkill{
 		
 		
 		return newAttackSpeed;
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

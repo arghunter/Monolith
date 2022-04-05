@@ -1,22 +1,20 @@
 package skills;
 
+import java.awt.Graphics;
+
 public class AccuracySkill extends GenericSkill {
 	private int accuracy;
-	private int tier;
 	private int modifiedAccuracy;
-	public AccuracySkill(SkillType type, int accuracy, int tier) {
-		super(type);
+	public AccuracySkill(SkillType type,String name, int accuracy, int tier) {
+		super(type, name, tier);
 		this.accuracy=accuracy;
-		this.tier=tier;
 		this.modifiedAccuracy=accuracy*(int)(tier/2+0.5);
 		
 	}
 	public int getAccuracy() {
 		return accuracy;
 	}
-	public int getTier() {
-		return tier;
-	}
+
 	public int getModifiedAccuracy() {
 		return modifiedAccuracy;
 	}
@@ -29,6 +27,11 @@ public class AccuracySkill extends GenericSkill {
 		}
 		return newAccuracy;
 	
+	}
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
