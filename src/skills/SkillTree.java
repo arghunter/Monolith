@@ -32,10 +32,20 @@ public class SkillTree {
 		}
 		skills.add(new Skill(type,SKILL_NAMES[index],values[0],tiers[0]));
 	}
-	public void generateSkill(int index) 
+	public void generateSkill(int index,int tier) 
 	{
+		Random rng=new Random();
+		int[] values=new int[SKILL_TYPES[index].length];
+		for(int i=0;i<SKILL_TYPES[index].length;i++) 
+		{
+			values[i]=rng.nextInt(SKILL_RANGE[index][i][1]-SKILL_RANGE[index][i][0]+1)+SKILL_RANGE[index][i][0];
+		}
+		int[] tiers=new int[values.length];
+		Arrays.fill(tiers, tier);
+		addSkill(index,values,tiers);		
 		
 	}
+	
 	 
 	
 	
