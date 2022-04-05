@@ -11,7 +11,7 @@ public class RegenSkill extends GenericSkill {
 		super(type,name,tier);
 		this.regen=regen;
 		this.tier=tier;
-		this.modifiedRegen=regen*(int)(tier/2.0+0.5);
+		this.modifiedRegen=regen*(tier);
 	}
 
 	@Override
@@ -22,6 +22,12 @@ public class RegenSkill extends GenericSkill {
 
 	@Override
 	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void apply(SkillType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

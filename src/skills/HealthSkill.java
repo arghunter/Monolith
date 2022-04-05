@@ -10,16 +10,23 @@ public class HealthSkill extends GenericSkill{
 		super(type, name, tier);
 		this.health=health;
 		this.tier=tier;
-		this.modifiedHealth=health*(int)(tier/2.0+0.5);
+		this.modifiedHealth=health*(tier);
 	}
 
 	@Override
 	public int apply(int health) {
-		return (int)(health*(1.0+modifiedHealth/100)+0.5);
+		System.out.println((1.0+modifiedHealth/100.0));
+		return (int)(health*(1.0+modifiedHealth/100.0)+0.5);
 	}
 
 	@Override
 	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void apply(SkillType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

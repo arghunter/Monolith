@@ -1,24 +1,20 @@
-
-
-import processing.core.PApplet;
+import java.awt.Graphics;
 
 public abstract class GameObject {
     private int id;
-    private PApplet p;
+   
 
-    public GameObject(int id, PApplet p) {
+    public GameObject(int id ) {
         this.id = id;
-        this.p=p;
+        
     }
 
     public int getId() {
         return id;
     }
-    public PApplet getPApplet() {
-    	return p;
-    }
 
-    //public abstract void draw();
+
+    public abstract void render(Graphics g);
  
 
 }

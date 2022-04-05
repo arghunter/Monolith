@@ -10,7 +10,7 @@ public class ArmorSkill extends GenericSkill {
 	public ArmorSkill(SkillType type,String name, int armor,int tier) {
 		super(type,name,tier);
 		this.armor=armor;
-		this.modifiedArmor=armor*(int)(tier/2+0.5);
+		this.modifiedArmor=armor*tier;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -22,6 +22,20 @@ public class ArmorSkill extends GenericSkill {
 
 	@Override
 	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int getArmor() {
+		return armor;
+	}
+
+	public int getModifiedArmor() {
+		return modifiedArmor;
+	}
+
+	@Override
+	public void apply(SkillType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

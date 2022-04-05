@@ -11,7 +11,7 @@ public class AttackSpeedSkill extends GenericSkill{
 		super(type, name, tier);
 		this.attackSpeed=attackSpeed;
 		this.tier=tier;
-		this.modifiedAttackSpeed=attackSpeed*(int)(tier/2.0+0.5);
+		this.modifiedAttackSpeed=attackSpeed*tier;
 	}
 
 	@Override
@@ -29,6 +29,20 @@ public class AttackSpeedSkill extends GenericSkill{
 
 	@Override
 	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int getAttackSpeed() {
+		return attackSpeed;
+	}
+
+	public int getModifiedAttackSpeed() {
+		return modifiedAttackSpeed;
+	}
+
+	@Override
+	public void apply(SkillType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

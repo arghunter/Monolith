@@ -8,7 +8,7 @@ public class AccuracySkill extends GenericSkill {
 	public AccuracySkill(SkillType type,String name, int accuracy, int tier) {
 		super(type, name, tier);
 		this.accuracy=accuracy;
-		this.modifiedAccuracy=accuracy*(int)(tier/2+0.5);
+		this.modifiedAccuracy=accuracy*tier;
 		
 	}
 	public int getAccuracy() {
@@ -30,6 +30,11 @@ public class AccuracySkill extends GenericSkill {
 	}
 	@Override
 	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void apply(SkillType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

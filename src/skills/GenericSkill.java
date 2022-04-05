@@ -57,6 +57,7 @@ public abstract class GenericSkill {
 	}
 	
 	public abstract int apply(int value);
+	public abstract void apply(SkillType[] valueTypes, int[] values) ;
 	public abstract void render(Graphics g);
 	
 	

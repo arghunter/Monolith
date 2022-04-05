@@ -56,6 +56,12 @@ public class Skill extends GenericSkill {
 		skill.render(g);
 		
 	}
+
+	@Override
+	public void apply(SkillType[] valueTypes, int[] values) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

@@ -4,19 +4,30 @@ import java.awt.Graphics;
 
 public class StrengthSkill extends GenericSkill {
 
+	private int strength;
+	private int modifiedStrength;
+
 	public StrengthSkill(SkillType type,String name,int strength, int tier) {
 		super(type, name, tier);
-		// TODO Auto-generated constructor stub
+		this.strength=strength;
+		this.tier=tier;
+		this.modifiedStrength=strength*(tier);
 	}
 
 	@Override
-	public int apply(int value) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int apply(int damage) {
+	
+		return (int)(damage*0.88*Math.log(1.0+modifiedStrength/12.0)*Math.log(1.0+modifiedStrength/12.0)+0.5) ;
 	}
 
 	@Override
 	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void apply(SkillType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

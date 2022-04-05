@@ -1,18 +1,20 @@
-import processing.core.PApplet;
+import java.awt.Graphics;
 
 public class Player extends MovingObject {
 	
 	//Note the speed will come from skill tree
-	public Player(int x, int y, int id,PApplet p) {
-		super(x, y,5 ,id,p);
+	public Player(int x, int y, int id) {
+		super(x, y,5 ,id);
+		
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
 		
 	} 
 
-	public void draw(PApplet surface) {
-		
-		surface.ellipse(getX(), getY(), getX(), getY());
-		
-	}
+	
 
 
 	

@@ -21,4 +21,10 @@ public class MiscSkill extends GenericSkill {
 		
 	}
 
+	@Override
+	public void apply(SkillType[] valueTypes, int[] values) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

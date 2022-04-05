@@ -3,7 +3,7 @@ package skills;
 import java.awt.Graphics;
 
 public class MultipleSkill extends GenericSkill {
-	GenericSkill[] skills;
+	Skill[] skills;
 
 	public MultipleSkill(SkillType type,String name, SkillType[] skillTypes,int[] values, int[] tiers) {
 		super(type,name);
@@ -11,7 +11,7 @@ public class MultipleSkill extends GenericSkill {
 		{
 			throw new IllegalArgumentException("skillTypes and values must be the same length");
 		}
-		this.skills=new GenericSkill[skillTypes.length];
+		this.skills=new Skill[skillTypes.length];
 		for(int i=0;i<skills.length;i++) 
 		{
 			this.skills[i]=new Skill(skillTypes[i],""+i,values[i],tiers[i]);

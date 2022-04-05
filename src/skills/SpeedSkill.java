@@ -11,15 +11,15 @@ public class SpeedSkill extends GenericSkill {
 		super(type, name, tier);
 		this.speed=speed;
 		this.tier=tier;
-		this.modifiedSpeed=speed*(int)(tier/2.0+0.5);
+		this.modifiedSpeed=speed*(tier);
 	}
 
 	@Override
 	public int apply(int movementDelay) {
 		int newMovementDelay=(int)(movementDelay*(1-modifiedSpeed/100.0)+0.5);
-		if(newMovementDelay<5) 
+		if(newMovementDelay<3) 
 		{
-			newMovementDelay=5;
+			newMovementDelay=3;
 		}
 		return newMovementDelay;
 		
@@ -27,6 +27,12 @@ public class SpeedSkill extends GenericSkill {
 
 	@Override
 	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void apply(SkillType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

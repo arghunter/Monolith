@@ -1,7 +1,7 @@
 import java.awt.event.ActionListener;
 
 
-import processing.core.PApplet;
+
 
 //Enums
 enum Direction
@@ -31,8 +31,8 @@ public abstract class MovingObject extends GameObject  {
 	
 	
 	
-	public MovingObject(int startX,int startY,int movementDelay,int id,PApplet p) {
-		super(id,p);
+	public MovingObject(int startX,int startY,int movementDelay,int id) {
+		super(id);
 		setMovementDelay(movementDelay);
 		
 		setCoords(startX,startY);
