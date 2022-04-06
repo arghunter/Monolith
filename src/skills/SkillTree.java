@@ -125,6 +125,7 @@ public class SkillTree {
 	}
 	
 	
+	
 	 
 	
 	
@@ -132,12 +133,7 @@ public class SkillTree {
 	{
 		return skills;
 	}
-	
-	public static void main(String[] args) {
-		
 
-		
-	}
 	
 	
 	
