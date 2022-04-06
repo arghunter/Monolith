@@ -7,8 +7,8 @@ public class RegenSkill extends GenericSkill {
 	private int modifiedRegen;
 	
 
-	public RegenSkill(StatType type,String name, int regen,int tier) {
-		super(type,name,tier);
+	public RegenSkill(StatType type,String name, int regen,int tier,boolean isActive) {
+		super(type,name,tier,isActive);
 		this.regen=regen;
 		
 		this.modifiedRegen=regen*(tier);

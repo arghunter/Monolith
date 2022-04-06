@@ -5,8 +5,8 @@ import java.awt.Graphics;
 public class AccuracySkill extends GenericSkill {
 	private int accuracy;
 	private int modifiedAccuracy;
-	public AccuracySkill(StatType type,String name, int accuracy, int tier) {
-		super(type, name, tier);
+	public AccuracySkill(StatType type,String name, int accuracy, int tier,boolean isActive) {
+		super(type, name, tier, isActive);
 		this.accuracy=accuracy;
 		this.modifiedAccuracy=accuracy*tier;
 		

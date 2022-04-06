@@ -7,8 +7,8 @@ public class PowerSkill extends GenericSkill {
 	private int power;
 	private int modifiedPower;
 
-	public PowerSkill(StatType type,String name,int power,int tier) {
-		super(type,name,tier);
+	public PowerSkill(StatType type,String name,int power,int tier,boolean isActive) {
+		super(type,name,tier,isActive);
 		this.power=power;
 		
 		this.modifiedPower=power*(tier);

@@ -7,8 +7,8 @@ public class AttackSpeedSkill extends GenericSkill{
 
 	private int modifiedAttackSpeed;
 
-	public AttackSpeedSkill(StatType type,String name, int attackSpeed,int tier) {
-		super(type, name, tier);
+	public AttackSpeedSkill(StatType type,String name, int attackSpeed,int tier,boolean isActive) {
+		super(type, name, tier,isActive);
 		this.attackSpeed=attackSpeed;
 		
 		this.modifiedAttackSpeed=attackSpeed*tier;

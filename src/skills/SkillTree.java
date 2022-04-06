@@ -69,6 +69,9 @@ public class SkillTree {
 				if(type==statTypes[i]) 
 				{
 					modifiedBaseStats[i]=skills.get(skills.size()-1).apply(modifiedBaseStats[i]);
+				}else if(statTypes[i]==StatType.MULTIPLE) 
+				{
+					skills.get(i).apply(statTypes, modifiedBaseStats);
 				}
 			}
 		}
@@ -79,9 +82,9 @@ public class SkillTree {
 		if(SKILL_TYPES[index].length!=1) 
 		{
 			
-			skills.add(new MultipleSkill(StatType.MULTIPLE,SKILL_NAMES[index],SKILL_TYPES[index],values,tiers));
+			skills.add(new MultipleSkill(StatType.MULTIPLE,SKILL_NAMES[index],SKILL_TYPES[index],values,tiers,true));
 		}
-		skills.add(new Skill(type,SKILL_NAMES[index],values[0],tiers[0]));
+		skills.add(new Skill(type,SKILL_NAMES[index],values[0],tiers[0],true));
 	}
 	public void generateSkill(int index,int tier) 
 	{

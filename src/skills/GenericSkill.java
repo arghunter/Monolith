@@ -9,7 +9,7 @@ public abstract class GenericSkill {
 	private int tier;
 	private int xp;
 	private int nextLevelXp;
-	
+	private boolean isActive;
 	//Fields Percent increase/decrease
 //	private int speed;
 //	private int strength;//Affects melee weapons
@@ -21,15 +21,16 @@ public abstract class GenericSkill {
 //	private int power;//Affects melee and ranged weapons
 	
 	
-	public GenericSkill(StatType type,String name,int tier) 
+	public GenericSkill(StatType type,String name,int tier,boolean isActive) 
 	{
 		this.type=type;
 		this.name=name;
 		this.tier=tier;
 		this.xp=0;
 		this.nextLevelXp=(int)Math.pow(2, tier+6);
+		
 	}
-	public GenericSkill(StatType type,String name) 
+	public GenericSkill(StatType type,String name, boolean isActive) 
 	{
 		this.type=type;
 		this.name=name;
@@ -46,6 +47,10 @@ public abstract class GenericSkill {
 	}
 	public int getTier() {
 		return tier;
+	}
+	public boolean getIsActive() 
+	{
+		return isActive;
 	}
 	public void addXP(int xp) throws SkillUpdateException 
 	{

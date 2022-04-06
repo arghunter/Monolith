@@ -7,8 +7,8 @@ public class ShieldSkill extends GenericSkill {
 	private int shield;
 	private int modifiedSheild;
 
-	public ShieldSkill(StatType type,String name,int shield,int tier) {
-		super(type, name, tier);
+	public ShieldSkill(StatType type,String name,int shield,int tier,boolean isActive) {
+		super(type, name, tier, isActive);
 		this.shield=shield;
 		
 		this.modifiedSheild=shield*(tier);

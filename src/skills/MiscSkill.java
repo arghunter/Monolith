@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 public class MiscSkill extends GenericSkill {
 
-	public MiscSkill(StatType type,String name, int tier) {
-		super(type, name, tier);
+	public MiscSkill(StatType type,String name, int tier,boolean isActive) {
+		super(type, name, tier,isActive);
 		// TODO Auto-generated constructor stub
 	}
 

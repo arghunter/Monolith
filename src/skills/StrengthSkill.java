@@ -7,8 +7,8 @@ public class StrengthSkill extends GenericSkill {
 	private int strength;
 	private int modifiedStrength;
 
-	public StrengthSkill(StatType type,String name,int strength, int tier) {
-		super(type, name, tier);
+	public StrengthSkill(StatType type,String name,int strength, int tier,boolean isActive) {
+		super(type, name, tier,isActive);
 		this.strength=strength;
 		
 		this.modifiedStrength=strength*(tier);

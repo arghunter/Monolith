@@ -6,8 +6,8 @@ public class HealthSkill extends GenericSkill{
 	private int health;
 	private int modifiedHealth;
 
-	public HealthSkill(StatType type,String name,int health,int tier) {
-		super(type, name, tier);
+	public HealthSkill(StatType type,String name,int health,int tier,boolean isActive) {
+		super(type, name, tier,isActive);
 		this.health=health;
 		
 		this.modifiedHealth=health*(tier);

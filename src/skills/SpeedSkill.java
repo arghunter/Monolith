@@ -7,8 +7,8 @@ public class SpeedSkill extends GenericSkill {
 	private int speed;
 	private int modifiedSpeed;
 
-	public SpeedSkill(StatType type,String name, int speed, int tier) {
-		super(type, name, tier);
+	public SpeedSkill(StatType type,String name, int speed, int tier,boolean isActive) {
+		super(type, name, tier,isActive);
 		this.speed=speed;
 		
 		this.modifiedSpeed=speed*(tier);

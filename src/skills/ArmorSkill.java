@@ -7,8 +7,8 @@ public class ArmorSkill extends GenericSkill {
 
 	private int modifiedArmor;
 
-	public ArmorSkill(StatType type,String name, int armor,int tier) {
-		super(type,name,tier);
+	public ArmorSkill(StatType type,String name, int armor,int tier,boolean isActive) {
+		super(type,name,tier,isActive);
 		this.armor=armor;
 		this.modifiedArmor=armor*tier;
 		// TODO Auto-generated constructor stub
