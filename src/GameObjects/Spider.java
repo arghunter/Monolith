@@ -7,8 +7,8 @@ public class Spider extends Mob {
 	//speed, damage, health, armor, attackspeed
 	public static int[] stats={10,2,10,0,2000};
 	
-	public Spider(int x,int y,int id) {
-		super(x,y,stats[0],id,stats);
+	public Spider(int x,int y,int id,int width,int height) {
+		super(x,y,stats[0],stats,id,width,height);
 	}
 	
 	public void move() {

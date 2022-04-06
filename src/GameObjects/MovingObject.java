@@ -18,8 +18,8 @@ public abstract class MovingObject extends GameObject  {
 	
 	
 	
-	public MovingObject(int startX,int startY,int movementDelay,int id) {
-		super(id);
+	public MovingObject(int startX,int startY,int movementDelay,int id,int width, int height) {
+		super(id, width, height);
 		setMovementDelay(movementDelay);
 		
 		setCoords(startX,startY);

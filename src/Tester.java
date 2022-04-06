@@ -10,7 +10,7 @@ import java.util.LinkedList;
 //import java.util.*;
 
 public class Tester extends JPanel implements ActionListener {
-	private Player thePlayer=new Player(100,100,1);
+	private Player thePlayer=new Player(100,100,1,20,20);
 	private int pastX=100;
 	private int pastY=100;
 	
