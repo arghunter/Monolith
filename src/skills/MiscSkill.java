@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 public class MiscSkill extends GenericSkill {
 
-	public MiscSkill(SkillType type,String name, int tier) {
+	public MiscSkill(StatType type,String name, int tier) {
 		super(type, name, tier);
 		// TODO Auto-generated constructor stub
 	}
@@ -22,7 +22,7 @@ public class MiscSkill extends GenericSkill {
 	}
 
 	@Override
-	public void apply(SkillType[] valueTypes, int[] values) {
+	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

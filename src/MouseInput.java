@@ -11,6 +11,7 @@ public class MouseInput implements MouseListener {
 		this.frame=frame;
 		this.frame.addMouseListener(this);
 		
+		
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {

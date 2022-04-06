@@ -7,10 +7,10 @@ public class ShieldSkill extends GenericSkill {
 	private int shield;
 	private int modifiedSheild;
 
-	public ShieldSkill(SkillType type,String name,int shield,int tier) {
+	public ShieldSkill(StatType type,String name,int shield,int tier) {
 		super(type, name, tier);
 		this.shield=shield;
-		this.tier=tier;
+		
 		this.modifiedSheild=shield*(tier);
 	}
 
@@ -27,7 +27,7 @@ public class ShieldSkill extends GenericSkill {
 	}
 
 	@Override
-	public void apply(SkillType[] valueTypes, int[] values) {
+	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

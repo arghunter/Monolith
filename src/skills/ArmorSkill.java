@@ -7,7 +7,7 @@ public class ArmorSkill extends GenericSkill {
 
 	private int modifiedArmor;
 
-	public ArmorSkill(SkillType type,String name, int armor,int tier) {
+	public ArmorSkill(StatType type,String name, int armor,int tier) {
 		super(type,name,tier);
 		this.armor=armor;
 		this.modifiedArmor=armor*tier;
@@ -35,7 +35,7 @@ public class ArmorSkill extends GenericSkill {
 	}
 
 	@Override
-	public void apply(SkillType[] valueTypes, int[] values) {
+	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

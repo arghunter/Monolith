@@ -2,24 +2,14 @@ package skills;
 
 import java.awt.Graphics;
 
-enum SkillType
- {
-	 SPEED,
-	 STRENGTH,
-	 ACCURACY,
-	 HEALTH,
-	 REGEN,
-	 SHIELD,
-	 ARMOR,
-	 ATTACKSPEED,
-	 POWER,
-	 MULTIPLE,
-	 MISC
- }
+
 public abstract class GenericSkill {
-	SkillType type;
-	String name;
-	int tier;
+	private StatType type;
+	private String name;
+	private int tier;
+	private int xp;
+	private int nextLevelXp;
+	
 	//Fields Percent increase/decrease
 //	private int speed;
 //	private int strength;//Affects melee weapons
@@ -31,13 +21,15 @@ public abstract class GenericSkill {
 //	private int power;//Affects melee and ranged weapons
 	
 	
-	public GenericSkill(SkillType type,String name,int tier) 
+	public GenericSkill(StatType type,String name,int tier) 
 	{
 		this.type=type;
 		this.name=name;
 		this.tier=tier;
+		this.xp=0;
+		this.nextLevelXp=(int)Math.pow(2, tier+6);
 	}
-	public GenericSkill(SkillType type,String name) 
+	public GenericSkill(StatType type,String name) 
 	{
 		this.type=type;
 		this.name=name;
@@ -46,7 +38,7 @@ public abstract class GenericSkill {
 	
 	
 	
-	public SkillType getType() {
+	public StatType getType() {
 		return type;
 	}
 	public String getName() {
@@ -55,9 +47,22 @@ public abstract class GenericSkill {
 	public int getTier() {
 		return tier;
 	}
+	public void addXP(int xp) throws SkillUpdateException 
+	{
+		this.xp+=xp;
+		if(this.xp>=this.nextLevelXp) 
+		{
+			this.xp-=this.nextLevelXp;
+			if(tier<10) 
+			{
+				tier++;
+				throw new SkillUpdateException("Skill: "+name+" has been updated");
+			}
+		}
+	}
 	
 	public abstract int apply(int value);
-	public abstract void apply(SkillType[] valueTypes, int[] values) ;
+	public abstract void apply(StatType[] valueTypes, int[] values) ;
 	public abstract void render(Graphics g);
 	
 	

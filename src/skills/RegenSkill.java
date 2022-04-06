@@ -7,10 +7,10 @@ public class RegenSkill extends GenericSkill {
 	private int modifiedRegen;
 	
 
-	public RegenSkill(SkillType type,String name, int regen,int tier) {
+	public RegenSkill(StatType type,String name, int regen,int tier) {
 		super(type,name,tier);
 		this.regen=regen;
-		this.tier=tier;
+		
 		this.modifiedRegen=regen*(tier);
 	}
 
@@ -27,7 +27,7 @@ public class RegenSkill extends GenericSkill {
 	}
 
 	@Override
-	public void apply(SkillType[] valueTypes, int[] values) {
+	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

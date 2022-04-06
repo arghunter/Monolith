@@ -7,10 +7,10 @@ public class PowerSkill extends GenericSkill {
 	private int power;
 	private int modifiedPower;
 
-	public PowerSkill(SkillType type,String name,int power,int tier) {
+	public PowerSkill(StatType type,String name,int power,int tier) {
 		super(type,name,tier);
 		this.power=power;
-		this.tier=tier;
+		
 		this.modifiedPower=power*(tier);
 	}
 
@@ -26,7 +26,7 @@ public class PowerSkill extends GenericSkill {
 	}
 
 	@Override
-	public void apply(SkillType[] valueTypes, int[] values) {
+	public void apply(StatType[] valueTypes, int[] valuess) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class Skill extends GenericSkill {
 	GenericSkill skill;
 
-	public Skill(SkillType type,String name,int percent,int tier) {
+	public Skill(StatType type,String name,int percent,int tier) {
 		super(type,name,tier);
 		switch(type) 
 		{
@@ -58,7 +58,7 @@ public class Skill extends GenericSkill {
 	}
 
 	@Override
-	public void apply(SkillType[] valueTypes, int[] values) {
+	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

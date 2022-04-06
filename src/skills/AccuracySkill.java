@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class AccuracySkill extends GenericSkill {
 	private int accuracy;
 	private int modifiedAccuracy;
-	public AccuracySkill(SkillType type,String name, int accuracy, int tier) {
+	public AccuracySkill(StatType type,String name, int accuracy, int tier) {
 		super(type, name, tier);
 		this.accuracy=accuracy;
 		this.modifiedAccuracy=accuracy*tier;
@@ -34,7 +34,7 @@ public class AccuracySkill extends GenericSkill {
 		
 	}
 	@Override
-	public void apply(SkillType[] valueTypes, int[] values) {
+	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -7,10 +7,10 @@ public class SpeedSkill extends GenericSkill {
 	private int speed;
 	private int modifiedSpeed;
 
-	public SpeedSkill(SkillType type,String name, int speed, int tier) {
+	public SpeedSkill(StatType type,String name, int speed, int tier) {
 		super(type, name, tier);
 		this.speed=speed;
-		this.tier=tier;
+		
 		this.modifiedSpeed=speed*(tier);
 	}
 
@@ -32,7 +32,7 @@ public class SpeedSkill extends GenericSkill {
 	}
 
 	@Override
-	public void apply(SkillType[] valueTypes, int[] values) {
+	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,4 +1,4 @@
-
+import GameObjects.Player;
 
 public class Render {
 	Player p1,p2;

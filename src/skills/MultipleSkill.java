@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class MultipleSkill extends GenericSkill {
 	Skill[] skills;
 
-	public MultipleSkill(SkillType type,String name, SkillType[] skillTypes,int[] values, int[] tiers) {
+	public MultipleSkill(StatType type,String name, StatType[] skillTypes,int[] values, int[] tiers) {
 		super(type,name);
 		if(!(skillTypes.length==values.length&& values.length==tiers.length)) 
 		{
@@ -25,19 +25,23 @@ public class MultipleSkill extends GenericSkill {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	public void apply(SkillType[] valueTypes, int[] values) 
+	public Skill[] getSkills() 
 	{
-		if(valueTypes.length!=values.length) 
+		return skills;
+	}
+	public void apply(StatType[] valueTypes,int[] modifiedStats) 
+	{
+		if(!(valueTypes.length==modifiedStats.length)) 
 		{
-			throw new IllegalArgumentException("valueTypes and values must be the same length");
+			throw new IllegalArgumentException("valueTypes, stats, and modifiedStats must be the same length");
 		}
 		for(int i=0;i<skills.length;i++) 
 		{
 			for(int j=0;j<valueTypes.length;j++) 
 			{
-				if(valueTypes[j]==skills[i].type) 
+				if(valueTypes[j]==skills[i].getType()) 
 				{
-					values[j]=skills[i].apply(values[j]);
+					modifiedStats[j]=skills[i].apply(modifiedStats[j]);
 				}
 			}
 		}

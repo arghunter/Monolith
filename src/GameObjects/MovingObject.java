@@ -1,22 +1,11 @@
+package GameObjects;
 import java.awt.event.ActionListener;
 
 
 
 
 //Enums
-enum Direction
-{
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
-	NORTHWEST,
-	SOUTHWEST,
-	SOUTHEAST,
-	NORTHEAST
-	
-	
-}
+
 
 public abstract class MovingObject extends GameObject  {
 

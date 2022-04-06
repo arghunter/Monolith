@@ -6,10 +6,10 @@ public class HealthSkill extends GenericSkill{
 	private int health;
 	private int modifiedHealth;
 
-	public HealthSkill(SkillType type,String name,int health,int tier) {
+	public HealthSkill(StatType type,String name,int health,int tier) {
 		super(type, name, tier);
 		this.health=health;
-		this.tier=tier;
+		
 		this.modifiedHealth=health*(tier);
 	}
 
@@ -26,7 +26,7 @@ public class HealthSkill extends GenericSkill{
 	}
 
 	@Override
-	public void apply(SkillType[] valueTypes, int[] values) {
+	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}

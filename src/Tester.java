@@ -1,6 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import GameObjects.Direction;
+import GameObjects.Player;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 //import java.util.*;
@@ -102,6 +106,8 @@ public class Tester extends JPanel implements ActionListener {
 	    Container c = w.getContentPane();
 	    Tester gb = new Tester();
 	    MouseInput mouse=new MouseInput(w);
+	   
+	    
 	    w.addKeyListener(new KeyListener() {
 
 			@Override
@@ -124,5 +130,7 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setResizable(true);
 	    w.setVisible(true);
 	}
+
+
 	
 }

@@ -7,10 +7,10 @@ public class StrengthSkill extends GenericSkill {
 	private int strength;
 	private int modifiedStrength;
 
-	public StrengthSkill(SkillType type,String name,int strength, int tier) {
+	public StrengthSkill(StatType type,String name,int strength, int tier) {
 		super(type, name, tier);
 		this.strength=strength;
-		this.tier=tier;
+		
 		this.modifiedStrength=strength*(tier);
 	}
 
@@ -27,7 +27,7 @@ public class StrengthSkill extends GenericSkill {
 	}
 
 	@Override
-	public void apply(SkillType[] valueTypes, int[] values) {
+	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 		
 	}
