@@ -14,6 +14,8 @@ public class Tester extends JPanel implements ActionListener {
 	private int pastX=100;
 	private int pastY=100;
 	
+	private int playerSize=20;
+	
 	public Tester() {
 		Timer clock=new Timer(1,this);
 		clock.start();
@@ -24,9 +26,9 @@ public class Tester extends JPanel implements ActionListener {
 		setBackground(Color.WHITE);
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
-		g.fillRect(pastX,pastY,30,30);
+		g.fillOval(pastX,pastY,playerSize,playerSize);
 		g.setColor(Color.BLACK);
-		g.fillRect(thePlayer.getX(),thePlayer.getY(),30,30);
+		g.fillOval(thePlayer.getX(),thePlayer.getY(),playerSize,playerSize);
 	}
 	
 	public void actionPerformed(ActionEvent e) {

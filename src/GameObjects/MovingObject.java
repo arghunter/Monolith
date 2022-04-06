@@ -8,14 +8,12 @@ import java.awt.event.ActionListener;
 
 
 public abstract class MovingObject extends GameObject  {
-
-
 	
 	//Fields
 	private int x;
 	private int y;
 	private double movementDelay;// In milliseconds Time between subsequent movements
-	private long lastMovement;
+	private double lastMovement;
 	private double currentMovementDelay;// Changes based on dirrection
 	
 	
@@ -54,15 +52,14 @@ public abstract class MovingObject extends GameObject  {
 	public void move(Direction direction) {
 		
 		if(System.currentTimeMillis()-lastMovement<this.currentMovementDelay) {
-			System.out.println("1");
 			return;
 		}
 		if(direction==Direction.NORTHEAST||direction==Direction.SOUTHWEST||direction==Direction.SOUTHEAST||direction==Direction.NORTHWEST) {
-			this.currentMovementDelay=(this.movementDelay*1.414213562);
+			//Magic number
+			this.currentMovementDelay=(this.movementDelay*1.05);
 		}else {
 			this.currentMovementDelay=this.movementDelay;
 		}
-		
 		int newX=getX();
 		int newY=getY();
 		if(direction==Direction.NORTH || direction==Direction.NORTHEAST || direction==Direction.NORTHWEST) {
