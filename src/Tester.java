@@ -101,6 +101,7 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    Container c = w.getContentPane();
 	    Tester gb = new Tester();
+	    MouseInput mouse=new MouseInput(w);
 	    w.addKeyListener(new KeyListener() {
 
 			@Override
