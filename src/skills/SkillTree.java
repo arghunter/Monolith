@@ -86,7 +86,7 @@ public class SkillTree {
 		}
 		skills.add(new Skill(type,SKILL_NAMES[index],values[0],tiers[0],true));
 	}
-	public void generateSkill(int index,int tier) 
+	private void generateSkill(int index,int tier) 
 	{
 		Random rng=new Random();
 		int[] values=new int[SKILL_TYPES[index].length];
@@ -98,6 +98,30 @@ public class SkillTree {
 		Arrays.fill(tiers, tier);
 		addSkill(index,values,tiers);		
 		
+	}
+	public void skillSelection(int skillCount) 
+	{
+		GenericSkill[] availableSkills=new GenericSkill[skillCount];
+		Random rng=new Random();
+		for(int j=0;j<skillCount;j++) 
+		{
+			int index=rng.nextInt(skills.size());
+			int[] values=new int[SKILL_TYPES[index].length];
+			for(int i=0;i<SKILL_TYPES[index].length;i++) 
+			{
+				values[i]=rng.nextInt(SKILL_RANGE[index][i][1]-SKILL_RANGE[index][i][0]+1)+SKILL_RANGE[index][i][0];
+			}
+			int[] tiers=new int[values.length];
+			Arrays.fill(tiers, 1);
+			StatType type=SKILL_TYPES[index][0];
+			
+			if(SKILL_TYPES[index].length!=1) 
+			{
+				
+				availableSkills[j]=(new MultipleSkill(StatType.MULTIPLE,SKILL_NAMES[index],SKILL_TYPES[index],values,tiers,true));
+			}
+			availableSkills[j]=(new Skill(type,SKILL_NAMES[index],values[0],tiers[0],true));
+		}
 	}
 	
 	
