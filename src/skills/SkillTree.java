@@ -30,10 +30,19 @@ public class SkillTree {
 	{
 		this.skills=tree.skills;
 	}
-//	public void addXP(int xp) 
-//	{
-//		
-//	}
+	public void addXP(int xp) 
+	{
+		int divXp=1+(int)((double)xp/skills.size()+0.5);
+		for(int i=0;i<skills.size();i++) 
+		{
+			try {
+				skills.get(i).addXP(divXp);
+			} catch (SkillUpdateException e) {
+				applyLastAddedSkill();
+
+			}
+		}
+	}
 	private void applyLastAddedSkill() 
 	{
 		StatType type=skills.get(skills.size()-1).getType();
@@ -59,7 +68,7 @@ public class SkillTree {
 			{
 				if(type==statTypes[i]) 
 				{
-					
+					modifiedBaseStats[i]=skills.get(skills.size()-1).apply(modifiedBaseStats[i]);
 				}
 			}
 		}
