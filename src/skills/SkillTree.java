@@ -39,13 +39,28 @@ public class SkillTree {
 		StatType type=skills.get(skills.size()-1).getType();
 		if(type==StatType.MULTIPLE) 
 		{
-			
+			skills.get(skills.size()-1).apply(statTypes, modifiedBaseStats);
 		}
 		for(int i=0;i<baseStats.length;i++) 
 		{
 			if(statTypes[i]==type) 
 			{
-				
+				modifiedBaseStats[i]=skills.get(skills.size()-1).apply(modifiedBaseStats[i]);
+			}
+		}
+	}
+	private void applyAllSkills() 
+	{
+		modifiedBaseStats=Arrays.copyOf(baseStats, baseStats.length);
+		for(int i=0;i<skills.size();i++) 
+		{
+			StatType type=skills.get(i).getType();
+			for(int j=0;j<statTypes.length;j++) 
+			{
+				if(type==statTypes[i]) 
+				{
+					
+				}
 			}
 		}
 	}
