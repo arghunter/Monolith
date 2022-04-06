@@ -118,9 +118,9 @@ public class SkillTree {
 			if(SKILL_TYPES[index].length!=1) 
 			{
 				
-				availableSkills[j]=(new MultipleSkill(StatType.MULTIPLE,SKILL_NAMES[index],SKILL_TYPES[index],values,tiers,true));
+				availableSkills[j]=(new MultipleSkill(StatType.MULTIPLE,SKILL_NAMES[index],SKILL_TYPES[index],values,tiers,false));
 			}
-			availableSkills[j]=(new Skill(type,SKILL_NAMES[index],values[0],tiers[0],true));
+			availableSkills[j]=(new Skill(type,SKILL_NAMES[index],values[0],tiers[0],false));
 		}
 	}
 	
