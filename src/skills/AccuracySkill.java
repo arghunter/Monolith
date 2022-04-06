@@ -29,8 +29,8 @@ public class AccuracySkill extends GenericSkill {
 	
 	}
 	@Override
-	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+	public void render(Graphics g,int x,int y) {
+		
 		
 	}
 	@Override

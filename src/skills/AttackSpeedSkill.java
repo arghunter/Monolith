@@ -28,7 +28,7 @@ public class AttackSpeedSkill extends GenericSkill{
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics g,int x,int y) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,5 +1,6 @@
 package GameObjects;
 
+import java.awt.Graphics;
 import java.util.Random;
 
 public class Spider extends Mob {
@@ -14,5 +15,11 @@ public class Spider extends Mob {
 		Random rm=new Random();
 		Direction possDirect[]= {Direction.NORTH};
 		super.move(possDirect[rm.nextInt(8)]);
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

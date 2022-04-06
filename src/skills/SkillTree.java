@@ -1,9 +1,9 @@
 package skills;
-
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import GameObjects.Player;
+
 
 
 public class SkillTree {
@@ -122,6 +122,11 @@ public class SkillTree {
 			}
 			availableSkills[j]=(new Skill(type,SKILL_NAMES[index],values[0],tiers[0],false));
 		}
+	}
+
+	public void render (Graphics g)
+	{
+		
 	}
 	
 	

@@ -2,7 +2,7 @@ package GameObjects;
 
 import java.awt.Graphics;
 
-public class Mob extends MovingObject {
+public abstract class Mob extends MovingObject {
 	//Health, 
 	private static int[] stats=new int[5];
 	
@@ -20,9 +20,5 @@ public class Mob extends MovingObject {
 		}
 	}
 
-	@Override
-	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-		
-	} 
+
 }

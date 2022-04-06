@@ -52,8 +52,8 @@ public class Skill extends GenericSkill {
 	}
 
 	@Override
-	public void render(Graphics g) {
-		skill.render(g);
+	public void render(Graphics g,int x,int y) {
+		skill.render(g,x,y);
 		
 	}
 
@@ -62,6 +62,7 @@ public class Skill extends GenericSkill {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 	
 
