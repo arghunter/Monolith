@@ -11,10 +11,8 @@ public class Spider extends Mob {
 		super(x,y,stats[0],stats,id,width,height,imageName);
 	}
 	
-	public void move() {
-		Random rm=new Random();
-		Direction possDirect[]= {Direction.NORTH};
-		super.move(possDirect[rm.nextInt(8)]);
+	public void move(Direction moveDirection) {
+		super.move(moveDirection);
 	}
 
 	@Override

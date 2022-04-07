@@ -2,8 +2,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import GameObjects.Direction;
+import GameObjects.*;
 import GameObjects.Player.Player;
+
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -11,6 +12,7 @@ import java.util.LinkedList;
 
 public class Tester extends JPanel implements ActionListener {
 	private Player thePlayer=new Player(300,300,1,64,64);
+	private Spider theSpider=new Spider(600,600,2,64,64,"DefaultHelmet.gif");
 
 	
 	public Tester() {
