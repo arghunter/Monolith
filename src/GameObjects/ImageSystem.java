@@ -37,7 +37,7 @@ public class ImageSystem {
 	public void setRotation(double radians) 
 	{
 		transform.setToTranslation(x, y);
-		transform.rotate(radians,width/2,height/2);
+		transform.rotate(radians+Math.PI/2,width/2,height/2);
 		
 	}
 	public void drawImage(Graphics g)
