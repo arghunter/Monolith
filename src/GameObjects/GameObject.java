@@ -5,12 +5,14 @@ public abstract class GameObject {
     private int id;
     private int width;
     private int height;
-   
+    
+    
 
     public GameObject(int id, int width, int height ) {
         this.id = id;
         this.width=width;
         this.height=height;
+        
         
     }
 

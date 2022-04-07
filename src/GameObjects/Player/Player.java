@@ -1,12 +1,15 @@
 package GameObjects.Player;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
+import GameObjects.ImageSystem;
 import GameObjects.MovingObject;
 import skills.*;
 
@@ -14,9 +17,12 @@ public class Player extends MovingObject {
 	private SkillTree skills;
 	private static StatType[] statTypes= {StatType.ACCURACY,StatType.ARMOR,StatType.ATTACKSPEED,StatType.HEALTH,StatType.POWER,StatType.REGEN,StatType.SHIELD,StatType.SPEED,StatType.STRENGTH};
 	private static int[] baseStats= {10,25,60,100,10,1,100,15,10};
+	
+	
 	//Note the speed will come from skill tree
 	public Player(int x, int y, int id,int width,int height) {
-		super(x, y,baseStats[7],id,width,height);
+		//Just going to use the helmet image for player
+		super(x, y,baseStats[7],id,width,height,"DefaultHelmet.gif");
 		skills=new SkillTree(baseStats,statTypes);
 		
 	}
@@ -24,16 +30,11 @@ public class Player extends MovingObject {
 	@Override
 	public void render(Graphics g) {
 		//super.refillLastPos(g);
+		super.getImage().drawImage(g);
 		
-		BufferedImage image = null;
-		try 
-		{
-			image=ImageIO.read(new File("C:\\Users\\arg\\Documents\\GitHub\\Monolith\\imgs\\DefaultPlayer.png"));
-		}catch (IOException e)
-		{
-			System.out.println("BigIssue");
-		}
-		g.drawImage(image, getX(), getY(), null);
+		
+		
+		
 		
 		
 		
