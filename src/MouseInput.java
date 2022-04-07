@@ -10,6 +10,7 @@ public class MouseInput implements MouseListener {
 	{
 		this.frame=frame;
 		this.frame.addMouseListener(this);
+	
 		
 		
 	}
@@ -20,6 +21,8 @@ public class MouseInput implements MouseListener {
 		{
 			System.out.println("MB1C");
 		}
+		
+		
 
 	}
 	@Override
@@ -49,6 +52,9 @@ public class MouseInput implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	
 	
 
 }

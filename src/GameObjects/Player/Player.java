@@ -19,11 +19,19 @@ public class Player extends MovingObject {
 	private static int[] baseStats= {10,25,60,100,10,1,100,15,10};
 	
 	
+	
 	//Note the speed will come from skill tree
 	public Player(int x, int y, int id,int width,int height) {
 		//Just going to use the helmet image for player
 		super(x, y,baseStats[7],id,width,height,"DefaultHelmet.gif");
 		skills=new SkillTree(baseStats,statTypes);
+		
+		
+	}
+	public void update(double mouseX, double mouseY) 
+	{
+		double angle=Math.atan(Math.abs((mouseY-super.getY())/(double)(mouseY-super.getX())));
+		super.getImage().setRotation(angle);
 		
 	}
 
@@ -31,12 +39,6 @@ public class Player extends MovingObject {
 	public void render(Graphics g) {
 		//super.refillLastPos(g);
 		super.getImage().drawImage(g);
-		
-		
-		
-		
-		
-		
 		
 	} 
 

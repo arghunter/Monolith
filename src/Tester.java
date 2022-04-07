@@ -10,7 +10,7 @@ import java.util.LinkedList;
 //import java.util.*;
 
 public class Tester extends JPanel implements ActionListener {
-	private Player thePlayer=new Player(100,100,1,64,64);
+	private Player thePlayer=new Player(300,300,1,64,64);
 
 	
 	public Tester() {
@@ -22,6 +22,7 @@ public class Tester extends JPanel implements ActionListener {
 	{
 		setBackground(Color.WHITE);
 		super.paintComponent(g);
+		thePlayer.update(MouseInfo.getPointerInfo().getLocation().getX(), MouseInfo.getPointerInfo().getLocation().getY());
 		thePlayer.render(g);
 
 	}

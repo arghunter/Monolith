@@ -28,8 +28,9 @@ public class ImageSystem {
 	    transform.translate(x, y);
 	}
 	
-	public void rotate(double radians) 
+	public void setRotation(double radians) 
 	{
+		
 		transform.rotate(radians, width/2, height/2);
 	}
 	public void drawImage(Graphics g)
