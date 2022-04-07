@@ -1,7 +1,13 @@
-package GameObjects;
+package GameObjects.Player;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+
+import GameObjects.MovingObject;
 import skills.*;
 
 public class Player extends MovingObject {
@@ -17,9 +23,18 @@ public class Player extends MovingObject {
 
 	@Override
 	public void render(Graphics g) {
-		super.refillLastPos(g);
-		g.setColor(Color.BLACK);
-		g.fillOval(getX(), getY(), getWidth(), getHeight());
+		//super.refillLastPos(g);
+		
+		BufferedImage image = null;
+		try 
+		{
+			image=ImageIO.read(new File("C:\\Users\\arg\\Documents\\GitHub\\Monolith\\imgs\\DefaultPlayer.png"));
+		}catch (IOException e)
+		{
+			System.out.println("BigIssue");
+		}
+		g.drawImage(image, getX(), getY(), null);
+		
 		
 		
 	} 

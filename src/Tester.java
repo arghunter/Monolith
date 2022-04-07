@@ -3,14 +3,14 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import GameObjects.Direction;
-import GameObjects.Player;
+import GameObjects.Player.Player;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 //import java.util.*;
 
 public class Tester extends JPanel implements ActionListener {
-	private Player thePlayer=new Player(100,100,1,20,20);
+	private Player thePlayer=new Player(100,100,1,64,64);
 
 	
 	public Tester() {
