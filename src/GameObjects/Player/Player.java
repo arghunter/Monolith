@@ -30,7 +30,7 @@ public class Player extends MovingObject {
 	}
 	public void update(double mouseX, double mouseY) 
 	{
-		double angle=Math.atan(Math.abs((mouseY-super.getY())/(double)(mouseY-super.getX())));
+		double angle=Math.atan(Math.abs((mouseY-super.getY())/(double)(mouseX-super.getX())));
 		super.getImage().setRotation(angle);
 		
 	}

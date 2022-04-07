@@ -13,6 +13,8 @@ public class ImageSystem {
 	private AffineTransform transform;
 	private int width;
 	private int height;
+	private int x;
+	private int y;
 	
 	public ImageSystem(int x,int y,Image pic) 
 	{
@@ -20,18 +22,23 @@ public class ImageSystem {
 		this.width = picture.getWidth(null);
 	    this.height = picture.getHeight(null);
 	    this.transform=new AffineTransform();
+	    this.x=x;
+	    this.y=y;
 	    transform.translate(x - width/2, y - height/2);
 	}
 	
 	public void move(int x, int y)
 	{
+		this.x+=x;
+		this.y+=y;
 	    transform.translate(x, y);
 	}
 	
 	public void setRotation(double radians) 
 	{
+		transform.setToTranslation(x, y);
+		transform.rotate(radians,width/2,height/2);
 		
-		transform.rotate(radians, width/2, height/2);
 	}
 	public void drawImage(Graphics g)
 	 {
