@@ -14,7 +14,15 @@ public abstract class GameObject {
         
     }
 
-    public int getId() {
+    public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public int getId() {
         return id;
     }
 

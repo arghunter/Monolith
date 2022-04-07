@@ -11,10 +11,7 @@ import java.util.LinkedList;
 
 public class Tester extends JPanel implements ActionListener {
 	private Player thePlayer=new Player(100,100,1,20,20);
-	private int pastX=100;
-	private int pastY=100;
-	
-	private int playerSize=20;
+
 	
 	public Tester() {
 		Timer clock=new Timer(1,this);
@@ -25,15 +22,12 @@ public class Tester extends JPanel implements ActionListener {
 	{
 		setBackground(Color.WHITE);
 		super.paintComponent(g);
-		g.setColor(Color.WHITE);
-		g.fillOval(pastX,pastY,playerSize,playerSize);
-		g.setColor(Color.BLACK);
-		g.fillOval(thePlayer.getX(),thePlayer.getY(),playerSize,playerSize);
+		thePlayer.render(g);
+
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		pastX=thePlayer.getX();
-		pastY=thePlayer.getY();
+
 		int leftComp=(leftPressed?1:0);
 		int rightComp=(rightPressed?1:0);
 		int upComp=(upPressed?1:0);

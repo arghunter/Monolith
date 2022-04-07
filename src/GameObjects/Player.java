@@ -1,4 +1,5 @@
 package GameObjects;
+import java.awt.Color;
 import java.awt.Graphics;
 
 import skills.*;
@@ -16,7 +17,10 @@ public class Player extends MovingObject {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		super.refillLastPos(g);
+		g.setColor(Color.BLACK);
+		g.fillOval(getX(), getY(), getWidth(), getHeight());
+		
 		
 	} 
 

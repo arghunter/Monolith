@@ -1,4 +1,6 @@
 package GameObjects;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionListener;
 
 
@@ -12,6 +14,8 @@ public abstract class MovingObject extends GameObject  {
 	//Fields
 	private int x;
 	private int y;
+	private int pastX;
+	private int pastY;
 	private double movementDelay;// In milliseconds Time between subsequent movements
 	private double lastMovement;
 	private double currentMovementDelay;// Changes based on dirrection
@@ -44,6 +48,14 @@ public abstract class MovingObject extends GameObject  {
 	//Returns the current y coordinate
 	public int getY() {
 		return y;
+	}
+	public void refillLastPos(Graphics g) 
+	{
+		g.setColor(Color.WHITE);
+		g.drawRect(pastX, pastY, getWidth(), getHeight());
+		this.pastX=x;
+		this.pastY=y;
+		
 	}
 	
 
