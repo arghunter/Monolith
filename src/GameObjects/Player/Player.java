@@ -16,15 +16,19 @@ import skills.*;
 public class Player extends MovingObject {
 	private SkillTree skills;
 	private static StatType[] statTypes= {StatType.ACCURACY,StatType.ARMOR,StatType.ATTACKSPEED,StatType.HEALTH,StatType.POWER,StatType.REGEN,StatType.SHIELD,StatType.SPEED,StatType.STRENGTH};
-	private static int[] baseStats= {10,25,60,100,10,1,100,15,10};
-	
+	private int[] stats= {10,25,60,100,10,1,100,15,10};
+	private int currentHealth;
+	private int currentShields;
+	private boolean isDead=false;;
 	
 	
 	//Note the speed will come from skill tree
 	public Player(int x, int y, int id,int width,int height) {
 		//Just going to use the helmet image for player
-		super(x, y,baseStats[7],id,width,height,"DefaultHelmet.png");
-		skills=new SkillTree(baseStats,statTypes);
+		super(x, y,15,id,width,height,"DefaultHelmet.png");
+		skills=new SkillTree(stats,statTypes);
+		currentHealth=stats[3];
+		currentShields=stats[6];
 		
 		
 	}
@@ -37,7 +41,40 @@ public class Player extends MovingObject {
 		super.getImage().setRotation(angle);
 		
 	}
+	public void takeDamage(int damage) 
+	{
+		damage=(int)((2*Math.log(stats[1]*Math.log(stats[1])))+0.5);
+		if(currentShields>0) 
+		{
+			currentShields-=damage;
+		}else 
+		{
+			currentHealth-=damage;
+		}
+		if(currentHealth<=0) 
+		{
+			isDead=true;
+		}
+	}
 
+	public SkillTree getSkills() {
+		return skills;
+	}
+	public static StatType[] getStatTypes() {
+		return statTypes;
+	}
+	public int[] getStats() {
+		return stats;
+	}
+	public int getCurrentHealth() {
+		return currentHealth;
+	}
+	public int getCurrentShields() {
+		return currentShields;
+	}
+	public boolean isDead() {
+		return isDead;
+	}
 	@Override
 	public void render(Graphics g) {
 		//super.refillLastPos(g);
