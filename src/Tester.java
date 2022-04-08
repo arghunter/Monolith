@@ -13,13 +13,17 @@ import java.util.LinkedList;
 public class Tester extends JPanel implements ActionListener {
 	private Player thePlayer=new Player(300,300,1,64,64);
 	private Spider theSpider=new Spider(600,600,2,64,64);
+	private Spider secondSpider=new Spider(1000,1000,3,64,64);
+	private Zombie theZombie=new Zombie(1200, 1200, 4, 64,64);
 	private Mob[] mobList = new Mob[1000];
-	int numMobs=1;
+	int numMobs=3;
 	
 	public Tester() {
 		Timer clock=new Timer(1,this);
 		clock.start();
 		mobList[0]=theSpider;
+		mobList[1]=secondSpider;
+		mobList[2]=theZombie;
 	}
 	
 	public void paintComponent(Graphics g)
