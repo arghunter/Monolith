@@ -13,11 +13,13 @@ import java.util.LinkedList;
 public class Tester extends JPanel implements ActionListener {
 	private Player thePlayer=new Player(300,300,1,64,64);
 	private Spider theSpider=new Spider(600,600,2,64,64,"DefaultHelmet.gif");
-
+	private Mob[] mobList = new Mob[1000];
+	int numMobs=1;
 	
 	public Tester() {
 		Timer clock=new Timer(1,this);
 		clock.start();
+		mobList[0]=theSpider;
 	}
 	
 	public void paintComponent(Graphics g)
@@ -27,10 +29,50 @@ public class Tester extends JPanel implements ActionListener {
 		thePlayer.update(MouseInfo.getPointerInfo().getLocation().getX(), MouseInfo.getPointerInfo().getLocation().getY());
 		thePlayer.render(g);
 
+		for(int i=0;i<numMobs;i++) {
+			mobList[i].render(g);
+		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-
+		
+		for(int i=0;i<numMobs;i++) {
+			int curX=mobList[i].getX();
+			int curY=mobList[i].getY();
+			int diffX=curX-thePlayer.getX();
+			int diffY=curY-thePlayer.getY();
+			Direction toMove=Direction.NORTH;
+			if(1.5*Math.abs(diffX)<Math.abs(diffY)) {
+				//Move up down
+				if(diffY>0) {
+					toMove=Direction.NORTH;
+				}else {
+					toMove=Direction.SOUTH;
+				}
+			}else if(1.5*Math.abs(diffY)<Math.abs(diffX)) {
+				//Move left right
+				if(diffX>0) {
+					toMove=Direction.WEST;
+				}else {
+					toMove=Direction.EAST;
+				}
+			}else {
+				//Move diagonal
+				if(diffX>0 && diffY>0) {
+					toMove=Direction.NORTHWEST;
+				}else if(diffX<=0 && diffY>0) {
+					toMove=Direction.NORTHWEST;
+				}else if(diffX>0 && diffY<=0) {
+					toMove=Direction.SOUTHWEST;
+				}else if(diffX<=0 && diffY<=0) {
+					toMove=Direction.SOUTHEAST;
+				}
+			}
+			System.out.println(mobList[i].getX()+" "+mobList[i].getY());
+			mobList[i].move(toMove);
+		}
+		
+		
 		int leftComp=(leftPressed?1:0);
 		int rightComp=(rightPressed?1:0);
 		int upComp=(upPressed?1:0);
@@ -129,7 +171,6 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setResizable(true);
 	    w.setVisible(true);
 	}
-
 
 	
 }

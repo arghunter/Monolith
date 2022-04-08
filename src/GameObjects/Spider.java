@@ -17,7 +17,7 @@ public class Spider extends Mob {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		super.getImage().drawImage(g);
 		
 	}
 }
