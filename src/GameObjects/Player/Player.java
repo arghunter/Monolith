@@ -23,7 +23,7 @@ public class Player extends MovingObject {
 	//Note the speed will come from skill tree
 	public Player(int x, int y, int id,int width,int height) {
 		//Just going to use the helmet image for player
-		super(x, y,baseStats[7],id,width,height,"DefaultHelmet.gif");
+		super(x, y,baseStats[7],id,width,height,"DefaultHelmet.png");
 		skills=new SkillTree(baseStats,statTypes);
 		
 		
