@@ -61,7 +61,7 @@ public class Tester extends JPanel implements ActionListener {
 				if(diffX>0 && diffY>0) {
 					toMove=Direction.NORTHWEST;
 				}else if(diffX<=0 && diffY>0) {
-					toMove=Direction.NORTHWEST;
+					toMove=Direction.NORTHEAST;
 				}else if(diffX>0 && diffY<=0) {
 					toMove=Direction.SOUTHWEST;
 				}else if(diffX<=0 && diffY<=0) {
