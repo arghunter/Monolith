@@ -41,6 +41,7 @@ public class Player extends MovingObject {
 		super.getImage().setRotation(angle);
 		
 	}
+	//alters the players health and shield values based on damage dealt and armor
 	public void takeDamage(int damage) 
 	{
 		damage=(int)((2*Math.log(stats[1]*Math.log(stats[1])))+0.5);
