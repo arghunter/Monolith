@@ -71,9 +71,7 @@ public abstract class MovingObject extends GameObject {
 		getImage().setRotation(angle);
 	}
 
-	public void update(double pointX, double pointY) {
-		updateAngle(pointX, pointY);
-	}
+	
 
 	// Given a direction 1 unit in the direction
 	// Scales to prevent strafing from being faster

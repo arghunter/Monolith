@@ -19,6 +19,9 @@ public abstract class Mob extends MovingObject {
 			Mob.stats=stats;
 		}
 	}
+	public void update(double pointX, double pointY) {
+		updateAngle(pointX, pointY);
+	}
 
 
 }
