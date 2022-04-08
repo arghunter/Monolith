@@ -32,15 +32,6 @@ public class Player extends MovingObject {
 		
 		
 	}
-	public void update(double mouseX, double mouseY) 
-	{
-		double angle=Math.atan((double)((mouseY-super.getY())/(double)(mouseX-super.getX())));
-		if(mouseX<super.getX()) {
-			angle+=Math.PI;
-		}
-		super.getImage().setRotation(angle);
-		
-	}
 	//alters the players health and shield values based on damage dealt and armor
 	public void takeDamage(int damage) 
 	{
