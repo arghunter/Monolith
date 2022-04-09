@@ -78,10 +78,10 @@ public class Tester extends JPanel implements ActionListener {
 		}
 		
 		
-		int leftComp=(leftPressed?1:0);
-		int rightComp=(rightPressed?1:0);
-		int upComp=(upPressed?1:0);
-		int downComp=(downPressed?1:0);
+		int leftComp=(leftPressed||aPressed?1:0);
+		int rightComp=(rightPressed||dPressed?1:0);
+		int upComp=(upPressed||wPressed?1:0);
+		int downComp=(downPressed||sPressed?1:0);
 		if(leftComp-rightComp==0) {
 			if(upComp-downComp==1) {
 				thePlayer.move(Direction.NORTH);
@@ -114,6 +114,10 @@ public class Tester extends JPanel implements ActionListener {
 	boolean rightPressed = false;
 	boolean upPressed = false;
 	boolean downPressed = false;
+	boolean wPressed = false;
+	boolean aPressed = false;
+	boolean sPressed = false;
+	boolean dPressed = false;
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode()==KeyEvent.VK_LEFT) {
 			leftPressed=true;
@@ -126,6 +130,18 @@ public class Tester extends JPanel implements ActionListener {
 		}
 		if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 			downPressed=true;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_W) {
+			wPressed=true;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_A) {
+			aPressed=true;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_S) {
+			sPressed=true;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_D) {
+			dPressed=true;
 		}
 	}
 	
@@ -141,6 +157,18 @@ public class Tester extends JPanel implements ActionListener {
 		}
 		if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 			downPressed=false;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_W) {
+			wPressed=false;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_A) {
+			aPressed=false;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_S) {
+			sPressed=false;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_D) {
+			dPressed=false;
 		}
 	}
 	
