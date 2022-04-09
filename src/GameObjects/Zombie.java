@@ -1,6 +1,7 @@
 package GameObjects;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Random;
 
 public class Zombie extends Mob {
@@ -16,7 +17,7 @@ public class Zombie extends Mob {
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		super.getImage().drawImage(g);
 		
 	}

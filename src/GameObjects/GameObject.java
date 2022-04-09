@@ -1,5 +1,6 @@
 package GameObjects;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public abstract class GameObject {
     private int id;
@@ -29,7 +30,7 @@ public abstract class GameObject {
     }
 
 
-    public abstract void render(Graphics g);
+    public abstract void render(Graphics2D g);
  
 
 }

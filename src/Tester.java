@@ -26,9 +26,10 @@ public class Tester extends JPanel implements ActionListener {
 		mobList[2]=theZombie;
 	}
 	
-	public void paintComponent(Graphics g)
+	public void paintComponent(Graphics graphics)
 	{
 		setBackground(Color.WHITE);
+		Graphics2D g=(Graphics2D)graphics;
 		super.paintComponent(g);
 		thePlayer.update(MouseInfo.getPointerInfo().getLocation().getX(), MouseInfo.getPointerInfo().getLocation().getY());
 		thePlayer.render(g);
