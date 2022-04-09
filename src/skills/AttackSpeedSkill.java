@@ -1,6 +1,7 @@
 package skills;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class AttackSpeedSkill extends GenericSkill{
 	private int attackSpeed;
@@ -27,11 +28,6 @@ public class AttackSpeedSkill extends GenericSkill{
 		return newAttackSpeed;
 	}
 
-	@Override
-	public void render(Graphics g,int x,int y) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public int getAttackSpeed() {
 		return attackSpeed;
@@ -43,6 +39,12 @@ public class AttackSpeedSkill extends GenericSkill{
 
 	@Override
 	public void apply(StatType[] valueTypes, int[] values) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void render(Graphics2D g, int x, int y) {
 		// TODO Auto-generated method stub
 		
 	}

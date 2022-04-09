@@ -1,6 +1,7 @@
 package skills;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class ArmorSkill extends GenericSkill {
 	private int armor;
@@ -20,11 +21,7 @@ public class ArmorSkill extends GenericSkill {
 		
 	}
 
-	@Override
-	public void render(Graphics g,int x,int y) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	public int getArmor() {
 		return armor;
@@ -36,6 +33,12 @@ public class ArmorSkill extends GenericSkill {
 
 	@Override
 	public void apply(StatType[] valueTypes, int[] values) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void render(Graphics2D g, int x, int y) {
 		// TODO Auto-generated method stub
 		
 	}

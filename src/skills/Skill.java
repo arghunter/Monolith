@@ -1,6 +1,7 @@
 package skills;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Skill extends GenericSkill {
 	GenericSkill skill;
@@ -52,7 +53,7 @@ public class Skill extends GenericSkill {
 	}
 
 	@Override
-	public void render(Graphics g,int x,int y) {
+	public void render(Graphics2D g,int x,int y) {
 		skill.render(g,x,y);
 		
 	}

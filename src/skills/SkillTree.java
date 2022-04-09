@@ -1,5 +1,6 @@
 package skills;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -32,7 +33,15 @@ public class SkillTree {
 	}
 	public void addXP(int xp) 
 	{
-		int divXp=1+(int)((double)xp/skills.size()+0.5);
+		int activeSkills=0;
+		for(int i=0;i<skills.size();i++) 
+		{
+			if(skills.get(i).getIsActive()) 
+			{
+				activeSkills++;
+			}
+		}
+		int divXp=1+(int)((double)xp/activeSkills+0.5);
 		for(int i=0;i<skills.size();i++) 
 		{
 			try {
@@ -63,12 +72,16 @@ public class SkillTree {
 		modifiedBaseStats=Arrays.copyOf(baseStats, baseStats.length);
 		for(int i=0;i<skills.size();i++) 
 		{
+			if(!skills.get(i).getIsActive()) 
+			{
+				continue;
+			}
 			StatType type=skills.get(i).getType();
 			for(int j=0;j<statTypes.length;j++) 
 			{
 				if(type==statTypes[i]) 
 				{
-					modifiedBaseStats[i]=skills.get(skills.size()-1).apply(modifiedBaseStats[i]);
+					modifiedBaseStats[i]=skills.get(i).apply(modifiedBaseStats[i]);
 				}else if(statTypes[i]==StatType.MULTIPLE) 
 				{
 					skills.get(i).apply(statTypes, modifiedBaseStats);
@@ -123,8 +136,9 @@ public class SkillTree {
 			availableSkills[j]=(new Skill(type,SKILL_NAMES[index],values[0],tiers[0],false));
 		}
 	}
+	
 
-	public void render (Graphics g)
+	public void render (Graphics2D g,int width,int height)
 	{
 		
 	}

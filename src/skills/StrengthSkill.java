@@ -1,6 +1,7 @@
 package skills;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class StrengthSkill extends GenericSkill {
 
@@ -21,7 +22,7 @@ public class StrengthSkill extends GenericSkill {
 	}
 
 	@Override
-	public void render(Graphics g,int x,int y) {
+	public void render(Graphics2D g,int x,int y) {
 		// TODO Auto-generated method stub
 		
 	}
