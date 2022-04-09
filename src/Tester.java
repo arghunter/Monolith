@@ -16,6 +16,8 @@ public class Tester extends JPanel implements ActionListener {
 	private Spider secondSpider=new Spider(1000,1000,3,64,64);
 	private Zombie theZombie=new Zombie(1200, 1200, 4, 64,64);
 	private Mob[] mobList = new Mob[1000];
+	private InputParser input;
+	
 	int numMobs=3;
 	
 	public Tester() {
@@ -31,13 +33,17 @@ public class Tester extends JPanel implements ActionListener {
 		setBackground(Color.WHITE);
 		Graphics2D g=(Graphics2D)graphics;
 		super.paintComponent(g);
-		thePlayer.update(MouseInfo.getPointerInfo().getLocation().getX(), MouseInfo.getPointerInfo().getLocation().getY());
+		input.updatePlayerPosAndAngle(thePlayer);
 		thePlayer.render(g);
 
 		for(int i=0;i<numMobs;i++) {
 			mobList[i].render(g);
 			mobList[i].update(thePlayer.getX(),thePlayer.getY());
 		}
+	}
+	public void initInput(JFrame frame) 
+	{
+		this.input=new InputParser(frame);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -79,99 +85,12 @@ public class Tester extends JPanel implements ActionListener {
 		}
 		
 		
-		int leftComp=(leftPressed||aPressed?1:0);
-		int rightComp=(rightPressed||dPressed?1:0);
-		int upComp=(upPressed||wPressed?1:0);
-		int downComp=(downPressed||sPressed?1:0);
-		if(leftComp-rightComp==0) {
-			if(upComp-downComp==1) {
-				thePlayer.move(Direction.NORTH);
-			}else if(upComp-downComp==-1) {
-				thePlayer.move(Direction.SOUTH);
-			}else {
-				//Don't move
-			}
-		}else if(leftComp-rightComp==1) {
-			if(upComp-downComp==1) {
-				thePlayer.move(Direction.NORTHWEST);
-			}else if(upComp-downComp==-1) {
-				thePlayer.move(Direction.SOUTHWEST);
-			}else {
-				thePlayer.move(Direction.WEST);
-			}
-		}else if(leftComp-rightComp==-1) {
-			if(upComp-downComp==1) {
-				thePlayer.move(Direction.NORTHEAST);
-			}else if(upComp-downComp==-1) {
-				thePlayer.move(Direction.SOUTHEAST);
-			}else {
-				thePlayer.move(Direction.EAST);
-			}
-		}
+		
 		repaint();
 	}
 	
-	boolean leftPressed = false;
-	boolean rightPressed = false;
-	boolean upPressed = false;
-	boolean downPressed = false;
-	boolean wPressed = false;
-	boolean aPressed = false;
-	boolean sPressed = false;
-	boolean dPressed = false;
-	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode()==KeyEvent.VK_LEFT) {
-			leftPressed=true;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
-			rightPressed=true;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_UP) {
-			upPressed=true;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_DOWN) {
-			downPressed=true;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_W) {
-			wPressed=true;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_A) {
-			aPressed=true;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_S) {
-			sPressed=true;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_D) {
-			dPressed=true;
-		}
-	}
 	
-	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode()==KeyEvent.VK_LEFT) {
-			leftPressed=false;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
-			rightPressed=false;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_UP) {
-			upPressed=false;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_DOWN) {
-			downPressed=false;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_W) {
-			wPressed=false;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_A) {
-			aPressed=false;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_S) {
-			sPressed=false;
-		}
-		if(e.getKeyCode()==KeyEvent.VK_D) {
-			dPressed=false;
-		}
-	}
+	
 	
 	
 	public static void main(String[] args) {
@@ -180,27 +99,8 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    Container c = w.getContentPane();
 	    Tester gb = new Tester();
-	    MouseInput mouse=new MouseInput(w);
-	   
-	    
-	    w.addKeyListener(new KeyListener() {
+	    gb.initInput(w);
 
-			@Override
-			public void keyTyped(KeyEvent e) {
-				//ignore
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				gb.keyPressed(e);
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				gb.keyReleased(e);
-			}
-	    	
-	    });
 	    c.add(gb);
 	    w.setResizable(true);
 	    w.setVisible(true);
