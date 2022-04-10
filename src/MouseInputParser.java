@@ -11,13 +11,13 @@ public class MouseInputParser {
 		
 		this.input = new MouseInput(frame);
 	}
-	public int getX() 
+	public double getX() 
 	{
-		return (int) MouseInfo.getPointerInfo().getLocation().getX();
+		return MouseInfo.getPointerInfo().getLocation().getX();
 	}
-	public int getY() 
+	public double getY() 
 	{
-		return (int) MouseInfo.getPointerInfo().getLocation().getY();
+		return MouseInfo.getPointerInfo().getLocation().getY();
 	}
 	public void updatePlayerAngle(Player player) 
 	{

@@ -11,11 +11,11 @@ public class InputParser {
 		mouse=new MouseInputParser(frame);
 	}
 	
-	public int getMouseX()
+	public double getMouseX()
 	{
 		return mouse.getX();
 	}
-	public int getMouseY() 
+	public double getMouseY() 
 	{
 		return mouse.getY();
 	}

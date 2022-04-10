@@ -11,6 +11,7 @@ public abstract class GenericSkill {
 	private int xp;
 	private int nextLevelXp;
 	private boolean isActive;
+	
 	//Fields Percent increase/decrease
 //	private int speed;
 //	private int strength;//Affects melee weapons
