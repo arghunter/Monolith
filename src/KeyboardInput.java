@@ -34,25 +34,25 @@ public class KeyboardInput implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode()==KeyEvent.VK_LEFT) {
 			leftPressed=true;
-		}
+		}else
 		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
 			rightPressed=true;
-		}
+		}else
 		if(e.getKeyCode()==KeyEvent.VK_UP) {
 			upPressed=true;
-		}
+		}else
 		if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 			downPressed=true;
-		}
+		}else
 		if(e.getKeyCode()==KeyEvent.VK_W) {
 			wPressed=true;
-		}
+		}else
 		if(e.getKeyCode()==KeyEvent.VK_A) {
 			aPressed=true;
-		}
+		}else
 		if(e.getKeyCode()==KeyEvent.VK_S) {
 			sPressed=true;
-		}
+		}else
 		if(e.getKeyCode()==KeyEvent.VK_D) {
 			dPressed=true;
 		}
