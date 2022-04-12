@@ -4,67 +4,78 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class Skill extends GenericSkill {
-	GenericSkill skill;
 
-	public Skill(StatType type,String name,int percent,int tier,boolean isActive) {
-		super(type,name,tier,isActive);
-		switch(type) 
-		{
-		case ACCURACY:
-			skill=new AccuracySkill(type,name, percent,tier,isActive);
-			break;
-		case ARMOR:
-			skill=new ArmorSkill(type,name, percent,tier,isActive);
-			break;
-		case ATTACKSPEED:
-			skill=new AttackSpeedSkill(type,name, percent,tier,isActive);
-			break;
-		case HEALTH:
-			skill=new HealthSkill(type,name, percent,tier,isActive);
-			break;
-		case POWER:
-			skill=new PowerSkill(type,name, percent,tier,isActive);
-			break;
-		case REGEN:
-			skill=new RegenSkill(type,name, percent,tier,isActive);
-			break;
-		case SHIELD:
-			skill=new ShieldSkill(type,name, percent,tier,isActive);
-			break;
-		case SPEED:
-			skill=new SpeedSkill(type,name, percent,tier,isActive);
-			break;
-		case STRENGTH:
-			skill=new StrengthSkill(type,name, percent,tier,isActive);
-			break;
-		case MISC:
-			break;
-		
+	private int percent;
+	private int modifiedPercent;
 
-		}
-		
-		
+	public Skill(StatType type, String name, int percent, int tier, boolean isActive) {
+		super(type, name, tier, isActive);
+		this.percent = percent;
+		this.modifiedPercent = percent * tier;
+
 	}
 
 	@Override
 	public int apply(int value) {
-		
-		return skill.apply(value);
+
+		switch (super.getType()) {
+			case ACCURACY:
+				int newAccuracy = (int) (value * (modifiedPercent / 100.0 + 1.0) + 0.5);
+				if (newAccuracy > 100) {
+					newAccuracy = 100;
+				}
+				return newAccuracy;
+
+				 
+			case ARMOR:
+				return (int)(value*(1+modifiedPercent/100.0)+0.5);
+				 
+			case ATTACKSPEED:
+			int newAttackSpeed=(int)(value*(modifiedPercent/100.0+1)+0.5);
+			if(newAttackSpeed>2.5*value) 
+			{
+				newAttackSpeed=(int)(2.5*value+0.5);
+			}
+			return newAttackSpeed;
+			case HEALTH:
+				return (int)(value*(1.0+modifiedPercent/100.0)+0.5);
+				 
+			case POWER:
+				return (int)(value*100*Math.log(1.0+modifiedPercent/12.0)*Math.log(1.0+modifiedPercent/12.0)+0.5);
+				 
+			case REGEN:
+			return (int)(value*(1+modifiedPercent/100.0)+0.5);
+			 
+			case SHIELD:
+			return (int)(value*(1+modifiedPercent/100.0)+0.5);
+			 
+			case SPEED:
+			int newMovementDelay=(int)(value*(1-modifiedPercent/100.0)+0.5);
+			if(newMovementDelay<3) 
+			{
+				newMovementDelay=3;
+			}
+			return newMovementDelay;				 
+			case STRENGTH:
+			return (int)(value*0.88*Math.log(1.0+modifiedPercent/12.0)*Math.log(1.0+modifiedPercent/12.0)+0.5) ;
+			 
+
+			case MISC:
+				return 0;
+
+		}
+		return 0;
 	}
 
 	@Override
-	public void render(Graphics2D g,int x,int y) {
-		skill.render(g,x,y);
-		
+	public void render(Graphics2D g, int x, int y) {
+
 	}
 
 	@Override
 	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
-		
-	}
 
-	
-	
+	}
 
 }
