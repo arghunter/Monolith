@@ -48,6 +48,7 @@ public class Tester extends JPanel implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		
+		
 		for(int i=0;i<numMobs;i++) {
 			int curX=mobList[i].getX();
 			int curY=mobList[i].getY();
@@ -99,10 +100,10 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    Container c = w.getContentPane();
 	    Tester gb = new Tester();
-	    
-	    gb.add(new Button());
-	    gb.initInput(w);
-	    
+		Point[] points={new Point(100,100),new Point(200,200)};
+	    Button hi=new Button(points,(Graphics2D)gb.getGraphics());
+	    gb.add(hi);
+		gb.initInput(w);	    
 	    c.add(gb);
 	    w.setResizable(true);
 	    w.setVisible(true);
