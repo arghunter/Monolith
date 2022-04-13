@@ -61,7 +61,7 @@ public class SkillTree {
 		}
 		for(int i=0;i<baseStats.length;i++) 
 		{
-			if(statTypes[i]==type) 
+			if(statTypes[i]==type&skills.get(skills.size()-1).getIsActive()) 
 			{
 				modifiedBaseStats[i]=skills.get(skills.size()-1).apply(modifiedBaseStats[i]);
 			}

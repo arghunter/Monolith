@@ -71,6 +71,10 @@ public abstract class GenericSkill {
 			}
 		}
 	}
+	public void setTier(int tier) 
+	{
+		this.tier=tier;
+	}
 	
 	public abstract int apply(int value);
 	public abstract void apply(StatType[] valueTypes, int[] values) ;

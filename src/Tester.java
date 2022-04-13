@@ -80,7 +80,7 @@ public class Tester extends JPanel implements ActionListener {
 					toMove=Direction.SOUTHEAST;
 				}
 			}
-			System.out.println(mobList[i].getX()+" "+mobList[i].getY());
+			//System.out.println(mobList[i].getX()+" "+mobList[i].getY());
 			mobList[i].move(toMove);
 		}
 		
@@ -99,8 +99,10 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    Container c = w.getContentPane();
 	    Tester gb = new Tester();
+	    
+	    gb.add(new Button());
 	    gb.initInput(w);
-
+	    
 	    c.add(gb);
 	    w.setResizable(true);
 	    w.setVisible(true);

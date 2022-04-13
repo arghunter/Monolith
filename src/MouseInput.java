@@ -17,10 +17,10 @@ public class MouseInput implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getButton()==MouseEvent.BUTTON1) 
-		{
-			System.out.println("MB1C");
-		}
+//		if(e.getButton()==MouseEvent.BUTTON1) 
+//		{
+//			System.out.println("MB1C");
+//		}
 		
 		
 
@@ -28,19 +28,19 @@ public class MouseInput implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getButton()==MouseEvent.BUTTON1) 
-		{
-			System.out.println("MB1P");
-		}
+//		if(e.getButton()==MouseEvent.BUTTON1) 
+//		{
+//			System.out.println("MB1P");
+//		}
 
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getButton()==MouseEvent.BUTTON1) 
-		{
-			System.out.println("MB1R");
-		}
+//		if(e.getButton()==MouseEvent.BUTTON1) 
+//		{
+//			System.out.println("MB1R");
+//		}
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {

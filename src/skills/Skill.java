@@ -17,7 +17,7 @@ public class Skill extends GenericSkill {
 
 	@Override
 	public int apply(int value) {
-
+		this.modifiedPercent= percent * super.getTier();
 		switch (super.getType()) {
 			case ACCURACY:
 				int newAccuracy = (int) (value * (modifiedPercent / 100.0 + 1.0) + 0.5);
@@ -64,7 +64,7 @@ public class Skill extends GenericSkill {
 				return 0;
 
 		}
-		return 0;
+		return -404;
 	}
 
 	@Override
