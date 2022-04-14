@@ -18,14 +18,14 @@ public class Button extends JButton implements ActionListener {
 
     
 
-    public Button(Point[] points,Graphics2D g) {
+    public Button(Point[] points) {
         super();
         this.g=g;
         int xmin = Integer.MAX_VALUE;
         int xmax = 0;
         int ymin = Integer.MAX_VALUE;
         int ymax = 0;
-        polygon=new Polygon();
+        this.polygon=new Polygon();
         for (int i = 0; i < points.length; i++) {
             polygon.addPoint((int)points[i].getX(), (int) points[i].getY());
             if (points[i].getX() < xmin) {
@@ -52,6 +52,10 @@ public class Button extends JButton implements ActionListener {
          this.setContentAreaFilled(false);
          this.setBorderPainted(false);
 
+    }
+    public void init(Graphics2D g)
+    {
+        this.g=g;
     }
 
     @Override

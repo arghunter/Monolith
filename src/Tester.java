@@ -17,6 +17,7 @@ public class Tester extends JPanel implements ActionListener {
 	private Zombie theZombie=new Zombie(1200, 1200, 4, 64,64);
 	private Mob[] mobList = new Mob[1000];
 	private InputParser input;
+	private Button hi;
 	
 	int numMobs=3;
 	
@@ -26,13 +27,19 @@ public class Tester extends JPanel implements ActionListener {
 		mobList[0]=theSpider;
 		mobList[1]=secondSpider;
 		mobList[2]=theZombie;
+		Point[] points={new Point(100,100),new Point(100,200),new Point(200,200),new Point(200,100)};
+		hi=new Button(points);
+		this.add(hi);
+		
 	}
 	
 	public void paintComponent(Graphics graphics)
 	{
-		setBackground(Color.WHITE);
 		Graphics2D g=(Graphics2D)graphics;
 		super.paintComponent(g);
+		hi.init(g);
+		setBackground(Color.WHITE);
+		
 		input.updatePlayerPosAndAngle(thePlayer);
 		thePlayer.render(g);
 
@@ -100,11 +107,10 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    Container c = w.getContentPane();
 	    Tester gb = new Tester();
-		Point[] points={new Point(100,100),new Point(200,200)};
-	    Button hi=new Button(points,(Graphics2D)gb.getGraphics());
-	    gb.add(hi);
+		
 		gb.initInput(w);	    
 	    c.add(gb);
+		
 	    w.setResizable(true);
 	    w.setVisible(true);
 	}
