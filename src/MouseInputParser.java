@@ -11,11 +11,11 @@ public class MouseInputParser {
 		
 		this.input = new MouseInput(frame);
 	}
-	public double getX() 
+	public static double getX() 
 	{
 		return MouseInfo.getPointerInfo().getLocation().getX();
 	}
-	public double getY() 
+	public static double getY() 
 	{
 		return MouseInfo.getPointerInfo().getLocation().getY();
 	}
