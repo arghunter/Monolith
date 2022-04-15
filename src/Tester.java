@@ -27,9 +27,17 @@ public class Tester extends JPanel implements ActionListener {
 		mobList[0]=theSpider;
 		mobList[1]=secondSpider;
 		mobList[2]=theZombie;
-		Point[] points={new Point(100,100),new Point(100,200),new Point(200,200),new Point(200,100)};
+		Point[] points={new Point(100,100),new Point(100,200),new Point(200,250),new Point(200,100)};
 		hi=new Button(points);
+		this.buttonSize(hi);
+		this.setLayout(null);
 		this.add(hi);
+		
+		
+	}
+	public void buttonSize(Button button) 
+	{
+		button.setBounds(button.getX(), button.getY(),(int) button.getPreferredSize().getWidth(),(int) button.getPreferredSize().getHeight());
 		
 	}
 	

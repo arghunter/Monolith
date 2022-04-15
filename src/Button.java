@@ -10,12 +10,10 @@ import java.awt.Graphics2D;
 import javax.swing.JButton;
 
 public class Button extends JButton implements ActionListener {
-    Point topLeft;
-    Point bottomRight;
-    int width;
-    int height;
-    Polygon polygon;
-    Graphics2D g;
+    private int x;
+    private int y;
+    private Polygon polygon;
+    private Graphics2D g;
 
     
 
@@ -43,16 +41,16 @@ public class Button extends JButton implements ActionListener {
             }
         }
         
-        super.setLocation(xmin, ymin);
+        
         super.setPreferredSize(new Dimension(xmax - xmin, ymax - ymin));
-
+        this.x=xmin;
+        this.y=ymin;
         this.addActionListener(this);
         this.setFocusable(false);
-//        this.setVisible(true);
-//        this.setOpaque(false);
-//        this.setContentAreaFilled(false);
-//        this.setBorderPainted(false);
-       super.setBounds(xmin, ymin, (int)this.getSize().getWidth(), (int)this.getSize().getHeight());
+        this.setOpaque(false);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+      
         
 
     }
@@ -60,13 +58,27 @@ public class Button extends JButton implements ActionListener {
     {
         this.g=g;
         g.setColor(Color.BLACK);
-       g.fill(polygon);
+        g.fill(polygon);
+        //super.setBounds(x, y, (int)this.getSize().getWidth(), (int)this.getSize().getHeight());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Hidjfisdhfifioasjdhiuashodiphsaiduasjkfidsujfisdhfskjdhfilsdhfyudshfisdjkljfkdshfuiewdsidjsafhdreuifdsuijfhsduio");
-        g.draw(polygon);
+        System.out.println((int)MouseInputParser.getX()+" "+ ((int)MouseInputParser.getY()-30));
+        if(polygon.contains((int)MouseInputParser.getX(),(int)MouseInputParser.getY()-30)) 
+        {
+            System.out.println("Hidjfisdhfifioasjdhiuashodiphsaiduasjkfidsujfisdhfskjdhfilsdhfyudshfisdjkljfkdshfuiewdsidjsafhdreuifdsuijfhsduio");
+        	
+        }
+        
+    }
+    public int getX() 
+    {
+    	return x;
+    }
+    public int getY() 
+    {
+    	return y;
     }
 
 }
