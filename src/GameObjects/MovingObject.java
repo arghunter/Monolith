@@ -80,7 +80,6 @@ public abstract class MovingObject extends GameObject {
 				|| direction == Direction.NORTHWEST) {
 			// Magic number
 			this.currentMovementDelay = (this.movementDelay * 1.05);
-			System.out.println(this.currentMovementDelay);
 		} else {
 			this.currentMovementDelay = this.movementDelay;
 		}
