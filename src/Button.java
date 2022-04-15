@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Polygon;
@@ -47,15 +48,19 @@ public class Button extends JButton implements ActionListener {
 
         this.addActionListener(this);
         this.setFocusable(false);
-        this.setVisible(true);
-         this.setOpaque(false);
-         this.setContentAreaFilled(false);
-         this.setBorderPainted(false);
+//        this.setVisible(true);
+//        this.setOpaque(false);
+//        this.setContentAreaFilled(false);
+//        this.setBorderPainted(false);
+       super.setBounds(xmin, ymin, (int)this.getSize().getWidth(), (int)this.getSize().getHeight());
+        
 
     }
     public void init(Graphics2D g)
     {
         this.g=g;
+        g.setColor(Color.BLACK);
+       g.fill(polygon);
     }
 
     @Override
