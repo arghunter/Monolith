@@ -1,3 +1,4 @@
+package menu;
 import java.awt.event.ActionEvent;
 
 public class ButtonClickedEvent extends ActionEvent {

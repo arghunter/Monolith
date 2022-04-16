@@ -1,10 +1,12 @@
+package render;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 import GameObjects.*;
 import GameObjects.Player.Player;
-
+import input.InputParser;
+import menu.Button;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -28,7 +30,7 @@ public class Tester extends JPanel implements ActionListener {
 		mobList[1]=secondSpider;
 		mobList[2]=theZombie;
 		Point[] points={new Point(238,108),new Point(162,108),new Point(108,162),new Point(108,238),new Point(162,292),new Point(238,292),new Point(292,238),new Point(292,162)};
-		hi=new Button(points,new Color(200,150,100),"Strength");
+		hi=new Button(points,new Color(200,150,100),"Zombie");
 		this.buttonSize(hi);
 		this.setLayout(null);
 		this.add(hi);

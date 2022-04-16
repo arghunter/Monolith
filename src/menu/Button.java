@@ -1,3 +1,4 @@
+package menu;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -8,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.Graphics2D;
 
 import javax.swing.JButton;
+
+import input.MouseInputParser;
 
 public class Button extends JButton implements ActionListener {
     private int x;
