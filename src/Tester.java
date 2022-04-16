@@ -18,7 +18,7 @@ public class Tester extends JPanel implements ActionListener {
 	private Mob[] mobList = new Mob[1000];
 	private InputParser input;
 	private Button hi;
-	
+	private JFrame frame;
 	int numMobs=3;
 	
 	public Tester() {
@@ -27,11 +27,20 @@ public class Tester extends JPanel implements ActionListener {
 		mobList[0]=theSpider;
 		mobList[1]=secondSpider;
 		mobList[2]=theZombie;
-		Point[] points={new Point(100,100),new Point(100,200),new Point(200,250),new Point(200,100)};
+		Point[] points={new Point(238,108),new Point(162,108),new Point(108,162),new Point(108,238),new Point(162,292),new Point(238,292),new Point(292,238),new Point(292,162)};
 		hi=new Button(points);
 		this.buttonSize(hi);
 		this.setLayout(null);
 		this.add(hi);
+		JFrame w = new JFrame("Tester");
+		w.setSize(600, 600);
+		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container c = w.getContentPane();
+		c.add(this);
+		this.initInput(w);
+	    w.setResizable(true);
+	    w.setVisible(true);
+	    this.frame=w;
 		
 		
 	}
@@ -40,12 +49,20 @@ public class Tester extends JPanel implements ActionListener {
 		button.setBounds(button.getX(), button.getY(),(int) button.getPreferredSize().getWidth(),(int) button.getPreferredSize().getHeight());
 		
 	}
+	public int getXOnScreen() 
+	{
+		return (int)this.getLocationOnScreen().getX();
+	}
+	public int getYOnScreen() 
+	{
+		return (int)this.getLocationOnScreen().getY();
+	}
 	
 	public void paintComponent(Graphics graphics)
 	{
 		Graphics2D g=(Graphics2D)graphics;
 		super.paintComponent(g);
-		hi.init(g);
+		hi.init(g,getXOnScreen(),getYOnScreen());
 		setBackground(Color.WHITE);
 		
 		input.updatePlayerPosAndAngle(thePlayer);
@@ -110,17 +127,13 @@ public class Tester extends JPanel implements ActionListener {
 	
 	
 	public static void main(String[] args) {
-	    JFrame w = new JFrame("Tester");
-	    w.setSize(600, 600);
-	    w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    Container c = w.getContentPane();
+
 	    Tester gb = new Tester();
 		
-		gb.initInput(w);	    
-	    c.add(gb);
+		    
+	  
 		
-	    w.setResizable(true);
-	    w.setVisible(true);
+
 	}
 
 	

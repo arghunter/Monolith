@@ -14,6 +14,8 @@ public class Button extends JButton implements ActionListener {
     private int y;
     private Polygon polygon;
     private Graphics2D g;
+    private int topLeftX=-1;
+    private int topLeftY=-1;
 
     
 
@@ -54,18 +56,20 @@ public class Button extends JButton implements ActionListener {
         
 
     }
-    public void init(Graphics2D g)
+    public void init(Graphics2D g, int x, int y)
     {
         this.g=g;
         g.setColor(Color.BLACK);
         g.fill(polygon);
+        this.topLeftX=x;
+        this.topLeftY=y;
         //super.setBounds(x, y, (int)this.getSize().getWidth(), (int)this.getSize().getHeight());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println((int)MouseInputParser.getX()+" "+ ((int)MouseInputParser.getY()-30));
-        if(polygon.contains((int)MouseInputParser.getX(),(int)MouseInputParser.getY()-30)) 
+        System.out.println((int)MouseInputParser.getX()-topLeftX+" "+ ((int)MouseInputParser.getY()-topLeftY));
+        if(polygon.contains((int)MouseInputParser.getX()-topLeftX,(int)MouseInputParser.getY()-topLeftY)) 
         {
             System.out.println("Hidjfisdhfifioasjdhiuashodiphsaiduasjkfidsujfisdhfskjdhfilsdhfyudshfisdjkljfkdshfuiewdsidjsafhdreuifdsuijfhsduio");
         	
