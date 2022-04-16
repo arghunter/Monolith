@@ -16,12 +16,13 @@ public class Button extends JButton implements ActionListener {
     private Graphics2D g;
     private int topLeftX=-1;
     private int topLeftY=-1;
+  
+
 
     
 
     public Button(Point[] points) {
         super();
-        this.g=g;
         int xmin = Integer.MAX_VALUE;
         int xmax = 0;
         int ymin = Integer.MAX_VALUE;
@@ -63,15 +64,26 @@ public class Button extends JButton implements ActionListener {
         g.fill(polygon);
         this.topLeftX=x;
         this.topLeftY=y;
-        //super.setBounds(x, y, (int)this.getSize().getWidth(), (int)this.getSize().getHeight());
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println((int)MouseInputParser.getX()-topLeftX+" "+ ((int)MouseInputParser.getY()-topLeftY));
+       
         if(polygon.contains((int)MouseInputParser.getX()-topLeftX,(int)MouseInputParser.getY()-topLeftY)) 
-        {
-            System.out.println("Hidjfisdhfifioasjdhiuashodiphsaiduasjkfidsujfisdhfskjdhfilsdhfyudshfisdjkljfkdshfuiewdsidjsafhdreuifdsuijfhsduio");
+        {          
+   	
+            
+            for(ActionListener i: this.getActionListeners()) 
+            {
+            	if(i==this) 
+            	{
+            		continue;
+            	}
+            	i.actionPerformed(new ButtonClickedEvent(this,"click"));
+            }
+      
+            
         	
         }
         
@@ -84,5 +96,6 @@ public class Button extends JButton implements ActionListener {
     {
     	return y;
     }
+
 
 }

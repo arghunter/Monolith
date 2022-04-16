@@ -41,6 +41,7 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setResizable(true);
 	    w.setVisible(true);
 	    this.frame=w;
+	    hi.addActionListener(this);
 		
 		
 	}
@@ -79,7 +80,12 @@ public class Tester extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		
+		if(e.getSource()==hi&&e.getID()==88888) 
+		{
+			mobList[numMobs]=new Zombie((int)(Math.random()*1500),(int)(Math.random()*1500), 4, 64,64);
+			numMobs++;
+		}
+
 		
 		for(int i=0;i<numMobs;i++) {
 			int curX=mobList[i].getX();
