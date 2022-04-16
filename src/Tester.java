@@ -28,7 +28,7 @@ public class Tester extends JPanel implements ActionListener {
 		mobList[1]=secondSpider;
 		mobList[2]=theZombie;
 		Point[] points={new Point(238,108),new Point(162,108),new Point(108,162),new Point(108,238),new Point(162,292),new Point(238,292),new Point(292,238),new Point(292,162)};
-		hi=new Button(points,new Color(100,50,100));
+		hi=new Button(points,new Color(200,150,100),"Strength");
 		this.buttonSize(hi);
 		this.setLayout(null);
 		this.add(hi);
@@ -62,6 +62,7 @@ public class Tester extends JPanel implements ActionListener {
 	public void paintComponent(Graphics graphics)
 	{
 		Graphics2D g=(Graphics2D)graphics;
+	
 		super.paintComponent(g);
 		
 		hi.draw(g,getXOnScreen(),getYOnScreen());

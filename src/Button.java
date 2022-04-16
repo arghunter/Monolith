@@ -79,7 +79,7 @@ public class Button extends JButton implements ActionListener {
         {
         	if(mouse.isMBDown(0)) 
         	{
-        		System.out.println("Here");
+        		
         		g.setColor(new Color((int)(color.getRed()*0.5),(int)(color.getGreen()*0.5),(int)(color.getBlue()*0.5)));
         	}else 
         	{
@@ -93,6 +93,7 @@ public class Button extends JButton implements ActionListener {
         }
         
         g.fill(polygon);
+        
         this.JPanelX=JPanelX;
         this.JPanelY=JPanelY;
 
