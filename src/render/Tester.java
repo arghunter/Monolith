@@ -7,6 +7,7 @@ import GameObjects.*;
 import GameObjects.Player.Player;
 import input.InputParser;
 import menu.Button;
+import skills.SkillTreeRenderMode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -69,7 +70,7 @@ public class Tester extends JPanel implements ActionListener {
 		
 		hi.draw(g,getXOnScreen(),getYOnScreen());
 		setBackground(Color.WHITE);
-		
+		thePlayer.getSkills().render(g, SkillTreeRenderMode.SKILL_SELECTION, 840,this);
 		input.updatePlayerPosAndAngle(thePlayer);
 		thePlayer.render(g);
 

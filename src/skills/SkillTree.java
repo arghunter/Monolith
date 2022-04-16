@@ -1,9 +1,15 @@
 package skills;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+import javax.swing.JPanel;
+
+import menu.Button;
 
 
 
@@ -112,13 +118,13 @@ public class SkillTree {
 		addSkill(index,values,tiers);		
 		
 	}
-	public void skillSelection(int skillCount) 
+	public GenericSkill[] skillSelection(int skillCount) 
 	{
 		GenericSkill[] availableSkills=new GenericSkill[skillCount];
 		Random rng=new Random();
 		for(int j=0;j<skillCount;j++) 
 		{
-			int index=rng.nextInt(skills.size());
+			int index=rng.nextInt(skills.size()+1);
 			int[] values=new int[SKILL_TYPES[index].length];
 			for(int i=0;i<SKILL_TYPES[index].length;i++) 
 			{
@@ -135,12 +141,60 @@ public class SkillTree {
 			}
 			availableSkills[j]=(new Skill(type,SKILL_NAMES[index],values[0],tiers[0],false));
 		}
+		return availableSkills;
 	}
 	
 
-	public void render (Graphics2D g,int width,int height)
+	public void render (Graphics2D g,SkillTreeRenderMode mode,int time,JPanel panel)
 	{
-		
+		if(mode==SkillTreeRenderMode.SKILL_SELECTION) 
+		{
+			int numSkills=time/120;
+			if(numSkills>7) 
+			{
+				numSkills=7;
+			}
+			GenericSkill[] availableSkills=skillSelection(time/120);
+			Button[] skillButtons=new Button[availableSkills.length];
+			for(int i=0;i<skillButtons.length;i++) 
+			{
+				int offsetX=0;
+				int offsetY=0;
+				switch(i) 
+				{
+					case 1:
+						offsetX=0;
+						offsetY=-150;
+						break;
+					case 2:
+						offsetX=(int)(150*Math.cos(Math.PI/6));
+						offsetY=(int)(150*Math.sin(Math.PI/6));
+						break;
+					case 3:
+						offsetX=(int)(150*Math.cos(Math.PI/6));
+						offsetY=-(int)(150*Math.sin(Math.PI/6));
+						break;
+					case 4:
+						offsetX=0;
+						offsetY=150;
+						break;
+					case 5:
+						offsetX=-(int)(150*Math.cos(Math.PI/6));
+						offsetY=-(int)(150*Math.sin(Math.PI/6));
+						break;
+					case 6:
+						offsetX=-(int)(150*Math.cos(Math.PI/6));
+						offsetY=(int)(150*Math.sin(Math.PI/6));
+						break;
+				}
+				Point[] points={new Point(413+offsetX,310+offsetY),	new Point(338+offsetX,310+offsetY),new Point(300+offsetX,375+offsetY),new Point(338+offsetX,440+offsetY),new Point(412+offsetX,440+offsetY),new Point(450+offsetX,375+offsetY)};
+				skillButtons[i]=new Button(points,Color.CYAN,availableSkills[i].getName()+" "+availableSkills[i].getTier());
+				skillButtons[i].setBounds(skillButtons[i].getX(), skillButtons[i].getY(),(int) skillButtons[i].getPreferredSize().getWidth(),(int) skillButtons[i].getPreferredSize().getHeight());
+				panel.add(skillButtons[i]);
+				skillButtons[i].draw(g, offsetX, offsetY);
+				
+			}
+		}
 	}
 	
 	
