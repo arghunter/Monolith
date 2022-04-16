@@ -1,3 +1,5 @@
+import java.awt.Component;
+
 import javax.swing.JFrame;
 
 import GameObjects.Direction;
@@ -5,9 +7,9 @@ import GameObjects.Player.Player;
 
 public class KeyboardInputParser {
 	KeyboardInput input;
-	public KeyboardInputParser(JFrame frame) 
+	public KeyboardInputParser(Component component) 
 	{
-		this.input=new KeyboardInput(frame);
+		this.input=new KeyboardInput(component);
 	}
 	
 	public void updatePlayerPos(Player player) 

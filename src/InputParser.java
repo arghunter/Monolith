@@ -1,3 +1,5 @@
+import java.awt.Component;
+
 import javax.swing.JFrame;
 
 import GameObjects.Player.Player;
@@ -5,10 +7,10 @@ import GameObjects.Player.Player;
 public class InputParser {
 	private KeyboardInputParser keyboard;
 	private MouseInputParser mouse;
-	public InputParser(JFrame frame)
+	public InputParser(Component component)
 	{
-		keyboard=new KeyboardInputParser(frame);
-		mouse=new MouseInputParser(frame);
+		keyboard=new KeyboardInputParser(component);
+		mouse=new MouseInputParser(component);
 	}
 	
 	public double getMouseX()
@@ -18,6 +20,10 @@ public class InputParser {
 	public double getMouseY() 
 	{
 		return mouse.getY();
+	}
+	public boolean getMBPressed(int MB) 
+	{
+		return mouse.isMBDown(MB);
 	}
 	
 	public void updatePlayerPosAndAngle(Player player) 

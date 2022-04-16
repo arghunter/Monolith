@@ -14,16 +14,30 @@ public class Button extends JButton implements ActionListener {
     private int y;
     private Polygon polygon;
     private Graphics2D g;
-    private int topLeftX=-1;
-    private int topLeftY=-1;
+    private int JPanelX=-1;
+    private int JPanelY=-1;
+    private Color color;
+    private MouseInputParser mouse;
   
 
 
     
 
     public Button(Point[] points) {
-        super();
-        int xmin = Integer.MAX_VALUE;
+        this(points,Color.BLACK,"");
+    }
+    public Button(Point[] points, Color color) 
+    {
+    	this(points,color,"");
+    }
+    
+    
+    public Button(Point[] points,Color color, String text) 
+    {
+    	super(text);
+    	this.color=color;
+    	this.mouse=new MouseInputParser(this);
+    	int xmin = Integer.MAX_VALUE;
         int xmax = 0;
         int ymin = Integer.MAX_VALUE;
         int ymax = 0;
@@ -50,30 +64,47 @@ public class Button extends JButton implements ActionListener {
         this.y=ymin;
         this.addActionListener(this);
         this.setFocusable(false);
+        
         this.setOpaque(false);
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
-      
-        
-
+    	
     }
-    public void init(Graphics2D g, int x, int y)
+    //Draws the button on the screen
+    public void draw(Graphics2D g, int JPanelX, int JPanelY)
     {
+    	
         this.g=g;
-        g.setColor(Color.BLACK);
+        if(buttonContainsMouse()) 
+        {
+        	if(mouse.isMBDown(0)) 
+        	{
+        		System.out.println("Here");
+        		g.setColor(new Color((int)(color.getRed()*0.5),(int)(color.getGreen()*0.5),(int)(color.getBlue()*0.5)));
+        	}else 
+        	{
+            	g.setColor(new Color((int)(color.getRed()*0.75),(int)(color.getGreen()*0.75),(int)(color.getBlue()*0.75)));
+
+        	}
+        }
+        else 
+        {
+        	g.setColor(color);
+        }
+        
         g.fill(polygon);
-        this.topLeftX=x;
-        this.topLeftY=y;
+        this.JPanelX=JPanelX;
+        this.JPanelY=JPanelY;
 
     }
-
+    
+    
     @Override
+    //As this button drawn over a shape it checks if the mouse position is on the shape and then sends out a button clicked event to all listeners except this one 
     public void actionPerformed(ActionEvent e) {
        
-        if(polygon.contains((int)MouseInputParser.getX()-topLeftX,(int)MouseInputParser.getY()-topLeftY)) 
+        if(buttonContainsMouse()) 
         {          
-   	
-            
             for(ActionListener i: this.getActionListeners()) 
             {
             	if(i==this) 
@@ -88,10 +119,21 @@ public class Button extends JButton implements ActionListener {
         }
         
     }
+    private boolean buttonContainsMouse() 
+    {
+    	return polygon.contains((int)MouseInputParser.getX()-JPanelX,(int)MouseInputParser.getY()-JPanelY);
+    }
+    //Takes in an action event and returns true if it was this button that got clicked
+    public boolean isClicked(ActionEvent e) 
+    {
+    	return e.getSource()==this&&e.getID()==88888;
+    }
+    //Returns the x coordinate of this button
     public int getX() 
     {
     	return x;
     }
+    //Returns the y coordinate of this button
     public int getY() 
     {
     	return y;

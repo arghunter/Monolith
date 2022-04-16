@@ -1,11 +1,12 @@
 
+import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
 public class KeyboardInput implements KeyListener {
-	private JFrame frame;
+	private Component component;
 	private boolean leftPressed = false;
 	private boolean rightPressed = false;
 	private boolean upPressed = false;
@@ -15,10 +16,10 @@ public class KeyboardInput implements KeyListener {
 	private boolean sPressed = false;
 	private boolean dPressed = false;
 
-	public KeyboardInput(JFrame frame) 
+	public KeyboardInput(Component component) 
 	{
-		this.frame=frame;
-		this.frame.addKeyListener(this);
+		this.component=component;
+		this.component.addKeyListener(this);
 	}
 
 

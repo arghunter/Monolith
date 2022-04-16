@@ -28,7 +28,7 @@ public class Tester extends JPanel implements ActionListener {
 		mobList[1]=secondSpider;
 		mobList[2]=theZombie;
 		Point[] points={new Point(238,108),new Point(162,108),new Point(108,162),new Point(108,238),new Point(162,292),new Point(238,292),new Point(292,238),new Point(292,162)};
-		hi=new Button(points);
+		hi=new Button(points,new Color(100,50,100));
 		this.buttonSize(hi);
 		this.setLayout(null);
 		this.add(hi);
@@ -63,7 +63,8 @@ public class Tester extends JPanel implements ActionListener {
 	{
 		Graphics2D g=(Graphics2D)graphics;
 		super.paintComponent(g);
-		hi.init(g,getXOnScreen(),getYOnScreen());
+		
+		hi.draw(g,getXOnScreen(),getYOnScreen());
 		setBackground(Color.WHITE);
 		
 		input.updatePlayerPosAndAngle(thePlayer);
@@ -80,7 +81,7 @@ public class Tester extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==hi&&e.getID()==88888) 
+		if(hi.isClicked(e)) 
 		{
 			mobList[numMobs]=new Zombie((int)(Math.random()*1500),(int)(Math.random()*1500), 4, 64,64);
 			numMobs++;
@@ -120,6 +121,7 @@ public class Tester extends JPanel implements ActionListener {
 				}
 			}
 			//System.out.println(mobList[i].getX()+" "+mobList[i].getY());
+			
 			mobList[i].move(toMove);
 		}
 		

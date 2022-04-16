@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -5,42 +6,51 @@ import javax.swing.JFrame;
 
 
 public class MouseInput implements MouseListener {
-	private JFrame frame;
-	public MouseInput(JFrame frame) 
+	private Component component;
+	private boolean[] buttonStates=new boolean[3];
+	public MouseInput(Component component) 
 	{
-		this.frame=frame;
-		this.frame.addMouseListener(this);
+		this.component=component;
+		this.component.addMouseListener(this);
 	
 		
 		
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-//		if(e.getButton()==MouseEvent.BUTTON1) 
-//		{
-//			System.out.println("MB1C");
-//		}
+		
+
 		
 		
 
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-//		if(e.getButton()==MouseEvent.BUTTON1) 
-//		{
-//			System.out.println("MB1P");
-//		}
+		if(e.getButton()==MouseEvent.BUTTON1) 
+		{
+			buttonStates[0]=true;
+			System.out.println("clicked");
+		}else if(e.getButton()==MouseEvent.BUTTON2) 
+		{
+			buttonStates[1]=true;
+		}else if(e.getButton()==MouseEvent.BUTTON3) 
+		{
+			buttonStates[2]=true;
+		}
 
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-//		if(e.getButton()==MouseEvent.BUTTON1) 
-//		{
-//			System.out.println("MB1R");
-//		}
+		if(e.getButton()==MouseEvent.BUTTON1) 
+		{
+			buttonStates[0]=false;
+		}else if(e.getButton()==MouseEvent.BUTTON2) 
+		{
+			buttonStates[1]=false;
+		}else if(e.getButton()==MouseEvent.BUTTON3) 
+		{
+			buttonStates[2]=false;
+		}
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
@@ -51,6 +61,10 @@ public class MouseInput implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	public boolean[] getButtonStates() 
+	{
+		return buttonStates;
 	}
 	
 	
