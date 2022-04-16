@@ -7,6 +7,7 @@ import GameObjects.*;
 import GameObjects.Player.Player;
 import input.InputParser;
 import menu.Button;
+import skills.SkillSelectionMenu;
 import skills.SkillTreeRenderMode;
 
 import java.util.ArrayList;
@@ -22,11 +23,12 @@ public class Tester extends JPanel implements ActionListener {
 	private InputParser input;
 	private Button hi;
 	private JFrame frame;
+	private SkillSelectionMenu skillSelectionMenu;
 	int numMobs=3;
 	
 	public Tester() {
 		Timer clock=new Timer(1,this);
-		clock.start();
+		
 		mobList[0]=theSpider;
 		mobList[1]=secondSpider;
 		mobList[2]=theZombie;
@@ -45,6 +47,8 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setVisible(true);
 	    this.frame=w;
 	    hi.addActionListener(this);
+	    skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),840,this);
+	    clock.start();
 		
 		
 	}
@@ -70,7 +74,7 @@ public class Tester extends JPanel implements ActionListener {
 		
 		hi.draw(g,getXOnScreen(),getYOnScreen());
 		setBackground(Color.WHITE);
-		thePlayer.getSkills().render(g, SkillTreeRenderMode.SKILL_SELECTION, 840,this);
+		skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
 		input.updatePlayerPosAndAngle(thePlayer);
 		thePlayer.render(g);
 
