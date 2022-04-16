@@ -27,8 +27,8 @@ public class Tester extends JPanel implements ActionListener {
 	int numMobs=3;
 	
 	public Tester() {
-		Timer clock=new Timer(1,this);
 		
+		skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),840,this);
 		mobList[0]=theSpider;
 		mobList[1]=secondSpider;
 		mobList[2]=theZombie;
@@ -47,7 +47,8 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setVisible(true);
 	    this.frame=w;
 	    hi.addActionListener(this);
-	    skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),840,this);
+	    
+	    Timer clock=new Timer(30,this);
 	    clock.start();
 		
 		

@@ -95,15 +95,15 @@ public class SkillTree {
 			}
 		}
 	}
-	private void addSkill(int index,int[] values,int[] tiers) 
+	private void addSkill(int index,int[] values,int tier) 
 	{
 		StatType type=SKILL_TYPES[index][0];
 		if(SKILL_TYPES[index].length!=1) 
 		{
 			
-			skills.add(new MultipleSkill(StatType.MULTIPLE,SKILL_NAMES[index],SKILL_TYPES[index],values,tiers,true));
+			skills.add(new MultipleSkill(StatType.MULTIPLE,SKILL_NAMES[index],SKILL_TYPES[index],values,tier,true));
 		}
-		skills.add(new Skill(type,SKILL_NAMES[index],values[0],tiers[0],true));
+		skills.add(new Skill(type,SKILL_NAMES[index],values[0],tier,true));
 	}
 	private void generateSkill(int index,int tier) 
 	{
@@ -113,9 +113,8 @@ public class SkillTree {
 		{
 			values[i]=rng.nextInt(SKILL_RANGE[index][i][1]-SKILL_RANGE[index][i][0]+1)+SKILL_RANGE[index][i][0];
 		}
-		int[] tiers=new int[values.length];
-		Arrays.fill(tiers, tier);
-		addSkill(index,values,tiers);		
+		
+		addSkill(index,values,tier);		
 		
 	}
 	public GenericSkill[] skillSelection(int skillCount) 
@@ -124,22 +123,25 @@ public class SkillTree {
 		Random rng=new Random();
 		for(int j=0;j<skillCount;j++) 
 		{
-			int index=rng.nextInt(SKILL_NAMES.length+1);
+			int index=rng.nextInt(SKILL_NAMES.length);
 			int[] values=new int[SKILL_TYPES[index].length];
 			for(int i=0;i<SKILL_TYPES[index].length;i++) 
 			{
 				values[i]=rng.nextInt(SKILL_RANGE[index][i][1]-SKILL_RANGE[index][i][0]+1)+SKILL_RANGE[index][i][0];
 			}
 			int[] tiers=new int[values.length];
-			Arrays.fill(tiers, 1);
-			StatType type=SKILL_TYPES[index][0];
 			
-			if(SKILL_TYPES[index].length!=1) 
+			StatType type=SKILL_TYPES[index][0];
+			System.out.println(SKILL_TYPES[index].length+" "+SKILL_NAMES[index]);
+			if(SKILL_TYPES[index].length>1) 
 			{
 				
-				availableSkills[j]=(new MultipleSkill(StatType.MULTIPLE,SKILL_NAMES[index],SKILL_TYPES[index],values,tiers,false));
+				availableSkills[j]=(new MultipleSkill(StatType.MULTIPLE,SKILL_NAMES[index],SKILL_TYPES[index],values,1,false));
+			}else 
+			{
+				availableSkills[j]=(new Skill(type,SKILL_NAMES[index],values[0],1,false));
 			}
-			availableSkills[j]=(new Skill(type,SKILL_NAMES[index],values[0],tiers[0],false));
+			
 		}
 		return availableSkills;
 	}

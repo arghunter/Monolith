@@ -32,13 +32,7 @@ public abstract class GenericSkill {
 		this.nextLevelXp=(int)Math.pow(2, tier+6);
 		
 	}
-	public GenericSkill(StatType type,String name, boolean isActive) 
-	{
-		this.type=type;
-		this.name=name;
-		this.tier=-1;
-	}
-	
+
 	
 	
 	public StatType getType() {

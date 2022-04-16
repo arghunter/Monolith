@@ -6,16 +6,17 @@ import java.awt.Graphics2D;
 public class MultipleSkill extends GenericSkill {
 	GenericSkill[] skills;
 
-	public MultipleSkill(StatType type,String name, StatType[] skillTypes,int[] values, int[] tiers,boolean isActive) {
-		super(type,name,isActive);
-		if(!(skillTypes.length==values.length&& values.length==tiers.length)) 
+	public MultipleSkill(StatType type,String name, StatType[] skillTypes,int[] values, int tier,boolean isActive) {
+		super(type,name,tier,isActive);
+		if(!(skillTypes.length==values.length)) 
 		{
 			throw new IllegalArgumentException("skillTypes and values must be the same length");
 		}
 		this.skills=new Skill[skillTypes.length];
 		for(int i=0;i<skills.length;i++) 
 		{
-			this.skills[i]=new Skill(skillTypes[i],""+i,values[i],tiers[i],isActive);
+			this.skills[i]=new Skill(skillTypes[i],""+i,values[i],tier,isActive);
+			
 		}
 		
 	}
