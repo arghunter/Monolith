@@ -9,7 +9,7 @@ public class MazeGenerator {
 		
 	}
 	
-	public void generate(int size) {
+	public char[][] generate(int size) {
 		//Right, Down, Left, Up
 		int adjX[]={1,0,-1,0};
 		int adjY[]={0,1,0,-1};
@@ -61,11 +61,16 @@ public class MazeGenerator {
 				visited[newCurrent[0]][newCurrent[1]]=true;
 			}
 		}
-		for(int i=0;i<2*size+1;i++) {
-			for(int j=0;j<2*size+1;j++) {
-				System.out.print(maze[i][j]);
+		return maze;
+	}
+	
+	public void drawMaze(char[][] maze) {
+		for(int i=0;i<maze.length;i++) {
+			for(int j=0;j<maze[i].length;j++) {
+				if(maze[i][j]=='#') {
+					
+				}
 			}
-			System.out.println();
 		}
 	}
 	
