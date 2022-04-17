@@ -21,6 +21,7 @@ public class Button extends JButton implements ActionListener {
     private int JPanelY=-1;
     private Color color;
     private MouseInputParser mouse;
+    private boolean isHovering=false;
   
 
 
@@ -87,12 +88,13 @@ public class Button extends JButton implements ActionListener {
         	}else 
         	{
             	g.setColor(new Color((int)(color.getRed()*0.75),(int)(color.getGreen()*0.75),(int)(color.getBlue()*0.75)));
-
+            	isHovering=true;
         	}
         }
         else 
         {
         	g.setColor(color);
+        	isHovering=false;
         }
         
         g.fill(polygon);
@@ -141,6 +143,10 @@ public class Button extends JButton implements ActionListener {
     public int getY() 
     {
     	return y;
+    }
+    public boolean isHovering() 
+    {
+    	return isHovering;
     }
 
 

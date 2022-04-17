@@ -1,6 +1,7 @@
-package skills;
+package menu;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import menu.Button;
+import skills.GenericSkill;
+import skills.SkillTree;
 
 public class SkillSelectionMenu implements ActionListener {
 	int numSkills;
@@ -55,9 +57,9 @@ public class SkillSelectionMenu implements ActionListener {
 				offsetY = (int) (150 * Math.sin(Math.PI / 6));
 				break;
 			}
-			Point[] points = { new Point(413 + offsetX, 310 + offsetY), new Point(338 + offsetX, 310 + offsetY),
-					new Point(300 + offsetX, 375 + offsetY), new Point(338 + offsetX, 440 + offsetY),
-					new Point(412 + offsetX, 440 + offsetY), new Point(450 + offsetX, 375 + offsetY) };
+			Point[] points = { new Point(463 + offsetX, 360 + offsetY), new Point(388 + offsetX, 360 + offsetY),
+					new Point(350 + offsetX, 425 + offsetY), new Point(388 + offsetX, 490 + offsetY),
+					new Point(462 + offsetX, 490 + offsetY), new Point(500 + offsetX, 425 + offsetY) };
 			Color color=Color.BLACK;
 			switch (availableSkills[i].getType()) {
 			case ACCURACY:
@@ -114,6 +116,14 @@ public class SkillSelectionMenu implements ActionListener {
 		for(int i=0;i<skillButtons.length;i++) 
 		{
 			skillButtons[i].draw(g, JPanelX, JPanelY);
+			if(skillButtons[i].isHovering()) 
+			{
+				g.setColor(Color.BLACK);
+				Font text=new Font("Segoe UI",Font.BOLD,36);
+				g.setFont(text);
+				g.drawString(availableSkills[i].getName()+" "+availableSkills[i].getTier(), 800, 200);
+				
+			}
 		}
 	}
 

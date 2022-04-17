@@ -7,7 +7,7 @@ import GameObjects.*;
 import GameObjects.Player.Player;
 import input.InputParser;
 import menu.Button;
-import skills.SkillSelectionMenu;
+import menu.SkillSelectionMenu;
 import skills.SkillTreeRenderMode;
 
 import java.util.ArrayList;
