@@ -111,7 +111,7 @@ public class SkillSelectionMenu implements ActionListener {
 	
 	public void render(Graphics2D g,int JPanelX,int JPanelY) 
 	{
-		for(int i=0;i<numSkills;i++) 
+		for(int i=0;i<skillButtons.length;i++) 
 		{
 			skillButtons[i].draw(g, JPanelX, JPanelY);
 		}
@@ -122,7 +122,25 @@ public class SkillSelectionMenu implements ActionListener {
 		Button b=(Button)e.getSource();
 		if(b.isClicked(e)) 
 		{
-		
+			String name=b.getText();
+			GenericSkill skill=null;
+			for(int i=0;i<availableSkills.length;i++) 
+			{
+				//System.out.println(availableSkills[i].getName() + " " + availableSkills[i].getTier()+" "+name);
+				if((availableSkills[i].getName() + " " + availableSkills[i].getTier()).equals(name)) 
+				{
+					
+					skill=availableSkills[i];
+					tree.addSkill(skill);
+					for(int j=0;j<skillButtons.length;j++) 
+					{
+						skillButtons[j].setVisible(false);
+					}
+					skillButtons=new Button[0];
+					break;
+				}
+			}
+			
 		}
 		
 	}

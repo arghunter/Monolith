@@ -105,6 +105,11 @@ public class SkillTree {
 		}
 		skills.add(new Skill(type,SKILL_NAMES[index],values[0],tier,true));
 	}
+	public void addSkill(GenericSkill skill) 
+	{
+		skills.add(skill);
+		System.out.println(skills.toString());
+	}
 	private void generateSkill(int index,int tier) 
 	{
 		Random rng=new Random();
