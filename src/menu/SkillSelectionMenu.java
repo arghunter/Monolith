@@ -125,7 +125,7 @@ public class SkillSelectionMenu implements ActionListener {
 			skillButtons[i].addActionListener(this);
 			Font text=null;
 			try {
-				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Exo_2\\static\\Exo2-Bold.ttf"));
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Exo_2\\static\\Exo2-Black.ttf"));
 			} catch (FontFormatException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -133,6 +133,7 @@ public class SkillSelectionMenu implements ActionListener {
 				e.printStackTrace();
 			}
 			skillButtons[i].setFont(text.deriveFont(12f));
+			skillButtons[i].setForeground(new Color(148, 148, 148));
 		}
 		for (int i = 0; i < currentSkillButtons.length; i++) {
 			int offsetX = 0;
@@ -226,6 +227,7 @@ public class SkillSelectionMenu implements ActionListener {
 				e.printStackTrace();
 			}
 			currentSkillButtons[i].setFont(text.deriveFont(12f));
+			currentSkillButtons[i].setForeground(new Color(148, 148, 148));
 		}
 
 
