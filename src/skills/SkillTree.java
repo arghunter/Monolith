@@ -98,33 +98,21 @@ public class SkillTree {
 			}
 		}
 	}
-	private void addSkill(int index,int[] values,int tier) 
-	{
-		StatType type=SKILL_TYPES[index][0];
-		if(SKILL_TYPES[index].length!=1) 
-		{
-			
-			skills.add(new MultipleSkill(StatType.MULTIPLE,SKILL_NAMES[index],SKILL_TYPES[index],values,tier,true));
-		}
-		skills.add(new Skill(type,SKILL_NAMES[index],values[0],tier,true));
-	}
+
 	public void addSkill(GenericSkill skill) 
 	{
+//		for(int i=0;i<skills.size();i++) 
+//		{
+//			if(skills.get(i).getName().equals(skill.getName())) 
+//			{
+//				skills.set(i, skill);
+//				return;
+//			}
+//		}
 		skills.add(skill);
 		System.out.println(skills.toString());
 	}
-	private void generateSkill(int index,int tier) 
-	{
-		Random rng=new Random();
-		int[] values=new int[SKILL_TYPES[index].length];
-		for(int i=0;i<SKILL_TYPES[index].length;i++) 
-		{
-			values[i]=rng.nextInt(SKILL_RANGE[index][i][1]-SKILL_RANGE[index][i][0]+1)+SKILL_RANGE[index][i][0];
-		}
-		
-		addSkill(index,values,tier);		
-		
-	}
+
 	public GenericSkill[] skillSelection(int skillCount) 
 	{
 		System.out.println(skillCount+" count");
