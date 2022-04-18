@@ -24,11 +24,14 @@ public class Tester extends JPanel implements ActionListener {
 	private Button hi;
 	private JFrame frame;
 	private SkillSelectionMenu skillSelectionMenu;
-	int numMobs=3;
+	private int numMobs=3;
+	private Timer clock=new Timer(10,this);
+	private long lastSkillShown=System.currentTimeMillis();
+	private long startTime=System.currentTimeMillis();
 	
 	public Tester() {
 		
-		skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),840,this);
+		skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),120,this);
 		mobList[0]=theSpider;
 		mobList[1]=secondSpider;
 		mobList[2]=theZombie;
@@ -48,7 +51,7 @@ public class Tester extends JPanel implements ActionListener {
 	    this.frame=w;
 	    hi.addActionListener(this);
 	    
-	    Timer clock=new Timer(10,this);
+	    
 	    clock.start();
 		
 		
@@ -94,6 +97,13 @@ public class Tester extends JPanel implements ActionListener {
 		{
 			mobList[numMobs]=new Zombie((int)(Math.random()*1500),(int)(Math.random()*1500), 4, 64,64);
 			numMobs++;
+		}
+		//System.out.println(System.currentTimeMillis()-lastSkillShown+" "+!this.skillSelectionMenu.isActive());
+		if(System.currentTimeMillis()-lastSkillShown>1200&&!this.skillSelectionMenu.isActive()) 
+		{
+			System.out.println("Herejijdfijdsifjdijsijfidjfisjdifsjifjsifjisd");
+			lastSkillShown=System.currentTimeMillis();
+			skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),(int)(System.currentTimeMillis()-startTime)/10,this);
 		}
 
 		

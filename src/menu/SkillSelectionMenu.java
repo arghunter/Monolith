@@ -19,10 +19,11 @@ import skills.SkillTree;
 import skills.StatType;
 
 public class SkillSelectionMenu implements ActionListener {
-	int numSkills;
-	SkillTree tree;
-	GenericSkill[] availableSkills;
-	Button[] skillButtons;
+	private int numSkills;
+	private SkillTree tree;
+	private GenericSkill[] availableSkills;
+	private Button[] skillButtons;
+	private boolean isActive=true;
 
 	public SkillSelectionMenu(SkillTree tree, int timeSeconds, JPanel panel) {
 
@@ -105,7 +106,7 @@ public class SkillSelectionMenu implements ActionListener {
 				color=new Color(128, 37, 118);
 				break;
 		}
-			System.out.println(availableSkills[i].getName()+" "+availableSkills[i].getType());
+			//System.out.println(availableSkills[i].getName()+" "+availableSkills[i].getType());
 			skillButtons[i] = new Button(points, color,
 					availableSkills[i].getName() + " " + availableSkills[i].getTier());
 			skillButtons[i].setBounds(skillButtons[i].getX(), skillButtons[i].getY(),
@@ -183,31 +184,46 @@ public class SkillSelectionMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Button b=(Button)e.getSource();
-		if(b.isClicked(e)) 
-		{
-			String name=b.getText();
-			GenericSkill skill=null;
-			for(int i=0;i<availableSkills.length;i++) 
-			{
-				//System.out.println(availableSkills[i].getName() + " " + availableSkills[i].getTier()+" "+name);
-				if((availableSkills[i].getName() + " " + availableSkills[i].getTier()).equals(name)) 
-				{
-					
-					skill=availableSkills[i];
-					skill.setIsActive(true);
-					tree.addSkill(skill);
-					tree.applyLastAddedSkill();
-					for(int j=0;j<skillButtons.length;j++) 
-					{
-						skillButtons[j].setVisible(false);
-					}
-					skillButtons=new Button[0];
-					break;
-				}
-			}
-			
-		}
 		
+		
+			Button b=(Button)e.getSource();
+			if(b.isClicked(e)) 
+			{
+				String name=b.getText();
+				GenericSkill skill=null;
+				for(int i=0;i<availableSkills.length;i++) 
+				{
+					//System.out.println(availableSkills[i].getName() + " " + availableSkills[i].getTier()+" "+name);
+					if((availableSkills[i].getName() + " " + availableSkills[i].getTier()).equals(name)) 
+					{
+						
+						skill=availableSkills[i];
+						skill.setIsActive(true);
+						tree.addSkill(skill);
+						tree.applyLastAddedSkill();
+						for(int j=0;j<skillButtons.length;j++) 
+						{
+							skillButtons[j].setVisible(false);
+							skillButtons[j].setText("");
+							skillButtons[j].getParent().remove(skillButtons[j]);
+							skillButtons[j].setEnabled(false);
+							
+							
+						}
+						skillButtons=new Button[0];
+						this.isActive=false;
+						break;
+					}
+				}
+				
+			}
+		
+		
+		
+	}
+	
+	public boolean isActive() 
+	{
+		return isActive;
 	}
 }

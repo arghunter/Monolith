@@ -74,7 +74,7 @@ public class SkillTree {
 				modifiedBaseStats[i]=skills.get(skills.size()-1).apply(modifiedBaseStats[i]);
 			}
 		}
-		System.out.println(Arrays.toString(modifiedBaseStats)+"   base");
+		//System.out.println(Arrays.toString(modifiedBaseStats)+"   base");
 	}
 	private void applyAllSkills() 
 	{
@@ -140,7 +140,7 @@ public class SkillTree {
 			int[] tiers=new int[values.length];
 			
 			StatType type=SKILL_TYPES[index][0];
-			System.out.println(SKILL_TYPES[index].length+" "+SKILL_NAMES[index]);
+			//System.out.println(SKILL_TYPES[index].length+" "+SKILL_NAMES[index]);
 			if(SKILL_TYPES[index].length>1) 
 			{
 				
