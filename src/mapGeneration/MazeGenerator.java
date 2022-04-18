@@ -3,7 +3,8 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class MazeGenerator {
-	private Random randomNums=new Random(5);
+	private Random randomNums=new Random(0);
+	private final double branchingAmount=0.1; //Higher=more branches
 	
 	public MazeGenerator() {
 		
@@ -34,8 +35,12 @@ public class MazeGenerator {
 		visited[start[0]][start[1]]=true;
 		
 		while(stack.size()>0) {
-			Integer[] current=stack.remove(randomNums.nextInt(stack.size()));
-			
+			Integer[] current;
+			if(randomNums.nextFloat()<branchingAmount) {
+				current=stack.remove(randomNums.nextInt(stack.size()));
+			}else {
+				current=stack.remove(stack.size()-1);
+			}
 			
 			int numUnvisited=0;
 			for(int i=0;i<4;i++) {
