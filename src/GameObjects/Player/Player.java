@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -91,16 +92,15 @@ public class Player extends MovingObject {
 	public boolean isDead() {
 		return isDead;
 	}
-	public void update(double pointX, double pointY) {
-		updateAngle(pointX, pointY);
-		regen();
-	}
+
 
 	
 	@Override
 	public void render(Graphics2D g) {
 		// super.refillLastPos(g);
 		super.getImage().drawImage(g);
+		regen();
+		super.setMovementDelay(stats[7]);
 
 	}
 

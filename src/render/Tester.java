@@ -48,7 +48,7 @@ public class Tester extends JPanel implements ActionListener {
 	    this.frame=w;
 	    hi.addActionListener(this);
 	    
-	    Timer clock=new Timer(30,this);
+	    Timer clock=new Timer(10,this);
 	    clock.start();
 		
 		
@@ -70,7 +70,7 @@ public class Tester extends JPanel implements ActionListener {
 	public void paintComponent(Graphics graphics)
 	{
 		Graphics2D g=(Graphics2D)graphics;
-	
+		
 		super.paintComponent(g);
 		
 		hi.draw(g,getXOnScreen(),getYOnScreen());

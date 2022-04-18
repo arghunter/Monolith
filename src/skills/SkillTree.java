@@ -58,20 +58,23 @@ public class SkillTree {
 			}
 		}
 	}
-	private void applyLastAddedSkill() 
+	public void applyLastAddedSkill() 
 	{
 		StatType type=skills.get(skills.size()-1).getType();
-		if(type==StatType.MULTIPLE) 
+		if(type==StatType.MULTIPLE&&skills.get(skills.size()-1).getIsActive()) 
 		{
 			skills.get(skills.size()-1).apply(statTypes, modifiedBaseStats);
+			return;
 		}
 		for(int i=0;i<baseStats.length;i++) 
 		{
-			if(statTypes[i]==type&skills.get(skills.size()-1).getIsActive()) 
+			if(statTypes[i]==type&&skills.get(skills.size()-1).getIsActive()) 
 			{
+				
 				modifiedBaseStats[i]=skills.get(skills.size()-1).apply(modifiedBaseStats[i]);
 			}
 		}
+		System.out.println(Arrays.toString(modifiedBaseStats)+"   base");
 	}
 	private void applyAllSkills() 
 	{

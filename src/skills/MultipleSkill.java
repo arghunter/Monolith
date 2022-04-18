@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class MultipleSkill extends GenericSkill {
-	GenericSkill[] skills;
+	Skill[] skills;
 
 	public MultipleSkill(StatType type,String name, StatType[] skillTypes,int[] values, int tier,boolean isActive) {
 		super(type,name,tier,isActive);
@@ -27,7 +27,7 @@ public class MultipleSkill extends GenericSkill {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	public GenericSkill[] getSkills() 
+	public Skill[] getSkills() 
 	{
 		return skills;
 	}

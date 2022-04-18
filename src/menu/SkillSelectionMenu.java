@@ -2,15 +2,21 @@ package menu;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
 import skills.GenericSkill;
+import skills.MultipleSkill;
+import skills.Skill;
 import skills.SkillTree;
+import skills.StatType;
 
 public class SkillSelectionMenu implements ActionListener {
 	int numSkills;
@@ -107,6 +113,16 @@ public class SkillSelectionMenu implements ActionListener {
 					(int) skillButtons[i].getPreferredSize().getHeight());
 			panel.add(skillButtons[i]);
 			skillButtons[i].addActionListener(this);
+			Font text=null;
+			try {
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Exo_2\\static\\Exo2-Bold.ttf"));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+			skillButtons[i].setFont(text.deriveFont(12f));
 		}
 
 	}
@@ -117,11 +133,49 @@ public class SkillSelectionMenu implements ActionListener {
 		{
 			skillButtons[i].draw(g, JPanelX, JPanelY);
 			if(skillButtons[i].isHovering()) 
-			{
+			{	
+				Font text=null;
+				try {
+					text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Exo_2\\static\\Exo2-Bold.ttf"));
+				} catch (FontFormatException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}
 				g.setColor(Color.BLACK);
-				Font text=new Font("Segoe UI",Font.BOLD,36);
-				g.setFont(text);
-				g.drawString(availableSkills[i].getName()+" "+availableSkills[i].getTier(), 800, 200);
+				
+				g.setFont(text.deriveFont(36f));
+				String title=availableSkills[i].getName().toUpperCase()+" "+availableSkills[i].getTier();
+				g.drawString(title, 800, 200);
+				
+				if(availableSkills[i].getType()!=StatType.MULTIPLE) 
+				{
+					
+					g.setFont(text.deriveFont(30f));
+					Skill tempSkill=(Skill)availableSkills[i];
+					String sign="";
+					if(tempSkill.getModifiedPercent()>0) 
+					{
+						sign+='+';
+					}
+					g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
+				}else 
+				{
+					
+					g.setFont(text.deriveFont(30f));
+					MultipleSkill tempSkill=(MultipleSkill)availableSkills[i];
+					Skill[] skills=tempSkill.getSkills();
+					for(int j=0;j<skills.length;j++) 
+					{
+						String sign="";
+						if(skills[j].getModifiedPercent()>0) 
+						{
+							sign+='+';
+						}
+						g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
+					}
+				}
 				
 			}
 		}
@@ -141,7 +195,9 @@ public class SkillSelectionMenu implements ActionListener {
 				{
 					
 					skill=availableSkills[i];
+					skill.setIsActive(true);
 					tree.addSkill(skill);
+					tree.applyLastAddedSkill();
 					for(int j=0;j<skillButtons.length;j++) 
 					{
 						skillButtons[j].setVisible(false);

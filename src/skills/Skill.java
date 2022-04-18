@@ -14,6 +14,14 @@ public class Skill extends GenericSkill {
 		this.modifiedPercent = percent * tier;
 
 	}
+	public int getModifiedPercent() 
+	{
+		return modifiedPercent;
+	}
+	public int getPercent() 
+	{
+		return percent;
+	}
 
 	@Override
 	public int apply(int value) {
@@ -57,7 +65,7 @@ public class Skill extends GenericSkill {
 			}
 			return newMovementDelay;				 
 			case STRENGTH:
-			return (int)(value*0.88*Math.log(1.0+modifiedPercent/12.0)*Math.log(1.0+modifiedPercent/12.0)+0.5) ;
+			return (int)(value*10*0.88*Math.log(1.0+modifiedPercent/12.0)*Math.log(1.0+modifiedPercent/12.0)+0.5) ;
 			 
 
 			case MISC:
