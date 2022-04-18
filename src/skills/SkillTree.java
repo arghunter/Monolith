@@ -101,14 +101,14 @@ public class SkillTree {
 
 	public void addSkill(GenericSkill skill) 
 	{
-//		for(int i=0;i<skills.size();i++) 
-//		{
-//			if(skills.get(i).getName().equals(skill.getName())) 
-//			{
-//				skills.set(i, skill);
-//				return;
-//			}
-//		}
+		for(int i=0;i<skills.size();i++) 
+		{
+			if(skills.get(i).getName().equals(skill.getName())) 
+			{
+				skills.set(i, skill);
+				return;
+			}
+		}
 		skills.add(skill);
 		System.out.println(skills.toString());
 	}
