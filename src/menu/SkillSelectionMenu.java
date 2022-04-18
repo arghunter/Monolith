@@ -29,10 +29,11 @@ public class SkillSelectionMenu implements ActionListener {
 
 		this.tree = tree;
 		this.numSkills = timeSeconds / 120;
-		this.availableSkills = tree.skillSelection(numSkills);
 		if (numSkills > 7) {
 			numSkills = 7;
 		}
+		this.availableSkills = tree.skillSelection(numSkills);
+
 
 		skillButtons = new Button[availableSkills.length];
 		for (int i = 0; i < skillButtons.length; i++) {
@@ -129,7 +130,7 @@ public class SkillSelectionMenu implements ActionListener {
 	}
 	
 	public void render(Graphics2D g,int JPanelX,int JPanelY) 
-	{
+	{ 
 		for(int i=0;i<skillButtons.length;i++) 
 		{
 			skillButtons[i].draw(g, JPanelX, JPanelY);

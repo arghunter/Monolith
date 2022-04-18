@@ -125,6 +125,7 @@ public class Button extends JButton implements ActionListener {
         }
         
     }
+
     private boolean buttonContainsMouse() 
     {
     	return polygon.contains((int)MouseInputParser.getX()-JPanelX,(int)MouseInputParser.getY()-JPanelY);

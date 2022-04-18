@@ -98,12 +98,23 @@ public class Tester extends JPanel implements ActionListener {
 			mobList[numMobs]=new Zombie((int)(Math.random()*1500),(int)(Math.random()*1500), 4, 64,64);
 			numMobs++;
 		}
-		//System.out.println(System.currentTimeMillis()-lastSkillShown+" "+!this.skillSelectionMenu.isActive());
-		if(System.currentTimeMillis()-lastSkillShown>1200&&!this.skillSelectionMenu.isActive()) 
+		if(this.skillSelectionMenu.isActive()) 
 		{
+			lastSkillShown=System.currentTimeMillis();
+		}
+		
+		
+		//System.out.println(System.currentTimeMillis()-lastSkillShown+" "+!this.skillSelectionMenu.isActive());
+		if(System.currentTimeMillis()-lastSkillShown>1200) 
+		{
+			if(!this.skillSelectionMenu.isActive()) 
+			{
+				skillSelectionMenu=null; 
+				skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),(int)(System.currentTimeMillis()-startTime)/10,this);
+
+			}
 			System.out.println("Herejijdfijdsifjdijsijfidjfisjdifsjifjsifjisd");
 			lastSkillShown=System.currentTimeMillis();
-			skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),(int)(System.currentTimeMillis()-startTime)/10,this);
 		}
 
 		

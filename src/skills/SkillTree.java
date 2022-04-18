@@ -127,6 +127,7 @@ public class SkillTree {
 	}
 	public GenericSkill[] skillSelection(int skillCount) 
 	{
+		System.out.println(skillCount+" count");
 		GenericSkill[] availableSkills=new GenericSkill[skillCount];
 		Random rng=new Random();
 		for(int j=0;j<skillCount;j++) 
