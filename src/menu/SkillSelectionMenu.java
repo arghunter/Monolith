@@ -76,45 +76,8 @@ public class SkillSelectionMenu implements ActionListener {
 			Point[] points = { new Point(463 + offsetX, 360 + offsetY), new Point(388 + offsetX, 360 + offsetY),
 					new Point(350 + offsetX, 425 + offsetY), new Point(388 + offsetX, 490 + offsetY),
 					new Point(462 + offsetX, 490 + offsetY), new Point(500 + offsetX, 425 + offsetY) };
-			Color color=Color.BLACK;
-			switch (availableSkills[i].getType()) {
-			case ACCURACY:
-				color=new Color(43, 124, 255);
-				break;
-				 
-			case ARMOR:
-				color=new Color(168, 120, 8);
-				break;
-				 
-			case ATTACKSPEED:
-				color=new Color(210, 210, 0);
-				break;
-			case HEALTH:
-				color=new Color(5, 99, 16);
-				break;
-			case POWER:
-				color=new Color(75, 40, 181);
-				break;
-			case REGEN:
-				color=new Color(40, 181, 155);
-				break;
-			case SHIELD:
-				color=new Color(0, 219, 227);
-				break;
-			case SPEED:
-				color=new Color(63, 163, 163);
-				break;
-			case STRENGTH:
-				color=new Color(173, 10, 10);
-				break;
-			case MULTIPLE:
-				color=new Color(194, 98, 14);
-				break;
+			Color color=skillColor(availableSkills[i]);
 
-			case MISC:
-				color=new Color(128, 37, 118);
-				break;
-		}
 			//System.out.println(availableSkills[i].getName()+" "+availableSkills[i].getType());
 			skillButtons[i] = new Button(points, color,
 					availableSkills[i].getName() + " " + availableSkills[i].getTier());
@@ -170,45 +133,8 @@ public class SkillSelectionMenu implements ActionListener {
 			Point[] points = { new Point(463 + offsetX+ shiftX, 360 + offsetY+shiftY), new Point(388 + offsetX+ shiftX, 360 + offsetY+shiftY),
 					new Point(350 + offsetX+ shiftX, 425 + offsetY+shiftY), new Point(388 + offsetX+ shiftX, 490 + offsetY+shiftY),
 					new Point(462 + offsetX+ shiftX, 490 + offsetY+shiftY), new Point(500 + offsetX+ shiftX, 425 + offsetY+shiftY) };
-			Color color=Color.BLACK;
-			switch (currentSkills[i].getType()) {
-			case ACCURACY:
-				color=new Color(43, 124, 255);
-				break;
-				 
-			case ARMOR:
-				color=new Color(168, 120, 8);
-				break;
-				 
-			case ATTACKSPEED:
-				color=new Color(210, 210, 0);
-				break;
-			case HEALTH:
-				color=new Color(5, 99, 16);
-				break;
-			case POWER:
-				color=new Color(75, 40, 181);
-				break;
-			case REGEN:
-				color=new Color(40, 181, 155);
-				break;
-			case SHIELD:
-				color=new Color(0, 219, 227);
-				break;
-			case SPEED:
-				color=new Color(63, 163, 163);
-				break;
-			case STRENGTH:
-				color=new Color(173, 10, 10);
-				break;
-			case MULTIPLE:
-				color=new Color(194, 98, 14);
-				break;
+			Color color=skillColor(currentSkills[i]);
 
-			case MISC:
-				color=new Color(128, 37, 118);
-				break;
-		}
 			//System.out.println(availableSkills[i].getName()+" "+availableSkills[i].getType());
 			currentSkillButtons[i] = new Button(points, color,
 					currentSkills[i].getName() + " " + currentSkills[i].getTier());
@@ -231,6 +157,60 @@ public class SkillSelectionMenu implements ActionListener {
 		}
 
 
+	}
+	public Color skillColor(GenericSkill skill) 
+	{
+		Color color=null;
+		switch (skill.getType()) {
+		case ACCURACY:
+			color=new Color(43, 124, 255);
+			break;
+			 
+		case ARMOR:
+			color=new Color(168, 120, 8);
+			break;
+			 
+		case ATTACKSPEED:
+			color=new Color(210, 210, 0);
+			break;
+		case HEALTH:
+			color=new Color(5, 99, 16);
+			break;
+		case POWER:
+			color=new Color(75, 40, 181);
+			break;
+		case REGEN:
+			color=new Color(40, 181, 155);
+			break;
+		case SHIELD:
+			color=new Color(0, 219, 227);
+			break;
+		case SPEED:
+			color=new Color(63, 163, 163);
+			break;
+		case STRENGTH:
+			color=new Color(173, 10, 10);
+			break;
+		case MULTIPLE:
+			MultipleSkill tempSkill=(MultipleSkill)skill;
+			for(int i=0;i<tempSkill.getSkills().length;i++) 
+			{
+				if(tempSkill.getSkills()[i].getType()==StatType.XP) 
+				{
+					color=skillColor(tempSkill.getSkills()[i]);
+					return color;
+				}
+			}
+			color=skillColor(tempSkill.getSkills()[0]);
+			break;
+		case XP:
+			color=new Color(88,132,44);
+			break;
+		case MISC:
+			color=new Color(128, 37, 118);
+			break;
+		}
+		return color;
 	}
 	
 	public void render(Graphics2D g,int JPanelX,int JPanelY) 

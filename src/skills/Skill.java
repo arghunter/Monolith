@@ -66,7 +66,8 @@ public class Skill extends GenericSkill {
 			return newMovementDelay;				 
 			case STRENGTH:
 			return (int)(value*10*0.88*Math.log(1.0+modifiedPercent/12.0)*Math.log(1.0+modifiedPercent/12.0)+0.5) ;
-			 
+			case XP:
+				return (int)(value*(1+modifiedPercent/100.0));
 
 			case MISC:
 				return 0;

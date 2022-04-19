@@ -10,7 +10,8 @@ public enum StatType
     SHIELD,// player shields
     ARMOR,// player armors which is dmg reduction
     ATTACKSPEED,// player weapon attack speed
-    POWER,// all wespon dmg
+    POWER,// all weapon dmg
+    XP,// xp boost
     MULTIPLE,// combination of multiple
     MISC// idk yet
 }

@@ -18,9 +18,9 @@ public class SkillTree {
 	private int[] modifiedBaseStats;
 	private StatType[] statTypes;
 	private ArrayList<GenericSkill> skills=new ArrayList<GenericSkill>();
-	public final String[] SKILL_NAMES= {"Acurracy","Armor","Attack Speed","Health","Power","Regen","Shield","Speed","Strength", "Tank"};//,"Marksman","Sword Master","Curse","Master","Sprinter","Weight Training","Eagle Eyes","Recovery","Shield Master","Armor Master", "Greased Lightning", "Sharpened Steel"};
-	public final StatType[][] SKILL_TYPES=  { { StatType.ACCURACY}, {StatType.ARMOR },{StatType.ATTACKSPEED},{StatType.HEALTH},{StatType.POWER},{StatType.REGEN},{StatType.SHIELD},{StatType.SPEED},{StatType.STRENGTH},{StatType.HEALTH,StatType.SHIELD,StatType.REGEN,StatType.STRENGTH,StatType.SPEED}};
-	public final int[][][] SKILL_RANGE= {{{2,8}},{{5,15}},{{5,15}},{{8,16}},{{2,16}},{{5,15}},{{8,16}},{{2,8}},{{2,16}},{{25,35},{20,30},{10,20},{2,5},{-20,-10}}} ;
+	public final String[] SKILL_NAMES= {"Acurracy","Armor","Attack Speed","Health","Power","Regen","Shield","Speed","Strength", "Tank","Marksman","Sword Master","Curse","Master","Sprinter","Weight Training","Eagle Eyes","Recovery","Shield Master","Armor Master", "Greased Lightning", "Sharpened Steel"};
+	public final StatType[][] SKILL_TYPES=  { { StatType.ACCURACY}, {StatType.ARMOR },{StatType.ATTACKSPEED},{StatType.HEALTH},{StatType.POWER},{StatType.REGEN},{StatType.SHIELD},{StatType.SPEED},{StatType.STRENGTH},{StatType.HEALTH,StatType.SHIELD,StatType.REGEN,StatType.STRENGTH,StatType.SPEED},{StatType.ACCURACY,StatType.POWER},{StatType.STRENGTH},{StatType.ACCURACY,StatType.ARMOR,StatType.ATTACKSPEED,StatType.HEALTH,StatType.POWER,StatType.REGEN,StatType.SHIELD,StatType.SPEED,StatType.STRENGTH,StatType.XP},{StatType.ACCURACY,StatType.ARMOR,StatType.ATTACKSPEED,StatType.HEALTH,StatType.POWER,StatType.REGEN,StatType.SHIELD,StatType.SPEED,StatType.STRENGTH,StatType.XP},{StatType.SPEED},{StatType.STRENGTH, StatType.HEALTH},{StatType.ACCURACY},{StatType.REGEN},{StatType.SHIELD},{StatType.ARMOR},{StatType.ATTACKSPEED},{StatType.POWER,StatType.STRENGTH}};
+	public final int[][][] SKILL_RANGE= {{{2,8}},{{5,15}},{{5,15}},{{8,16}},{{2,16}},{{5,15}},{{8,16}},{{2,8}},{{2,16}},{{25,35},{20,30},{10,20},{2,5},{-20,-10}},{{30,50},{15,30}},{{20,50}},{{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{5,10}},{{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{-5,-10}},{{12,24}},{{10,25},{5,10}},{{30,75}},{{30,40}},{{30,40}},{{30,40}},{{20,30}},{{20,25},{15,22}}};
 	public SkillTree(String saveData,int[] baseStats,StatType[]statTypes) 
 	{
 		this.baseStats=Arrays.copyOf(baseStats, baseStats.length);
@@ -39,6 +39,13 @@ public class SkillTree {
 	}
 	public void addXP(int xp) 
 	{
+		for(int i=0;i<statTypes.length;i++) 
+		{
+			if(statTypes[i]==StatType.XP) 
+			{
+				xp*=modifiedBaseStats[i]/100.0;
+			}
+		}
 		int activeSkills=0;
 		for(int i=0;i<skills.size();i++) 
 		{
@@ -124,7 +131,12 @@ public class SkillTree {
 			int[] values=new int[SKILL_TYPES[index].length];
 			for(int i=0;i<SKILL_TYPES[index].length;i++) 
 			{
-				values[i]=rng.nextInt(SKILL_RANGE[index][i][1]-SKILL_RANGE[index][i][0]+1)+SKILL_RANGE[index][i][0];
+
+				values[i]=rng.nextInt(Math.abs(SKILL_RANGE[index][i][1]-SKILL_RANGE[index][i][0]+1))+Math.abs(SKILL_RANGE[index][i][0]);
+				if(SKILL_RANGE[index][i][1]<0) 
+				{
+					values[i]*=-1;
+				}
 			}
 			int[] tiers=new int[values.length];
 			

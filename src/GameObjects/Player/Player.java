@@ -19,8 +19,8 @@ import skills.*;
 public class Player extends MovingObject {
 	SkillTree skills;
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
-			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH };
-	private int[] stats = { 10, 25, 60, 100, 10, 1, 100, 15, 10 };
+			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH,StatType.XP };
+	private int[] stats = { 10, 25, 60, 100, 10, 1, 100, 15, 10,100 };
 	private int currentHealth;
 	private int currentShields;
 	private boolean isDead = false;
