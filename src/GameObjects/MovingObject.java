@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
+import menu.AnimationSystem;
+import menu.ImageSystem;
+
 //Enums
 
 public abstract class MovingObject extends GameObject {
@@ -18,13 +21,13 @@ public abstract class MovingObject extends GameObject {
 	private double movementDelay;// In milliseconds Time between subsequent movements
 	private double lastMovement;
 	private double currentMovementDelay;// Changes based on dirrection
-	private ImageSystem image;
+	private AnimationSystem image;
 
-	public MovingObject(int startX, int startY, int movementDelay, int id, int width, int height, String imageName) {
+	public MovingObject(int startX, int startY, int movementDelay, int id, int width, int height, String name, int numFrames) {
 		super(id, width, height);
 		setMovementDelay(movementDelay);
 		setCoords(startX, startY);
-		this.image = new ImageSystem(this.x, this.y, new ImageIcon("imgs\\"+imageName).getImage());
+		this.image =new AnimationSystem(x,y,movementDelay,name,numFrames);
 		System.out.println(this.image);
 	}
 
@@ -45,8 +48,8 @@ public abstract class MovingObject extends GameObject {
 		return x;
 	}
 
-	// Returns a refrence to the ImageSystems in this class.
-	public ImageSystem getImage() {
+	// Returns a refrence to the AnimationSystem in this class.
+	public AnimationSystem getImage() {
 		return image;
 	}
 

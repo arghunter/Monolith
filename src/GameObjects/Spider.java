@@ -9,7 +9,7 @@ public class Spider extends Mob {
 	public static int[] stats={20,2,10,0,2000};
 	
 	public Spider(int x,int y,int id,int width,int height) {
-		super(x,y,stats[0],stats,id,width,height,"spider.png");
+		super(x,y,stats[0],stats,id,width,height,"Spider",3);
 	}
 	
 	public void move(Direction moveDirection) {
@@ -18,7 +18,7 @@ public class Spider extends Mob {
 
 	@Override
 	public void render(Graphics2D g) {
-		super.getImage().drawImage(g);
+		super.getImage().drawAnimation(g);;
 		
 	}
 }
