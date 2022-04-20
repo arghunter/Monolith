@@ -1,4 +1,4 @@
-package menu;
+package ui;
 
 import java.awt.Graphics2D;
 
@@ -46,7 +46,7 @@ public class AnimationSystem {
 	
 	public void drawAnimation(Graphics2D g) 
 	{
-		if(System.currentTimeMillis()-this.lastFrame>=this.delay) 
+		if(System.currentTimeMillis()-this.lastFrame>=this.delay&&numFrames>1) 
 		{
 			frameNumber++;
 			if(frameNumber>=numFrames) 

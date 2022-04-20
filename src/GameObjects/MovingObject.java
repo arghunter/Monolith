@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
-import menu.AnimationSystem;
-import menu.ImageSystem;
+import ui.AnimationSystem;
+import ui.ImageSystem;
 
 //Enums
 

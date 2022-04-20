@@ -13,8 +13,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import GameObjects.MovingObject;
-import menu.ImageSystem;
 import skills.*;
+import ui.ImageSystem;
 
 public class Player extends MovingObject {
 	SkillTree skills;

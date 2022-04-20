@@ -6,9 +6,9 @@ import javax.swing.*;
 import GameObjects.*;
 import GameObjects.Player.Player;
 import input.InputParser;
-import menu.Button;
-import menu.SkillSelectionMenu;
 import skills.SkillTreeRenderMode;
+import ui.Button;
+import ui.SkillSelectionMenu;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
