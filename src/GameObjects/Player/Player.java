@@ -12,8 +12,8 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import GameObjects.ImageSystem;
 import GameObjects.MovingObject;
-import menu.ImageSystem;
 import skills.*;
 
 public class Player extends MovingObject {
@@ -29,7 +29,7 @@ public class Player extends MovingObject {
 	// Note the speed will come from skill tree
 	public Player(int x, int y, int id, int width, int height) {
 		// Just going to use the helmet image for player
-		super(x, y, 20, id, width, height, "DefaultHelmet",1);
+		super(x, y, 20, id, width, height, "DefaultHelmet.png");
 		skills = new SkillTree(stats, statTypes);
 		currentHealth = stats[3];
 		currentShields = stats[6];
@@ -98,7 +98,7 @@ public class Player extends MovingObject {
 	@Override
 	public void render(Graphics2D g) {
 		// super.refillLastPos(g);
-		super.getImage().drawAnimation(g);
+		super.getImage().drawImage(g);
 		regen();
 		super.setMovementDelay(stats[7]);
 

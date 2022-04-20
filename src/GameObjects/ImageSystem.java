@@ -1,4 +1,4 @@
-package menu;
+package GameObjects;
 
 
 import java.awt.Graphics;
@@ -28,8 +28,6 @@ public class ImageSystem {
 	    transform.translate(x - width/2, y - height/2);
 	}
 	
-
-	
 	public void move(int x, int y)
 	{
 		this.x+=x;
@@ -43,9 +41,9 @@ public class ImageSystem {
 		transform.rotate(radians+Math.PI/2,width/2,height/2);
 		
 	}
-	public void drawImage(Graphics2D g)
+	public void drawImage(Graphics g)
 	 {
-	    g.drawImage(picture, transform, null);
+	    ((Graphics2D)g).drawImage(picture, transform, null);
 	    
 	  
 	 }

@@ -6,8 +6,8 @@ public abstract class Mob extends MovingObject {
 	//Health, 
 	private static int[] stats=new int[5];
 	
-	public Mob(int x,int y,int movementDelay, int[] stats,int id,int width, int height,String name,int numFrames) {
-		super(x,y,movementDelay,id,width,height,name,numFrames);
+	public Mob(int x,int y,int movementDelay, int[] stats,int id,int width, int height,String imageName) {
+		super(x,y,movementDelay,id,width,height,imageName);
 	}
 	
 	public void setStat(int statNum,int newValue) {
