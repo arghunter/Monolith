@@ -326,6 +326,7 @@ public class SkillSelectionMenu implements ActionListener {
 			Button b=(Button)e.getSource();
 			if(b.isClicked(e)) 
 			{
+				System.out.println(tree);
 				String name=b.getText();
 				GenericSkill skill=null;
 				for(int i=0;i<availableSkills.length;i++) 

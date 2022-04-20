@@ -20,6 +20,15 @@ public class MultipleSkill extends GenericSkill {
 		}
 		
 	}
+	@Override
+	public void setIsActive(boolean isActive) 
+	{
+		super.setIsActive(isActive);
+		for(int i=0;i<skills.length;i++) 
+		{
+			skills[i].setIsActive(isActive);
+		}
+	}
 
 	@Override
 	//Do not touch this method. Never call it.

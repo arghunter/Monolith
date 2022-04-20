@@ -65,6 +65,14 @@ public abstract class GenericSkill {
 			}
 		}
 	}
+	public void setXP(int xp) 
+	{
+		this.xp=xp;
+	}
+	public int getXP() 
+	{
+		return xp;
+	}
 	public void setTier(int tier) 
 	{
 		this.tier=tier;

@@ -16,7 +16,7 @@ public class AnimationSystem {
 	
 	public AnimationSystem(int x,int y,long delay,String name,int numFrames) 
 	{
-		this.delay=delay*4;
+		this.delay=delay;
 		this.name=name;
 		this.numFrames=numFrames;
 		this.x=x;

@@ -161,8 +161,31 @@ public class SkillTree {
 		
 	}
 	
-	
-	
+	@Override
+	public String toString() 
+	{
+		String s="SkillTree/";
+		for(int i=0;i<skills.size();i++) 
+		{
+			s+=skills.get(i).getName()+"/"+skills.get(i).getTier()+"/"+skills.get(i).getIsActive()+"/"+skills.get(i).getXP()+"/"+skills.get(i).getType()+"/";
+			if(skills.get(i).getType()!=StatType.MULTIPLE) 
+			{
+				Skill tempSkill=(Skill)skills.get(i);
+				s+=tempSkill.getPercent()+"/END{*}";
+			}else 
+			{
+				MultipleSkill tempSkill=(MultipleSkill) skills.get(i);
+				Skill[] skillList=tempSkill.getSkills();
+				s+="(";
+				for(int j=0;j<skillList.length;j++) 
+				{
+					s+=skillList[j].getName()+"~"+skillList[j].getTier()+"~"+skillList[j].getIsActive()+"~"+skillList[j].getXP()+"~"+skillList[j].getType()+"~"+skillList[j].getPercent()+"~,~";
+				}
+				s+=")/END{*}";
+			}
+		}
+		return s;
+	}
 	 
 	
 	

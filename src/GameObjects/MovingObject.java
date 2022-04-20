@@ -27,7 +27,7 @@ public abstract class MovingObject extends GameObject {
 		super(id, width, height);
 		setMovementDelay(movementDelay);
 		setCoords(startX, startY);
-		this.image =new AnimationSystem(x,y,movementDelay,name,numFrames);
+		this.image =new AnimationSystem(x,y,movementDelay*6,name,numFrames);
 		System.out.println(this.image);
 	}
 
