@@ -21,11 +21,27 @@ public class SkillTree {
 	public final String[] SKILL_NAMES= {"Accuracy","Armor","Attack Speed","Health","Power","Regen","Shield","Speed","Strength", "Tank","Marksman","Sword Master","Curse","Master","Sprinter","Weight Training","Eagle Eyes","Recovery","Shield Master","Armor Master", "Greased Lightning", "Sharpened Steel"};
 	public final StatType[][] SKILL_TYPES=  { { StatType.ACCURACY}, {StatType.ARMOR },{StatType.ATTACKSPEED},{StatType.HEALTH},{StatType.POWER},{StatType.REGEN},{StatType.SHIELD},{StatType.SPEED},{StatType.STRENGTH},{StatType.HEALTH,StatType.SHIELD,StatType.REGEN,StatType.STRENGTH,StatType.SPEED},{StatType.ACCURACY,StatType.POWER},{StatType.STRENGTH},{StatType.ACCURACY,StatType.ARMOR,StatType.ATTACKSPEED,StatType.HEALTH,StatType.POWER,StatType.REGEN,StatType.SHIELD,StatType.SPEED,StatType.STRENGTH,StatType.XP},{StatType.ACCURACY,StatType.ARMOR,StatType.ATTACKSPEED,StatType.HEALTH,StatType.POWER,StatType.REGEN,StatType.SHIELD,StatType.SPEED,StatType.STRENGTH,StatType.XP},{StatType.SPEED},{StatType.STRENGTH, StatType.HEALTH},{StatType.ACCURACY},{StatType.REGEN},{StatType.SHIELD},{StatType.ARMOR},{StatType.ATTACKSPEED},{StatType.POWER,StatType.STRENGTH}};
 	public final int[][][] SKILL_RANGE= {{{2,8}},{{5,15}},{{5,15}},{{8,16}},{{2,16}},{{5,15}},{{8,16}},{{2,8}},{{2,16}},{{25,35},{20,30},{10,20},{2,5},{-20,-10}},{{30,50},{15,30}},{{20,50}},{{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{5,10}},{{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{-5,-10}},{{12,24}},{{10,25},{5,10}},{{30,75}},{{30,40}},{{30,40}},{{30,40}},{{20,30}},{{20,25},{15,22}}};
+	
 	public SkillTree(String saveData,int[] baseStats,StatType[]statTypes) 
 	{
+		
 		this.baseStats=Arrays.copyOf(baseStats, baseStats.length);
 		this.modifiedBaseStats=baseStats;
 		this.statTypes=statTypes;
+		String[] skillStrings=saveData.split("{*}");
+		for(int i=1;i<skillStrings.length;i++) 
+		{
+			
+			if(skillStrings[i].contains("MULTIPLE")) 
+			{
+				
+			}else 
+			{
+				this.addSkill(this.parseSkillData(skillStrings[i]));
+				
+			}
+		}
+		
 	}
 	public SkillTree(int[] baseStats,StatType[] statTypes) 
 	{
@@ -81,6 +97,7 @@ public class SkillTree {
 				modifiedBaseStats[i]=skills.get(skills.size()-1).apply(modifiedBaseStats[i]);
 			}
 		}
+		
 		//System.out.println(Arrays.toString(modifiedBaseStats)+"   base");
 	}
 	private void applyAllSkills() 
@@ -117,7 +134,8 @@ public class SkillTree {
 			}
 		}
 		skills.add(skill);
-		System.out.println(skills.toString());
+		applyLastAddedSkill();
+	
 	}
 
 	public GenericSkill[] skillSelection(int skillCount) 
@@ -155,19 +173,60 @@ public class SkillTree {
 		return availableSkills;
 	}
 	
-
-	public void render (Graphics2D g,SkillTreeRenderMode mode,int time,JPanel panel)
+	private Skill parseSkillData(String skillData) 
 	{
-		
+		String[] data=skillData.split("/");
+		StatType type=null;
+		switch(data[4]) 
+		{
+		case "ACCURACY":
+			type=StatType.ACCURACY;
+			break;
+			 
+		case "ARMOR":
+			type=StatType.ARMOR;
+			break;
+			 
+		case "ATTACKSPEED":
+			type=StatType.ATTACKSPEED;
+			break;
+		case "HEALTH":
+			type=StatType.HEALTH;
+			break;
+		case "POWER":
+			type=StatType.POWER;
+			break;
+		case "REGEN":
+			type=StatType.REGEN;
+			break;
+		case "SHIELD":
+			type=StatType.SHIELD;
+			break;
+		case "SPEED":
+			type=StatType.SPEED;
+			break;
+		case "STRENGTH":
+			type=StatType.STRENGTH;
+			break;
+		case "XP":
+			type=StatType.XP;
+			break;
+		case "MISC":
+			type=StatType.MISC;
+			break;
+		}
+		return new Skill(type,data[0].replace('_', ' '),Integer.parseInt(data[5]),Integer.parseInt(data[1]),Boolean.parseBoolean(data[2]));
 	}
+
+
 	
 	@Override
 	public String toString() 
 	{
-		String s="SkillTree/";
+		String s="SkillTree{*}";
 		for(int i=0;i<skills.size();i++) 
 		{
-			s+=skills.get(i).getName()+"/"+skills.get(i).getTier()+"/"+skills.get(i).getIsActive()+"/"+skills.get(i).getXP()+"/"+skills.get(i).getType()+"/";
+			s+=skills.get(i).getName().replace(' ', '_')+"/"+skills.get(i).getTier()+"/"+skills.get(i).getIsActive()+"/"+skills.get(i).getXP()+"/"+skills.get(i).getType()+"/";
 			if(skills.get(i).getType()!=StatType.MULTIPLE) 
 			{
 				Skill tempSkill=(Skill)skills.get(i);
