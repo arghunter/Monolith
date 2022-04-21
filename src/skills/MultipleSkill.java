@@ -20,6 +20,11 @@ public class MultipleSkill extends GenericSkill {
 		}
 		
 	}
+	public MultipleSkill(StatType type,String name,int tier, boolean isActive,Skill[] skills) 
+	{
+		super(type,name,tier,isActive);
+		this.skills=skills;
+	}
 	@Override
 	public void setIsActive(boolean isActive) 
 	{

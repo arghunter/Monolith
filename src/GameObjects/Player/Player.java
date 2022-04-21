@@ -30,7 +30,7 @@ public class Player extends MovingObject {
 	public Player(int x, int y, int id, int width, int height) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
-		skills = new SkillTree(stats, statTypes);
+		skills = new SkillTree("Shield/1/true/0/SHIELD/15/ENDSkill:Attack_Speed/1/true/0/ATTACKSPEED/14/ENDSkill:Strength/1/true/0/STRENGTH/7/ENDSkill:Sharpened_Steel/1/true/0/MULTIPLE/0~1~true~0~POWER~23~,~1~1~true~0~STRENGTH~18~,~/ENDSkill:",stats, statTypes);
 		currentHealth = stats[3];
 		currentShields = stats[6];
 		lastRegen=System.currentTimeMillis();

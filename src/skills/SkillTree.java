@@ -28,13 +28,14 @@ public class SkillTree {
 		this.baseStats=Arrays.copyOf(baseStats, baseStats.length);
 		this.modifiedBaseStats=baseStats;
 		this.statTypes=statTypes;
-		String[] skillStrings=saveData.split("{*}");
+		String[] skillStrings=saveData.split("Skill:");
+		System.out.println(skillStrings[0]);
 		for(int i=1;i<skillStrings.length;i++) 
 		{
 			
 			if(skillStrings[i].contains("MULTIPLE")) 
 			{
-				
+				this.addSkill(this.parseMultipleSkillData(skillStrings[i]));
 			}else 
 			{
 				this.addSkill(this.parseSkillData(skillStrings[i]));
@@ -176,6 +177,7 @@ public class SkillTree {
 	private Skill parseSkillData(String skillData) 
 	{
 		String[] data=skillData.split("/");
+		System.out.println(Arrays.toString(data));
 		StatType type=null;
 		switch(data[4]) 
 		{
@@ -217,30 +219,50 @@ public class SkillTree {
 		}
 		return new Skill(type,data[0].replace('_', ' '),Integer.parseInt(data[5]),Integer.parseInt(data[1]),Boolean.parseBoolean(data[2]));
 	}
+	private MultipleSkill parseMultipleSkillData(String skillData) 
+	{
+		String[] faceData=skillData.split("/");
+		String[] skillsData=faceData[faceData.length-2].split("~,~");
+		System.out.println(Arrays.toString(skillsData));
+		Skill[] innerSkills=new Skill[skillsData.length];
+		
+		
+		for(int i=0;i<skillsData.length;i++)
+		{
+			//System.out.println(skillsData[i].replace('~', '/').replace('(', '\u0000')+" a");
+			innerSkills[i]=parseSkillData(skillsData[i].replace('~', '/'));
+		}
+		MultipleSkill skill=new MultipleSkill(StatType.MULTIPLE,faceData[0],Integer.parseInt(faceData[1]),Boolean.parseBoolean(faceData[2]),innerSkills);
+		
+		return skill;
+		
+		
+	}
 
 
 	
 	@Override
 	public String toString() 
 	{
-		String s="SkillTree{*}";
+		String s="SkillTreeSkill:";
 		for(int i=0;i<skills.size();i++) 
 		{
 			s+=skills.get(i).getName().replace(' ', '_')+"/"+skills.get(i).getTier()+"/"+skills.get(i).getIsActive()+"/"+skills.get(i).getXP()+"/"+skills.get(i).getType()+"/";
 			if(skills.get(i).getType()!=StatType.MULTIPLE) 
 			{
 				Skill tempSkill=(Skill)skills.get(i);
-				s+=tempSkill.getPercent()+"/END{*}";
+				s+=tempSkill.getPercent()+"/ENDSkill:";
 			}else 
 			{
+				
 				MultipleSkill tempSkill=(MultipleSkill) skills.get(i);
 				Skill[] skillList=tempSkill.getSkills();
-				s+="(";
+				
 				for(int j=0;j<skillList.length;j++) 
 				{
 					s+=skillList[j].getName()+"~"+skillList[j].getTier()+"~"+skillList[j].getIsActive()+"~"+skillList[j].getXP()+"~"+skillList[j].getType()+"~"+skillList[j].getPercent()+"~,~";
 				}
-				s+=")/END{*}";
+				s+="/ENDSkill:";
 			}
 		}
 		return s;

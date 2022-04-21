@@ -338,7 +338,7 @@ public class SkillSelectionMenu implements ActionListener {
 						skill=availableSkills[i];
 						skill.setIsActive(true);
 						tree.addSkill(skill);
-						tree.applyLastAddedSkill();
+						
 						for(int j=0;j<skillButtons.length;j++) 
 						{
 							skillButtons[j].setVisible(false);
