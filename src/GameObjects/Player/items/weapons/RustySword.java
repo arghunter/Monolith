@@ -21,7 +21,7 @@ public class RustySword extends MeleeWeapon{
 
 	@Override
 	public void tertiaryFire(Mob[] mobs, Player player) {
-		// TODO cleave here
+		// TODO nothing here this sword is too bad
 		
 	}
 	public void render(Graphics2D g) 
