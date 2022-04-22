@@ -43,6 +43,12 @@ public class ImageSystem {
 		transform.rotate(radians+Math.PI/2,width/2,height/2);
 		
 	}
+	public void setRotation(double radians,double centerX,double centerY) 
+	{
+		transform.setToTranslation(centerX, centerY);
+		transform.rotate(radians+Math.PI/2,centerX,centerY);
+		
+	}
 	public void drawImage(Graphics2D g)
 	 {
 	    g.drawImage(picture, transform, null);

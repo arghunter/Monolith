@@ -14,7 +14,8 @@ public class RustySword extends MeleeWeapon{
 
 	@Override
 	public void secondaryFire(Mob[] mobs, Player player) {
-		// TODO Block code here
+		super.setCurrentAttackDelay(1300);
+		
 		
 	}
 

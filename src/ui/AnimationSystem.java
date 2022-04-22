@@ -43,6 +43,13 @@ public class AnimationSystem {
 			pics[i].setRotation(radians);
 		}
 	}
+	public void setRotation(double radians,double centerX,double centerY) 
+	{
+		for(int i=0;i<pics.length;i++) 
+		{
+			pics[i].setRotation(radians,centerX,centerY);
+		}
+	}
 	
 	public void drawAnimation(Graphics2D g) 
 	{
