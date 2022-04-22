@@ -88,7 +88,7 @@ public class SkillSelectionMenu implements ActionListener {
 			skillButtons[i].addActionListener(this);
 			Font text=null;
 			try {
-				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Exo_2\\static\\Exo2-Black.ttf"));
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Black.ttf"));
 			} catch (FontFormatException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -145,7 +145,7 @@ public class SkillSelectionMenu implements ActionListener {
 			currentSkillButtons[i].addActionListener(this);
 			Font text=null;
 			try {
-				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Exo_2\\static\\Exo2-Bold.ttf"));
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
 			} catch (FontFormatException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -222,7 +222,7 @@ public class SkillSelectionMenu implements ActionListener {
 			{	
 				Font text=null;
 				try {
-					text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Exo_2\\static\\Exo2-Bold.ttf"));
+					text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
 				} catch (FontFormatException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -273,7 +273,7 @@ public class SkillSelectionMenu implements ActionListener {
 			{	
 				Font text=null;
 				try {
-					text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Exo_2\\static\\Exo2-Bold.ttf"));
+					text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
 				} catch (FontFormatException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

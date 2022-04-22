@@ -21,6 +21,7 @@ public abstract class MovingObject extends GameObject {
 	private double movementDelay;// In milliseconds Time between subsequent movements
 	private double lastMovement;
 	private double currentMovementDelay;// Changes based on dirrection
+	protected int health;
 	private AnimationSystem image;
 
 	public MovingObject(int startX, int startY, int movementDelay, int id, int width, int height, String name, int numFrames) {
@@ -29,8 +30,19 @@ public abstract class MovingObject extends GameObject {
 		setCoords(startX, startY);
 		this.image =new AnimationSystem(x,y,movementDelay*6,name,numFrames);
 		System.out.println(this.image);
+		this.health = Integer.MAX_VALUE;
 	}
-
+	public MovingObject(int startX, int startY, int movementDelay, int id, int width, int height, String name, int numFrames,int health) {
+		super(id, width, height);
+		setMovementDelay(movementDelay);
+		setCoords(startX, startY);
+		this.image =new AnimationSystem(x,y,movementDelay*6,name,numFrames);
+		System.out.println(this.image);
+		this.health = health;
+	}
+	public void doDamage(int damage) {
+		health -= damage;
+	}
 	// Sets the x and y coordinates to the passed values
 	public void setCoords(int x, int y) {
 		this.x = x;
@@ -57,7 +69,13 @@ public abstract class MovingObject extends GameObject {
 	public int getY() {
 		return y;
 	}
-
+	
+	public int getCenterX() {
+		return x+(getWidth()/2);
+	}
+	public int getCenterY() {
+		return y+(getHeight()/2);
+	}
 	public void refillLastPos(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.drawRect(pastX, pastY, getWidth(), getHeight());

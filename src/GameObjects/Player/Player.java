@@ -21,7 +21,6 @@ public class Player extends MovingObject {
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH,StatType.XP };
 	private int[] stats = { 10, 25, 60, 100, 10, 1, 100, 15, 10,100 };
-	private int currentHealth;
 	private int currentShields;
 	private boolean isDead = false;
 	private long lastRegen;
@@ -31,7 +30,7 @@ public class Player extends MovingObject {
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
 		skills = new SkillTree("Shield/1/true/0/SHIELD/15/ENDSkill:Attack_Speed/1/true/0/ATTACKSPEED/14/ENDSkill:Strength/1/true/0/STRENGTH/7/ENDSkill:Sharpened_Steel/1/true/0/MULTIPLE/0~1~true~0~POWER~23~,~1~1~true~0~STRENGTH~18~,~/ENDSkill:",stats, statTypes);
-		currentHealth = stats[3];
+		health = stats[3];
 		currentShields = stats[6];
 		lastRegen=System.currentTimeMillis();
 
@@ -43,9 +42,9 @@ public class Player extends MovingObject {
 		if (currentShields > 0) {
 			currentShields -= damage;
 		} else {
-			currentHealth -= damage;
+			health -= damage;
 		}
-		if (currentHealth <= 0) {
+		if (health <= 0) {
 			isDead = true;
 		}
 	}
@@ -58,10 +57,10 @@ public class Player extends MovingObject {
 					currentShields = stats[6];
 				}
 			}
-			if (currentHealth < stats[3]) {
-				currentHealth += stats[5] / 2;
-				if (currentHealth > stats[3]) {
-					currentHealth = stats[3];
+			if (health < stats[3]) {
+				health += stats[5] / 2;
+				if (health > stats[3]) {
+					health = stats[3];
 				}
 			}
 			lastRegen = System.currentTimeMillis();
@@ -82,7 +81,7 @@ public class Player extends MovingObject {
 	}
 
 	public int getCurrentHealth() {
-		return currentHealth;
+		return health;
 	}
 
 	public int getCurrentShields() {
@@ -92,7 +91,6 @@ public class Player extends MovingObject {
 	public boolean isDead() {
 		return isDead;
 	}
-
 
 	
 	@Override

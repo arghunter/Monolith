@@ -24,7 +24,7 @@ public class AnimationSystem {
 		pics= new ImageSystem[numFrames];
 		for(int i=0;i<pics.length;i++) 
 		{
-			pics[i]=new ImageSystem(x,y,new ImageIcon("imgs\\"+name+"\\"+name+i+".png").getImage());
+			pics[i]=new ImageSystem(x,y,new ImageIcon("imgs/"+name+"/"+name+i+".png").getImage());
 		}
 	}
 	public void move(int x,int y) 
