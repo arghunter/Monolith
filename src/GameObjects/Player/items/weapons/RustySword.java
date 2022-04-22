@@ -7,14 +7,15 @@ import GameObjects.Player.Player;
 
 public class RustySword extends MeleeWeapon{
 
-	public RustySword(int damage, int range, double attackSpeed, double sweepAngle) {
-		super(damage, range, attackSpeed, sweepAngle);
+	public RustySword() {
+		super("Rusty Sword",System.currentTimeMillis(),50, 30, 0.5,10/18.0*Math.PI);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void secondaryFire(Mob[] mobs, Player player) {
 		super.setCurrentAttackDelay(1300);
+		//TODO parry
 		
 		
 	}

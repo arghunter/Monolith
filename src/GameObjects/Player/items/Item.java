@@ -1,5 +1,40 @@
 package GameObjects.Player.items;
 
-public class Item {
+import java.awt.Graphics2D;
+
+public abstract class Item {
+	String name;
+	long id;
+	ItemType type;
+	public Item(String name, long id,ItemType type) 
+	{
+		this.name=name;
+		this.id=id;
+		this.type=type;
+				
+		
+	}
+	public long getId() 
+	{
+		return id;
+		
+	}
+	public String getName() 
+	{
+		return name;
+	}
+	public ItemType getType() {
+		return type;
+	}
+	public boolean equals(Item item) 
+	{
+		return (item.getName().equals(this.name));
+	}
+	public boolean isIdentical(Item item) 
+	{
+		return equals(item)&&item.getId()==this.id;
+	}
+	
+	
 
 }

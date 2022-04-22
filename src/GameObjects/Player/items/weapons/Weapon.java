@@ -3,6 +3,7 @@ package GameObjects.Player.items.weapons;
 import GameObjects.Mob;
 import GameObjects.Player.Player;
 import GameObjects.Player.items.Item;
+import GameObjects.Player.items.ItemType;
 
 public abstract class Weapon extends Item{
 	private int damage;
@@ -11,8 +12,9 @@ public abstract class Weapon extends Item{
 	private double attackDelay;
 	private double currentAttackDelay;
 	
-	public Weapon(int damage,int range, double attackSpeed) 
+	public Weapon(String name,long id,int damage,int range, double attackSpeed) 
 	{
+		super(name,id,ItemType.WEAPON);
 		this.damage=damage;
 		this.range=range;
 		this.attackSpeed=attackSpeed;

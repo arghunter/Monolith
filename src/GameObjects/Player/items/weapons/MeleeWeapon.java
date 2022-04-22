@@ -5,8 +5,8 @@ import GameObjects.Player.Player;
 
 public abstract class MeleeWeapon extends Weapon {
 	private double sweepAngle;
-	public MeleeWeapon(int damage,int range,double attackSpeed,double sweepAngle) {
-		super(damage,range,attackSpeed);
+	public MeleeWeapon(String name,long id,int damage,int range,double attackSpeed,double sweepAngle) {
+		super(name,id,damage,range,attackSpeed);
 	}
 
 	public double euclidDist(int x1, int x2, int y1, int y2) {
