@@ -15,8 +15,8 @@ import javax.swing.ImageIcon;
 import GameObjects.MovingObject;
 import general.ImageSystem;
 import skills.*;
-
-public class Player extends MovingObject {
+import java.io.Serializable;
+public class Player extends MovingObject implements Serializable{
 	SkillTree skills;
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH,StatType.XP };

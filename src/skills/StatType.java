@@ -1,6 +1,8 @@
 package skills;
 
-public enum StatType
+import java.io.Serializable;
+
+public enum StatType implements Serializable
 {
     SPEED, //player speed
     STRENGTH, //melee dmg

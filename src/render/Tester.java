@@ -60,11 +60,13 @@ public class Tester extends JPanel implements ActionListener {
 	    hi.addActionListener(this);
 	    try {
 			this.save=new SaveSystem();
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    w.addWindowListener(save);
+	    thePlayer = new Player(0,0,0,0,0);
+	    save.save(thePlayer);
 	    thePlayer=save.loadSave();
 	    
 	    clock.start();

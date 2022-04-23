@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -13,7 +14,7 @@ import ui.Button;
 
 
 
-public class SkillTree {
+public class SkillTree implements Serializable {
 	private int[] baseStats;
 	private int[] modifiedBaseStats;
 	private StatType[] statTypes;

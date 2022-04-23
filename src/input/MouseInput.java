@@ -5,15 +5,18 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
+import GameObjects.Player.Player;
+
 
 public class MouseInput implements MouseListener {
 	private Component component;
 	private boolean[] buttonStates=new boolean[3];
+	Player currentPlayer;
 	public MouseInput(Component component) 
 	{
 		this.component=component;
 		this.component.addMouseListener(this);
-	
+		
 		
 		
 	}
@@ -24,6 +27,9 @@ public class MouseInput implements MouseListener {
 		
 		
 
+	}
+	public void setPlayer(Player player) {
+		this.currentPlayer = player;
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -38,7 +44,6 @@ public class MouseInput implements MouseListener {
 		{
 			buttonStates[2]=true;
 		}
-
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
