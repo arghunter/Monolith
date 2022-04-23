@@ -2,15 +2,19 @@ package GameObjects.Player.items;
 
 import java.awt.Graphics2D;
 
+import general.AnimationSystem;
+
 public abstract class Item {
 	String name;
 	long id;
 	ItemType type;
+	
 	public Item(String name, long id,ItemType type) 
 	{
 		this.name=name;
 		this.id=id;
 		this.type=type;
+		
 				
 		
 	}

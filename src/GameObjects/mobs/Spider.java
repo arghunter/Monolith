@@ -1,8 +1,10 @@
-package GameObjects;
+package GameObjects.mobs;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
+
+import GameObjects.Direction;
 
 public class Spider extends Mob {
 	//speed, damage, health, armor, attackspeed

@@ -1,10 +1,16 @@
 package render;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+
 import javax.swing.*;
 
 import GameObjects.*;
 import GameObjects.Player.Player;
+import GameObjects.mobs.Mob;
+import GameObjects.mobs.Spider;
+import GameObjects.mobs.Zombie;
+import general.SaveSystem;
 import input.InputParser;
 import skills.SkillTreeRenderMode;
 import ui.Button;
@@ -28,6 +34,7 @@ public class Tester extends JPanel implements ActionListener {
 	private Timer clock=new Timer(10,this);
 	private long lastSkillShown=System.currentTimeMillis();
 	private long startTime=System.currentTimeMillis();
+	private SaveSystem save;
 	
 	public Tester() {
 		
@@ -41,6 +48,7 @@ public class Tester extends JPanel implements ActionListener {
 		this.setLayout(null);
 		this.add(hi);
 		JFrame w = new JFrame("Tester");
+		
 		w.setSize(600, 600);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = w.getContentPane();
@@ -50,7 +58,14 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setVisible(true);
 	    this.frame=w;
 	    hi.addActionListener(this);
-	    
+	    try {
+			this.save=new SaveSystem();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    w.addWindowListener(save);
+	    thePlayer=save.loadSave();
 	    
 	    clock.start();
 		
@@ -75,6 +90,7 @@ public class Tester extends JPanel implements ActionListener {
 		Graphics2D g=(Graphics2D)graphics;
 		
 		super.paintComponent(g);
+		save.save(thePlayer);
 		
 		hi.draw(g,getXOnScreen(),getYOnScreen());
 		setBackground(Color.WHITE);
@@ -92,7 +108,9 @@ public class Tester extends JPanel implements ActionListener {
 		this.input=new InputParser(frame);
 	}
 	
+	
 	public void actionPerformed(ActionEvent e) {
+		
 		if(hi.isClicked(e)) 
 		{
 			mobList[numMobs]=new Zombie((int)(Math.random()*1500),(int)(Math.random()*1500), 4, 64,64);
@@ -168,6 +186,7 @@ public class Tester extends JPanel implements ActionListener {
 	public static void main(String[] args) {
 
 	    Tester gb = new Tester();
+	    
 		
 		    
 	  

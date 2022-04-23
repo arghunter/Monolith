@@ -2,8 +2,8 @@ package GameObjects.Player.items.weapons;
 
 import java.awt.Graphics2D;
 
-import GameObjects.Mob;
 import GameObjects.Player.Player;
+import GameObjects.mobs.Mob;
 
 public class RustySword extends MeleeWeapon{
 

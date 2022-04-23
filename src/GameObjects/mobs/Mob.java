@@ -1,6 +1,8 @@
-package GameObjects;
+package GameObjects.mobs;
 
 import java.awt.Graphics;
+
+import GameObjects.MovingObject;
 
 public abstract class Mob extends MovingObject {
 	//Health, 

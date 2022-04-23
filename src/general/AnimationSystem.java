@@ -1,4 +1,4 @@
-package ui;
+package general;
 
 import java.awt.Graphics2D;
 

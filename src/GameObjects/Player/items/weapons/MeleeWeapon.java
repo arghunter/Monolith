@@ -1,7 +1,7 @@
 package GameObjects.Player.items.weapons;
 
-import GameObjects.Mob;
 import GameObjects.Player.Player;
+import GameObjects.mobs.Mob;
 
 public abstract class MeleeWeapon extends Weapon {
 	private double sweepAngle;

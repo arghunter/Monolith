@@ -1,9 +1,9 @@
 package GameObjects.Player.items.weapons;
 
-import GameObjects.Mob;
 import GameObjects.Player.Player;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
+import GameObjects.mobs.Mob;
 
 public abstract class Weapon extends Item{
 	private int damage;
