@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.armor.Armor;
+import GameObjects.Player.items.consumables.Consumable;
 
 
 public class Inventory {
@@ -44,7 +45,7 @@ public class Inventory {
 			addToArsenal((Armor) item);
 		}
 	}
-	public void removeFromArsenal(Item item) 
+	public int removeFromArsenal(Item item) 
 	{
 		for(int i=0;i<arsenal.length;i++) 
 		{
@@ -53,9 +54,11 @@ public class Inventory {
 			{
 				storage.add(item);
 				arsenal[i]=null;
+				return i;
 			}
 			
 		}
+		return -1;
 	}
 	public void removeFromArsenal(int arsenalIndex) 
 	{
@@ -63,14 +66,49 @@ public class Inventory {
 		arsenal[arsenalIndex]=null;
 	}
 	
-	public void destroyItem(Item item) 
+	public void removeFromStorage(Item item) 
 	{
 		storage.remove(storage.indexOf(item));
 	}
+	
 	public void swapStoragetoArsenal(Item storageItem, Item arsenalItem) 
 	{
+		int emptyPos=removeFromArsenal(arsenalItem);
+		if(emptyPos!=-1&&emptyPos<4) 
+		{
+			if(storageItem.getType()==ItemType.BOOTS||storageItem.getType()==ItemType.CHESTPLATE||storageItem.getType()==ItemType.LEGGINGS||storageItem.getType()==ItemType.HELMET) 
+			{
+				addToArsenal((Armor) storageItem);
+			}else 
+			{
+				if(storageItem.getType()==ItemType.WEAPON) 
+				{
+					Item tempItem=storageItem;
+					storageItem=arsenalItem;
+					arsenalItem=tempItem;
+				}else if(storageItem.getType()==ItemType.CONSUMABLE) 
+				{
+					Consumable consumableStorage=(Consumable) storageItem;
+					for(int i=0;i<arsenal.length;i++) 
+					{
+						if(arsenal[i].equals(storageItem)) 
+						{
+							long extra=((Consumable)arsenal[i]).add(consumableStorage);
+							if(extra!=0) 
+							{
+								consumableStorage.setCount(extra);
+							}else 
+							{
+								removeFromStorage(storageItem);
+							}
+						}
+					}
+				}
+
+			}
+		}
+
 		
-		//TODO inplement this thing
 	}
 	public void addToArsenal(Armor armor) 
 	{
@@ -95,6 +133,10 @@ public class Inventory {
 			storage.remove(armor);
 			arsenal[pos]=armor;
 		}
+	}
+	public void addToStorage(Item item) 
+	{
+		
 	}
 	
 	

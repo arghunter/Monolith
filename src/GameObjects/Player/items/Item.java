@@ -28,7 +28,7 @@ public abstract class Item {
 	}
 	public boolean equals(Item item) 
 	{
-		return (item.getName().equals(this.name));
+		return (item.getName().equals(this.name)&&item.getType()==this.getType());
 	}
 	public boolean isIdentical(Item item) 
 	{
