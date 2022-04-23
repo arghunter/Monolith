@@ -151,8 +151,9 @@ public class Tester extends JPanel implements ActionListener {
 				}
 			}
 			//System.out.println(mobList[i].getX()+" "+mobList[i].getY());
-			
-			mobList[i].move(toMove);
+			if(diffX*diffX+diffY*diffY>=64*64) {
+				mobList[i].move(toMove);
+			}
 		}
 		
 		
