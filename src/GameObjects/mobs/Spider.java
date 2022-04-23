@@ -20,7 +20,7 @@ public class Spider extends Mob {
 
 	@Override
 	public void render(Graphics2D g) {
-		super.getImage().drawAnimation(g);;
+		super.getImage().drawAnimation(g);
 		
 	}
 }

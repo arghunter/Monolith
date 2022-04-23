@@ -1,15 +1,37 @@
+//Main Author: Peter Ferolito
+//Contributors: 
+//Date: 4/17/22
+//Notes: Generates a maze using a modified recursive backtracker
+
 package mapGeneration;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class MazeGenerator {
-	private Random randomNums=new Random(0);
-	private final double branchingAmount=0.1; //Higher=more branches
+	private Random randomNums=new Random();  //Random number generator
+	private double branchingAmount=0.5;      //Higher=more branches
 	
 	public MazeGenerator() {
 		
 	}
 	
+	public MazeGenerator(int seed) {
+		randomNums=new Random(seed);
+	}
+	
+	public MazeGenerator(double branchingAmount) {
+		this.branchingAmount=branchingAmount;
+	}
+	
+	public MazeGenerator(int seed,double branchingAmount) {
+		randomNums=new Random(seed);
+		this.branchingAmount=branchingAmount;
+	}
+	
+	//Generates a maze using a modified recursive backtracker
+	//Uses an iterative approach to avoid possible stack overflow
+	//branchingAmount adjusts whether the method pops off the front or the middle of the stack more frequently
+	//Note that the stack is actually a linked list to allow for popping off the middle
 	public char[][] generate(int size) {
 		//Right, Down, Left, Up
 		int[] adjX={1,0,-1,0};
@@ -81,18 +103,18 @@ public class MazeGenerator {
 		return maze;
 	}
 	
-	public void drawMaze(char[][] maze) {
-		for(int i=0;i<maze.length;i++) {
-			for(int j=0;j<maze[i].length;j++) {
-				if(maze[i][j]=='#') {
-					
-				}
-			}
-		}
+	//Returns the current value of branchingAmount
+	public double getBranchingAmount() {
+		return branchingAmount;
+	}
+	
+	//Sets the value of branchingAmount to the passed value
+	public void setBranchingAmount(double branchingAmount) {
+		this.branchingAmount=branchingAmount;
 	}
 	
 	public static void main(String args[]) {
-		MazeGenerator mazeMaker=new MazeGenerator();
+		MazeGenerator mazeMaker=new MazeGenerator(0);
 		mazeMaker.generate(20);
 	}
 }
