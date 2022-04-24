@@ -35,6 +35,18 @@ public class Inventory {
 		equipped=4;
 	}
 
+	public Item[] getArsenal() {
+		return arsenal;
+	}
+
+	public ArrayList<Item> getStorage() {
+		return storage;
+	}
+
+	public int getEquipped() {
+		return equipped;
+	}
+
 	public void addToArsenal(Item item) throws ArsenalFullException {
 		if (item.getType() == ItemType.WEAPON || item.getType() == ItemType.CONSUMABLE) {
 			for (int i = 4; i < arsenal.length; i++) {
