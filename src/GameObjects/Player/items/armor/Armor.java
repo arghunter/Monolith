@@ -8,8 +8,12 @@ public class Armor extends Item {
 	private int shields;
 	private int health;
 	private BattleSuitSet set;
-	public Armor(String name, long id, ItemType type,int armor,int shields, int health,BattleSuitSet set) {
-		super(name, id, type);
+	public Armor(String name, ItemType type,int armor,int shields, int health,BattleSuitSet set) {
+		super(name, type);
+		if(!(type==ItemType.BOOTS||type==ItemType.CHESTPLATE||type==ItemType.HELMET||type==ItemType.LEGGINGS)) 
+		{
+			throw new IllegalArgumentException("Must be of an armor type");
+		}
 		this.armor=armor;
 		this.shields=shields;
 		this.health=health;

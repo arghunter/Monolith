@@ -6,8 +6,8 @@ import GameObjects.Player.items.ItemType;
 public class Material extends Item {
 
 	double count;
-	public Material(String name, long id, ItemType type,double count) {
-		super(name, id, type);
+	public Material(String name, ItemType type,double count) {
+		super(name, type);
 		this.count=Math.ceil(count);
 		
 	}

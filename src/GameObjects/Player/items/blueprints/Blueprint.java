@@ -11,8 +11,8 @@ public class Blueprint extends Item {
 	Item product;
 	double count;
 
-	public Blueprint(String name, long id, double count, Item[] components, Item product) {
-		super(name, id, ItemType.BLUEPRINT);
+	public Blueprint(String name, double count, Item[] components, Item product) {
+		super(name, ItemType.BLUEPRINT);
 		this.components = components;
 		this.product = product;
 		this.count = Math.round(count);

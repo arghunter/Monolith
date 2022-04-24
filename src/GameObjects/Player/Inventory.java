@@ -7,14 +7,17 @@ import java.util.ArrayList;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.armor.Armor;
+import GameObjects.Player.items.armor.BattleSuitSet;
 import GameObjects.Player.items.blueprints.Blueprint;
 import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
+import GameObjects.Player.items.weapons.RustySword;
+import GameObjects.Player.items.weapons.Weapon;
 
 public class Inventory {
-	Item[] arsenal;// For all consumables weapons and armor gets emptied on death
-	ArrayList<Item> storage;// For all blueprints materials and stuff that the layer cannot access in the
-							// middle of a fight
+	private Item[] arsenal;// For all consumables weapons and armor gets emptied on death
+	private ArrayList<Item> storage;// For all blueprints materials and stuff that the player cannot access in the middle of a fight
+	private int equipped;
 
 	public Inventory(String saveData) {
 
@@ -23,6 +26,13 @@ public class Inventory {
 	public Inventory() {
 		arsenal = new Item[16];
 		storage = new ArrayList<Item>();
+		arsenal[0]=(new Armor("DefaultHelmet",ItemType.HELMET,10,25,25,BattleSuitSet.NONE));
+		arsenal[1]=(new Armor("DefaultChestplate",ItemType.CHESTPLATE,15,25,50,BattleSuitSet.NONE));
+		arsenal[2]=(new Armor("DefaultLeggings",ItemType.LEGGINGS,15,25,50,BattleSuitSet.NONE));
+		arsenal[3]=(new Armor("DefaultBoots",ItemType.BOOTS,10,25,25,BattleSuitSet.NONE));
+		arsenal[4]=(new RustySword());
+		
+		equipped=4;
 	}
 
 	public void addToArsenal(Item item) throws ArsenalFullException {
@@ -209,6 +219,41 @@ public class Inventory {
 	public Armor getBoots() 
 	{
 		return (Armor) arsenal[3];
+	}
+	public void setEquipped(int equipped) 
+	{
+		if(equipped>15||equipped<0) 
+		{
+			throw new IllegalArgumentException("Out of arsenal bounds");
+			
+		}else 
+		{
+			this.equipped=equipped;
+		}
+	}
+	public double getAttackSpeed() 
+	{
+		if(arsenal[equipped].getType()==ItemType.WEAPON) 
+		{
+			Weapon equippedWeapon=(Weapon)arsenal[equipped];
+			return equippedWeapon.getAttackSpeed();
+		}else 
+		{
+			return 60;
+			
+		}
+	}
+	public double getArmor() 
+	{
+		return ((Armor)arsenal[0]).getArmor()+((Armor)arsenal[1]).getArmor()+((Armor)arsenal[2]).getArmor()+((Armor)arsenal[3]).getArmor();
+	}
+	public double getShields() 
+	{
+		return ((Armor)arsenal[0]).getShields()+((Armor)arsenal[1]).getShields()+((Armor)arsenal[2]).getShields()+((Armor)arsenal[3]).getShields();
+	}
+	public double getHealth() 
+	{
+		return ((Armor)arsenal[0]).getHealth()+((Armor)arsenal[1]).getHealth()+((Armor)arsenal[2]).getHealth()+((Armor)arsenal[3]).getHealth();
 	}
 
 }
