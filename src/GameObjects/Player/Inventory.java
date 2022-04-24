@@ -160,5 +160,55 @@ public class Inventory {
 			storage.add(item);
 		}
 	}
+	public boolean contains(Item item) 
+	{
+		for(int i=0;i<arsenal.length;i++) 
+		{
+			if(arsenal[i].equals(item)) 
+			{
+				return true;
+			}
+		}
+		for(int i=0;i<storage.size();i++) 
+		{
+			if(storage.get(i).equals(item)) 
+			{
+				return true;
+				
+			}
+		}
+		return false;
+		
+		
+	}
+	public ArrayList<Item> searchStorage(String searchTerm) 
+	{
+		searchTerm=searchTerm.toLowerCase();
+		ArrayList<Item> selection=new ArrayList<Item>();
+		for(int i=0;i<storage.size();i++) 
+		{
+			if(storage.get(i).getName().toLowerCase().contains(searchTerm)) 
+			{
+				selection.add(storage.get(i));
+			}
+		}
+		return selection;
+	}
+	public Armor getHelemet() 
+	{
+		return (Armor)arsenal[0];
+	}
+	public Armor getChestplate() 
+	{
+		return (Armor) arsenal[1];
+	}
+	public Armor getLeggings() 
+	{
+		return (Armor) arsenal[2];
+	}
+	public Armor getBoots() 
+	{
+		return (Armor) arsenal[3];
+	}
 
 }
