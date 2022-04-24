@@ -34,7 +34,7 @@ public class Tester extends JPanel implements ActionListener {
 	private Timer clock=new Timer(10,this);
 	private long lastSkillShown=System.currentTimeMillis();
 	private long startTime=System.currentTimeMillis();
-	private SaveSystem save;
+	//private SaveSystem save;
 	
 	public Tester() {
 		
@@ -58,16 +58,16 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setVisible(true);
 	    this.frame=w;
 	    hi.addActionListener(this);
-	    try {
-			this.save=new SaveSystem();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    w.addWindowListener(save);
-	    thePlayer = new Player(0,0,0,0,0);
-	    save.save(thePlayer);
-	    thePlayer=save.loadSave();
+//	    try {
+//			this.save=new SaveSystem();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	    w.addWindowListener(save);
+//	    thePlayer = new Player(0,0,0,0,0);
+//	    save.save(thePlayer);
+//	    thePlayer=save.loadSave();
 	    
 	    clock.start();
 		
@@ -92,7 +92,7 @@ public class Tester extends JPanel implements ActionListener {
 		Graphics2D g=(Graphics2D)graphics;
 		
 		super.paintComponent(g);
-		save.save(thePlayer);
+		//save.save(thePlayer);
 		
 		hi.draw(g,getXOnScreen(),getYOnScreen());
 		setBackground(Color.WHITE);
