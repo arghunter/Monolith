@@ -30,7 +30,7 @@ public class SkillTree implements Serializable {
 		this.modifiedBaseStats=baseStats;
 		this.statTypes=statTypes;
 		String[] skillStrings=saveData.split("Skill:");
-		System.out.println(skillStrings[0]);
+		//System.out.println(skillStrings[0]);
 		for(int i=1;i<skillStrings.length;i++) 
 		{
 			
@@ -142,7 +142,7 @@ public class SkillTree implements Serializable {
 
 	public GenericSkill[] skillSelection(int skillCount) 
 	{
-		System.out.println(skillCount+" count");
+		//System.out.println(skillCount+" count");
 		GenericSkill[] availableSkills=new GenericSkill[skillCount];
 		Random rng=new Random();
 		for(int j=0;j<skillCount;j++) 
@@ -178,7 +178,7 @@ public class SkillTree implements Serializable {
 	private Skill parseSkillData(String skillData) 
 	{
 		String[] data=skillData.split("/");
-		System.out.println(Arrays.toString(data));
+		//System.out.println(Arrays.toString(data));
 		StatType type=null;
 		switch(data[4]) 
 		{
@@ -224,7 +224,7 @@ public class SkillTree implements Serializable {
 	{
 		String[] faceData=skillData.split("/");
 		String[] skillsData=faceData[faceData.length-2].split("~,~");
-		System.out.println(Arrays.toString(skillsData));
+		//System.out.println(Arrays.toString(skillsData));
 		Skill[] innerSkills=new Skill[skillsData.length];
 		
 		

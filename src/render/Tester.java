@@ -133,7 +133,6 @@ public class Tester extends JPanel implements ActionListener {
 				skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),(int)(System.currentTimeMillis()-startTime)/10,this);
 
 			}
-			System.out.println("Herejijdfijdsifjdijsijfidjfisjdifsjifjsifjisd");
 			lastSkillShown=System.currentTimeMillis();
 		}
 
