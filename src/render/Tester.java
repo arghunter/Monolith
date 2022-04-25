@@ -34,6 +34,8 @@ public class Tester extends JPanel implements ActionListener {
 	private Timer clock=new Timer(10,this);
 	private long lastSkillShown=System.currentTimeMillis();
 	private long startTime=System.currentTimeMillis();
+	public static double ratioX;
+	public static double ratioY;
 	//private SaveSystem save;
 	
 	public Tester() {
