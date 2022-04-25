@@ -145,6 +145,7 @@ public class Button extends JButton implements ActionListener {
     {
     	return y;
     }
+    //Returns if this button is being hovered over
     public boolean isHovering() 
     {
     	return isHovering;
