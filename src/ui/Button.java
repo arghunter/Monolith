@@ -6,13 +6,15 @@ import java.awt.Polygon;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.Graphics2D;
 
 import javax.swing.JButton;
 
 import input.MouseInputParser;
 
-public class Button extends JButton implements ActionListener {
+public class Button extends JButton implements MouseListener {
     private int x;
     private int y;
     private Polygon polygon;
@@ -20,8 +22,9 @@ public class Button extends JButton implements ActionListener {
     private int JPanelX=-1;
     private int JPanelY=-1;
     private Color color;
-    private MouseInputParser mouse;
+    private boolean listening=false;
     private boolean isHovering=false;
+    private boolean isPressed=false;
   
 
 
@@ -40,7 +43,7 @@ public class Button extends JButton implements ActionListener {
     {
     	super(text);
     	this.color=color;
-    	this.mouse=new MouseInputParser(this);
+
 //    	for(Point point:points) 
 //    	{System.out.println(point+" "+MouseInputParser.getRatioX()+" "+MouseInputParser.getRatioY());
 //    		point.setLocation(point.getX()/MouseInputParser.getRatioX(), point.getY()/MouseInputParser.getRatioY());
@@ -75,12 +78,12 @@ public class Button extends JButton implements ActionListener {
         super.setAlignmentX(x);
         super.setAlignmentY(y);
 
-        this.addActionListener(this);
+
         this.setFocusable(false);
-//        
-//        this.setOpaque(false);
-//        this.setContentAreaFilled(false);
-//        this.setBorderPainted(false);
+        
+        this.setOpaque(false);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
     	
     }
     //Draws the button on the screen
@@ -88,10 +91,27 @@ public class Button extends JButton implements ActionListener {
     {
     	
         this.g=g;
-       g.fillRect(super.getX(),super.getY(),super.getWidth(),super.getHeight());
+        
+        if(!listening) 
+        {
+        	try 
+        	{
+        		  super.getParent().addMouseListener(this);
+        		  listening=true;
+        	}catch(Exception e) 
+        	{
+        		listening=false;
+        		System.err.println("Don't forget to add the button to a component");
+        	}
+        	
+        	  
+        }
+     
+      
+
         if(buttonContainsMouse()) 
         {
-        	if(mouse.isMBDown(0)) 
+        	if(isPressed) 
         	{
         		
         		g.setColor(new Color((int)(color.getRed()*0.5),(int)(color.getGreen()*0.5),(int)(color.getBlue()*0.5)));
@@ -117,27 +137,7 @@ public class Button extends JButton implements ActionListener {
 
     }
     
-    
-    @Override
-    //As this button drawn over a shape it checks if the mouse position is on the shape and then sends out a button clicked event to all listeners except this one 
-    public void actionPerformed(ActionEvent e) {
-       
-        if(buttonContainsMouse()) 
-        {          
-            for(ActionListener i: this.getActionListeners()) 
-            {
-            	if(i==this) 
-            	{
-            		continue;
-            	}
-            	i.actionPerformed(new ButtonClickedEvent(this,"click"));
-            }
-      
-            
-        	
-        }
-        
-    }
+
 
     private boolean buttonContainsMouse() 
     {
@@ -166,6 +166,44 @@ public class Button extends JButton implements ActionListener {
     {
     	return isHovering;
     }
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	
+		if(e.getButton()==MouseEvent.BUTTON1&&buttonContainsMouse()) 
+		{
+			for(ActionListener i: this.getActionListeners()) 
+            {
+
+            	i.actionPerformed(new ButtonClickedEvent(this,"click"));
+            }
+      
+		}
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getButton()==MouseEvent.BUTTON1&&buttonContainsMouse())
+			isPressed=true;
+		else
+			isPressed=false;
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		isPressed=false;
+
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

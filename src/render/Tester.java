@@ -36,6 +36,7 @@ public class Tester extends JPanel implements ActionListener {
 	private long startTime=System.currentTimeMillis();
 	private  double ratioX=1;
 	private double ratioY=1;
+	private Button zombieButton;
 	//private SaveSystem save;
 	
 	public Tester() {
@@ -63,7 +64,9 @@ public class Tester extends JPanel implements ActionListener {
 		
 	    w.setResizable(true);
 	    w.setVisible(true);
-		
+		zombieButton=new Button(points,new Color(200,150,100),"Zombie");
+		this.add(zombieButton);
+		zombieButton.addActionListener(this);
 
 
 //	    try {
@@ -117,7 +120,7 @@ public class Tester extends JPanel implements ActionListener {
 		{
 			skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
 		}
-		
+		zombieButton.draw(g,this.getXOnScreen(), this.getYOnScreen());
 		input.updatePlayerPosAndAngle(thePlayer);
 		thePlayer.render(g);
 
@@ -137,6 +140,13 @@ public class Tester extends JPanel implements ActionListener {
 		ratioY=super.getHeight()/1377.0;
 		input.setRatio(ratioX, ratioY);
 
+		if(e.getSource()==zombieButton) 
+		{
+			System.out.println();
+			this.mobList[numMobs]=new Zombie((int)(Math.random()*2560), (int)(Math.random()*1377), 4, 64,64);
+			numMobs++;
+		
+		}
 		if(this.skillSelectionMenu!=null&&this.skillSelectionMenu.isActive()) 
 		{
 			lastSkillShown=System.currentTimeMillis();
