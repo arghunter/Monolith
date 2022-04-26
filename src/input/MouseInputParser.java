@@ -9,6 +9,8 @@ import GameObjects.Player.Player;
 
 public class MouseInputParser {
 	MouseInput input;
+	private static double ratioX = 1;
+	private static double ratioY = 1;
 
 	public MouseInputParser(Component component) {
 
@@ -34,7 +36,7 @@ public class MouseInputParser {
 		}
 		return false;
 
-	}<<<<<<<HEAD=======
+	}
 
 	public void setRatio(double ratioX, double ratioY) {
 		this.ratioX = ratioX;
@@ -46,9 +48,8 @@ public class MouseInputParser {
 		return ratioX;
 	}
 
-	public static double getRatioY() 
-	{
+	public static double getRatioY() {
 		return ratioY;
-	}>>>>>>>buggyStuff
+	}
 
 }
