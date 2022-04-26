@@ -16,7 +16,26 @@ public abstract class MeleeWeapon extends Weapon {
 	public void primaryFire(Mob[] mobs, Player player) {
 		for(Mob m : mobs) {
 			if(this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
-				m.doDamage(super.getDamage());
+				double hyp = this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY());
+				int xDist = m.getCenterX()-player.getCenterX();
+				int yDist = player.getCenterY()-m.getCenterY();
+				double sinAngle = Math.asin(yDist/hyp);
+				double cosAngle = Math.asin(xDist/hyp);
+				double sin = yDist/hyp;
+				double cos = xDist/hyp;
+				double trueAngle = 0;
+				if(sin > 0 && cos > 0) {
+					trueAngle = sinAngle;
+				} else if (sin > 0 && cos < 0) {
+					trueAngle = sinAngle+Math.PI/2;
+				} else if (sin < 0 && cos < 0) {
+					trueAngle = sinAngle - Math.PI/2;
+				} else if(sin < 0 && cos > 0) {
+					trueAngle = sinAngle;
+				}
+				if(trueAngle > (Math.PI/2 - sweepAngle/2) && trueAngle < (Math.PI/2+sweepAngle)) {
+					m.doDamage(super.getDamage());
+				}
 			}
 		}
 		

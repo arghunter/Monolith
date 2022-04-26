@@ -3,45 +3,38 @@ package general;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import GameObjects.Player.Player;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
+
 public class SaveSystem implements WindowListener {
+	FileInput input;
+	PrintWriter output;
 	String save="";
 	Player savedPlayer;
+	public SaveSystem() throws FileNotFoundException 
+	{
+		
+		input = new FileInput("save.txt");
+		savedPlayer=new Player(300,300,1,64,64,input.next());
+		output=new PrintWriter("save.txt");
+		
+	}
+	
 	public void save(Player player) 
 	{
-		try {
-			FileOutputStream out = new FileOutputStream("save.txt");
-			ObjectOutputStream output = new ObjectOutputStream(out);
-			output.writeObject(player);
-			output.close();
-			out.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		save=player.toString();
 
 	}
+	public void writeSave() 
+	{
+		output.println(save);
+	}
 	public Player loadSave() {
-		try {
-			FileInputStream in = new FileInputStream("save.txt");
-			ObjectInputStream input = new ObjectInputStream(in);
-			Player player = (Player)input.readObject();
-			input.close();
-			in.close();
-			return player;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		System.out.println(savedPlayer.toString()+"hi");
+		return savedPlayer;
 	}
 
 	@Override
@@ -52,7 +45,11 @@ public class SaveSystem implements WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent e) {
+
+		writeSave();
+		output.close();
 		
+	
 	}
 
 	@Override
