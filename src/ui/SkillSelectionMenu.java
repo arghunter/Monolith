@@ -346,20 +346,14 @@ public class SkillSelectionMenu implements ActionListener {
 						
 						for(int j=0;j<skillButtons.length;j++) 
 						{
-							skillButtons[j].setVisible(false);
-							skillButtons[j].setText("");
-							skillButtons[j].getParent().remove(skillButtons[j]);
-							skillButtons[j].setEnabled(false);
+							skillButtons[j].dispose();
 							
 							
 						}
 						for(int j=0;j<currentSkillButtons.length;j++) 
 						{
 							
-							currentSkillButtons[j].setVisible(false);
-							currentSkillButtons[j].setText("");
-							currentSkillButtons[j].getParent().remove(currentSkillButtons[j]);
-							currentSkillButtons[j].setEnabled(false);
+							currentSkillButtons[j].dispose();
 						}
 						skillButtons=new Button[0];
 						currentSkillButtons=new Button[0];

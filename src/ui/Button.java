@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 import java.awt.Graphics2D;
 
 import javax.swing.JButton;
@@ -91,6 +92,8 @@ public class Button extends JButton implements MouseListener {
     {
     	
         this.g=g;
+        	
+        	//System.out.println(this.getParent().getClass()+" "+super.getText());
         
         if(!listening) 
         {
@@ -106,7 +109,11 @@ public class Button extends JButton implements MouseListener {
         	
         	  
         }
-     
+//        for(int i=0;i<super.getParent().getMouseListeners().length;i++) 
+//        {
+//        	System.out.println(super.getParent().getMouseListeners()[i]);
+//        }
+//     
       
 
         if(buttonContainsMouse()) 
@@ -142,8 +149,8 @@ public class Button extends JButton implements MouseListener {
     private boolean buttonContainsMouse() 
     {
     	//System.out.println( polygon.contains((int)((MouseInputParser.getX()-JPanelX)),(int)((MouseInputParser.getY()-JPanelY)))+" "+super.getText());
-
-    	return polygon.contains((int)((MouseInputParser.getX()-JPanelX)),(int)((MouseInputParser.getY()-JPanelY)));
+    	//System.out.println(polygon.contains((int)((MouseInputParser.getX()-JPanelX/MouseInputParser.getRatioX())),(int)((MouseInputParser.getY()-JPanelY/MouseInputParser.getRatioY())))+" "+super.getText());
+    	return polygon.contains((int)((MouseInputParser.getX()-JPanelX/MouseInputParser.getRatioX())),(int)((MouseInputParser.getY()-JPanelY/MouseInputParser.getRatioY())));
     	
     }
     //Takes in an action event and returns true if it was this button that got clicked
@@ -166,9 +173,20 @@ public class Button extends JButton implements MouseListener {
     {
     	return isHovering;
     }
+    public void dispose() 
+    {
+		this.setVisible(false);
+		this.setText("");
+		this.getParent().removeMouseListener(this);
+		this.getParent().remove(this);
+		this.setEnabled(false);
+		
+    }
 	@Override
 	public void mouseClicked(MouseEvent e) {
-	
+//		System.out.println(e.getX()+" "+e.getY()+" "+super.getText());
+		System.out.println("here "+ super.getText());
+		
 		if(e.getButton()==MouseEvent.BUTTON1&&buttonContainsMouse()) 
 		{
 			for(ActionListener i: this.getActionListeners()) 

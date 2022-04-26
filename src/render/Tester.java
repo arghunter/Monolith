@@ -50,7 +50,7 @@ public class Tester extends JPanel implements ActionListener {
 
 		JFrame w = new JFrame("Tester");
 		
-		w.setSize(1600, 1000);
+		w.setSize(800, 500);
 		this.initInput(w);
 	    this.frame=w;
 		ratioX=super.getWidth()/2560.0;
@@ -64,9 +64,9 @@ public class Tester extends JPanel implements ActionListener {
 		
 	    w.setResizable(true);
 	    w.setVisible(true);
-		zombieButton=new Button(points,new Color(200,150,100),"Zombie");
-		this.add(zombieButton);
-		zombieButton.addActionListener(this);
+//		zombieButton=new Button(points,new Color(200,150,100),"Zombie");
+//		this.add(zombieButton);
+//		zombieButton.addActionListener(this);
 
 
 //	    try {
@@ -120,7 +120,7 @@ public class Tester extends JPanel implements ActionListener {
 		{
 			skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
 		}
-		zombieButton.draw(g,this.getXOnScreen(), this.getYOnScreen());
+//		zombieButton.draw(g,this.getXOnScreen(), this.getYOnScreen());
 		input.updatePlayerPosAndAngle(thePlayer);
 		thePlayer.render(g);
 
