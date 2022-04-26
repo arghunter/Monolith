@@ -25,7 +25,7 @@ public class MazeTester extends JPanel{
 		for(int i=0;i<maze.length;i++) {
 			for(int j=0;j<maze[i].length;j++) {
 				if(maze[i][j]=='#') {
-					g.fillRect(20+25*j,20+25*i,25,25);
+					g.fillRect(20+15*j,20+15*i,15,15);
 				}
 			}
 		}
