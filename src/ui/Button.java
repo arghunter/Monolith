@@ -212,7 +212,10 @@ public class Button extends JButton implements MouseListener,ActionListener {
 		{
 			for(ActionListener i: this.getActionListeners()) 
             {
-
+				if(i==this) 
+				{
+					continue;
+				}
             	i.actionPerformed(new ButtonClickedEvent(this,"click"));
             }
       
