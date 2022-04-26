@@ -34,7 +34,9 @@ public class Tester extends JPanel implements ActionListener {
 	private Timer clock=new Timer(10,this);
 	private long lastSkillShown=System.currentTimeMillis();
 	private long startTime=System.currentTimeMillis();
-	private SaveSystem save;
+	private  double ratioX=1;
+	private double ratioY=1;
+	//private SaveSystem save;
 	
 	public Tester() {
 		
@@ -58,16 +60,16 @@ public class Tester extends JPanel implements ActionListener {
 	    w.setVisible(true);
 	    this.frame=w;
 	    hi.addActionListener(this);
-	    try {
-			this.save=new SaveSystem();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    w.addWindowListener(save);
-	    thePlayer = new Player(0,0,0,0,0);
-	    save.save(thePlayer);
-	    thePlayer=save.loadSave();
+//	    try {
+//			this.save=new SaveSystem();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	    w.addWindowListener(save);
+//	    thePlayer = new Player(0,0,0,0,0);
+//	    save.save(thePlayer);
+//	    thePlayer=save.loadSave();
 	    
 	    clock.start();
 		
@@ -92,8 +94,15 @@ public class Tester extends JPanel implements ActionListener {
 		Graphics2D g=(Graphics2D)graphics;
 		
 		super.paintComponent(g);
-		save.save(thePlayer);
+		//save.save(thePlayer);
+		ratioX=super.getWidth()/1600.0;
+		ratioY=super.getHeight()/1000.0;
 		
+	
+		g.scale(ratioX, ratioY);
+		input.setRatio(ratioX, ratioY);
+
+
 		hi.draw(g,getXOnScreen(),getYOnScreen());
 		setBackground(Color.WHITE);
 		skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
@@ -133,50 +142,11 @@ public class Tester extends JPanel implements ActionListener {
 				skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),(int)(System.currentTimeMillis()-startTime)/10,this);
 
 			}
-			System.out.println("Herejijdfijdsifjdijsijfidjfisjdifsjifjsifjisd");
 			lastSkillShown=System.currentTimeMillis();
 		}
-
-		
 		for(int i=0;i<numMobs;i++) {
-			int curX=mobList[i].getX();
-			int curY=mobList[i].getY();
-			int diffX=curX-thePlayer.getX();
-			int diffY=curY-thePlayer.getY();
-			Direction toMove=Direction.NORTH;
-			if(1.5*Math.abs(diffX)<Math.abs(diffY)) {
-				//Move up down
-				if(diffY>0) {
-					toMove=Direction.NORTH;
-				}else {
-					toMove=Direction.SOUTH;
-				}
-			}else if(1.5*Math.abs(diffY)<Math.abs(diffX)) {
-				//Move left right
-				if(diffX>0) {
-					toMove=Direction.WEST;
-				}else {
-					toMove=Direction.EAST;
-				}
-			}else {
-				//Move diagonal
-				if(diffX>0 && diffY>0) {
-					toMove=Direction.NORTHWEST;
-				}else if(diffX<=0 && diffY>0) {
-					toMove=Direction.NORTHEAST;
-				}else if(diffX>0 && diffY<=0) {
-					toMove=Direction.SOUTHWEST;
-				}else if(diffX<=0 && diffY<=0) {
-					toMove=Direction.SOUTHEAST;
-				}
-			}
-			//System.out.println(mobList[i].getX()+" "+mobList[i].getY());
-			if(diffX*diffX+diffY*diffY>=64*64) {
-				mobList[i].move(toMove);
-			}
+			mobList[i].action(thePlayer.getX(),thePlayer.getY());
 		}
-		
-		
 		
 		repaint();
 	}

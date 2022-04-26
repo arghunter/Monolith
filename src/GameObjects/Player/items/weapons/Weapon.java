@@ -8,17 +8,18 @@ import GameObjects.mobs.Mob;
 public abstract class Weapon extends Item{
 	private int damage;
 	private int range;
-	private double attackSpeed;//In attacks per second
+	private int attackSpeed;//In attacks per minute
 	private double attackDelay;
 	private double currentAttackDelay;
 	
-	public Weapon(String name,long id,int damage,int range, double attackSpeed) 
+	public Weapon(String name,int damage,int range, int attackSpeed) 
 	{
-		super(name,id,ItemType.WEAPON);
+		super(name,ItemType.WEAPON);
 		this.damage=damage;
 		this.range=range;
 		this.attackSpeed=attackSpeed;
-		this.attackDelay=1000/attackSpeed;
+		this.attackDelay= Math.round(60*1000.0/attackSpeed);
+		
 		this.currentAttackDelay=attackDelay;
 	}
 	

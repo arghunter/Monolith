@@ -20,7 +20,8 @@ public class Player extends MovingObject implements Serializable{
 	SkillTree skills;
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH,StatType.XP };
-	private int[] stats = { 10, 25, 60, 100, 10, 1, 100, 15, 10,100 };
+	private int[] stats = { 10, 25, 60, 100, 10, 30, 100, 15, 10,100 };
+	private Inventory inventory;
 	private int currentShields;
 	private boolean isDead = false;
 	private long lastRegen;
@@ -29,10 +30,18 @@ public class Player extends MovingObject implements Serializable{
 	public Player(int x, int y, int id, int width, int height) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
+	
+		inventory=new Inventory();
+		
+		stats[3]=(int)inventory.getHealth();
+		stats[1]=(int)inventory.getArmor();
+		stats[6]=(int) inventory.getShields();
 		skills = new SkillTree(stats, statTypes);
 		health = stats[3];
 		currentShields = stats[6];
 		lastRegen=System.currentTimeMillis();
+		
+		
 
 	}
 	public Player(int x, int y, int id, int width, int height,String saveData) {
@@ -59,7 +68,7 @@ public class Player extends MovingObject implements Serializable{
 	}
 
 	private void regen() {
-		if (System.currentTimeMillis() - lastRegen >= 1000) {
+		if (System.currentTimeMillis() - lastRegen >= 60000) {
 			if (currentShields < stats[6]) {
 				currentShields += stats[5];
 				if (currentShields > stats[6]) {

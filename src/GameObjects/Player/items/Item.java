@@ -9,10 +9,10 @@ public abstract class Item {
 	long id;
 	ItemType type;
 	
-	public Item(String name, long id,ItemType type) 
+	public Item(String name,ItemType type) 
 	{
 		this.name=name;
-		this.id=id;
+		this.id=System.currentTimeMillis();
 		this.type=type;
 		
 				

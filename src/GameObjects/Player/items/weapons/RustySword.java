@@ -8,7 +8,7 @@ import GameObjects.mobs.Mob;
 public class RustySword extends MeleeWeapon{
 
 	public RustySword() {
-		super("Rusty Sword",System.currentTimeMillis(),50, 30, 0.5,10/18.0*Math.PI);
+		super("Rusty Sword",50, 30, 30,10/18.0*Math.PI);
 		// TODO Auto-generated constructor stub
 	}
 

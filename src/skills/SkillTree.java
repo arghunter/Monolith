@@ -21,7 +21,7 @@ public class SkillTree implements Serializable {
 	private ArrayList<GenericSkill> skills=new ArrayList<GenericSkill>();
 	public final String[] SKILL_NAMES= {"Accuracy","Armor","Attack Speed","Health","Power","Regen","Shield","Speed","Strength", "Tank","Marksman","Sword Master","Curse","Master","Sprinter","Weight Training","Eagle Eyes","Recovery","Shield Master","Armor Master", "Greased Lightning", "Sharpened Steel"};
 	public final StatType[][] SKILL_TYPES=  { { StatType.ACCURACY}, {StatType.ARMOR },{StatType.ATTACKSPEED},{StatType.HEALTH},{StatType.POWER},{StatType.REGEN},{StatType.SHIELD},{StatType.SPEED},{StatType.STRENGTH},{StatType.HEALTH,StatType.SHIELD,StatType.REGEN,StatType.STRENGTH,StatType.SPEED},{StatType.ACCURACY,StatType.POWER},{StatType.STRENGTH},{StatType.ACCURACY,StatType.ARMOR,StatType.ATTACKSPEED,StatType.HEALTH,StatType.POWER,StatType.REGEN,StatType.SHIELD,StatType.SPEED,StatType.STRENGTH,StatType.XP},{StatType.ACCURACY,StatType.ARMOR,StatType.ATTACKSPEED,StatType.HEALTH,StatType.POWER,StatType.REGEN,StatType.SHIELD,StatType.SPEED,StatType.STRENGTH,StatType.XP},{StatType.SPEED},{StatType.STRENGTH, StatType.HEALTH},{StatType.ACCURACY},{StatType.REGEN},{StatType.SHIELD},{StatType.ARMOR},{StatType.ATTACKSPEED},{StatType.POWER,StatType.STRENGTH}};
-	public final int[][][] SKILL_RANGE= {{{2,8}},{{5,15}},{{5,15}},{{8,16}},{{2,16}},{{5,15}},{{8,16}},{{2,8}},{{2,16}},{{25,35},{20,30},{10,20},{2,5},{-20,-10}},{{30,50},{15,30}},{{20,50}},{{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{5,10}},{{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{-5,-10}},{{12,24}},{{10,25},{5,10}},{{30,75}},{{30,40}},{{30,40}},{{30,40}},{{20,30}},{{20,25},{15,22}}};
+	public final int[][][] SKILL_RANGE= {{{2,8}},{{5,15}},{{5,15}},{{8,16}},{{2,16}},{{5,15}},{{8,16}},{{2,8}},{{2,16}},{{15,20},{15,20},{10,18},{2,5},{-20,-10}},{{15,25},{15,25}},{{20,35}},{{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{5,10}},{{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{-5,-10}},{{12,24}},{{10,20},{5,10}},{{25,35}},{{25,30}},{{15,24}},{{25,35}},{{15,25}},{{15,25},{15,22}}};
 	
 	public SkillTree(String saveData,int[] baseStats,StatType[]statTypes) 
 	{
@@ -30,7 +30,7 @@ public class SkillTree implements Serializable {
 		this.modifiedBaseStats=baseStats;
 		this.statTypes=statTypes;
 		String[] skillStrings=saveData.split("Skill:");
-		System.out.println(skillStrings[0]);
+		//System.out.println(skillStrings[0]);
 		for(int i=1;i<skillStrings.length;i++) 
 		{
 			
@@ -142,7 +142,7 @@ public class SkillTree implements Serializable {
 
 	public GenericSkill[] skillSelection(int skillCount) 
 	{
-		System.out.println(skillCount+" count");
+		//System.out.println(skillCount+" count");
 		GenericSkill[] availableSkills=new GenericSkill[skillCount];
 		Random rng=new Random();
 		for(int j=0;j<skillCount;j++) 
@@ -178,7 +178,7 @@ public class SkillTree implements Serializable {
 	private Skill parseSkillData(String skillData) 
 	{
 		String[] data=skillData.split("/");
-		System.out.println(Arrays.toString(data));
+		//System.out.println(Arrays.toString(data));
 		StatType type=null;
 		switch(data[4]) 
 		{
@@ -224,7 +224,7 @@ public class SkillTree implements Serializable {
 	{
 		String[] faceData=skillData.split("/");
 		String[] skillsData=faceData[faceData.length-2].split("~,~");
-		System.out.println(Arrays.toString(skillsData));
+		//System.out.println(Arrays.toString(skillsData));
 		Skill[] innerSkills=new Skill[skillsData.length];
 		
 		
