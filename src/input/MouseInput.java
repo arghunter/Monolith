@@ -22,7 +22,7 @@ public class MouseInput implements MouseListener {
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+	
 
 		
 		
@@ -57,6 +57,7 @@ public class MouseInput implements MouseListener {
 		{
 			buttonStates[2]=false;
 		}
+		
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {

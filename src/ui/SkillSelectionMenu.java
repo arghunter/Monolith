@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
+import input.MouseInputParser;
 import skills.GenericSkill;
 import skills.MultipleSkill;
 import skills.Skill;
@@ -78,12 +79,11 @@ public class SkillSelectionMenu implements ActionListener {
 					new Point(462 + offsetX, 490 + offsetY), new Point(500 + offsetX, 425 + offsetY) };
 			Color color=skillColor(availableSkills[i]);
 
-			//System.out.println(availableSkills[i].getName()+" "+availableSkills[i].getType());
 			skillButtons[i] = new Button(points, color,
 					availableSkills[i].getName() + " " + availableSkills[i].getTier());
-			skillButtons[i].setBounds(skillButtons[i].getX(), skillButtons[i].getY(),
-					(int) skillButtons[i].getPreferredSize().getWidth(),
-					(int) skillButtons[i].getPreferredSize().getHeight());
+
+			
+			
 			panel.add(skillButtons[i]);
 			skillButtons[i].addActionListener(this);
 			Font text=null;
@@ -138,9 +138,6 @@ public class SkillSelectionMenu implements ActionListener {
 			//System.out.println(availableSkills[i].getName()+" "+availableSkills[i].getType());
 			currentSkillButtons[i] = new Button(points, color,
 					currentSkills[i].getName() + " " + currentSkills[i].getTier());
-			currentSkillButtons[i].setBounds(currentSkillButtons[i].getX(), currentSkillButtons[i].getY(),
-					(int) currentSkillButtons[i].getPreferredSize().getWidth(),
-					(int) currentSkillButtons[i].getPreferredSize().getHeight());
 			panel.add(currentSkillButtons[i]);
 			currentSkillButtons[i].addActionListener(this);
 			Font text=null;
@@ -340,20 +337,14 @@ public class SkillSelectionMenu implements ActionListener {
 						
 						for(int j=0;j<skillButtons.length;j++) 
 						{
-							skillButtons[j].setVisible(false);
-							skillButtons[j].setText("");
-							skillButtons[j].getParent().remove(skillButtons[j]);
-							skillButtons[j].setEnabled(false);
+							skillButtons[j].dispose();
 							
 							
 						}
 						for(int j=0;j<currentSkillButtons.length;j++) 
 						{
 							
-							currentSkillButtons[j].setVisible(false);
-							currentSkillButtons[j].setText("");
-							currentSkillButtons[j].getParent().remove(currentSkillButtons[j]);
-							currentSkillButtons[j].setEnabled(false);
+							currentSkillButtons[j].dispose();
 						}
 						skillButtons=new Button[0];
 						currentSkillButtons=new Button[0];
