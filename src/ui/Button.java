@@ -15,7 +15,7 @@ import javax.swing.JButton;
 
 import input.MouseInputParser;
 
-public class Button extends JButton implements MouseListener {
+public class Button extends JButton implements MouseListener,ActionListener {
     private int x;
     private int y;
     private Polygon polygon;
@@ -73,7 +73,7 @@ public class Button extends JButton implements MouseListener {
         
         
         super.setPreferredSize(new Dimension(((xmax - xmin)), ((ymax - ymin))));
-        
+        super.addActionListener(this);
         this.x=(int)(xmin);
         this.y=(int)(ymin);
         super.setAlignmentX(x);
@@ -108,6 +108,18 @@ public class Button extends JButton implements MouseListener {
         	}
         	
         	  
+        }
+        boolean notThere=true;
+        for(MouseListener i:this.getParent().getMouseListeners()) 
+		{
+			if(i==this) 
+			{
+				notThere=false;
+			}
+		}
+        if(notThere) 
+        {
+        	System.out.println(super.getText());
         }
 //        for(int i=0;i<super.getParent().getMouseListeners().length;i++) 
 //        {
@@ -176,18 +188,27 @@ public class Button extends JButton implements MouseListener {
     public void dispose() 
     {
 		this.setVisible(false);
-		this.setText("");
+		this.setText("Dead");
+		
 		this.getParent().removeMouseListener(this);
+		for(MouseListener i:this.getParent().getMouseListeners()) 
+		{
+			if(i==this) 
+			{
+				System.out.println("Broken");
+			}
+		}
 		this.getParent().remove(this);
+		
 		this.setEnabled(false);
 		
     }
 	@Override
 	public void mouseClicked(MouseEvent e) {
 //		System.out.println(e.getX()+" "+e.getY()+" "+super.getText());
-		System.out.println("here "+ super.getText());
+		System.out.println(e.isPopupTrigger());
 		
-		if(e.getButton()==MouseEvent.BUTTON1&&buttonContainsMouse()) 
+		if(super.getParent()!=null&&e.getButton()==MouseEvent.BUTTON1&&buttonContainsMouse()) 
 		{
 			for(ActionListener i: this.getActionListeners()) 
             {
@@ -220,6 +241,19 @@ public class Button extends JButton implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(super.getParent()!=null) 
+		{
+			for(MouseListener i:super.getParent().getMouseListeners()) 
+			{
+				i.mouseClicked(new MouseEvent(super.getParent(), 500, System.currentTimeMillis(), 16, (int)(MouseInputParser.getX()*MouseInputParser.getRatioX()), (int)(MouseInputParser.getY()*MouseInputParser.getRatioY()), 1, false,MouseEvent.BUTTON1));
+				i.mouseReleased(new MouseEvent(super.getParent(), 500, System.currentTimeMillis(), 16, (int)(MouseInputParser.getX()*MouseInputParser.getRatioX()), (int)(MouseInputParser.getY()*MouseInputParser.getRatioY()), 1, false,MouseEvent.BUTTON1));
+
+			}
+		}
 		
 	}
 
