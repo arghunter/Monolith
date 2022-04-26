@@ -33,10 +33,6 @@ public class InputParser {
 		mouse.updatePlayerAngle(player);
 		
 	}
-	public void setRatio(double ratioX,double ratioY)
-	{
-		mouse.setRatio(ratioX, ratioY);
-	}
 	
 
 }

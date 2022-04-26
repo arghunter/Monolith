@@ -34,8 +34,8 @@ public class Tester extends JPanel implements ActionListener {
 	private Timer clock=new Timer(10,this);
 	private long lastSkillShown=System.currentTimeMillis();
 	private long startTime=System.currentTimeMillis();
-	private  double ratioX=1;
-	private double ratioY=1;
+	public static double ratioX;
+	public static double ratioY;
 	//private SaveSystem save;
 	
 	public Tester() {
@@ -95,14 +95,7 @@ public class Tester extends JPanel implements ActionListener {
 		
 		super.paintComponent(g);
 		//save.save(thePlayer);
-		ratioX=super.getWidth()/1600.0;
-		ratioY=super.getHeight()/1000.0;
 		
-	
-		g.scale(ratioX, ratioY);
-		input.setRatio(ratioX, ratioY);
-
-
 		hi.draw(g,getXOnScreen(),getYOnScreen());
 		setBackground(Color.WHITE);
 		skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
