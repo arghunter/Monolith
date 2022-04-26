@@ -41,11 +41,6 @@ public class Button extends JButton implements ActionListener {
     	super(text);
     	this.color=color;
     	this.mouse=new MouseInputParser(this);
-//    	for(Point point:points) 
-//    	{System.out.println(point+" "+MouseInputParser.getRatioX()+" "+MouseInputParser.getRatioY());
-//    		point.setLocation(point.getX()/MouseInputParser.getRatioX(), point.getY()/MouseInputParser.getRatioY());
-//    		System.out.println(point);
-//    	}
     	int xmin = Integer.MAX_VALUE;
         int xmax = 0;
         int ymin = Integer.MAX_VALUE;
@@ -68,19 +63,15 @@ public class Button extends JButton implements ActionListener {
         }
         
         
-        super.setPreferredSize(new Dimension(((xmax - xmin)), ((ymax - ymin))));
-        
-        this.x=(int)(xmin);
-        this.y=(int)(ymin);
-        super.setAlignmentX(x);
-        super.setAlignmentY(y);
-
+        super.setPreferredSize(new Dimension(xmax - xmin, ymax - ymin));
+        this.x=xmin;
+        this.y=ymin;
         this.addActionListener(this);
         this.setFocusable(false);
-//        
-//        this.setOpaque(false);
-//        this.setContentAreaFilled(false);
-//        this.setBorderPainted(false);
+        
+        this.setOpaque(false);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
     	
     }
     //Draws the button on the screen
@@ -88,7 +79,6 @@ public class Button extends JButton implements ActionListener {
     {
     	
         this.g=g;
-       g.fillRect(super.getX(),super.getY(),super.getWidth(),super.getHeight());
         if(buttonContainsMouse()) 
         {
         	if(mouse.isMBDown(0)) 
@@ -111,9 +101,6 @@ public class Button extends JButton implements ActionListener {
         
         this.JPanelX=JPanelX;
         this.JPanelY=JPanelY;
-//        System.out.println(super.getX()+" "+super.getY()+super.getText());
-        
-        
 
     }
     
@@ -141,10 +128,7 @@ public class Button extends JButton implements ActionListener {
 
     private boolean buttonContainsMouse() 
     {
-    	//System.out.println( polygon.contains((int)((MouseInputParser.getX()-JPanelX)),(int)((MouseInputParser.getY()-JPanelY)))+" "+super.getText());
-
-    	return polygon.contains((int)((MouseInputParser.getX()-JPanelX)),(int)((MouseInputParser.getY()-JPanelY)));
-    	
+    	return polygon.contains((int)MouseInputParser.getX()-JPanelX,(int)MouseInputParser.getY()-JPanelY);
     }
     //Takes in an action event and returns true if it was this button that got clicked
     public boolean isClicked(ActionEvent e) 

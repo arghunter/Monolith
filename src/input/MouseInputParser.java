@@ -18,11 +18,13 @@ public class MouseInputParser {
 	}
 	public static double getX() 
 	{
+		System.out.println(MouseInfo.getPointerInfo().getLocation().getX()*ratioX+" X");
 
 		return MouseInfo.getPointerInfo().getLocation().getX()/ratioX;
 	}
 	public static double getY() 
 	{
+		System.out.println(MouseInfo.getPointerInfo().getLocation().getY()*ratioY+" y");
 		return (MouseInfo.getPointerInfo().getLocation().getY()/ratioY);
 	}
 	public void updatePlayerAngle(Player player) 
@@ -43,14 +45,6 @@ public class MouseInputParser {
 		this.ratioX=ratioX;
 		this.ratioY=ratioY;
 		//System.out.println(ratioX+" "+ratioY);
-	}
-	public static double getRatioX() 
-	{
-		return ratioX;
-	}
-	public static double getRatioY() 
-	{
-		return ratioY;
 	}
 	
 	

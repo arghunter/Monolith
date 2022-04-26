@@ -12,7 +12,6 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
-import input.MouseInputParser;
 import skills.GenericSkill;
 import skills.MultipleSkill;
 import skills.Skill;
@@ -82,14 +81,9 @@ public class SkillSelectionMenu implements ActionListener {
 			//System.out.println(availableSkills[i].getName()+" "+availableSkills[i].getType());
 			skillButtons[i] = new Button(points, color,
 					availableSkills[i].getName() + " " + availableSkills[i].getTier());
-//			skillButtons[i].setBounds((int)(skillButtons[i].getX()),(int)(skillButtons[i].getY()),
-//					(int) skillButtons[i].getPreferredSize().getWidth(),
-//					(int) skillButtons[i].getPreferredSize().getHeight());
-			skillButtons[i].setBounds((int)(skillButtons[i].getX()+500),(int)(skillButtons[i].getY()),
+			skillButtons[i].setBounds(skillButtons[i].getX(), skillButtons[i].getY(),
 					(int) skillButtons[i].getPreferredSize().getWidth(),
 					(int) skillButtons[i].getPreferredSize().getHeight());
-			
-			
 			panel.add(skillButtons[i]);
 			skillButtons[i].addActionListener(this);
 			Font text=null;

@@ -8,7 +8,6 @@ public abstract class MeleeWeapon extends Weapon {
 	public MeleeWeapon(String name,int damage,int range,int attackSpeed,double sweepAngle) {
 		super(name,damage,range,attackSpeed);
 	}
-	
 
 	public double euclidDist(int x1, int x2, int y1, int y2) {
 		return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
@@ -22,6 +21,5 @@ public abstract class MeleeWeapon extends Weapon {
 		}
 		
 	}
-
 
 }
