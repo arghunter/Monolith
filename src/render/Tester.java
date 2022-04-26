@@ -27,7 +27,7 @@ public class Tester extends JPanel implements ActionListener {
 	private Zombie theZombie=new Zombie(1200, 1200, 4, 64,64);
 	private Mob[] mobList = new Mob[1000];
 	private InputParser input;
-	private Button hi;
+
 	private JFrame frame;
 	private SkillSelectionMenu skillSelectionMenu;
 	private int numMobs=3;
@@ -40,26 +40,32 @@ public class Tester extends JPanel implements ActionListener {
 	
 	public Tester() {
 		
-		skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),120,this);
+
 		mobList[0]=theSpider;
 		mobList[1]=secondSpider;
 		mobList[2]=theZombie;
+		
 		Point[] points={new Point(238,108),new Point(162,108),new Point(108,162),new Point(108,238),new Point(162,292),new Point(238,292),new Point(292,238),new Point(292,162)};
-		hi=new Button(points,new Color(200,150,100),"Zombie");
-		this.buttonSize(hi);
-		this.setLayout(null);
-		this.add(hi);
+
 		JFrame w = new JFrame("Tester");
 		
-		w.setSize(600, 600);
+		w.setSize(1600, 1000);
+		this.initInput(w);
+	    this.frame=w;
+		ratioX=super.getWidth()/2560.0;
+		ratioY=super.getHeight()/1377.0;
+
+		
+		
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = w.getContentPane();
 		c.add(this);
-		this.initInput(w);
+		
 	    w.setResizable(true);
 	    w.setVisible(true);
-	    this.frame=w;
-	    hi.addActionListener(this);
+		
+
+
 //	    try {
 //			this.save=new SaveSystem();
 //		} catch (Exception e) {
@@ -70,7 +76,7 @@ public class Tester extends JPanel implements ActionListener {
 //	    thePlayer = new Player(0,0,0,0,0);
 //	    save.save(thePlayer);
 //	    thePlayer=save.loadSave();
-	    
+
 	    clock.start();
 		
 		
@@ -91,21 +97,27 @@ public class Tester extends JPanel implements ActionListener {
 	
 	public void paintComponent(Graphics graphics)
 	{
+		ratioX=super.getWidth()/2560.0;
+		ratioY=super.getHeight()/1377.0;
+		input.setRatio(ratioX, ratioY);
 		Graphics2D g=(Graphics2D)graphics;
 		
 		super.paintComponent(g);
 		//save.save(thePlayer);
-		ratioX=super.getWidth()/1600.0;
-		ratioY=super.getHeight()/1000.0;
-		
+
+	
 	
 		g.scale(ratioX, ratioY);
-		input.setRatio(ratioX, ratioY);
+//		System.out.println(getHeight()+" "+getWidth());
 
 
-		hi.draw(g,getXOnScreen(),getYOnScreen());
+	
 		setBackground(Color.WHITE);
-		skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
+		if(skillSelectionMenu!=null) 
+		{
+			skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
+		}
+		
 		input.updatePlayerPosAndAngle(thePlayer);
 		thePlayer.render(g);
 
@@ -121,13 +133,11 @@ public class Tester extends JPanel implements ActionListener {
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		
-		if(hi.isClicked(e)) 
-		{
-			mobList[numMobs]=new Zombie((int)(Math.random()*1500),(int)(Math.random()*1500), 4, 64,64);
-			numMobs++;
-		}
-		if(this.skillSelectionMenu.isActive()) 
+		ratioX=super.getWidth()/2560.0;
+		ratioY=super.getHeight()/1377.0;
+		input.setRatio(ratioX, ratioY);
+
+		if(this.skillSelectionMenu!=null&&this.skillSelectionMenu.isActive()) 
 		{
 			lastSkillShown=System.currentTimeMillis();
 		}
@@ -136,7 +146,7 @@ public class Tester extends JPanel implements ActionListener {
 		//System.out.println(System.currentTimeMillis()-lastSkillShown+" "+!this.skillSelectionMenu.isActive());
 		if(System.currentTimeMillis()-lastSkillShown>1200) 
 		{
-			if(!this.skillSelectionMenu.isActive()) 
+			if(skillSelectionMenu==null||!this.skillSelectionMenu.isActive()) 
 			{
 				skillSelectionMenu=null; 
 				skillSelectionMenu=new SkillSelectionMenu(thePlayer.getSkills(),(int)(System.currentTimeMillis()-startTime)/10,this);
