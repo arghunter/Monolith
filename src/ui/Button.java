@@ -1,14 +1,13 @@
 package ui;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Arrays;
 import java.awt.Graphics2D;
 
 import javax.swing.JButton;
@@ -16,40 +15,39 @@ import javax.swing.JButton;
 import input.MouseInputParser;
 
 public class Button extends JButton implements MouseListener,ActionListener {
-    private int x;
-    private int y;
-    private Polygon polygon;
-    private Graphics2D g;
-    private int JPanelX=-1;
-    private int JPanelY=-1;
-    private Color color;
-    private boolean listening=false;
-    private boolean isHovering=false;
-    private boolean isPressed=false;
+    private int x;//top left x coordinate on the panel
+    private int y;// top left y coordinate on the panel
+    private Polygon polygon;// polygon that is the shape of the button
+    private Graphics2D g;// the graphics object used to draw the button
+    private int JPanelX=-1;//the top left x coordinate of the JPanel on screen
+    private int JPanelY=-1;//the top left y coordinate of the JPanel on screen
+    private Color color;// the button's color
+    private boolean listening=false;// is this button is being listened to by a mous listener
+    private boolean isHovering=false;// if this button is being hovered over
+    private boolean isPressed=false;// if this button is being pressed
+    private Component parent;// the parent component of this button
   
 
 
-    
+    //Constructors
 
+    //Creates a button with a shape with vertices points, color black and no text
     public Button(Point[] points) {
         this(points,Color.BLACK,"");
     }
+  //Creates a button with a shape with vertices points, color color and no text
     public Button(Point[] points, Color color) 
     {
     	this(points,color,"");
     }
     
-    
+  //Creates a button with a shape with vertices points, color color and text text
     public Button(Point[] points,Color color, String text) 
     {
     	super(text);
     	this.color=color;
 
-//    	for(Point point:points) 
-//    	{System.out.println(point+" "+MouseInputParser.getRatioX()+" "+MouseInputParser.getRatioY());
-//    		point.setLocation(point.getX()/MouseInputParser.getRatioX(), point.getY()/MouseInputParser.getRatioY());
-//    		System.out.println(point);
-//    	}
+
     	int xmin = Integer.MAX_VALUE;
         int xmax = 0;
         int ymin = Integer.MAX_VALUE;
@@ -87,19 +85,17 @@ public class Button extends JButton implements MouseListener,ActionListener {
         this.setBorderPainted(false);
     	
     }
-    //Draws the button on the screen
+    //Draws the button on the screen and updates certain values
     public void draw(Graphics2D g, int JPanelX, int JPanelY)
     {
     	
         this.g=g;
-        	
-        	//System.out.println(this.getParent().getClass()+" "+super.getText());
-        
         if(!listening) 
         {
         	try 
         	{
         		  super.getParent().addMouseListener(this);
+        		  parent=super.getParent();
         		  listening=true;
         	}catch(Exception e) 
         	{
@@ -108,25 +104,7 @@ public class Button extends JButton implements MouseListener,ActionListener {
         	}
         	
         	  
-        }
-        boolean notThere=true;
-        for(MouseListener i:this.getParent().getMouseListeners()) 
-		{
-			if(i==this) 
-			{
-				notThere=false;
-			}
-		}
-        if(notThere) 
-        {
-        	System.out.println(super.getText());
-        }
-//        for(int i=0;i<super.getParent().getMouseListeners().length;i++) 
-//        {
-//        	System.out.println(super.getParent().getMouseListeners()[i]);
-//        }
-//     
-      
+        }     
 
         if(buttonContainsMouse()) 
         {
@@ -150,18 +128,15 @@ public class Button extends JButton implements MouseListener,ActionListener {
         
         this.JPanelX=JPanelX;
         this.JPanelY=JPanelY;
-//        System.out.println(super.getX()+" "+super.getY()+super.getText());
         
         
 
     }
     
 
-
+    //Returns true if the mouse is currently inside the button
     private boolean buttonContainsMouse() 
     {
-    	//System.out.println( polygon.contains((int)((MouseInputParser.getX()-JPanelX)),(int)((MouseInputParser.getY()-JPanelY)))+" "+super.getText());
-    	//System.out.println(polygon.contains((int)((MouseInputParser.getX()-JPanelX/MouseInputParser.getRatioX())),(int)((MouseInputParser.getY()-JPanelY/MouseInputParser.getRatioY())))+" "+super.getText());
     	return polygon.contains((int)((MouseInputParser.getX()-JPanelX/MouseInputParser.getRatioX())),(int)((MouseInputParser.getY()-JPanelY/MouseInputParser.getRatioY())));
     	
     }
@@ -185,28 +160,25 @@ public class Button extends JButton implements MouseListener,ActionListener {
     {
     	return isHovering;
     }
+    //Returns if this button is depressed
+    public boolean isPressed() 
+    {
+    	return isPressed;
+    }
+    // Disposes of this button. Makes it inaccessible and impossible to use
     public void dispose() 
     {
 		this.setVisible(false);
-		this.setText("Dead");
-		
 		this.getParent().removeMouseListener(this);
-		for(MouseListener i:this.getParent().getMouseListeners()) 
-		{
-			if(i==this) 
-			{
-				System.out.println("Broken");
-			}
-		}
 		this.getParent().remove(this);
 		
-		this.setEnabled(false);
+
 		
     }
 	@Override
+	//Fires action events to all listeners if this button has been clicked 
 	public void mouseClicked(MouseEvent e) {
-//		System.out.println(e.getX()+" "+e.getY()+" "+super.getText());
-		System.out.println(e.isPopupTrigger());
+
 		
 		if(super.getParent()!=null&&e.getButton()==MouseEvent.BUTTON1&&buttonContainsMouse()) 
 		{
@@ -223,37 +195,41 @@ public class Button extends JButton implements MouseListener,ActionListener {
 		
 	}
 	@Override
+	//Decides if the button is depressed currently
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+	
 		if(e.getButton()==MouseEvent.BUTTON1&&buttonContainsMouse())
 			isPressed=true;
 		else
 			isPressed=false;
 	}
 	@Override
+	//Sets isPressed to false
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+	
 		isPressed=false;
 
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
+	
 	@Override
+	//Fires off action events for mouseClicks when pressed to fix dead zones
 	public void actionPerformed(ActionEvent e) {
 		if(super.getParent()!=null) 
 		{
 			for(MouseListener i:super.getParent().getMouseListeners()) 
 			{
-				i.mouseClicked(new MouseEvent(super.getParent(), 500, System.currentTimeMillis(), 16, (int)(MouseInputParser.getX()*MouseInputParser.getRatioX()), (int)(MouseInputParser.getY()*MouseInputParser.getRatioY()), 1, false,MouseEvent.BUTTON1));
-				i.mouseReleased(new MouseEvent(super.getParent(), 500, System.currentTimeMillis(), 16, (int)(MouseInputParser.getX()*MouseInputParser.getRatioX()), (int)(MouseInputParser.getY()*MouseInputParser.getRatioY()), 1, false,MouseEvent.BUTTON1));
+				i.mouseClicked(new MouseEvent(parent, 500, System.currentTimeMillis(), 16, (int)(MouseInputParser.getX()*MouseInputParser.getRatioX()), (int)(MouseInputParser.getY()*MouseInputParser.getRatioY()), 1, false,MouseEvent.BUTTON1));
+				i.mouseReleased(new MouseEvent(parent, 500, System.currentTimeMillis(), 16, (int)(MouseInputParser.getX()*MouseInputParser.getRatioX()), (int)(MouseInputParser.getY()*MouseInputParser.getRatioY()), 1, false,MouseEvent.BUTTON1));
 
 			}
 		}
