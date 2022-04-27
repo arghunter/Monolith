@@ -16,7 +16,7 @@ public class MeleeWeapon extends Weapon {
 //		String[] values= saveData.split("/");
 //		//super(values[0],Integer.parseInt(values[1]),Integer.parseInt(values[2]),Integer.parseInt(values[3]))
 //	}
-	private MeleeWeapon(values[])
+//	private MeleeWeapon(values[])
 
 	public double euclidDist(int x1, int x2, int y1, int y2) {
 		return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
