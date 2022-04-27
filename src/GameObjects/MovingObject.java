@@ -40,7 +40,7 @@ public abstract class MovingObject extends GameObject {
 		System.out.println(this.image);
 		this.health = health;
 	}
-	public void doDamage(int damage) {
+	public void takeDamage(int damage) {
 		health -= damage;
 	}
 	// Sets the x and y coordinates to the passed values

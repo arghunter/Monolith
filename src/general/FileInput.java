@@ -47,21 +47,5 @@ public class FileInput {
 		return tokens.nextToken();
 	}
 
-	public int nextInt() {
-		return Integer.parseInt(next());
-	}
-
-	public long nextLong() {
-		return Long.parseLong(next());
-
-	}
-
-	public double nextDouble() {
-		return Double.parseDouble(next());
-	}
-
-	public float nextFloat() {
-		return Float.parseFloat(next());
-	}
 
 }

@@ -3,12 +3,20 @@ package GameObjects.Player.items.weapons;
 import GameObjects.Player.Player;
 import GameObjects.mobs.Mob;
 
-public abstract class MeleeWeapon extends Weapon {
+public class MeleeWeapon extends Weapon {
 	private double sweepAngle;
 	public MeleeWeapon(String name,int damage,int range,int attackSpeed,double sweepAngle) {
 		super(name,damage,range,attackSpeed);
+		this.sweepAngle=sweepAngle;
 	}
-	
+//	public MeleeWeapon(String saveData) 
+//	{
+//		
+//		saveData=saveData.split("MeleeWeapon:")[1];
+//		String[] values= saveData.split("/");
+//		//super(values[0],Integer.parseInt(values[1]),Integer.parseInt(values[2]),Integer.parseInt(values[3]))
+//	}
+	private MeleeWeapon(values[])
 
 	public double euclidDist(int x1, int x2, int y1, int y2) {
 		return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
@@ -35,12 +43,35 @@ public abstract class MeleeWeapon extends Weapon {
 					trueAngle = sinAngle;
 				}
 				if(trueAngle > (Math.PI/2 - sweepAngle/2) && trueAngle < (Math.PI/2+sweepAngle)) {
-					m.doDamage(super.getDamage());
+					m.takeDamage(super.getDamage());
 				}
 			}
 		}
 		
 	}
+	
 
+
+
+	@Override
+	public void secondaryFire(Mob[] mobs, Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void tertiaryFire(Mob[] mobs, Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String toString() 
+	{
+		String s="MeleeWeapon:"+getName()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+sweepAngle;
+		return s;
+		
+		
+	}
 
 }
