@@ -9,14 +9,12 @@ public class MeleeWeapon extends Weapon {
 		super(name,damage,range,attackSpeed);
 		this.sweepAngle=sweepAngle;
 	}
-//	public MeleeWeapon(String saveData) 
-//	{
-//		
-//		saveData=saveData.split("MeleeWeapon:")[1];
-//		String[] values= saveData.split("/");
-//		//super(values[0],Integer.parseInt(values[1]),Integer.parseInt(values[2]),Integer.parseInt(values[3]))
-//	}
-//	private MeleeWeapon(values[])
+	public MeleeWeapon(String saveData) 
+	{
+		super(saveData.split("MeleeWeapon:")[1].split("/")[0],Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[1]),Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[2]),Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[3]));
+		this.sweepAngle=Double.parseDouble(saveData.split("MeleeWeapon:")[1].split("/")[4]);
+	}
+
 
 	public double euclidDist(int x1, int x2, int y1, int y2) {
 		return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
@@ -43,7 +41,7 @@ public class MeleeWeapon extends Weapon {
 					trueAngle = sinAngle;
 				}
 				if(trueAngle > (Math.PI/2 - sweepAngle/2) && trueAngle < (Math.PI/2+sweepAngle)) {
-					m.takeDamage(super.getDamage());
+					m.takeDamage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 				}
 			}
 		}
