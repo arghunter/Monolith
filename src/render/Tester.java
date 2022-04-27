@@ -72,7 +72,7 @@ public class Tester extends JPanel implements ActionListener {
 			save = new SaveSystem();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Save system broken");
 		}
 		w.addWindowListener(save);
 		thePlayer = save.loadSave();
