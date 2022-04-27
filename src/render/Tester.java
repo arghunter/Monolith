@@ -52,6 +52,14 @@ public class Tester extends JPanel implements ActionListener {
 		JFrame w = new JFrame("Tester");
 
 		w.setSize(800, 500);
+		try {
+			save = new SaveSystem();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Save system broken");
+		}
+		w.addWindowListener(save);
+		thePlayer = save.loadSave();
 		this.initInput(w);
 		this.frame = w;
 		ratioX = super.getWidth() / 2560.0;
@@ -68,14 +76,7 @@ public class Tester extends JPanel implements ActionListener {
 		this.add(zombieButton);
 		zombieButton.addActionListener(this);
 
-		try {
-			save = new SaveSystem();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Save system broken");
-		}
-		w.addWindowListener(save);
-		thePlayer = save.loadSave();
+
 
 		clock.start();
 
@@ -129,8 +130,8 @@ public class Tester extends JPanel implements ActionListener {
 		ratioY = super.getHeight() / 1377.0;
 		input.setRatio(ratioX, ratioY);
 
-		if (e.getSource() == zombieButton) {
-			System.out.println();
+		if (zombieButton.isClicked(e)) {
+			
 			this.mobList[numMobs] = new Zombie((int) (Math.random() * 2560), (int) (Math.random() * 1377), 4, 64, 64);
 			numMobs++;
 
@@ -139,8 +140,7 @@ public class Tester extends JPanel implements ActionListener {
 			lastSkillShown = System.currentTimeMillis();
 		}
 
-		// System.out.println(System.currentTimeMillis()-lastSkillShown+"
-		// "+!this.skillSelectionMenu.isActive());
+
 		if (System.currentTimeMillis() - lastSkillShown > 1200) {
 			if (skillSelectionMenu == null || !this.skillSelectionMenu.isActive()) {
 				skillSelectionMenu = null;

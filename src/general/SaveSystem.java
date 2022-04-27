@@ -33,7 +33,7 @@ public class SaveSystem implements WindowListener {
 		output.println(save);
 	}
 	public Player loadSave() {
-		System.out.println(savedPlayer.toString()+"hi");
+		
 		return savedPlayer;
 	}
 
