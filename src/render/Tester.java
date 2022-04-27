@@ -38,7 +38,7 @@ public class Tester extends JPanel implements ActionListener {
 	private double ratioX = 1;
 	private double ratioY = 1;
 	private Button zombieButton;
-	// private SaveSystem save;
+	private SaveSystem save;
 
 	public Tester() {
 
@@ -63,20 +63,19 @@ public class Tester extends JPanel implements ActionListener {
 
 		w.setResizable(true);
 		w.setVisible(true);
+
 		zombieButton = new Button(points, new Color(200, 150, 100), "Zombie");
 		this.add(zombieButton);
 		zombieButton.addActionListener(this);
 
-		// try {
-		// this.save=new SaveSystem();
-		// } catch (Exception e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// w.addWindowListener(save);
-		// thePlayer = new Player(0,0,0,0,0);
-		// save.save(thePlayer);
-		// thePlayer=save.loadSave();
+		try {
+			save = new SaveSystem();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		w.addWindowListener(save);
+		thePlayer = save.loadSave();
 
 		clock.start();
 
@@ -103,7 +102,7 @@ public class Tester extends JPanel implements ActionListener {
 		Graphics2D g = (Graphics2D) graphics;
 
 		super.paintComponent(g);
-		// save.save(thePlayer);
+		save.save(thePlayer);
 
 		g.scale(ratioX, ratioY);
 
