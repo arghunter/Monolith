@@ -33,7 +33,7 @@ public class MazeTester extends JPanel{
 	
 	public static void generateMaze(int size) {
 		MazeGenerator generator=new MazeGenerator(0);
-		maze=generator.generate(size);
+		maze=generator.generate(30,20);
 	}
 	
 	public static void main(String[] args) {

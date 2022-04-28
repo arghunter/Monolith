@@ -12,12 +12,12 @@ public class MapGenerator {
 	private char[][] roomsStraights;
 	
 	public MapGenerator() {
-		
+		//generateMap();
 	}
 	
 	public void generateMap(int size) {
 		MazeGenerator generator=new MazeGenerator(0);
-		maze=generator.generate(size);
+		maze=generator.generate(10,20);
 	}
 	
 	public void getRoom(int x,int y) {

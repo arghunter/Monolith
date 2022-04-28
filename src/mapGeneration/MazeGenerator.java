@@ -32,7 +32,7 @@ public class MazeGenerator {
 	//Uses an iterative approach to avoid possible stack overflow
 	//branchingAmount adjusts whether the method pops off the front or the middle of the stack more frequently
 	//Note that the stack is actually a linked list to allow for popping off the middle
-	public char[][] generate(int size) {
+	public char[][] generate(int xSize,int ySize) {
 		//Right, Down, Left, Up
 		int[] adjX={1,0,-1,0};
 		int[] adjY={0,1,0,-1};
@@ -41,11 +41,11 @@ public class MazeGenerator {
 		Integer[] start={1,1};
 		stack.add(start);
 		
-		boolean[][] visited=new boolean[size][size];
-		char[][] maze=new char[2*size+1][2*size+1];
+		boolean[][] visited=new boolean[ySize][xSize];
+		char[][] maze=new char[2*ySize+1][2*xSize+1];
 		
-		for(int i=0;i<2*size+1;i++) {
-			for(int j=0;j<2*size+1;j++) {
+		for(int i=0;i<2*ySize+1;i++) {
+			for(int j=0;j<2*xSize+1;j++) {
 				if(i%2==0 || j%2==0) {
 					maze[i][j]='#';
 				}else {
@@ -66,7 +66,7 @@ public class MazeGenerator {
 			
 			int numUnvisited=0;
 			for(int i=0;i<4;i++) {
-				if(current[0]+adjY[i]>=0 && current[0]+adjY[i]<size && current[1]+adjX[i]>=0 && current[1]+adjX[i]<size) {
+				if(current[0]+adjY[i]>=0 && current[0]+adjY[i]<ySize && current[1]+adjX[i]>=0 && current[1]+adjX[i]<xSize) {
 					if(!visited[current[0]+adjY[i]][current[1]+adjX[i]]) {
 						numUnvisited++;
 					}
@@ -76,7 +76,7 @@ public class MazeGenerator {
 				Integer[][] unvisitedNeighbors=new Integer[numUnvisited][2];
 				int unvisitedLeft=numUnvisited;
 				for(int i=0;i<4;i++) {
-					if(current[0]+adjY[i]>=0 && current[0]+adjY[i]<size && current[1]+adjX[i]>=0 && current[1]+adjX[i]<size) {
+					if(current[0]+adjY[i]>=0 && current[0]+adjY[i]<ySize && current[1]+adjX[i]>=0 && current[1]+adjX[i]<xSize) {
 						if(!visited[current[0]+adjY[i]][current[1]+adjX[i]]) {
 							unvisitedNeighbors[unvisitedLeft-1][0]=current[0]+adjY[i];
 							unvisitedNeighbors[unvisitedLeft-1][1]=current[1]+adjX[i];
@@ -85,20 +85,11 @@ public class MazeGenerator {
 					}
 				}
 				Integer[] newCurrent=unvisitedNeighbors[randomNums.nextInt(numUnvisited)];
-				System.out.println(1+maze[current[0]+newCurrent[0]][1+current[1]+newCurrent[1]]);
 				maze[1+current[0]+newCurrent[0]][1+current[1]+newCurrent[1]]=' ';
-				System.out.println(maze[1+current[0]+newCurrent[0]][1+current[1]+newCurrent[1]]);
-				System.out.println("boo");
 				stack.add(current);
 				stack.add(newCurrent);
 				visited[newCurrent[0]][newCurrent[1]]=true;
 			}
-		}
-		for(int i=0;i<size;i++) {
-			for(int j=0;j<size;j++) {
-				System.out.print((visited[i][j]?1:0));
-			}
-			System.out.println();
 		}
 		return maze;
 	}
@@ -115,6 +106,6 @@ public class MazeGenerator {
 	
 	public static void main(String args[]) {
 		MazeGenerator mazeMaker=new MazeGenerator(0);
-		mazeMaker.generate(20);
+		mazeMaker.generate(10,20);
 	}
 }
