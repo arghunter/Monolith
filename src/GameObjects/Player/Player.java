@@ -90,9 +90,10 @@ public class Player extends MovingObject implements Serializable{
 		return skills;
 	}
 
-	public static StatType[] getStatTypes() {
+	public StatType[] getStatTypes() {
 		return statTypes;
 	}
+
 
 	public int[] getStats() {
 		return stats;

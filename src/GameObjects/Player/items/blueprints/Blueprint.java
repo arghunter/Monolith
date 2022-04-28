@@ -97,8 +97,32 @@ public class Blueprint extends Item {
 						if(consumableStorage.getCount()>=consumableComp.getCount()) 
 						{
 							consumableStorage.substract(consumableComp.getCount());
+							if(consumableStorage.getCount()==0) 
+							{
+								inventory.removeFromStorage(consumableStorage);
+							}
 						}
+					}else if(components[i].getType()==ItemType.MATERIAL) 
+					{
+						Material materialComp=(Material) components[i];
+						Material materialStorage=(Material) storage.get(i);
+						if(materialStorage.getCount()>=materialComp.getCount()) 
+						{
+							Material extra=materialStorage.consume(materialComp);
+							if(extra!=null) 
+							{
+								System.err.println("Massive error in blueprint useage");
+							}
+							if(materialStorage.getCount()==0) 
+							{
+								inventory.removeFromStorage(materialStorage);
+							}
+						}
+					}else 
+					{
+						inventory.removeFromStorage(storage.get(i));
 					}
+					break;
 				}
 			}
 		}
