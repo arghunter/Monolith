@@ -19,4 +19,8 @@ public class MapGenerator {
 		MazeGenerator generator=new MazeGenerator(0);
 		maze=generator.generate(size);
 	}
+	
+	public void getRoom(int x,int y) {
+		
+	}
 }
