@@ -30,6 +30,42 @@ public class ImageSystem {
 	
 
 	
+	public String getName() {
+		return name;
+	}
+
+
+
+	public Image getPicture() {
+		return picture;
+	}
+
+
+
+	public int getWidth() {
+		return width;
+	}
+
+
+
+	public int getHeight() {
+		return height;
+	}
+
+
+
+	public int getX() {
+		return x;
+	}
+
+
+
+	public int getY() {
+		return y;
+	}
+
+
+
 	public void move(int x, int y)
 	{
 		this.x+=x;

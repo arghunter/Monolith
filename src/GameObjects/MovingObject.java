@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import general.AnimationSystem;
 import general.ImageSystem;
 
-//Enums
+
 
 public abstract class MovingObject extends GameObject {
 
@@ -22,6 +22,7 @@ public abstract class MovingObject extends GameObject {
 	private double lastMovement;
 	private double currentMovementDelay;// Changes based on dirrection
 	protected int health;
+	private boolean isDead=false;
 	private AnimationSystem image;
 
 	public MovingObject(int startX, int startY, int movementDelay, int id, int width, int height, String name, int numFrames) {
@@ -42,6 +43,10 @@ public abstract class MovingObject extends GameObject {
 	}
 	public void takeDamage(int damage) {
 		health -= damage;
+		if(health<=0) 
+		{
+			this.isDead=true;
+		}
 	}
 	// Sets the x and y coordinates to the passed values
 	public void setCoords(int x, int y) {
