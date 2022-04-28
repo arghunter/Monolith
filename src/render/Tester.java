@@ -11,6 +11,7 @@ import GameObjects.Player.Player;
 import GameObjects.mobs.Mob;
 import GameObjects.mobs.Spider;
 import GameObjects.mobs.Zombie;
+import GameObjects.mobs.Balkrada;
 import general.SaveSystem;
 import input.InputParser;
 import skills.SkillTreeRenderMode;
@@ -133,7 +134,7 @@ public class Tester extends JPanel implements ActionListener {
 
 		if (zombieButton.isClicked(e)) {
 			
-			this.mobList[numMobs] = new Zombie((int) (Math.random() * 2560), (int) (Math.random() * 1377), 4, 64, 64);
+			this.mobList[numMobs] = new Balkrada((int) (Math.random() * 2560), (int) (Math.random() * 1377), 4, 64, 64);
 			numMobs++;
 
 		}

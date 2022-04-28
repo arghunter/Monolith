@@ -6,12 +6,12 @@ import java.util.Random;
 
 import GameObjects.Direction;
 
-public class Spider extends Mob {
+public class Balkrada extends Mob {
 	//speed, damage, health, armor, attackspeed, attack range
-	public static final int[] stats={20,2,10,0,2000,64};
+	public static final int[] stats={20,5,50,5,3000,100};
 	
-	public Spider(int x,int y,int id,int width,int height) {
-		super(x,y,stats[0],stats,id,width,height,"Spider",3);
+	public Balkrada(int x,int y,int id,int width,int height) {
+		super(x,y,stats[0],stats,id,width,height,"Balkrada",3);
 	}
 	
 	public int action(int playerX,int playerY) {
