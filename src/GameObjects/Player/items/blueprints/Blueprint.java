@@ -2,6 +2,7 @@ package GameObjects.Player.items.blueprints;
 
 import java.util.ArrayList;
 
+import GameObjects.Player.Inventory;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.consumables.Consumable;
@@ -34,9 +35,9 @@ public class Blueprint extends Item {
 	}
 
 
-	public Item construct(ArrayList<Item> storage) throws MissingResourcesException {
+	public Item construct(Inventory inventory) throws MissingResourcesException {
 		boolean [] requirementsFulfilled=new boolean[components.length];
-		
+		ArrayList<Item> storage=inventory.getStorage();
 		for (int i = 0; i < components.length; i++) {
 
 			if(components[i].getType()==ItemType.CONSUMABLE||components[i].getType()==ItemType.MATERIAL) 
@@ -91,8 +92,37 @@ public class Blueprint extends Item {
 				{
 					if(components[i].getType()==ItemType.CONSUMABLE) 
 					{
-//						if(compon
+						Consumable consumableComp=(Consumable)components[i];
+						Consumable consumableStorage=(Consumable)storage.get(j);
+						if(consumableStorage.getCount()>=consumableComp.getCount()) 
+						{
+							consumableStorage.substract(consumableComp.getCount());
+							if(consumableStorage.getCount()==0) 
+							{
+								inventory.removeFromStorage(consumableStorage);
+							}
+						}
+					}else if(components[i].getType()==ItemType.MATERIAL) 
+					{
+						Material materialComp=(Material) components[i];
+						Material materialStorage=(Material) storage.get(i);
+						if(materialStorage.getCount()>=materialComp.getCount()) 
+						{
+							Material extra=materialStorage.consume(materialComp);
+							if(extra!=null) 
+							{
+								System.err.println("Massive error in blueprint useage");
+							}
+							if(materialStorage.getCount()==0) 
+							{
+								inventory.removeFromStorage(materialStorage);
+							}
+						}
+					}else 
+					{
+						inventory.removeFromStorage(storage.get(i));
 					}
+					break;
 				}
 			}
 		}

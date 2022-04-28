@@ -16,7 +16,7 @@ import GameObjects.MovingObject;
 import general.ImageSystem;
 import skills.*;
 import java.io.Serializable;
-public class Player extends MovingObject implements Serializable{
+public class Player extends MovingObject{
 	SkillTree skills;
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH,StatType.XP };
@@ -90,9 +90,10 @@ public class Player extends MovingObject implements Serializable{
 		return skills;
 	}
 
-	public static StatType[] getStatTypes() {
+	public StatType[] getStatTypes() {
 		return statTypes;
 	}
+
 
 	public int[] getStats() {
 		return stats;

@@ -26,7 +26,7 @@ public abstract class Mob extends MovingObject {
 		updateAngle(pointX, pointY);
 	}
 
-	public int action(int playerX,int playerY) {
+	public int action(int playerX,int playerY,int[] stats) {
 		int curX=this.getX();
 		int curY=this.getY();
 		int diffX=curX-playerX;
@@ -62,11 +62,12 @@ public abstract class Mob extends MovingObject {
 					toMove=Direction.SOUTHEAST;
 				}
 			}
-			if(diffX*diffX+diffY*diffY>=64*64) {
+			if(diffX*diffX+diffY*diffY>=(stats[5]*stats[5])) {
 				this.move(toMove);
 			}
 		}
 		return 0;
 	}
 
+	public abstract int action(int playerX,int playerY);
 }

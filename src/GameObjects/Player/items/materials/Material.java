@@ -17,10 +17,7 @@ public class Material extends Item {
 		count+=Math.round(material.getCount());
 		
 	}
-	public void consume(double num) 
-	{
-		count-=Math.round(num);
-	}
+
 	public Material consume(Material material) 
 	{
 		if(!this.equals(material)) 
