@@ -11,6 +11,7 @@ import GameObjects.Player.items.armor.BattleSuitSet;
 import GameObjects.Player.items.blueprints.Blueprint;
 import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
+import GameObjects.Player.items.weapons.MeleeWeapon;
 import GameObjects.Player.items.weapons.RustySword;
 import GameObjects.Player.items.weapons.Weapon;
 
@@ -30,7 +31,7 @@ public class Inventory {
 		arsenal[1]=(new Armor("DefaultChestplate",ItemType.CHESTPLATE,15,25,50,BattleSuitSet.NONE));
 		arsenal[2]=(new Armor("DefaultLeggings",ItemType.LEGGINGS,15,25,50,BattleSuitSet.NONE));
 		arsenal[3]=(new Armor("DefaultBoots",ItemType.BOOTS,10,25,25,BattleSuitSet.NONE));
-		arsenal[4]=(new RustySword());
+		arsenal[4]=(new MeleeWeapon("Rusty Sword",50, 30, 30,10/18.0*Math.PI));
 		
 		equipped=4;
 	}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
+import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
 
 public class Blueprint extends Item {
@@ -32,16 +33,70 @@ public class Blueprint extends Item {
 		this.count = count;
 	}
 
-	// takes the storage finds the required components consumes them and returns the
-	// item this thing is a blueprint is of if there is enough else throws a
-	// MissingResourcesException Nice to have: If possibel can you like make the
-	// message contain the resources that are missing no necceseary though
-	public Item construct(ArrayList<Item> storage) {
+
+	public Item construct(ArrayList<Item> storage) throws MissingResourcesException {
+		boolean [] requirementsFulfilled=new boolean[components.length];
+		
 		for (int i = 0; i < components.length; i++) {
-			for (int j = 0; j < storage.size(); i++) {
-				// TODO bluepprint stuff
+
+			if(components[i].getType()==ItemType.CONSUMABLE||components[i].getType()==ItemType.MATERIAL) 
+			{
+				double count=0;
+				for (int j = 0; j < storage.size(); i++) {
+					if(storage.get(i).equals(components[i])) 
+					{
+						if(components[i].getType()==ItemType.CONSUMABLE) 
+						{
+							count+=((Consumable) storage.get(i)).getCount();
+							if(count>((((Consumable) components[i]).getCount()))) 
+							{
+								requirementsFulfilled[i]=true;
+								break;
+							}
+						}else 
+						{
+							count+=((Material) storage.get(i)).getCount();
+							if(count>((((Material) components[i]).getCount()))) 
+							{
+								requirementsFulfilled[i]=true;
+								break;
+							}
+						}
+					}
+				}
+				
+			}else 
+			{
+				for(int j=0;j<storage.size();j++) 
+				{
+					if(storage.get(i).equals(components[i])) 
+					{
+						requirementsFulfilled[i]=true;
+						break;
+					}
+				}
+			}
+			
+			if(!requirementsFulfilled[i]) 
+			{
+				throw new MissingResourcesException("You are missing the resources required to construct this item");
+			}
+
+		}
+		for(int i=0;i<components.length;i++) 
+		{
+			for(int j=0;j<storage.size();j++) 
+			{
+				if(storage.get(j).equals(components[i])) 
+				{
+					if(components[i].getType()==ItemType.CONSUMABLE) 
+					{
+//						if(compon
+					}
+				}
 			}
 		}
+		
 		return product;
 
 	}

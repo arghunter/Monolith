@@ -97,6 +97,7 @@ public class Tester extends JPanel implements ActionListener {
 	}
 
 	public void paintComponent(Graphics graphics) {
+
 		ratioX = super.getWidth() / 2560.0;
 		ratioY = super.getHeight() / 1377.0;
 		input.setRatio(ratioX, ratioY);

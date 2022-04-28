@@ -8,7 +8,7 @@ public class AnimationSystem {
 	private long delay;
 	private long lastFrame=System.currentTimeMillis();
 	private String name;
-	private int frameNumber=0;
+	private int frameNumber;
 	private int numFrames;
 	private ImageSystem[] pics;
 	private int x;
@@ -26,6 +26,7 @@ public class AnimationSystem {
 		{
 			pics[i]=new ImageSystem(x,y,new ImageIcon("imgs/"+name+"/"+name+i+".png").getImage());
 		}
+		frameNumber=(int)(Math.random()*numFrames);
 	}
 	public void move(int x,int y) 
 	{
@@ -60,7 +61,9 @@ public class AnimationSystem {
 			{
 				frameNumber=0;
 			}
+			
 		}
+		//System.out.println(frameNumber+" "+name);
 	    pics[frameNumber].drawImage(g);
 
 		

@@ -6,8 +6,8 @@ import GameObjects.Player.items.ItemType;
 public class Consumable extends Item {
 	long count;
 	long maxStack;
-	public Consumable(String name, ItemType type,long count,long maxStack) {
-		super(name, type);
+	public Consumable(String name,long count,long maxStack) {
+		super(name, ItemType.CONSUMABLE);
 		this.maxStack=maxStack;
 		this.add(count);
 		
