@@ -1,1 +1,1 @@
-SkillTreeSkill:Eagle_Eyes/1/false/0/ACCURACY/32/ENDSkill:Greased_Lightning/1/false/0/ATTACKSPEED/21/ENDSkill:Strength/1/false/0/STRENGTH/6/ENDSkill:Weight_Training/1/false/0/MULTIPLE/0~1~false~0~STRENGTH~15~,~1~1~false~0~HEALTH~10~,~/ENDSkill:Sprinter/1/false/0/SPEED/18/ENDSkill:Sword_Master/1/false/0/STRENGTH/23/ENDSkill:
+SkillTreeSkill:
