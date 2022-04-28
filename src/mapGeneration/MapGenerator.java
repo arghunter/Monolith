@@ -3,7 +3,7 @@ package mapGeneration;
 import java.awt.*;
 import javax.swing.*;
 import general.ImageSystem;
-import 
+import general.SaveSystem;
 
 public class MapGenerator {
 	ImageSystem image;
