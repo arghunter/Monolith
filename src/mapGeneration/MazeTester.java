@@ -31,14 +31,14 @@ public class MazeTester extends JPanel{
 		}
 	}
 	
-	public static void generateMaze(int size) {
+	public static void generateMaze(int sizeX,int sizeY) {
 		MazeGenerator generator=new MazeGenerator(0);
-		maze=generator.generate(30,20);
+		maze=generator.generate(sizeX,sizeY);
 	}
 	
 	public static void main(String[] args) {
 		
-		generateMaze(20);
+		generateMaze(30,20);
 		JFrame w = new JFrame("Maze");
 		w.setSize(600,600);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

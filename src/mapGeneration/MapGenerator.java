@@ -6,18 +6,21 @@ import general.ImageSystem;
 import general.SaveSystem;
 
 public class MapGenerator {
+	public static final int XSIZE=20;
+	public static final int YSIZE=15;
+	
 	ImageSystem image;
 	private char[][] maze;
 	
 	private char[][] roomsStraights;
 	
 	public MapGenerator() {
-		//generateMap();
+		generateMap();
 	}
 	
-	public void generateMap(int size) {
+	public void generateMap() {
 		MazeGenerator generator=new MazeGenerator(0);
-		maze=generator.generate(10,20);
+		maze=generator.generate(XSIZE,YSIZE);
 	}
 	
 	public void getRoom(int x,int y) {
