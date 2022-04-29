@@ -17,7 +17,13 @@ public class SaveSystem implements WindowListener {
 	{
 		
 		input = new FileInput("save.txt");
-		savedPlayer=new Player(300,300,1,64,64,input.next());
+		try {
+			savedPlayer=new Player(300,300,1,64,64,input.next());
+		}catch( Exception e) 
+		{
+			savedPlayer=new Player(300,300,1,64,64);
+		}
+		
 		output=new PrintWriter("save.txt");
 		
 	}
