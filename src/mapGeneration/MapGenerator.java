@@ -31,6 +31,7 @@ public class MapGenerator {
 		generateMap();
 		for(int i=0;i<16;i++) {
 		}
+		
 	}
 	
 	public void generateMaze() {
