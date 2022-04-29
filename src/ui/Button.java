@@ -175,6 +175,10 @@ public class Button extends JButton implements MouseListener,ActionListener {
 
 		
     }
+    public Polygon getShape() 
+    {
+    	return polygon;
+    }
 	@Override
 	//Fires action events to all listeners if this button has been clicked 
 	public void mouseClicked(MouseEvent e) {

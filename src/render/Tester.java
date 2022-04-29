@@ -126,7 +126,7 @@ public class Tester extends JPanel implements ActionListener {
 			mobList[i].render(g);
 			mobList[i].update(thePlayer.getX(), thePlayer.getY());
 		}
-		item.draw(g, numMobs, numMobs);
+		item.draw(g, this.getXOnScreen(), this.getYOnScreen());
 	}
 
 	public void initInput(JFrame frame) {
