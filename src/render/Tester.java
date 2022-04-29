@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import GameObjects.*;
 import GameObjects.Player.Player;
+import GameObjects.Player.items.materials.Material;
 import GameObjects.mobs.Mob;
 import GameObjects.mobs.Spider;
 import GameObjects.mobs.Zombie;
@@ -16,6 +17,7 @@ import general.SaveSystem;
 import input.InputParser;
 import skills.SkillTreeRenderMode;
 import ui.Button;
+import ui.RenderableMenuItem;
 import ui.SkillSelectionMenu;
 
 import java.util.ArrayList;
@@ -40,13 +42,15 @@ public class Tester extends JPanel implements ActionListener {
 	private double ratioY = 1;
 	private Button zombieButton;
 	private SaveSystem save;
+	private RenderableMenuItem item;
 
 	public Tester() {
 
 		mobList[0] = theSpider;
 		mobList[1] = secondSpider;
 		mobList[2] = theZombie;
-
+		Material steel=new Material("Spider",100);
+		item=new RenderableMenuItem(steel,900,800,this);
 		Point[] points = { new Point(238, 108), new Point(162, 108), new Point(108, 162), new Point(108, 238),
 				new Point(162, 292), new Point(238, 292), new Point(292, 238), new Point(292, 162) };
 
@@ -106,10 +110,11 @@ public class Tester extends JPanel implements ActionListener {
 
 		super.paintComponent(g);
 		save.save(thePlayer);
-
+		
 		g.scale(ratioX, ratioY);
 
 		setBackground(Color.WHITE);
+		
 		if (skillSelectionMenu != null) {
 			skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
 		}
@@ -121,6 +126,7 @@ public class Tester extends JPanel implements ActionListener {
 			mobList[i].render(g);
 			mobList[i].update(thePlayer.getX(), thePlayer.getY());
 		}
+		item.draw(g, numMobs, numMobs);
 	}
 
 	public void initInput(JFrame frame) {
