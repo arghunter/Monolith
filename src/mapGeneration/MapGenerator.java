@@ -30,10 +30,10 @@ public class MapGenerator {
 	ImageSystem image;
 	private char[][] maze;
 	
-	private int[][][][] rooms;
+	private String[][][][] rooms;
 	
 	//VERY IMPORTANT THIS IS THE ACTUAL MAP
-	private int[][] map = new int[YSIZE][XSIZE];
+	private String[][] map = new String[YSIZE][XSIZE];
 	
 	private int[] numRooms = new int[16];
 	
@@ -59,7 +59,7 @@ public class MapGenerator {
 			maxRooms=(numRooms[i]>maxRooms?numRooms[i]:maxRooms);
 			
 		}
-		rooms=new int[16][maxRooms][ROOMSIZEY][ROOMSIZEX];
+		rooms=new String[16][maxRooms][ROOMSIZEY][ROOMSIZEX];
 		for(int i=0;i<16;i++) {
 			FileInput input = new FileInput("Rooms/Rooms"+(i<10?"0":"")+i+".txt");
 			input.next();
@@ -68,7 +68,7 @@ public class MapGenerator {
 				for(int k=0;k<ROOMSIZEY;k++) {
 					String s=input.next();
 					for(int m=0;m<ROOMSIZEX;m++) {
-						rooms[i][j][k][m]=Integer.parseInt(s.substring(m*2,m*2+2));
+						rooms[i][j][k][m]=s.substring(m*2,m*2+2);
 					}
 				}
 			}
@@ -104,16 +104,32 @@ public class MapGenerator {
 				}
 				int randRoom=randomNums.nextInt(0,numRooms[roomType]);
 				String output=(roomType<10?"0"+roomType:""+roomType)+(randRoom<10?"0"+randRoom:""+randRoom);
-				map[i][j]=Integer.parseInt(output);
+				map[i][j]=output;
 			}
 		}
 	}
 	
-	private void readRoom() {
-		
+	public int getRoomSizeX() {
+		return ROOMSIZEX;
 	}
 	
-	public void getRoom(int x,int y) {
-		
+	public int getRoomSizeY() {
+		return ROOMSIZEY;
+	}
+	
+	public int getXSize() {
+		return XSIZE;
+	}
+	
+	public int getYSize() {
+		return YSIZE;
+	}
+	
+	private String[][] readRoom(String input) {
+		return rooms[Integer.parseInt(input.substring(0,2))][Integer.parseInt(input.substring(2,4))];
+	}
+	
+	public String[][] getRoom(int x,int y) {
+		return readRoom(map[y][x]);
 	}
 }

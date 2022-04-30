@@ -102,6 +102,7 @@ public abstract class MovingObject extends GameObject {
 	// Given a direction 1 unit in the direction
 	// Scales to prevent strafing from being faster
 	public void move(Direction direction) {
+		int n=1;
 		if (direction == Direction.NORTHEAST || direction == Direction.SOUTHWEST || direction == Direction.SOUTHEAST
 				|| direction == Direction.NORTHWEST) {
 			// Magic number
@@ -117,20 +118,20 @@ public abstract class MovingObject extends GameObject {
 		int newY = getY();
 		if (direction == Direction.NORTH || direction == Direction.NORTHEAST || direction == Direction.NORTHWEST) {
 			newY--;
-			image.move(0, -1);
+			image.move(0, -n);
 		} else if (direction == Direction.SOUTHWEST || direction == Direction.SOUTHEAST
 				|| direction == Direction.SOUTH) {
 			newY++;
-			image.move(0, 1);
+			image.move(0, n);
 		}
 
 		if (direction == Direction.NORTHEAST || direction == Direction.SOUTHEAST || direction == Direction.EAST) {
 			newX++;
-			image.move(1, 0);
+			image.move(n, 0);
 		} else if (direction == Direction.SOUTHWEST || direction == Direction.NORTHWEST
 				|| direction == Direction.WEST) {
 			newX--;
-			image.move(-1, 0);
+			image.move(-n, 0);
 		}
 		setCoords(newX, newY);
 		lastMovement = System.currentTimeMillis();

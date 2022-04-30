@@ -20,7 +20,7 @@ public class Player extends MovingObject{
 	SkillTree skills;
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH,StatType.XP };
-	private int[] stats = { 10, 25, 60, 100, 10, 30, 100, 15, 10,100 };
+	private int[] stats = { 10, 25, 60, 100, 10, 30, 100, 0, 10,100 };
 	private Inventory inventory;
 	private int currentShields;
 	private boolean isDead = false;
