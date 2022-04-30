@@ -2,19 +2,24 @@ package ui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.FontMetrics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.awt.Graphics2D;
 
 import javax.swing.JButton;
 
 import input.MouseInputParser;
 
-public class Button extends JButton implements MouseListener,ActionListener {
+public class Button extends Component implements MouseListener {
     private int x;//top left x coordinate on the panel
     private int y;// top left y coordinate on the panel
     private Polygon polygon;// polygon that is the shape of the button
@@ -26,6 +31,14 @@ public class Button extends JButton implements MouseListener,ActionListener {
     private boolean isHovering=false;// if this button is being hovered over
     private boolean isPressed=false;// if this button is being pressed
     private Component parent;// the parent component of this button
+    private String text;
+    private Font font;
+    private Color fontColor=Color.GRAY;
+    private float fontSize;
+    private int stringX;
+    private int stringY;
+    private ActionListener[] actionListeners;
+    private boolean calibrationRequired;
   
 
 
@@ -44,9 +57,16 @@ public class Button extends JButton implements MouseListener,ActionListener {
   //Creates a button with a shape with vertices points, color color and text text
     public Button(Point[] points,Color color, String text) 
     {
-    	super(text);
+    	this.text=(text);
+    	try {
+			font=Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Black.ttf"));
+		} catch (FontFormatException | IOException e) {
+		
+			e.printStackTrace();
+		}
+    	actionListeners=new ActionListener[0];
     	this.color=color;
-
+    	
 
     	int xmin = Integer.MAX_VALUE;
         int xmax = 0;
@@ -71,18 +91,15 @@ public class Button extends JButton implements MouseListener,ActionListener {
         
         
         super.setPreferredSize(new Dimension(((xmax - xmin)), ((ymax - ymin))));
-        super.addActionListener(this);
+        calibrationRequired=true;
         this.x=(int)(xmin);
         this.y=(int)(ymin);
-        super.setAlignmentX(x);
-        super.setAlignmentY(y);
-
+        
+        
 
         this.setFocusable(false);
         
-        this.setOpaque(false);
-        this.setContentAreaFilled(false);
-        this.setBorderPainted(false);
+
     	
     }
     //Draws the button on the screen and updates certain values
@@ -104,7 +121,8 @@ public class Button extends JButton implements MouseListener,ActionListener {
         	}
         	
         	  
-        }     
+        }
+
 
         if(buttonContainsMouse()) 
         {
@@ -125,12 +143,69 @@ public class Button extends JButton implements MouseListener,ActionListener {
         }
         
         g.fill(polygon);
-        
+        if(calibrationRequired) 
+        {
+        	calibrateText(g);
+        }
+        g.setColor(fontColor);
+        g.setFont(font.deriveFont(fontSize));
+        g.drawString(text, stringX, stringY);
         this.JPanelX=JPanelX;
         this.JPanelY=JPanelY;
         
         
 
+    }
+    private void calibrateText(Graphics2D g) 
+    {
+    	int fontSize=4;
+    	
+    	while(true) 
+    	{
+    		FontMetrics metrics=g.getFontMetrics(font.deriveFont((float)fontSize));
+        	
+        	int x=this.x+(polygon.getBounds().width-metrics.stringWidth(text))/2;
+        	int y=this.y+polygon.getBounds().height/2-metrics.getHeight()/2;
+        	if(polygon.contains(new Point(x,y))&&polygon.contains(new Point(x+metrics.stringWidth(text),y+metrics.getHeight()))&&polygon.contains(new Point(x+metrics.stringWidth(text),y))&&polygon.contains(new Point(x,y+metrics.getHeight()))) 
+        	{
+        		fontSize++;
+        	}else 
+        	{
+        		this.fontSize=fontSize-4;
+        		metrics=g.getFontMetrics(font.deriveFont((float)(this.fontSize)));
+            	
+            	x=this.x+(polygon.getBounds().width-metrics.stringWidth(text))/2;
+            	y=this.y+polygon.getBounds().height/2-metrics.getHeight()/2;
+        		
+        		this.stringX=x;
+        		this.stringY=y+(int)(metrics.getHeight()/1.28);
+        		calibrationRequired=false;
+        		return;
+        	}
+    	}
+    	
+
+    }
+    public void translate(int x, int y) 
+    {
+    	polygon.translate(x, y);
+    	this.x+=x;
+    	this.y+=y;
+    	calibrationRequired=true;
+    	
+
+    }
+    public String getText() 
+    {
+    	return text;
+    }
+    public void setText(String text) 
+    {
+    	this.text=text;
+    }
+    public void setFontColor(Color color) 
+    {
+    	this.fontColor=color;
     }
     
 
@@ -175,10 +250,32 @@ public class Button extends JButton implements MouseListener,ActionListener {
 
 		
     }
-    public Polygon getShape() 
+    @Override 
+    public void setFont(Font font) 
     {
-    	return polygon;
+    	this.font=font;
+    	
     }
+    @Override
+    public Font getFont() 
+    {
+    	return this.font.deriveFont(fontSize);
+    }
+    public ActionListener[] getActionListeners() 
+    {
+    	return actionListeners;
+    }
+    public void addActionListener(ActionListener listener) 
+    {
+    	ActionListener[] temp=new ActionListener[actionListeners.length+1];
+    	for(int i=0;i<actionListeners.length;i++) 
+    	{
+    		temp[i]=actionListeners[i];
+    	}
+    	temp[actionListeners.length]=listener;
+    	actionListeners=temp;
+    }
+
 	@Override
 	//Fires action events to all listeners if this button has been clicked 
 	public void mouseClicked(MouseEvent e) {
@@ -225,20 +322,7 @@ public class Button extends JButton implements MouseListener,ActionListener {
 		
 	}
 	
-	@Override
-	//Fires off action events for mouseClicks when pressed to fix dead zones
-	public void actionPerformed(ActionEvent e) {
-		if(super.getParent()!=null) 
-		{
-			for(MouseListener i:super.getParent().getMouseListeners()) 
-			{
-				i.mouseClicked(new MouseEvent(parent, 500, System.currentTimeMillis(), 16, (int)(MouseInputParser.getX()*MouseInputParser.getRatioX()), (int)(MouseInputParser.getY()*MouseInputParser.getRatioY()), 1, false,MouseEvent.BUTTON1));
-				i.mouseReleased(new MouseEvent(parent, 500, System.currentTimeMillis(), 16, (int)(MouseInputParser.getX()*MouseInputParser.getRatioX()), (int)(MouseInputParser.getY()*MouseInputParser.getRatioY()), 1, false,MouseEvent.BUTTON1));
 
-			}
-		}
-		
-	}
 
 
 }
