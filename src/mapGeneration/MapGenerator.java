@@ -87,26 +87,24 @@ public class MapGenerator {
 				int[] adjX = {0,1,0,-1};
 				int roomType=0;
 				int powTwo=1;
-				for(int k=0;k<maze.length;k++) {
+				/*for(int k=0;k<maze.length;k++) {
 					for(int m=0;m<maze[0].length;m++) {
 						System.out.print(maze[k][m]);
 					}
 					System.out.println();
-				}
+				}*/
 				for(int k=0;k<4;k++) {
 					if(maze[1+2*i+adjY[k]][1+2*j+adjX[k]]==' ') {
 						roomType+=powTwo;
-						powTwo*=2;
 					}
+					powTwo*=2;
 				}
-				System.out.println(roomType);
 				if(numRooms[roomType]==0) {
 					roomType=0;
 				}
-				System.out.println(roomType);
 				int randRoom=randomNums.nextInt(0,numRooms[roomType]);
 				String output=(roomType<10?"0"+roomType:""+roomType)+(randRoom<10?"0"+randRoom:""+randRoom);
-				System.out.println(output);
+				map[i][j]=Integer.parseInt(output);
 			}
 		}
 	}
