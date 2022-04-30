@@ -23,10 +23,13 @@ public class MapGeneratorTester extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.BLACK);
-		g.fillRect(0,0,576,448);
+		g.fillRect(0,0,16*44,16*36);
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, 32, 32);
 	}
 	
 	public static void main(String[] args) {
+		MapGenerator op=new MapGenerator();
 		MapGeneratorTester gb = new MapGeneratorTester();
 	}
 }

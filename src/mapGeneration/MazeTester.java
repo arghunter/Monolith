@@ -38,7 +38,7 @@ public class MazeTester extends JPanel{
 	
 	public static void main(String[] args) {
 		
-		generateMaze(30,20);
+		generateMaze(20,15);
 		JFrame w = new JFrame("Maze");
 		w.setSize(600,600);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
