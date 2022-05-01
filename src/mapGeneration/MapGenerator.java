@@ -102,7 +102,7 @@ public class MapGenerator {
 				if(numRooms[roomType]==0) {
 					roomType=0;
 				}
-				int randRoom=randomNums.nextInt(0,numRooms[roomType]);
+				int randRoom=randomNums.nextInt(numRooms[roomType]);
 				String output=(roomType<10?"0"+roomType:""+roomType)+(randRoom<10?"0"+randRoom:""+randRoom);
 				map[i][j]=output;
 			}

@@ -40,6 +40,7 @@ public class Button extends Component implements MouseListener {
     private ActionListener[] actionListeners;
     private boolean calibrationRequired;
     private boolean fontSizeSet=false;
+    private boolean hoverEffectsOn=true;
   
 
 
@@ -129,11 +130,12 @@ public class Button extends Component implements MouseListener {
         {
         	if(isPressed) 
         	{
-        		
-        		g.setColor(new Color((int)(color.getRed()*0.5),(int)(color.getGreen()*0.5),(int)(color.getBlue()*0.5)));
+        		if(this.hoverEffectsOn)
+        			g.setColor(new Color((int)(color.getRed()*0.5),(int)(color.getGreen()*0.5),(int)(color.getBlue()*0.5)));
         	}else 
-        	{
-            	g.setColor(new Color((int)(color.getRed()*0.75),(int)(color.getGreen()*0.75),(int)(color.getBlue()*0.75)));
+        	{	
+        		if(this.hoverEffectsOn)
+        			g.setColor(new Color((int)(color.getRed()*0.75),(int)(color.getGreen()*0.75),(int)(color.getBlue()*0.75)));
             	isHovering=true;
         	}
         }
@@ -156,6 +158,19 @@ public class Button extends Component implements MouseListener {
         
         
 
+    }
+    public void setHoverEffectsOn(boolean isOn) 
+    {
+    	this.hoverEffectsOn=isOn;
+    }
+    public boolean isHoverEffectsOn() 
+    {
+    	return this.hoverEffectsOn;
+    }
+    public void autoSizeFont() 
+    {
+    	this.fontSizeSet=false;
+    	this.calibrationRequired=true;
     }
     public void setFontSize(float size) 
     {

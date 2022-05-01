@@ -11,12 +11,16 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import GameObjects.Player.items.materials.Material;
 import mapGeneration.MazeGenerator;
+import render.Tester;
 
 public class PetersMazeTester extends JPanel{
 	
 	private static char[][] maze;
-	
+	Material steel=new Material("Spider",100);
+	private RenderableMenuItem item=new RenderableMenuItem(steel,900,800,this);
+
 	public PetersMazeTester() {
 		
 	}
@@ -32,33 +36,38 @@ public class PetersMazeTester extends JPanel{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		BufferedImage img=createGradient();
+		g.drawImage(img, 0, 0, null);
 		for(int i=0;i<maze.length;i++) {
 			for(int j=0;j<maze[i].length;j++) {
 				if(maze[i][j]=='#') {
-					g.fillRect(20+15*j,20+15*i,15,15);
+					g.fillRect(20+15*j+(int)(Tester.WIDTH/2)-350,20+15*i+(int)(Tester.HEIGHT/2)-300,15,15);
 				}
 			}
 		}
+		item.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
+
 	}
+	
 	
 	public static void generateMaze(int sizeX,int sizeY) {
 		MazeGenerator generator=new MazeGenerator(0);
 		maze=generator.generate(sizeX,sizeY);
 	}
 	
-	private static BufferedImage createTestImage() {
-	    int w = 1024;
-	    int h = 768;
+	private static BufferedImage createGradient() {
+	    int w = (int) Tester.WIDTH;
+	    int h = (int) Tester.HEIGHT;
 
 	    BufferedImage img = new
 	        BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
 	    Graphics2D g = img.createGraphics();
-	    Color[] colors = { Color.red, Color.green, Color.blue };
-	    float[] dist = {0.0f, 0.5f, 1.0f };
-	    Point2D center = new Point2D.Float(0.5f * w, 0.5f * h);
+	    Color[] colors = { new Color(212,175,55), new Color((212*2)/3,(175*2)/3,(55*2)/3), new Color(212/6,175/6,55/6) };
+	    float[] dist = {0.0f, 0.2f, 0.667f };
+	    Point center = new Point((int)(0.5f * w),(int) (0.45f * h));
 
 	    RadialGradientPaint p =
-	        new RadialGradientPaint(center, 0.5f * w, dist, colors);
+	        new RadialGradientPaint(center, 0.4f * w, dist, colors);
 	    g.setPaint(p);
 	    g.fillRect(0, 0, w, h);
 	    g.dispose();

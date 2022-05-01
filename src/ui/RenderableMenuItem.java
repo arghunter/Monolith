@@ -40,10 +40,10 @@ public class RenderableMenuItem implements ActionListener {
 		tx-=image.getWidth()/2;
 		ty-=image.getHeight()/2;
 		Point[] points= {new Point(tx,ty),new Point(tx+image.getWidth()+10,ty),new Point(tx+image.getWidth()+10,ty+image.getHeight()+50),new Point(tx,ty+image.getHeight()+50)};
-		button=new Button(points,new Color(0f,0f,1f,1f));
+		button=new Button(points,new Color(0f,0f,0f,0f));
 		panel.add(button);
 		button.addActionListener(this);
-		
+		button.setHoverEffectsOn(false);
 		
 	}
 	public void draw(Graphics2D g,int JPanelX, int JPanelY) 
