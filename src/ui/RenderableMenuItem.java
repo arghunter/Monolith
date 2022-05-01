@@ -44,6 +44,7 @@ public class RenderableMenuItem implements ActionListener {
 		panel.add(button);
 		button.addActionListener(this);
 		button.setHoverEffectsOn(false);
+		button.setOutlineColor(new Color(0.5f,0.5f,0.5f,0.75f));
 		
 	}
 	public void draw(Graphics2D g,int JPanelX, int JPanelY) 

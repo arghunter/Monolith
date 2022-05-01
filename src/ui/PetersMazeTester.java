@@ -56,20 +56,20 @@ public class PetersMazeTester extends JPanel{
 	}
 	
 	private static BufferedImage createGradient() {
-	    int w = (int) Tester.WIDTH;
-	    int h = (int) Tester.HEIGHT;
+	    int width = (int) Tester.WIDTH;
+	    int height = (int) Tester.HEIGHT;
 
 	    BufferedImage img = new
-	        BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+	        BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	    Graphics2D g = img.createGraphics();
-	    Color[] colors = { new Color(212,175,55), new Color((212*2)/3,(175*2)/3,(55*2)/3), new Color(212/6,175/6,55/6) };
-	    float[] dist = {0.0f, 0.2f, 0.667f };
-	    Point center = new Point((int)(0.5f * w),(int) (0.45f * h));
+	    Color[] colors = {new Color((212)/3,(175)/3,(55)/3), new Color(212/6,175/6,55/6) };
+	    float[] ratio = { 0.0f, 0.5f };
+	    Point center = new Point((int)(0.5f * width),(int) (0.1f * height));
 
 	    RadialGradientPaint p =
-	        new RadialGradientPaint(center, 0.4f * w, dist, colors);
+	        new RadialGradientPaint(center, 0.4f * width, ratio, colors);
 	    g.setPaint(p);
-	    g.fillRect(0, 0, w, h);
+	    g.fillRect(0, 0, width, height);
 	    g.dispose();
 
 	    return img;

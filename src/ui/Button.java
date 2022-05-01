@@ -1,4 +1,5 @@
 package ui;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -41,6 +42,7 @@ public class Button extends Component implements MouseListener {
     private boolean calibrationRequired;
     private boolean fontSizeSet=false;
     private boolean hoverEffectsOn=true;
+    private Color outLineColor=color;
   
 
 
@@ -146,6 +148,9 @@ public class Button extends Component implements MouseListener {
         }
         
         g.fill(polygon);
+        g.setColor(outLineColor);
+        g.setStroke(new BasicStroke(3));
+        g.draw(polygon);
         if(calibrationRequired) 
         {
         	calibrateText(g);
@@ -176,6 +181,10 @@ public class Button extends Component implements MouseListener {
     {
     	this.fontSizeSet=true;
     	this.fontSize=size;
+    }
+    public void setOutlineColor(Color color) 
+    {
+    	this.outLineColor=color;
     }
     private void calibrateText(Graphics2D g) 
     {
