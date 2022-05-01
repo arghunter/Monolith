@@ -39,7 +39,7 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	
 	public MapGeneratorTester() {
 		JFrame w = new JFrame("Maze");
-		w.setSize(600,600);
+		w.setSize(1600,1000);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = w.getContentPane();
 		c.add(this);
@@ -70,13 +70,18 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	}
 	
 	public void paintComponent(Graphics graphics) {
-		super.paintComponent(graphics);
+		Graphics2D graphic=(Graphics2D) graphics;
+		double ratioX = super.getWidth() / 2560.0;
+		double ratioY = super.getHeight() / 1377.0;
+		input.setRatio(ratioX, ratioY);
+		graphic.scale(ratioX, ratioY);
+		super.paintComponent(graphic);
 		input.updatePlayerPosAndAngle(thePlayer);
 		String[][] curRoom=op.getRoom(curRoomX, curRoomY);
 		for(int i=0;i<op.getRoomSizeY();i++) {
 			for(int j=0;j<op.getRoomSizeX();j++) {
 				if(curRoom[i][j].equals("11")) {
-					graphics.fillRect(j*32,i*32,32,32);
+					graphic.fillRect(j*32,i*32,32,32);
 				}
 			}
 		}
