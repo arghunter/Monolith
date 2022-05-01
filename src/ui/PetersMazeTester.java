@@ -19,7 +19,7 @@ public class PetersMazeTester extends JPanel{
 	
 	private static char[][] maze;
 	Material steel=new Material("Spider",100);
-	private RenderableMenuItem item=new RenderableMenuItem(steel,900,800,this);
+	private RenderableMenuItem item=new RenderableMenuItem(steel,900,200,this);
 
 	public PetersMazeTester() {
 		

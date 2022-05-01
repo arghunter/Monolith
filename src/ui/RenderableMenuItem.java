@@ -39,7 +39,7 @@ public class RenderableMenuItem implements ActionListener {
 		int ty=y;
 		tx-=image.getWidth()/2;
 		ty-=image.getHeight()/2;
-		Point[] points= {new Point(tx,ty),new Point(tx+image.getWidth()+10,ty),new Point(tx+image.getWidth()+10,ty+image.getHeight()+50),new Point(tx,ty+image.getHeight()+50)};
+		Point[] points= {new Point(tx,ty),new Point(tx+image.getWidth()+10,ty),new Point(tx+image.getWidth()+10,ty+image.getHeight()+10),new Point(tx,ty+image.getHeight()+10)};
 		button=new Button(points,new Color(0f,0f,0f,0f));
 		panel.add(button);
 		button.addActionListener(this);
@@ -65,6 +65,8 @@ public class RenderableMenuItem implements ActionListener {
 		g.drawString(item.getName(),x-image.getWidth()/2+2 ,image.getHeight()+image.getY()+5);
 		if(button.isHovering()) 
 		{
+			g.setColor(Color.YELLOW);
+			
 			g.setFont(text.deriveFont(60f));
 			g.drawString(item.getName(),1400,600);
 			g.drawString(""+item.getType(),1400,660);

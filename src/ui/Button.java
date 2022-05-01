@@ -18,6 +18,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JButton;
 
+import input.InputParser;
 import input.MouseInputParser;
 
 public class Button extends Component implements MouseListener {
@@ -149,7 +150,7 @@ public class Button extends Component implements MouseListener {
         
         g.fill(polygon);
         g.setColor(outLineColor);
-        g.setStroke(new BasicStroke(3));
+        g.setStroke(new BasicStroke(4f));
         g.draw(polygon);
         if(calibrationRequired) 
         {
@@ -314,7 +315,7 @@ public class Button extends Component implements MouseListener {
 	//Fires action events to all listeners if this button has been clicked 
 	public void mouseClicked(MouseEvent e) {
 
-		
+		System.out.println(MouseInputParser.getX()+" "+MouseInputParser.getY());
 		if(super.getParent()!=null&&e.getButton()==MouseEvent.BUTTON1&&buttonContainsMouse()) 
 		{
 			for(ActionListener i: this.getActionListeners()) 
