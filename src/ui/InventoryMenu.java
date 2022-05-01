@@ -17,7 +17,7 @@ public class InventoryMenu {
 		items= new ArrayList<RenderableMenuItem>();
 		for(int i=0;i<inventory.getStorage().size();i++) 
 		{
-			//items.add(new RenderableMenuItem())
+			items.add(new RenderableMenuItem(inventory.getStorage().get(i),256*(i%6)+275,((i/6)+1)*256,panel));
 		}
 	}
 
