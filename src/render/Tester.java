@@ -112,7 +112,6 @@ public class Tester extends JPanel implements ActionListener {
 
 		super.paintComponent(g);
 		save.save(thePlayer);
-		
 		g.scale(ratioX, ratioY);
 
 		setBackground(Color.WHITE);

@@ -1,9 +1,11 @@
 package ui;
+import java.awt.event.MouseWheelListener;
 
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseWheelEvent;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -15,14 +17,14 @@ import GameObjects.Player.items.materials.Material;
 import mapGeneration.MazeGenerator;
 import render.Tester;
 
-public class PetersMazeTester extends JPanel{
+public class PetersMazeTester extends JPanel implements MouseWheelListener{
 	
 	private static char[][] maze;
 	Material steel=new Material("Spider",100);
 	private RenderableMenuItem item=new RenderableMenuItem(steel,900,200,this);
 
 	public PetersMazeTester() {
-		
+		this.addMouseWheelListener(this);
 	}
 	
 	public void printMaze(char[][] maze) {
@@ -49,7 +51,13 @@ public class PetersMazeTester extends JPanel{
 
 	}
 	
-	
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+
+			item.translate(0, 4*(int)(e.getUnitsToScroll()));
+		repaint();
+		
+	}
 	public static void generateMaze(int sizeX,int sizeY) {
 		MazeGenerator generator=new MazeGenerator(0);
 		maze=generator.generate(sizeX,sizeY);
