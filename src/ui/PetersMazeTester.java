@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import GameObjects.Player.Inventory;
 import GameObjects.Player.items.materials.Material;
 import mapGeneration.MazeGenerator;
 import render.Tester;
@@ -22,7 +23,8 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener{
 	private static char[][] maze;
 	Material steel=new Material("Spider",100);
 	private RenderableMenuItem item=new RenderableMenuItem(steel,900,200,this);
-
+	Inventory inventory=new Inventory();
+	InventoryMenu menu=new InventoryMenu(inventory,this);
 	public PetersMazeTester() {
 		this.addMouseWheelListener(this);
 	}
@@ -36,8 +38,10 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener{
 		}
 	}
 	
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics gr) {
+		Graphics2D g=(Graphics2D)gr;
 		super.paintComponent(g);
+
 		BufferedImage img=createGradient();
 		g.drawImage(img, 0, 0, null);
 		for(int i=0;i<maze.length;i++) {
@@ -48,7 +52,7 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener{
 			}
 		}
 		item.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
-
+		menu.draw((Graphics2D)g,(int)this.getLocationOnScreen().getX() , (int)this.getLocationOnScreen().getY());
 	}
 	
 	@Override
@@ -66,7 +70,7 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener{
 	private static BufferedImage createGradient() {
 	    int width = (int) Tester.WIDTH;
 	    int height = (int) Tester.HEIGHT;
-
+	    
 	    BufferedImage img = new
 	        BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	    Graphics2D g = img.createGraphics();

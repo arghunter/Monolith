@@ -146,7 +146,7 @@ public class Inventory {
 			long consumableExtra=0;
 			for(int i=0;i<storage.size();i++) 
 			{
-				if(storage.get(i).equals(item)) 
+				if(storage.get(i)!=null&&storage.get(i).equals(item)) 
 				{
 					sameItem=storage.get(i);
 					if(item.getType()==ItemType.CONSUMABLE) 
@@ -181,6 +181,7 @@ public class Inventory {
 
 		} else {
 			storage.add(item);
+			
 		}
 	}
 	public boolean contains(Item item) 

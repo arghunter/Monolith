@@ -1,5 +1,5 @@
 package ui;
-import java.awt.BasicStroke;
+import java.awt.BasicStroke; 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -137,8 +137,10 @@ public class Button extends Component implements MouseListener {
         			g.setColor(new Color((int)(color.getRed()*0.5),(int)(color.getGreen()*0.5),(int)(color.getBlue()*0.5)));
         	}else 
         	{	
-        		if(this.hoverEffectsOn)
+        		if(this.hoverEffectsOn) 
+        		{
         			g.setColor(new Color((int)(color.getRed()*0.75),(int)(color.getGreen()*0.75),(int)(color.getBlue()*0.75)));
+        		}
             	isHovering=true;
         	}
         }
