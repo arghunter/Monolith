@@ -37,7 +37,7 @@ public class MapGenerator {
 	
 	private int[] numRooms = new int[16];
 	
-	private Random randomNums = new Random(0);
+	private Random randomNums = new Random(2);
 	
 	public MapGenerator() {
 		generateMaze();

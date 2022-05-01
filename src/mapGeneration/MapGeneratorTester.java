@@ -54,12 +54,16 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(thePlayer.getCenterX()>=op.getRoomSizeX()*32) {
 			curRoomX++;
+			thePlayer.setCoordsMove(thePlayer.getX()-32*(op.getRoomSizeX()-3), thePlayer.getY());
 		}else if(thePlayer.getCenterX()<=0) {
 			curRoomX--;
+			thePlayer.setCoordsMove(thePlayer.getX()+32*(op.getRoomSizeX()-3), thePlayer.getY());
 		}else if(thePlayer.getCenterY()>=op.getRoomSizeY()*32) {
 			curRoomY++;
+			thePlayer.setCoordsMove(thePlayer.getX(),thePlayer.getY()-32*(op.getRoomSizeY()-3));
 		}else if(thePlayer.getCenterY()<=0) {
 			curRoomY--;
+			thePlayer.setCoordsMove(thePlayer.getX(),thePlayer.getY()+32*(op.getRoomSizeY()-3));
 		}
 		System.out.println(curRoomX+" "+curRoomY);
 		repaint();
