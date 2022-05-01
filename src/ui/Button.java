@@ -39,6 +39,7 @@ public class Button extends Component implements MouseListener {
     private int stringY;
     private ActionListener[] actionListeners;
     private boolean calibrationRequired;
+    private boolean fontSizeSet=false;
   
 
 
@@ -156,8 +157,17 @@ public class Button extends Component implements MouseListener {
         
 
     }
+    public void setFontSize(float size) 
+    {
+    	this.fontSizeSet=true;
+    	this.fontSize=size;
+    }
     private void calibrateText(Graphics2D g) 
     {
+    	if(fontSizeSet) 
+    	{
+    		return;
+    	}
     	int fontSize=4;
     	
     	while(true) 

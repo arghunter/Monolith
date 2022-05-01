@@ -43,6 +43,8 @@ public class Tester extends JPanel implements ActionListener {
 	private Button zombieButton;
 	private SaveSystem save;
 	private RenderableMenuItem item;
+	public static final double WIDTH=2560.0;
+	public static final double HEIGHT=1377.0;
 
 	public Tester() {
 
@@ -67,8 +69,8 @@ public class Tester extends JPanel implements ActionListener {
 		thePlayer = save.loadSave();
 		this.initInput(w);
 		this.frame = w;
-		ratioX = super.getWidth() / 2560.0;
-		ratioY = super.getHeight() / 1377.0;
+		ratioX = super.getWidth() / WIDTH;
+		ratioY = super.getHeight() / HEIGHT;
 
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = w.getContentPane();
