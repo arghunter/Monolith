@@ -32,9 +32,10 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	private JFrame frame;
 	private Timer clock=new Timer(10, this);
 	private MapGenerator op=new MapGenerator();
-	int curRoomX=0;
-	int curRoomY=0;
-
+	private int curRoomX=0;
+	private int curRoomY=0;
+	
+	private String[][] curRoom;
 	//private ImageSystem image=new ImageSystem(0,0,new ImageIcon("StoneBig.png").getImage());
 	
 	public MapGeneratorTester() {
@@ -52,16 +53,16 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(thePlayer.getCenterX()>=op.getRoomSizeX()*32) {
+		if(thePlayer.getCenterX()>=op.getRoomSizeX()*32 && (curRoomX+1<op.getXSize())) {
 			curRoomX++;
 			thePlayer.setCoordsMove(thePlayer.getX()-32*(op.getRoomSizeX()-3), thePlayer.getY());
-		}else if(thePlayer.getCenterX()<=0) {
+		}else if(thePlayer.getCenterX()<=0 && (curRoomX-1>=0)) {
 			curRoomX--;
 			thePlayer.setCoordsMove(thePlayer.getX()+32*(op.getRoomSizeX()-3), thePlayer.getY());
-		}else if(thePlayer.getCenterY()>=op.getRoomSizeY()*32) {
+		}else if(thePlayer.getCenterY()>=op.getRoomSizeY()*32 && (curRoomY+1<op.getYSize())) {
 			curRoomY++;
 			thePlayer.setCoordsMove(thePlayer.getX(),thePlayer.getY()-32*(op.getRoomSizeY()-3));
-		}else if(thePlayer.getCenterY()<=0) {
+		}else if(thePlayer.getCenterY()<=0 && (curRoomY-1>=0)) {
 			curRoomY--;
 			thePlayer.setCoordsMove(thePlayer.getX(),thePlayer.getY()+32*(op.getRoomSizeY()-3));
 		}
@@ -77,10 +78,22 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 		graphic.scale(ratioX, ratioY);
 		super.paintComponent(graphic);
 		input.updatePlayerPosAndAngle(thePlayer);
-		String[][] curRoom=op.getRoom(curRoomX, curRoomY);
-		for(int i=0;i<op.getRoomSizeY();i++) {
-			for(int j=0;j<op.getRoomSizeX();j++) {
-				if(curRoom[i][j].equals("11")) {
+		curRoom=op.getRoom(curRoomX, curRoomY);
+		if(!(curRoom==null)) {
+/*			for(int i=0;i<op.getRoomSizeY();i++) {
+				for(int j=0;j<op.getRoomSizeX();j++) {
+					System.out.print(curRoom[i][j]);
+				}
+				System.out.println();
+			}
+*/			for(int i=0;i<op.getRoomSizeY();i++) {
+				for(int j=0;j<op.getRoomSizeX();j++) {
+					graphic.setColor(Color.WHITE);
+					if(curRoom[i][j].equals("11")) {
+						graphic.setColor(Color.BLACK);
+					}else if(curRoom[i][j].equals("22")) {
+						graphic.setColor(Color.RED);
+					}
 					graphic.fillRect(j*32,i*32,32,32);
 				}
 			}
