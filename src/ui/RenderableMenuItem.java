@@ -33,12 +33,14 @@ public class RenderableMenuItem implements ActionListener {
 	private int x;
 	private int y;
 	private ActionListener[] actionListeners;
+	private Button[] itemButtons;
 	public RenderableMenuItem(Item item,int x, int y,JPanel panel) 
 	{
 		this.item=item;
 		this.x=x;
 		this.y=y;
 		ImageIcon iconImg=(new ImageIcon("imgs/"+item.getName()+"/"+item.getName()+0+".png"));
+		actionListeners=new ActionListener[0];
 		if(iconImg.getIconWidth()==-1) 
 		{
 			throw new IllegalArgumentException("Image not found");
@@ -49,18 +51,20 @@ public class RenderableMenuItem implements ActionListener {
 		if(item.getType()==ItemType.BLUEPRINT) 
 		{
 		    Color[] colors = { new Color(212/6,175/6,55/6),new Color((212*2)/5,(175*2)/5,(55*2)/5) };
-		    float[] ratio = { 0.0f, 0.8f };
+		    float[] ratio = { 0.2f, 0.8f };
 		    Point center=new Point((int)MouseInputParser.getX(),(int)MouseInputParser.getY());
 		    RadialGradientPaint gradient =new RadialGradientPaint(center, 0.8f * img.getWidth(), ratio, colors);
 		    g.setPaint(gradient);
 		    for(int i=1;i<8;i++) 
 		    {
+		    
 		    	g.draw(new Line2D.Double(0,i*img.getHeight()/8,img.getWidth(),i*img.getHeight()/8));
 		    }
 		    for(int i=1;i<8;i++) 
 		    {
 		    	g.draw(new Line2D.Double(i*img.getWidth()/8,0,i*img.getWidth()/8,img.getHeight()));
 		    }
+		    //Construct Button Discard/Sell button
 		}
 		g.drawImage(iconImg.getImage(), 0, 0, null);
 //		image=new ImageSystem(x+5,y+5,new ImageIcon("imgs/"+item.getName()+"/"+item.getName()+0+".png").getImage());
@@ -91,7 +95,23 @@ public class RenderableMenuItem implements ActionListener {
 			
 			e.printStackTrace();
 		}
-
+		if(item.getType()==ItemType.CONSUMABLE) 
+		{
+			g.setFont(text.deriveFont(30f));
+			g.setColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+			Consumable consumable=(Consumable) item;
+			String count="x"+consumable.getCount();
+			FontMetrics metrics=g.getFontMetrics();
+			g.drawString(count, image.getWidth()+x-metrics.stringWidth(count), y+metrics.getHeight());
+		}else if(item.getType()==ItemType.MATERIAL) 
+		{
+			g.setFont(text.deriveFont(30f));
+			g.setColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+			Material material=(Material) item;
+			String count="x"+material.getCount();
+			FontMetrics metrics=g.getFontMetrics();
+			g.drawString(count.substring(0,count.indexOf('.')), image.getWidth()+x-metrics.stringWidth(count.substring(0,count.indexOf('.'))), y+metrics.getHeight());
+		}
 		if(button.isHovering()) 
 		{
 			g.setColor(new Color(0.4f,0.4f,0.4f,0.5f));
@@ -140,12 +160,27 @@ public class RenderableMenuItem implements ActionListener {
 		this.x+=x;
 		this.y+=y;
 	}
-	public void addActionListener(ActionListener actionListener) {}
+	public void addActionListener(ActionListener listener) 
+	{
+		ActionListener[] temp=new ActionListener[actionListeners.length+1];
+    	for(int i=0;i<actionListeners.length;i++) 
+    	{
+    		temp[i]=actionListeners[i];
+    	}
+    	temp[actionListeners.length]=listener;
+    	actionListeners=temp;
+	}
 	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if(button.isClicked(e)) 
+		{
+			for(int i=0;i<actionListeners.length;i++) 
+			{
+				actionListeners[i].actionPerformed(e);
+			}
+		}
 		
 	}
 

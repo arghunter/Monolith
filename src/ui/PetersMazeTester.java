@@ -43,6 +43,7 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 		inventory.addToStorage(new Consumable("Baklava",10,64));
 		Item[] it={new Consumable("Baklava",10,64),new Consumable("Spider",10,64)};
 		inventory.addToStorage(new Blueprint("Baklava",1,it,new Consumable("Baklava",10,64)));
+		inventory.addToStorage(new Material("Crystal",100000));
 
 		menu=new InventoryMenu(inventory,this);
 	}
@@ -95,7 +96,7 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 		
 		generateMaze(20,15);
 		JFrame w = new JFrame("Maze");
-		w.setSize(600,600);
+		w.setSize(1600,1000);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = w.getContentPane();
 		c.add(new PetersMazeTester());
