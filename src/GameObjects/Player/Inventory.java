@@ -167,7 +167,7 @@ public class Inventory {
 			}
 			if(sameItem==null) 
 			{
-				storage.add(sameItem);
+				storage.add(item);
 				
 			}else if(item.getType()==ItemType.MATERIAL) 
 			{

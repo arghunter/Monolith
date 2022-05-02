@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,21 +14,37 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import GameObjects.Player.Inventory;
+import GameObjects.Player.items.Item;
+import GameObjects.Player.items.blueprints.Blueprint;
+import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
+import GameObjects.Player.items.weapons.MeleeWeapon;
+import input.InputParser;
 import mapGeneration.MazeGenerator;
 import render.Tester;
 
-public class PetersMazeTester extends JPanel implements MouseWheelListener{
+public class PetersMazeTester extends JPanel implements MouseWheelListener,ActionListener{
 	
 	private static char[][] maze;
 	Material steel=new Material("Spider",100);
 	private RenderableMenuItem item=new RenderableMenuItem(steel,900,200,this);
+	private Timer clock = new Timer(10, this);
+	private InputParser input=new InputParser(this);
 	Inventory inventory=new Inventory();
-	InventoryMenu menu=new InventoryMenu(inventory,this);
+	InventoryMenu menu;
 	public PetersMazeTester() {
 		this.addMouseWheelListener(this);
+		clock.start();
+
+		inventory.addToStorage(new Consumable("Baklava",10,64));
+		inventory.addToStorage(new Consumable("Baklava",10,64));
+		Item[] it={new Consumable("Baklava",10,64),new Consumable("Spider",10,64)};
+		inventory.addToStorage(new Blueprint("Baklava",1,it,new Consumable("Baklava",10,64)));
+
+		menu=new InventoryMenu(inventory,this);
 	}
 	
 	public void printMaze(char[][] maze) {
@@ -39,11 +57,14 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener{
 	}
 	
 	public void paintComponent(Graphics gr) {
-		Graphics2D g=(Graphics2D)gr;
+		Graphics2D g=(Graphics2D) gr;
+		double ratioX = super.getWidth() / 2560.0;
+		double ratioY = super.getHeight() / 1377.0;
+		input.setRatio(ratioX, ratioY);
+		g.scale(ratioX, ratioY);
 		super.paintComponent(g);
 
-		BufferedImage img=createGradient();
-		g.drawImage(img, 0, 0, null);
+		
 		for(int i=0;i<maze.length;i++) {
 			for(int j=0;j<maze[i].length;j++) {
 				if(maze[i][j]=='#') {
@@ -52,7 +73,8 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener{
 			}
 		}
 		item.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
-		menu.draw((Graphics2D)g,(int)this.getLocationOnScreen().getX() , (int)this.getLocationOnScreen().getY());
+		menu.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
+
 	}
 	
 	@Override
@@ -67,25 +89,7 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener{
 		maze=generator.generate(sizeX,sizeY);
 	}
 	
-	private static BufferedImage createGradient() {
-	    int width = (int) Tester.WIDTH;
-	    int height = (int) Tester.HEIGHT;
-	    
-	    BufferedImage img = new
-	        BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-	    Graphics2D g = img.createGraphics();
-	    Color[] colors = {new Color((212)/3,(175)/3,(55)/3), new Color(212/6,175/6,55/6) };
-	    float[] ratio = { 0.0f, 0.5f };
-	    Point center = new Point((int)(0.5f * width),(int) (0.1f * height));
-
-	    RadialGradientPaint p =
-	        new RadialGradientPaint(center, 0.4f * width, ratio, colors);
-	    g.setPaint(p);
-	    g.fillRect(0, 0, width, height);
-	    g.dispose();
-
-	    return img;
-	}
+	
 	
 	public static void main(String[] args) {
 		
@@ -97,5 +101,11 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener{
 		c.add(new PetersMazeTester());
 		w.setResizable(true);
 		w.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		repaint();
 	}
 }

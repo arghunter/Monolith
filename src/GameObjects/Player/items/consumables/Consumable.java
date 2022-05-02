@@ -15,9 +15,11 @@ public class Consumable extends Item {
 	
 	private long add(long num) 
 	{
+		
 		if((double)count+num<maxStack) 
 		{
-			count+=maxStack;
+			count+=num;
+			
 			return 0;
 		}else 
 		{

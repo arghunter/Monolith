@@ -133,13 +133,25 @@ public class Button extends Component implements MouseListener {
         {
         	if(isPressed) 
         	{
-        		if(this.hoverEffectsOn)
+        		if(hoverEffectsOn) 
+        		{
         			g.setColor(new Color((int)(color.getRed()*0.5),(int)(color.getGreen()*0.5),(int)(color.getBlue()*0.5)));
+
+        		}else 
+        		{
+                	g.setColor(color);
+
+        		}
         	}else 
         	{	
         		if(this.hoverEffectsOn) 
         		{
+        			
         			g.setColor(new Color((int)(color.getRed()*0.75),(int)(color.getGreen()*0.75),(int)(color.getBlue()*0.75)));
+        		}else 
+        		{
+                	g.setColor(color);
+
         		}
             	isHovering=true;
         	}
@@ -149,7 +161,6 @@ public class Button extends Component implements MouseListener {
         	g.setColor(color);
         	isHovering=false;
         }
-        
         g.fill(polygon);
         g.setColor(outLineColor);
         g.setStroke(new BasicStroke(4f));
@@ -317,7 +328,7 @@ public class Button extends Component implements MouseListener {
 	//Fires action events to all listeners if this button has been clicked 
 	public void mouseClicked(MouseEvent e) {
 
-		System.out.println(MouseInputParser.getX()+" "+MouseInputParser.getY());
+
 		if(super.getParent()!=null&&e.getButton()==MouseEvent.BUTTON1&&buttonContainsMouse()) 
 		{
 			for(ActionListener i: this.getActionListeners()) 

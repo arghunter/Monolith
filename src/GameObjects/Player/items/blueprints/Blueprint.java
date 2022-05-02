@@ -18,7 +18,7 @@ public class Blueprint extends Item {
 		this.components = components;
 		this.product = product;
 		this.count = Math.round(count);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public void add(Blueprint blueprint) {
@@ -32,6 +32,14 @@ public class Blueprint extends Item {
 
 	public void setCount(double count) {
 		this.count = count;
+	}
+	public Item[] getComponents() 
+	{
+		return components;
+	}
+	public Item getProduct() 
+	{
+		return product;
 	}
 
 
