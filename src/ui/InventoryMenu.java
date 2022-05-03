@@ -53,9 +53,24 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	public void draw(Graphics2D g, int JPanelX,int JPanelY) 
 	{
 		g.drawImage(createGradient(), 0, 0, null);
+		boolean tripped=false;
 		for(int i=0;i<items.size();i++) 
 		{
+			if(selectedItem!=null) 
+			{
+				if(items.get(i).isHovering()) 
+				{
+					tripped=true;
+					selectedItem.setIsSelected(false);
+				}
+			}
+
+			
 			items.get(i).draw(g, JPanelX, JPanelY);
+		}
+		if(!tripped&&selectedItem!=null) 
+		{
+			selectedItem.setIsSelected(true);
 		}
 	}
 	private static BufferedImage createGradient() {

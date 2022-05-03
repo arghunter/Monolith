@@ -35,6 +35,7 @@ public class RenderableMenuItem implements ActionListener {
 	private ActionListener[] actionListeners;
 	private Button[] itemButtons=new Button[0];
 	private boolean isSelected=false;
+	private boolean isHovering=false;
 	public RenderableMenuItem(Item item,int x, int y,JPanel panel) 
 	{
 		this.item=item;
@@ -109,6 +110,7 @@ public class RenderableMenuItem implements ActionListener {
 	public void draw(Graphics2D g,int JPanelX, int JPanelY) 
 	{
 		button.draw(g, JPanelX, JPanelY);
+		this.isHovering=button.isHovering();
 		image.drawImage(g);
 		Font text=null;
 		try {
@@ -187,6 +189,10 @@ public class RenderableMenuItem implements ActionListener {
 		image.move(x, y);
 		this.x+=x;
 		this.y+=y;
+	}
+	public boolean isHovering() 
+	{
+		return isHovering;
 	}
 	public void addActionListener(ActionListener listener) 
 	{
