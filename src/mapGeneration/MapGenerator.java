@@ -1,6 +1,7 @@
 package mapGeneration;
 
 import java.awt.*;
+
 import javax.swing.*;
 import general.ImageSystem;
 import general.FileInput;
@@ -8,13 +9,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Random;
+import general.Constants;
 
 public class MapGenerator {
-	public static final int XSIZE=20;
-	public static final int YSIZE=15;
+	public static final int XSIZE=Constants.XSIZE;
+	public static final int YSIZE=Constants.YSIZE;
 	
-	public static final int ROOMSIZEX=46;
-	public static final int ROOMSIZEY=36;
+	public static final int ROOMSIZEX=Constants.ROOMSIZEX;
+	public static final int ROOMSIZEY=Constants.ROOMSIZEY;
 	
 	//Each room is stored in the form ABCD where ABCD are digits
 	//AB represents the type of room: for each exit, add the corresponding number
