@@ -82,9 +82,9 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	    Graphics2D g = img.createGraphics();
 
 	    Color[] colors = {new Color((212)/3,(175)/3,(55)/3), new Color(212/6,175/6,55/6) };
-	    float[] ratio = { 0.0f, 0.5f };
+	    float[] ratio = { 0.0f, 0.6f };
 	    Point center=new Point((int)MouseInputParser.getX(),(int)MouseInputParser.getY());
-	    RadialGradientPaint gradient =new RadialGradientPaint(center, 0.15f * width, ratio, colors);
+	    RadialGradientPaint gradient =new RadialGradientPaint(center, 0.25f * width, ratio, colors);
 	    g.setPaint(gradient);
 	    g.fillRect(0, 0, width, height);
 	    g.dispose();

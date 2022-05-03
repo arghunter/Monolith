@@ -78,7 +78,8 @@ public class RenderableMenuItem implements ActionListener {
 		    	{
 		    		tempPoints[j]=new Point(itemPoints[j].x+iShiftX,itemPoints[j].y+iShiftY);
 		    	}
-		    	itemButtons[i]=new Button(tempPoints,new Color(0f,0f,0f,0f));
+		    	itemButtons[i]=new Button(tempPoints,new Color((212)/4,(175)/4,(55)/4,50));
+		    	itemButtons[i].setOutlineColor(new Color((120*4)/2,(113*4)/2,(96*4)/2,80));
 		    	if(i==0) 
 		    	{
 		    		itemButtons[i].setText("Construct Item");
@@ -88,6 +89,8 @@ public class RenderableMenuItem implements ActionListener {
 		    	}
 		    	itemButtons[i].setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
 		    	panel.add(itemButtons[i]);
+		    	itemButtons[i].addActionListener(this);
+		    	
 		    	iShiftY+=150;
 		    }
 		    //Construct Button Discard/Sell button
