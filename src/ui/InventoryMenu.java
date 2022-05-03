@@ -27,12 +27,13 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	Inventory inventory;
 	ArrayList<RenderableMenuItem> items;
 	RenderableMenuItem selectedItem;
+	private JPanel panel;
 	public InventoryMenu(Inventory inventory,JPanel panel) 
 	{
 		
 		this.inventory=inventory;
 
-		
+		this.panel=panel;
 		panel.addMouseWheelListener(this);
 		items= new ArrayList<RenderableMenuItem>();
 		for(int i=0;i<inventory.getStorage().size();i++) 
@@ -41,7 +42,6 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 				items.add(new RenderableMenuItem(inventory.getStorage().get(i),266*(i%6)+275,((i/6)+1)*266,panel));
 			items.get(i).addActionListener(this);
 		}
-		System.out.println(inventory.getStorage());
 	}
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
@@ -91,14 +91,37 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 
 	    return img;
 	}
+	public void update() 
+	{
+		for(int i=0;i<items.size();i++) 
+		{
+			items.get(i).dispose();
+		}
+		items= new ArrayList<RenderableMenuItem>();
+		for(int i=0;i<inventory.getStorage().size();i++) 
+		{
+			if(inventory.getStorage().get(i)!=null)
+				items.add(new RenderableMenuItem(inventory.getStorage().get(i),266*(i%6)+275,((i/6)+1)*266,panel));
+			items.get(i).addActionListener(this);
+		}
+		this.selectedItem=null;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(selectedItem!=null) 
+		if(e.getActionCommand().equals("ItemClicked")) 
 		{
-			selectedItem.setIsSelected(false);
+			if(selectedItem!=null) 
+			{
+				selectedItem.setIsSelected(false);
+			}
+			selectedItem=(RenderableMenuItem) e.getSource();
+			selectedItem.setIsSelected(true);
+		}else if(e.getActionCommand().equals("UpdateInventory")) 
+		{
+			this.update();
+			System.out.println("Hereu");
 		}
-		selectedItem=(RenderableMenuItem) e.getSource();
-		selectedItem.setIsSelected(true);
+
 		
 		
 	}

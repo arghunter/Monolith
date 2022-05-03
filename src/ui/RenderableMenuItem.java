@@ -220,6 +220,14 @@ public class RenderableMenuItem implements ActionListener {
 	{
 		this.isSelected=isSelected;
 	}
+	public void dispose() 
+	{
+		button.dispose();
+		for(int i=0;i<itemButtons.length;i++) 
+		{
+			itemButtons[i].dispose();
+		}
+	}
 	
 
 	@Override
@@ -241,7 +249,10 @@ public class RenderableMenuItem implements ActionListener {
 					{
 						try {
 							((Blueprint)this.item).construct();
-							
+							for(int j=0;j<actionListeners.length;j++) 
+							{
+								actionListeners[i].actionPerformed(new ActionEvent(this,88890,"UpdateInventory"));
+							}
 							
 						} catch (MissingResourcesException e1) {
 							// TODO Auto-generated catch block
@@ -251,6 +262,7 @@ public class RenderableMenuItem implements ActionListener {
 					}
 				}
 			}
+
 		}
 
 		
