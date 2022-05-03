@@ -17,9 +17,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Graphics2D;
+
+import GameObjects.Player.Inventory;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.blueprints.Blueprint;
+import GameObjects.Player.items.blueprints.MissingResourcesException;
 import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
 import general.ImageSystem;
@@ -36,6 +39,7 @@ public class RenderableMenuItem implements ActionListener {
 	private Button[] itemButtons=new Button[0];
 	private boolean isSelected=false;
 	private boolean isHovering=false;
+	
 	public RenderableMenuItem(Item item,int x, int y,JPanel panel) 
 	{
 		this.item=item;
@@ -50,7 +54,7 @@ public class RenderableMenuItem implements ActionListener {
 		BufferedImage img=new BufferedImage(iconImg.getIconWidth(),iconImg.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g=img.createGraphics();
 		int xShift=0;
-		Point[] itemPoints= {new Point(50+xShift,0),new Point(350+xShift,0),new Point(400+xShift,25),new Point(350+xShift,50),new Point(50+xShift,50),new Point(0+xShift,25)};
+		Point[] itemPoints= {new Point(50+xShift,0),new Point(250+xShift,0),new Point(300+xShift,25),new Point(250+xShift,50),new Point(50+xShift,50),new Point(0+xShift,25)};
 		if(item.getType()==ItemType.BLUEPRINT) 
 		{
 		    Color[] colors = { new Color(212/6,175/6,55/6),new Color((212*2)/5,(175*2)/5,(55*2)/5) };
@@ -68,7 +72,7 @@ public class RenderableMenuItem implements ActionListener {
 		    	g.draw(new Line2D.Double(i*img.getWidth()/8,0,i*img.getWidth()/8,img.getHeight()));
 		    }
 		    itemButtons=new Button[2];
-		    int iShiftX=1980;
+		    int iShiftX=2030;
 		    int iShiftY=750;
 		    for( int i=0;i<itemButtons.length;i++) 
 		    {
@@ -107,9 +111,9 @@ public class RenderableMenuItem implements ActionListener {
 		panel.add(button);
 		button.addActionListener(this);
 		button.setHoverEffectsOn(false);
-		//button.setOutlineColor(new Color(0.8f,0.8f,0.8f,0.5f));
 		
 	}
+	
 	public void draw(Graphics2D g,int JPanelX, int JPanelY) 
 	{
 		button.draw(g, JPanelX, JPanelY);
@@ -186,6 +190,7 @@ public class RenderableMenuItem implements ActionListener {
 		}
 		
 	}
+
 	public void translate(int x,int y) 
 	{
 		button.translate(x, y);
@@ -226,6 +231,27 @@ public class RenderableMenuItem implements ActionListener {
 				actionListeners[i].actionPerformed(new ActionEvent(this,88889,"ItemClicked"));
 			}
 		}
+		if(this.isHovering||isSelected) 
+		{
+			for(int i=0;i<itemButtons.length;i++) 
+			{
+				if(e.getSource()==itemButtons[i]) 
+				{
+					if(((Button)itemButtons[i]).getText().equals("Construct Item")) 
+					{
+						try {
+							Item construct=((Blueprint)this.item).construct();
+							
+						} catch (MissingResourcesException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					
+					}
+				}
+			}
+		}
+
 		
 	}
 

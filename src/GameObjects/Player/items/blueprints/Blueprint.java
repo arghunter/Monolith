@@ -9,15 +9,17 @@ import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
 
 public class Blueprint extends Item {
-	Item[] components;
-	Item product;
-	double count;
+	private Item[] components;
+	private Item product;
+	private double count;
+	private Inventory inventory;
 
-	public Blueprint(String name,int tier, double count, Item[] components, Item product) {
+	public Blueprint(String name,int tier, double count, Item[] components, Item product,Inventory inventory) {
 		super(name, ItemType.BLUEPRINT,tier);
 		this.components = components;
 		this.product = product;
 		this.count = Math.round(count);
+		this.inventory=inventory;
 
 	}
 
@@ -25,7 +27,7 @@ public class Blueprint extends Item {
 		count += Math.round(blueprint.getCount());
 
 	}
-
+	
 	public double getCount() {
 		return count;
 	}
@@ -43,7 +45,7 @@ public class Blueprint extends Item {
 	}
 
 
-	public Item construct(Inventory inventory) throws MissingResourcesException {
+	public Item construct() throws MissingResourcesException {
 		boolean [] requirementsFulfilled=new boolean[components.length];
 		ArrayList<Item> storage=inventory.getStorage();
 		for (int i = 0; i < components.length; i++) {
