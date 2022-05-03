@@ -46,6 +46,7 @@ public class Blueprint extends Item {
 
 
 	public void construct() throws MissingResourcesException {
+		System.out.println("here");
 		boolean [] requirementsFulfilled=new boolean[components.length];
 		ArrayList<Item> storage=inventory.getStorage();
 		for (int i = 0; i < components.length; i++) {
@@ -53,8 +54,8 @@ public class Blueprint extends Item {
 			if(components[i].getType()==ItemType.CONSUMABLE||components[i].getType()==ItemType.MATERIAL) 
 			{
 				double count=0;
-				for (int j = 0; j < storage.size(); i++) {
-					if(storage.get(i).equals(components[i])) 
+				for (int j = 0; j < storage.size(); j++) {
+					if(storage.get(j).equals(components[i])) 
 					{
 						if(components[i].getType()==ItemType.CONSUMABLE) 
 						{
@@ -139,7 +140,7 @@ public class Blueprint extends Item {
 		
 		inventory.addToStorage(product);
 //		inventory.removeFromStorage(new Blueprint(this.getName(),this.getTier(),1,this.components,this.product,this.inventory));
-		inventory.removeFromStorage(this);
+		//inventory.removeFromStorage(this);
 
 	}
 

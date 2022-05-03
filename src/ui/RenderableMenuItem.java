@@ -242,6 +242,7 @@ public class RenderableMenuItem implements ActionListener {
 						try {
 							((Blueprint)this.item).construct();
 							
+							
 						} catch (MissingResourcesException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
