@@ -51,7 +51,7 @@ public class Tester extends JPanel implements ActionListener {
 		mobList[0] = theSpider;
 		mobList[1] = secondSpider;
 		mobList[2] = theZombie;
-		Material steel=new Material("Spider",0,100);
+		Material steel=new Material("Spider",0,0);
 		item=new RenderableMenuItem(steel,900,800,this);
 		Point[] points = { new Point(238, 108), new Point(162, 108), new Point(108, 162), new Point(108, 238),
 				new Point(162, 292), new Point(238, 292), new Point(292, 238), new Point(292, 162) };

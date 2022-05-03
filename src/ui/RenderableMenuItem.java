@@ -240,7 +240,7 @@ public class RenderableMenuItem implements ActionListener {
 					if(((Button)itemButtons[i]).getText().equals("Construct Item")) 
 					{
 						try {
-							Item construct=((Blueprint)this.item).construct();
+							((Blueprint)this.item).construct();
 							
 						} catch (MissingResourcesException e1) {
 							// TODO Auto-generated catch block
