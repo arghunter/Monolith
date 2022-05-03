@@ -33,7 +33,8 @@ public class RenderableMenuItem implements ActionListener {
 	private int x;
 	private int y;
 	private ActionListener[] actionListeners;
-	private Button[] itemButtons;
+	private Button[] itemButtons=new Button[0];
+	private boolean isSelected=false;
 	public RenderableMenuItem(Item item,int x, int y,JPanel panel) 
 	{
 		this.item=item;
@@ -47,7 +48,8 @@ public class RenderableMenuItem implements ActionListener {
 		}
 		BufferedImage img=new BufferedImage(iconImg.getIconWidth(),iconImg.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g=img.createGraphics();
-
+		int xShift=0;
+		Point[] itemPoints= {new Point(50+xShift,0),new Point(350+xShift,0),new Point(400+xShift,25),new Point(350+xShift,50),new Point(50+xShift,50),new Point(0+xShift,25)};
 		if(item.getType()==ItemType.BLUEPRINT) 
 		{
 		    Color[] colors = { new Color(212/6,175/6,55/6),new Color((212*2)/5,(175*2)/5,(55*2)/5) };
@@ -64,10 +66,32 @@ public class RenderableMenuItem implements ActionListener {
 		    {
 		    	g.draw(new Line2D.Double(i*img.getWidth()/8,0,i*img.getWidth()/8,img.getHeight()));
 		    }
+		    itemButtons=new Button[2];
+		    int iShiftX=1980;
+		    int iShiftY=750;
+		    for( int i=0;i<itemButtons.length;i++) 
+		    {
+		    	
+		    	Point[] tempPoints=new Point[itemPoints.length];
+		    	for(int j=0;j<tempPoints.length;j++) 
+		    	{
+		    		tempPoints[j]=new Point(itemPoints[j].x+iShiftX,itemPoints[j].y+iShiftY);
+		    	}
+		    	itemButtons[i]=new Button(tempPoints,new Color(0f,0f,0f,0f));
+		    	if(i==0) 
+		    	{
+		    		itemButtons[i].setText("Construct Item");
+		    	}else if( i==1) 
+		    	{
+		    		itemButtons[i].setText("Sell Blueprint");
+		    	}
+		    	itemButtons[i].setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		    	panel.add(itemButtons[i]);
+		    	iShiftY+=150;
+		    }
 		    //Construct Button Discard/Sell button
 		}
 		g.drawImage(iconImg.getImage(), 0, 0, null);
-//		image=new ImageSystem(x+5,y+5,new ImageIcon("imgs/"+item.getName()+"/"+item.getName()+0+".png").getImage());
 		image=new ImageSystem(x+5,y+5,img);
 
 		image.move(image.getWidth()/2, image.getHeight()/2);
@@ -112,7 +136,7 @@ public class RenderableMenuItem implements ActionListener {
 			FontMetrics metrics=g.getFontMetrics();
 			g.drawString(count.substring(0,count.indexOf('.')), image.getWidth()+x-metrics.stringWidth(count.substring(0,count.indexOf('.'))), y+metrics.getHeight());
 		}
-		if(button.isHovering()) 
+		if(button.isHovering()||this.isSelected) 
 		{
 			g.setColor(new Color(0.4f,0.4f,0.4f,0.5f));
 			g.fillRect(x+2,y-1+11*image.getHeight()/12,image.getWidth()+6,image.getHeight()/12+10);
@@ -125,6 +149,10 @@ public class RenderableMenuItem implements ActionListener {
 			g.setFont(text.deriveFont(35f));
 			metrics=g.getFontMetrics();
 			g.drawString(""+item.getType(),2180-metrics.stringWidth(""+item.getType())/2,250);
+			for(int i=0;i<itemButtons.length;i++) 
+			{
+				itemButtons[i].draw(g, JPanelX, JPanelY);
+			}
 			if(item.getType()==ItemType.BLUEPRINT) 
 			{
 				Blueprint blueprint=(Blueprint) item;
@@ -170,6 +198,14 @@ public class RenderableMenuItem implements ActionListener {
     	temp[actionListeners.length]=listener;
     	actionListeners=temp;
 	}
+	public boolean isSelected() 
+	{
+		return isSelected;
+	}
+	public void setIsSelected(boolean isSelected) 
+	{
+		this.isSelected=isSelected;
+	}
 	
 
 	@Override
@@ -178,7 +214,7 @@ public class RenderableMenuItem implements ActionListener {
 		{
 			for(int i=0;i<actionListeners.length;i++) 
 			{
-				actionListeners[i].actionPerformed(e);
+				actionListeners[i].actionPerformed(new ActionEvent(this,88889,"ItemClicked"));
 			}
 		}
 		

@@ -1,6 +1,8 @@
 package ui;
 
 import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
@@ -21,10 +23,10 @@ import GameObjects.Player.items.weapons.MeleeWeapon;
 import input.MouseInputParser;
 import render.Tester;
 
-public class InventoryMenu implements MouseWheelListener {
+public class InventoryMenu implements MouseWheelListener,ActionListener {
 	Inventory inventory;
 	ArrayList<RenderableMenuItem> items;
-	
+	RenderableMenuItem selectedItem;
 	public InventoryMenu(Inventory inventory,JPanel panel) 
 	{
 		
@@ -37,6 +39,7 @@ public class InventoryMenu implements MouseWheelListener {
 		{
 			if(inventory.getStorage().get(i)!=null)
 				items.add(new RenderableMenuItem(inventory.getStorage().get(i),266*(i%6)+275,((i/6)+1)*266,panel));
+			items.get(i).addActionListener(this);
 		}
 		System.out.println(inventory.getStorage());
 	}
@@ -62,6 +65,7 @@ public class InventoryMenu implements MouseWheelListener {
 	    BufferedImage img = new
 	        BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	    Graphics2D g = img.createGraphics();
+
 	    Color[] colors = {new Color((212)/3,(175)/3,(55)/3), new Color(212/6,175/6,55/6) };
 	    float[] ratio = { 0.0f, 0.5f };
 	    Point center=new Point((int)MouseInputParser.getX(),(int)MouseInputParser.getY());
@@ -71,6 +75,17 @@ public class InventoryMenu implements MouseWheelListener {
 	    g.dispose();
 
 	    return img;
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(selectedItem!=null) 
+		{
+			selectedItem.setIsSelected(false);
+		}
+		selectedItem=(RenderableMenuItem) e.getSource();
+		selectedItem.setIsSelected(true);
+		
+		
 	}
 
 }

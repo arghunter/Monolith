@@ -64,7 +64,7 @@ public class Button extends Component implements MouseListener {
     {
     	this.text=(text);
     	try {
-			font=Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Black.ttf"));
+			font=Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
 		} catch (FontFormatException | IOException e) {
 		
 			e.printStackTrace();

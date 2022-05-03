@@ -12,9 +12,9 @@ public abstract class Weapon extends Item{
 	private double attackDelay;
 	private double currentAttackDelay;
 	
-	public Weapon(String name,int damage,int range, int attackSpeed) 
+	public Weapon(String name,int tier,int damage,int range, int attackSpeed) 
 	{
-		super(name,ItemType.WEAPON);
+		super(name,ItemType.WEAPON,tier);
 		this.damage=damage;
 		this.range=range;
 		this.attackSpeed=attackSpeed;

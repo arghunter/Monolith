@@ -29,7 +29,7 @@ import render.Tester;
 public class PetersMazeTester extends JPanel implements MouseWheelListener,ActionListener{
 	
 	private static char[][] maze;
-	Material steel=new Material("Spider",100);
+	Material steel=new Material("Spider",0,100);
 	private RenderableMenuItem item=new RenderableMenuItem(steel,900,200,this);
 	private Timer clock = new Timer(10, this);
 	private InputParser input=new InputParser(this);
@@ -39,11 +39,15 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 		this.addMouseWheelListener(this);
 		clock.start();
 
-		inventory.addToStorage(new Consumable("Baklava",10,64));
-		inventory.addToStorage(new Consumable("Baklava",10,64));
-		Item[] it={new Consumable("Baklava",10,64),new Consumable("Spider",10,64)};
-		inventory.addToStorage(new Blueprint("Baklava",1,it,new Consumable("Baklava",10,64)));
-		inventory.addToStorage(new Material("Crystal",100000));
+		inventory.addToStorage(new Consumable("Baklava",0,10,64));
+		inventory.addToStorage(new Consumable("Baklava",0,10,64));
+		inventory.addToStorage(new Consumable("Baklava",0,50,64));
+		inventory.addToStorage(new Consumable("Baklava",0,50,64));
+		inventory.addToStorage(new Consumable("Baklava",0,50,64));
+
+		Item[] it={new Consumable("Baklava",0,10,64),new Consumable("Spider",0,10,64)};
+		inventory.addToStorage(new Blueprint("Baklava",0,1,it,new Consumable("Baklava",0,10,64)));
+		inventory.addToStorage(new Material("Crystal",0,100000));
 
 		menu=new InventoryMenu(inventory,this);
 	}
