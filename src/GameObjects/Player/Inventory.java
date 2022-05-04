@@ -156,13 +156,13 @@ public class Inventory {
 							Consumable sameConsumable=(Consumable) sameItem;
 							Consumable consItem=(Consumable)item;
 							consumableExtra=sameConsumable.add(consItem);
-							consItem.setCount(consumableExtra);
-							if(consItem.getCount()==0) 
+							
+							if(consumableExtra==0) 
 							{
 								break;
 							}else 
 							{
-								storage.add(consItem);
+								storage.add(new Consumable(consItem.getName(),consItem.getTier(),consumableExtra,consItem.getMaxStack()));
 								return;
 							}
 						}

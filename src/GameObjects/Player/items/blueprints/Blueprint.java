@@ -54,7 +54,7 @@ public class Blueprint extends Item {
 			if(components[i].getType()==ItemType.CONSUMABLE||components[i].getType()==ItemType.MATERIAL) 
 			{
 				double count=0;
-				for (int j = 0; j < storage.size(); j++) {
+				for (int j = storage.size()-1; j >=0; j--) {
 					if(storage.get(j).equals(components[i])) 
 					{
 						if(components[i].getType()==ItemType.CONSUMABLE) 
@@ -97,7 +97,7 @@ public class Blueprint extends Item {
 		}
 		for(int i=0;i<components.length;i++) 
 		{
-			for(int j=0;j<storage.size();j++) 
+			for(int j=storage.size()-1;j>=0;j--) 
 			{
 				if(storage.get(j).equals(components[i])) 
 				{
@@ -139,8 +139,12 @@ public class Blueprint extends Item {
 		}
 		
 		inventory.addToStorage(product);
-//		inventory.removeFromStorage(new Blueprint(this.getName(),this.getTier(),1,this.components,this.product,this.inventory));
-		//inventory.removeFromStorage(this);
+		this.count--;
+		if(count<=0) 
+		{
+			inventory.removeFromStorage(this);
+		}
+		
 
 	}
 

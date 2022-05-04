@@ -128,22 +128,35 @@ public class RenderableMenuItem implements ActionListener {
 			
 			e.printStackTrace();
 		}
+		g.setFont(text.deriveFont(30f));
+		g.setColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
 		if(item.getType()==ItemType.CONSUMABLE) 
 		{
-			g.setFont(text.deriveFont(30f));
-			g.setColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+
 			Consumable consumable=(Consumable) item;
 			String count="x"+consumable.getCount();
 			FontMetrics metrics=g.getFontMetrics();
 			g.drawString(count, image.getWidth()+x-metrics.stringWidth(count), y+metrics.getHeight());
 		}else if(item.getType()==ItemType.MATERIAL) 
 		{
-			g.setFont(text.deriveFont(30f));
-			g.setColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+
 			Material material=(Material) item;
 			String count="x"+material.getCount();
 			FontMetrics metrics=g.getFontMetrics();
 			g.drawString(count.substring(0,count.indexOf('.')), image.getWidth()+x-metrics.stringWidth(count.substring(0,count.indexOf('.'))), y+metrics.getHeight());
+		}else if(item.getType()==ItemType.BLUEPRINT) 
+		{
+
+			Blueprint material=(Blueprint) item;
+			String count="x"+material.getCount();
+			FontMetrics metrics=g.getFontMetrics();
+			g.drawString(count.substring(0,count.indexOf('.')), image.getWidth()+x-metrics.stringWidth(count.substring(0,count.indexOf('.'))), y+metrics.getHeight());
+		}else 
+		{
+
+			String count="x1";
+			FontMetrics metrics=g.getFontMetrics();
+			g.drawString(count, image.getWidth()+x-metrics.stringWidth(count), y+metrics.getHeight());
 		}
 		if(button.isHovering()||this.isSelected) 
 		{
