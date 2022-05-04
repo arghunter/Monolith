@@ -72,22 +72,21 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	
 	public void paintComponent(Graphics graphics) {
 		Graphics2D graphic=(Graphics2D) graphics;
+		
 		double ratioX = super.getWidth() / 2560.0;
 		double ratioY = super.getHeight() / 1377.0;
 		input.setRatio(ratioX, ratioY);
 		graphic.scale(ratioX, ratioY);
+		
 		super.paintComponent(graphic);
-		graphic.setBackground(Color.WHITE);
+		
+		setBackground(Color.WHITE);
+		
 		input.updatePlayerPosAndAngle(thePlayer);
 		curRoom=op.getRoom(curRoomX, curRoomY);
+		
 		if(!(curRoom==null)) {
-/*			for(int i=0;i<op.getRoomSizeY();i++) {
-				for(int j=0;j<op.getRoomSizeX();j++) {
-					System.out.print(curRoom[i][j]);
-				}
-				System.out.println();
-			}
-*/			for(int i=0;i<op.getRoomSizeY();i++) {
+			for(int i=0;i<op.getRoomSizeY();i++) {
 				for(int j=0;j<op.getRoomSizeX();j++) {
 					graphic.setColor(Color.WHITE);
 					if(curRoom[i][j].equals("11")) {
@@ -99,7 +98,9 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 				}
 			}
 		}
+		
 		thePlayer.render(graphic);
+		
 	}
 	
 	public void initInput(JFrame frame) {
