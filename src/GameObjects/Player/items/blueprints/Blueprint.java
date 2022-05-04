@@ -112,11 +112,14 @@ public class Blueprint extends Item {
 							{
 								inventory.removeFromStorage(consumableStorage);
 							}
+						}else 
+						{
+							continue;
 						}
 					}else if(components[i].getType()==ItemType.MATERIAL) 
 					{
 						Material materialComp=(Material) components[i];
-						Material materialStorage=(Material) storage.get(i);
+						Material materialStorage=(Material) storage.get(j);
 						if(materialStorage.getCount()>=materialComp.getCount()) 
 						{
 							Material extra=materialStorage.consume(materialComp);
@@ -128,6 +131,9 @@ public class Blueprint extends Item {
 							{
 								inventory.removeFromStorage(materialStorage);
 							}
+						}else 
+						{
+							continue;
 						}
 					}else 
 					{

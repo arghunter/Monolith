@@ -1,6 +1,6 @@
 package GameObjects.Player;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
 
 
@@ -153,17 +153,18 @@ public class Inventory {
 					{
 						if(((Consumable)sameItem).getCount()<((Consumable)sameItem).getMaxStack()) 
 						{
+							
 							Consumable sameConsumable=(Consumable) sameItem;
 							Consumable consItem=(Consumable)item;
-							consumableExtra=sameConsumable.add(consItem);
 							
+							consumableExtra=sameConsumable.add(consItem);
 							if(consumableExtra==0) 
 							{
-								break;
+								return;
 							}else 
 							{
-								storage.add(new Consumable(consItem.getName(),consItem.getTier(),consumableExtra,consItem.getMaxStack()));
-								return;
+								item=new Consumable(consItem.getName(),consItem.getTier(),consumableExtra,consItem.getMaxStack());
+								
 							}
 						}
 
@@ -185,6 +186,9 @@ public class Inventory {
 			{
 				Blueprint sameBlueprint=(Blueprint) sameItem;
 				sameBlueprint.add((Blueprint) item);
+			}else {
+				storage.add(item);
+				
 			}
 
 		} else {

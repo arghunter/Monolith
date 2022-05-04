@@ -16,14 +16,14 @@ public class Consumable extends Item {
 	private long add(long num) 
 	{
 		
-		if((double)count+num<maxStack) 
+		if((double)count+num<=maxStack) 
 		{
 			count+=num;
 			
 			return 0;
 		}else 
 		{
-			long extra=(long) -(maxStack-((double)count+num));
+			long extra=(long) ((count+(double)num)-maxStack);
 			count=maxStack;
 			return extra;
 			
@@ -33,6 +33,7 @@ public class Consumable extends Item {
 	
 	public long add(Consumable consumable) 
 	{
+		System.out.println(this.getName()+" "+this.count+" "+consumable.getName()+""+consumable.count);
 		return add(consumable.getCount());
 	}
 	public void substract(long num) 

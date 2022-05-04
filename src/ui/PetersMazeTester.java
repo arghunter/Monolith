@@ -51,7 +51,7 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 		inventory.addToStorage(new Consumable("Baklava",0,50,64));
 		inventory.addToStorage(new Consumable("Baklava",0,50,64));
 
-		Item[] it={new Consumable("Baklava",0,10,64)};
+		Item[] it={new Material("Crystal",0,100)};
 		inventory.addToStorage(new Blueprint("Baklava",0,10,it,new Consumable("Baklava",0,15,64),inventory));
 		inventory.addToStorage(new Material("Crystal",0,100000));
 
