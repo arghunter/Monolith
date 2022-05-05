@@ -22,14 +22,8 @@ public class InputParser {
 	public double getMouseY() {
 		return mouse.getY();
 	}
-<<<<<<< Updated upstream
 
 	public boolean getMBPressed(int MB) {
-=======
-	public boolean getMBPressed(int MB) 
-	{
-		
->>>>>>> Stashed changes
 		return mouse.isMBDown(MB);
 	}
 
