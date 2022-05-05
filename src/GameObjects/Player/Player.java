@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +32,8 @@ public class Player extends MovingObject{
 	private int currentShields;
 	private boolean isDead = false;
 	private long lastRegen;
+	private ActionListener game;
+	
 
 	// Note the speed will come from skill tree
 	public Player(int x, int y, int id, int width, int height) {
@@ -131,7 +135,8 @@ public class Player extends MovingObject{
 			currentLevel++;
 			currentXP-=xpToNextLevel;
 			xpToNextLevel+=currentLevel;
-			leveledUp();
+//			if(game.)
+			game.actionPerformed(new ActionEvent(this,88891,"LevelUp"));
 		}
 	}
 	

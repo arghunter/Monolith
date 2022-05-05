@@ -137,26 +137,24 @@ public class Tester extends JPanel implements ActionListener {
 		ratioX = super.getWidth() / 2560.0;
 		ratioY = super.getHeight() / 1377.0;
 		input.setRatio(ratioX, ratioY);
-
+		thePlayer.addXP(100);
 		if (zombieButton.isClicked(e)) {
 			
 			this.mobList[numMobs] = new Balkrada((int) (Math.random() * 2560), (int) (Math.random() * 1377), 4, 64, 64);
 			numMobs++;
 
 		}
-		if (this.skillSelectionMenu != null && this.skillSelectionMenu.isActive()) {
-			lastSkillShown = System.currentTimeMillis();
-		}
 
 
-		if (System.currentTimeMillis() - lastSkillShown > 1200) {
+
+		if (e.getSource()==thePlayer&&e.getActionCommand().equals("LevelUp")) {
 			if (skillSelectionMenu == null || !this.skillSelectionMenu.isActive()) {
 				skillSelectionMenu = null;
 				skillSelectionMenu = new SkillSelectionMenu(thePlayer.getSkills(),
-						(int) (System.currentTimeMillis() - startTime) / 10, this);
+						840, this);
 
 			}
-			lastSkillShown = System.currentTimeMillis();
+			
 		}
 		for (int i = 0; i < numMobs; i++) {
 			mobList[i].action(thePlayer.getX(), thePlayer.getY());
