@@ -7,4 +7,5 @@ public class Constants {
 	public static final int YSIZE=15;
 	public static final int ROOMSIZEX=46;
 	public static final int ROOMSIZEY=36;
+	public static final int MAXMOBS=1000;
 }

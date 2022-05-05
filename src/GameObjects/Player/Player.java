@@ -136,7 +136,7 @@ public class Player extends MovingObject{
 			currentXP-=xpToNextLevel;
 			xpToNextLevel+=currentLevel;
 //			if(game.)
-			game.actionPerformed(new ActionEvent(this,88891,"LevelUp"));
+//			game.actionPerformed(new ActionEvent(this,88891,"LevelUp"));
 		}
 	}
 	

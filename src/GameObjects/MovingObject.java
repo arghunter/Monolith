@@ -102,7 +102,7 @@ public abstract class MovingObject extends GameObject {
 	// Given a direction 1 unit in the direction
 	// Scales to prevent strafing from being faster
 	public void move(Direction direction) {
-		int n=1;
+		int n=8;
 		if (direction == Direction.NORTHEAST || direction == Direction.SOUTHWEST || direction == Direction.SOUTHEAST
 				|| direction == Direction.NORTHWEST) {
 			// Magic number

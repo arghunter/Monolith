@@ -35,6 +35,7 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	private int curRoomX=0;
 	private int curRoomY=0;
 	private int timeSinceLastSpawn=10000;
+	private String[] mobList= {"Spider","Zombie","Balkrada"}; //REMOVE AFTER TESTING
 	MobSpawner test=new MobSpawner();
 	
 	private String[][] curRoom;
@@ -50,7 +51,8 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 		w.setVisible(true);
 		this.initInput(w);
 		this.frame = w;
-		
+		thePlayer.addXP(1000000);
+		System.out.println(thePlayer.getLevel());
 		clock.start();
 	}
 	
@@ -74,10 +76,14 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 			changeRoom();
 		}
 		if(timeSinceLastSpawn>10000) {
+			int[] n=test.generateMobs(thePlayer.getLevel());
+			for(int i=0;i<n.length;i++) {
+				System.out.print(mobList[n[i]]+" ");
+			}
 			System.out.println();
 			resetMobSpawnTime();
 		}
-		System.out.println(curRoomX+" "+curRoomY);
+		//System.out.println(curRoomX+" "+curRoomY);
 		repaint();
 	}
 	
@@ -115,7 +121,7 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	}
 	
 	private void changeRoom() {
-		resetMobSpawnTime();
+		timeSinceLastSpawn=100000;
 	}
 	
 	private void resetMobSpawnTime() {
