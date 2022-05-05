@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import GameObjects.MovingObject;
-import GameObjects.Player.items.weapons.MeleeWeapon;
 import general.ImageSystem;
 import skills.*;
 import java.io.Serializable;
@@ -31,7 +30,7 @@ public class Player extends MovingObject{
 	private int currentShields;
 	private boolean isDead = false;
 	private long lastRegen;
-	private MeleeWeapon dagger;
+
 	// Note the speed will come from skill tree
 	public Player(int x, int y, int id, int width, int height) {
 		// Just going to use the helmet image for player
@@ -145,9 +144,7 @@ public class Player extends MovingObject{
 		
 		return skills.toString();
 	}
-	public void setMeleeWeapon(MeleeWeapon weapon) {
-		this.dagger = weapon;
-	}
+
 	
 	@Override
 	public void render(Graphics2D g) {
