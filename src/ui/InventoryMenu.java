@@ -50,7 +50,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 			items.get(i).addActionListener(this);
 		}
 		Point[] points= {new Point(0,266),new Point(260,266),new Point(260,316),new Point(0,316)};
-		all=new Button(points,new Color(0.8f,0.8f,0.8f,0f),"All");
+		all=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"All");
 		panel.add(all);
 		all.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
 		all.addActionListener(this);
@@ -58,7 +58,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		{
 			points[i].y+=50;
 		}
-		consumables=new Button(points,new Color(0.8f,0.8f,0.8f,0f),"Consumables");
+		consumables=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Consumables");
 		panel.add(consumables);
 		consumables.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
 		consumables.addActionListener(this);
@@ -67,7 +67,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		{
 			points[i].y+=50;
 		}
-		blueprints=new Button(points,new Color(0.8f,0.8f,0.8f,0f),"Blueprints");
+		blueprints=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Blueprints");
 		panel.add(blueprints);
 		blueprints.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
 		blueprints.addActionListener(this);
@@ -76,7 +76,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		{
 			points[i].y+=50;
 		}
-		armor=new Button(points,new Color(0.8f,0.8f,0.8f,0f),"Armor");
+		armor=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Armor");
 		panel.add(armor);
 		armor.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
 		armor.addActionListener(this);
@@ -84,7 +84,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		{
 			points[i].y+=50;
 		}
-		weapons=new Button(points,new Color(0.8f,0.8f,0.8f,0f),"Weapons");
+		weapons=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Weapons");
 		panel.add(weapons);
 		weapons.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
 		weapons.addActionListener(this);
@@ -92,7 +92,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		{
 			points[i].y+=50;
 		}
-		materials=new Button(points,new Color(0.8f,0.8f,0.8f,0f),"Materials");
+		materials=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Materials");
 		panel.add(materials);
 		materials.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
 		materials.addActionListener(this);

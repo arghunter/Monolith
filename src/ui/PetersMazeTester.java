@@ -18,6 +18,9 @@ import javax.swing.Timer;
 
 import GameObjects.Player.Inventory;
 import GameObjects.Player.items.Item;
+import GameObjects.Player.items.ItemType;
+import GameObjects.Player.items.armor.Armor;
+import GameObjects.Player.items.armor.BattleSuitSet;
 import GameObjects.Player.items.blueprints.Blueprint;
 import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
@@ -50,7 +53,9 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 		inventory.addToStorage(new Consumable("Baklava",0,50,64));
 		inventory.addToStorage(new Consumable("Baklava",0,50,64));
 		inventory.addToStorage(new Consumable("Baklava",0,50,64));
-
+		inventory.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
+		inventory.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
+		
 		Item[] it={new Material("Crystal",0,100)};
 		inventory.addToStorage(new Blueprint("Baklava",0,10,it,new Consumable("Baklava",0,15,64),inventory));
 		inventory.addToStorage(new Material("Crystal",0,100000));
