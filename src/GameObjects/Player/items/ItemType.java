@@ -1,6 +1,7 @@
 package GameObjects.Player.items;
 
 public enum ItemType {
+	ARMOR,
 	WEAPON,//weapons
 	HELMET,// helmet
 	CHESTPLATE,//chestplate

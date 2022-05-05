@@ -167,7 +167,13 @@ public class RenderableMenuItem implements ActionListener {
 			g.drawString(item.getName(),x+5,11*image.getHeight()/12+25+y);			
 			g.setFont(text.deriveFont(60f));
 			FontMetrics metrics=g.getFontMetrics();
+			if(item.getType()==ItemType.BLUEPRINT) 
+			{
+				
+				g.drawString(item.getName(),2180-metrics.stringWidth(item.getName())/2,200);
+			}
 			g.drawString(item.getName(),2180-metrics.stringWidth(item.getName())/2,200);
+			
 			g.setFont(text.deriveFont(35f));
 			metrics=g.getFontMetrics();
 			g.drawString(""+item.getType(),2180-metrics.stringWidth(""+item.getType())/2,250);
@@ -179,7 +185,18 @@ public class RenderableMenuItem implements ActionListener {
 			{
 				Blueprint blueprint=(Blueprint) item;
 				g.drawString("Components:",2180-metrics.stringWidth("Components:")/2,400);
+				g.drawString("Product:",2180-metrics.stringWidth("Product:")/2,300);
+				if(blueprint.getProduct().getType()==ItemType.CONSUMABLE) 
+				{
+					g.drawString(blueprint.getProduct().getName()+" x"+((Consumable)blueprint.getProduct()).getCount(),2180-metrics.stringWidth(blueprint.getProduct().getName()+" x"+((Consumable)blueprint.getProduct()).getCount())/2,340);
+				}else if(blueprint.getProduct().getType()==ItemType.MATERIAL) 
+				{
+					g.drawString(blueprint.getProduct().getName()+" x"+((Material)blueprint.getProduct()).getCount(),2180-metrics.stringWidth(blueprint.getProduct().getName()+" x"+((Material)blueprint.getProduct()).getCount())/2,340);
+				}else 
+				{
+					g.drawString(blueprint.getProduct().getName()+" x1",2180-metrics.stringWidth(blueprint.getProduct().getName()+" x1")/2,340);
 
+				}
 				for(int i=0;i<blueprint.getComponents().length;i++) 
 				{
 					g.setFont(text.deriveFont(30f));
@@ -240,6 +257,10 @@ public class RenderableMenuItem implements ActionListener {
 		{
 			itemButtons[i].dispose();
 		}
+	}
+	public Item getItem() 
+	{
+		return item;
 	}
 	
 

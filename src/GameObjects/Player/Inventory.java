@@ -230,6 +230,19 @@ public class Inventory {
 		}
 		return selection;
 	}
+	public ArrayList<Item> searchStorage(ItemType type) 
+	{
+		
+		ArrayList<Item> selection=new ArrayList<Item>();
+		for(int i=0;i<storage.size();i++) 
+		{
+			if(storage.get(i).getType()==type) 
+			{
+				selection.add(storage.get(i));
+			}
+		}
+		return selection;
+	}
 	public Armor getHelemet() 
 	{
 		return (Armor)arsenal[0];
