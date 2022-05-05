@@ -51,6 +51,10 @@ public class Consumable extends Item {
 		count=0;
 		add(num);
 	}
+	public Buff getBuff() 
+	{
+		return buff;
+	}
 
 
 

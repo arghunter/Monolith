@@ -163,7 +163,7 @@ public class Inventory {
 								return;
 							}else 
 							{
-								item=new Consumable(consItem.getName(),consItem.getTier(),consumableExtra,consItem.getMaxStack());
+								item=new Consumable(consItem.getName(),consItem.getTier(),consumableExtra,consItem.getMaxStack(),consItem.getBuff());
 								
 							}
 						}
