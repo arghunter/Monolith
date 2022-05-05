@@ -22,6 +22,11 @@ public class Player extends MovingObject{
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH,StatType.XP };
 	private int[] stats = { 10, 25, 60, 100, 10, 30, 100, 0, 10,100 };
+	
+	private int currentLevel=0;
+	private int currentXP=0;
+	private int xpToNextLevel=1;
+	
 	private Inventory inventory;
 	private int currentShields;
 	private boolean isDead = false;
@@ -111,6 +116,30 @@ public class Player extends MovingObject{
 	public boolean isDead() {
 		return isDead;
 	}
+	
+	public int getXP() {
+		return currentXP;
+	}
+	
+	public int getLevel() {
+		return currentLevel;
+	}
+	
+	public void addXP(int xp) {
+		skills.addXP(xp/2);
+		currentXP+=(xp+1)/2;
+		while(currentXP>=xpToNextLevel) {
+			currentLevel++;
+			currentXP-=xpToNextLevel;
+			xpToNextLevel+=currentLevel;
+			leveledUp();
+		}
+	}
+	
+	public void leveledUp() {
+		//Armaan put code here
+	}
+	
 	@Override
 	public String toString() {
 		
