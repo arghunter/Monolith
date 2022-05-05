@@ -6,10 +6,12 @@ import GameObjects.Player.items.ItemType;
 public class Consumable extends Item {
 	long count;
 	long maxStack;
-	public Consumable(String name,int tier,long count,long maxStack) {
+	Buff buff;
+	public Consumable(String name,int tier,long count,long maxStack,Buff buff) {
 		super(name, ItemType.CONSUMABLE,tier);
 		this.maxStack=maxStack;
 		this.add(count);
+		this.buff=buff;
 		
 	}
 	
@@ -58,6 +60,11 @@ public class Consumable extends Item {
 
 	public long getMaxStack() {
 		return maxStack;
+	}
+	public void use() 
+	{
+		buff.start();
+		this.count--;
 	}
 	
 

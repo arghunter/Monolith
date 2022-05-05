@@ -6,11 +6,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.*;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
@@ -35,6 +39,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	private Button armor;
 	private Button weapons;
 	private Button materials;
+	String titleString="Inventory / All";
 	public InventoryMenu(Inventory inventory,JPanel panel) 
 	{
 		
@@ -112,6 +117,17 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	public void draw(Graphics2D g, int JPanelX,int JPanelY) 
 	{
 		g.drawImage(createGradient(), 0, 0, null);
+		Font text=null;
+		try {
+			text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		g.setFont(text.deriveFont(120f));
+		g.drawString(titleString, 275, 175);
 		boolean tripped=false;
 		for(int i=0;i<items.size();i++) 
 		{
@@ -226,22 +242,28 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}else if(e.getSource()==all) 
 		{
 			this.update();
+			titleString="Inventory / All";
 		}else if(e.getSource()==blueprints) 
 		{
 			this.update(ItemType.BLUEPRINT);
+			titleString="Inventory / Blueprints";
 		}else if(e.getSource()==armor) 
 		{
 			//notes broken
 			this.update(ItemType.ARMOR);
+			titleString="Inventory / Armor";
 		}else if(e.getSource()==weapons) 
 		{
 			this.update(ItemType.WEAPON);
+			titleString="Inventory / Weapons";
 		}else if(e.getSource()==materials) 
 		{
 			this.update(ItemType.MATERIAL);
+			titleString="Inventory / Materials";
 		}else if(e.getSource()==consumables) 
 		{
 			this.update(ItemType.CONSUMABLE);
+			titleString="Inventory / Consumables";
 		}
 
 		
