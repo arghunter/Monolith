@@ -34,6 +34,8 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	private MapGenerator op=new MapGenerator();
 	private int curRoomX=0;
 	private int curRoomY=0;
+	private int timeSinceLastSpawn=10000;
+	MobSpawner test=new MobSpawner();
 	
 	private String[][] curRoom;
 	//private ImageSystem image=new ImageSystem(0,0,new ImageIcon("StoneBig.png").getImage());
@@ -53,18 +55,27 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		timeSinceLastSpawn++;
 		if(thePlayer.getCenterX()>=op.getRoomSizeX()*32 && (curRoomX+1<op.getXSize())) {
 			curRoomX++;
 			thePlayer.setCoordsMove(thePlayer.getX()-32*(op.getRoomSizeX()-3), thePlayer.getY());
+			changeRoom();
 		}else if(thePlayer.getCenterX()<=0 && (curRoomX-1>=0)) {
 			curRoomX--;
 			thePlayer.setCoordsMove(thePlayer.getX()+32*(op.getRoomSizeX()-3), thePlayer.getY());
+			changeRoom();
 		}else if(thePlayer.getCenterY()>=op.getRoomSizeY()*32 && (curRoomY+1<op.getYSize())) {
 			curRoomY++;
 			thePlayer.setCoordsMove(thePlayer.getX(),thePlayer.getY()-32*(op.getRoomSizeY()-3));
+			changeRoom();
 		}else if(thePlayer.getCenterY()<=0 && (curRoomY-1>=0)) {
 			curRoomY--;
 			thePlayer.setCoordsMove(thePlayer.getX(),thePlayer.getY()+32*(op.getRoomSizeY()-3));
+			changeRoom();
+		}
+		if(timeSinceLastSpawn>10000) {
+			System.out.println();
+			resetMobSpawnTime();
 		}
 		System.out.println(curRoomX+" "+curRoomY);
 		repaint();
@@ -101,6 +112,14 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 		
 		thePlayer.render(graphic);
 		
+	}
+	
+	private void changeRoom() {
+		resetMobSpawnTime();
+	}
+	
+	private void resetMobSpawnTime() {
+		timeSinceLastSpawn=0;
 	}
 	
 	public void initInput(JFrame frame) {
