@@ -1,5 +1,4 @@
 //Main Author: Peter Ferolito
-//Contributors: 
 //Date: 4/17/22
 //Notes: Generates a maze using a modified recursive backtracker
 

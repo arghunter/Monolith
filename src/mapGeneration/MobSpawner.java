@@ -1,3 +1,7 @@
+//Main Author: Peter Ferolito
+//Date: 5/5/22
+//Notes: Randomly spawns mobs based on player's level and difficulty of the mobs
+
 package mapGeneration;
 
 import general.Constants;
@@ -15,7 +19,6 @@ public class MobSpawner {
 	}
 	
 	public int[] generateMobs(int playerLevel) {
-		int[] toReturn;
 		int mobRatio=0;
 		for(int i=0;i<levels.length-1;i++) {
 			if(playerLevel<levels[i+1]) {
@@ -23,10 +26,13 @@ public class MobSpawner {
 			}
 			mobRatio++;
 		}
+		
 		int minMobs=playerLevel/5+1;
 		int maxMobs=playerLevel/2+2;
+		
 		int numMobsToSpawn=minMobs+randNums.nextInt(maxMobs-minMobs+1);
-		toReturn=new int[numMobsToSpawn];
+		
+		int[] toReturn=new int[numMobsToSpawn];
 		for(int i=0;i<numMobsToSpawn;i++) {
 			int mobToSpawn=randNums.nextInt(100);
 			int actualMob=0;
@@ -43,5 +49,48 @@ public class MobSpawner {
 		return toReturn;
 	}
 	
+	public int[] generateMobs(int playerLevel,int[] probs) {
+		int[] toUse;
+		if(probs.length!=numMobs || sum(probs)!=100) {
+			toUse=probs;
+		}else {
+			int mobRatio=0;
+			for(int i=0;i<levels.length-1;i++) {
+				if(playerLevel<levels[i+1]) {
+					break;
+				}
+				mobRatio++;
+			}
+			toUse=defaultProbs[mobRatio];
+		}
+		
+		int minMobs=playerLevel/5+1;
+		int maxMobs=playerLevel/2+2;
+		
+		int numMobsToSpawn=minMobs+randNums.nextInt(maxMobs-minMobs+1);
+		
+		int[] toReturn=new int[numMobsToSpawn];
+		for(int i=0;i<numMobsToSpawn;i++) {
+			int mobToSpawn=randNums.nextInt(100);
+			int actualMob=0;
+			for(int j=0;j<numMobs;j++) {
+				mobToSpawn-=toUse[j];
+				if(mobToSpawn<0) {
+					actualMob=j;
+					break;
+				}
+			}
+			toReturn[i]=actualMob;
+			
+		}
+		return toReturn;
+	}
 	
+	private int sum(int[] x) {
+		int sumOfElements=0;
+		for(int i=0;i<x.length;i++) {
+			sumOfElements+=x[i];
+		}
+		return sumOfElements;
+	}
 }
