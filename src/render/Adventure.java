@@ -27,7 +27,7 @@ import java.util.LinkedList;
 import general.Constants;
 
 public class Adventure extends JPanel implements ActionListener {
-	private Player thePlayer = new Player(300, 300, 1, 64, 64);
+	private Player thePlayer = new Player(300, 300, 1, 64, 64,this);
 	private InputParser input;
 
 	private JFrame frame;

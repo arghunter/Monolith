@@ -86,7 +86,6 @@ public class SkillSelectionMenu implements ActionListener {
 			
 			panel.add(skillButtons[i]);
 			skillButtons[i].addActionListener(this);
-
 			skillButtons[i].setFontColor(new Color(148, 148, 148));
 		}
 		for (int i = 0; i < currentSkillButtons.length; i++) {

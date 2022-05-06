@@ -1,5 +1,6 @@
 package general;
 
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -13,15 +14,15 @@ public class SaveSystem implements WindowListener {
 	PrintWriter output;
 	String save="";
 	Player savedPlayer;
-	public SaveSystem() throws FileNotFoundException 
+	public SaveSystem(ActionListener game) throws FileNotFoundException 
 	{
 		
 		input = new FileInput("save.txt");
 		try {
-			savedPlayer=new Player(300,300,1,64,64,input.next());
+			savedPlayer=new Player(300,300,1,64,64,game,input.next());
 		}catch( Exception e) 
 		{
-			savedPlayer=new Player(300,300,1,64,64);
+			savedPlayer=new Player(300,300,1,64,64,game);
 		}
 		
 		output=new PrintWriter("save.txt");

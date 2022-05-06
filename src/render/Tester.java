@@ -25,7 +25,7 @@ import java.util.LinkedList;
 //import java.util.*;
 
 public class Tester extends JPanel implements ActionListener {
-	private Player thePlayer = new Player(300, 300, 1, 64, 64);
+	private Player thePlayer = new Player(300, 300, 1, 64, 64,this);
 	private Spider theSpider = new Spider(600, 600, 2, 64, 64);
 	private Spider secondSpider = new Spider(1000, 1000, 3, 64, 64);
 	private Zombie theZombie = new Zombie(1200, 1200, 4, 64, 64);
@@ -58,7 +58,7 @@ public class Tester extends JPanel implements ActionListener {
 
 		w.setSize(800, 500);
 		try {
-			save = new SaveSystem();
+			save = new SaveSystem(this);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Save system broken");
@@ -137,7 +137,7 @@ public class Tester extends JPanel implements ActionListener {
 		ratioX = super.getWidth() / 2560.0;
 		ratioY = super.getHeight() / 1377.0;
 		input.setRatio(ratioX, ratioY);
-		thePlayer.addXP(100);
+		thePlayer.addXP(1);
 		if (zombieButton.isClicked(e)) {
 			
 			this.mobList[numMobs] = new Balkrada((int) (Math.random() * 2560), (int) (Math.random() * 1377), 4, 64, 64);

@@ -36,7 +36,7 @@ public class Player extends MovingObject{
 	
 
 	// Note the speed will come from skill tree
-	public Player(int x, int y, int id, int width, int height) {
+	public Player(int x, int y, int id, int width, int height,ActionListener game) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
 	
@@ -49,17 +49,20 @@ public class Player extends MovingObject{
 		health = stats[3];
 		currentShields = stats[6];
 		lastRegen=System.currentTimeMillis();
+		this.game=game;
 		
 		
 
 	}
-	public Player(int x, int y, int id, int width, int height,String saveData) {
+	public Player(int x, int y, int id, int width, int height,ActionListener game, String saveData) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
 		skills = new SkillTree(saveData,stats, statTypes);
 		health = stats[3];
 		currentShields = stats[6];
 		lastRegen=System.currentTimeMillis();
+		this.game=game;
+
 
 	}
 
@@ -135,8 +138,8 @@ public class Player extends MovingObject{
 			currentLevel++;
 			currentXP-=xpToNextLevel;
 			xpToNextLevel+=currentLevel;
-//			if(game.)
-//			game.actionPerformed(new ActionEvent(this,88891,"LevelUp"));
+			
+			game.actionPerformed(new ActionEvent(this,88891,"LevelUp"));
 		}
 	}
 	
