@@ -71,7 +71,7 @@ public class RenderableMenuItem implements ActionListener {
 		    {
 		    	g.draw(new Line2D.Double(i*img.getWidth()/8,0,i*img.getWidth()/8,img.getHeight()));
 		    }
-		    itemButtons=new Button[2];
+		    itemButtons=new Button[1];
 		    int iShiftX=2030;
 		    int iShiftY=750;
 		    for( int i=0;i<itemButtons.length;i++) 
@@ -87,9 +87,6 @@ public class RenderableMenuItem implements ActionListener {
 		    	if(i==0) 
 		    	{
 		    		itemButtons[i].setText("Construct Item");
-		    	}else if( i==1) 
-		    	{
-		    		itemButtons[i].setText("Sell Blueprint");
 		    	}
 		    	itemButtons[i].setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
 		    	panel.add(itemButtons[i]);
