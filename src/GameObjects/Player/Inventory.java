@@ -27,10 +27,10 @@ public class Inventory {
 	public Inventory() {
 		arsenal = new Item[16];
 		storage = new ArrayList<Item>();
-		arsenal[0]=(new Armor("DefaultHelmet",0,ItemType.HELMET,10,25,25,BattleSuitSet.NONE));
-		arsenal[1]=(new Armor("DefaultChestplate",0,ItemType.CHESTPLATE,15,25,50,BattleSuitSet.NONE));
-		arsenal[2]=(new Armor("DefaultLeggings",0,ItemType.LEGGINGS,15,25,50,BattleSuitSet.NONE));
-		arsenal[3]=(new Armor("DefaultBoots",0,ItemType.BOOTS,10,25,25,BattleSuitSet.NONE));
+		arsenal[0]=(new Armor("Baklava",0,ItemType.HELMET,10,25,25,BattleSuitSet.NONE));
+		arsenal[1]=(new Armor("Baklava",0,ItemType.CHESTPLATE,15,25,50,BattleSuitSet.NONE));
+		arsenal[2]=(new Armor("Baklava",0,ItemType.LEGGINGS,15,25,50,BattleSuitSet.NONE));
+		arsenal[3]=(new Armor("Baklava",0,ItemType.BOOTS,10,25,25,BattleSuitSet.NONE));
 		arsenal[4]=(new MeleeWeapon("Rusty Sword",0,50, 30, 30,10/18.0*Math.PI));
 		
 		equipped=4;

@@ -37,6 +37,7 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 	private Timer clock = new Timer(10, this);
 	private InputParser input=new InputParser(this);
 	Inventory inventory=new Inventory();
+	ArsenalMenu arsenal;
 	InventoryMenu menu;
 	public PetersMazeTester() {
 		this.addMouseWheelListener(this);
@@ -61,6 +62,7 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 		inventory.addToStorage(new Material("Crystal",0,100000));
 
 		menu=new InventoryMenu(inventory,this);
+		arsenal=new ArsenalMenu(inventory,this);
 	}
 	
 	public void printMaze(char[][] maze) {
@@ -88,9 +90,9 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 				}
 			}
 		}
-		item.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
-		menu.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
-
+//		item.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
+//		menu.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
+		arsenal.draw(g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
 	}
 	
 	@Override
