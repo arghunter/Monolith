@@ -57,6 +57,10 @@ public class Adventure extends JPanel implements ActionListener {
 	//Whether the game is paused and mobs move
 	private boolean paused=false;
 	
+	public Adventure() {
+		
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		
 	}
