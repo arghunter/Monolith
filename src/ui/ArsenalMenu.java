@@ -23,7 +23,7 @@ public class ArsenalMenu {
 	RenderableMenuItem[] arsenalItems;
 
 	public ArsenalMenu(Inventory inventory, JPanel panel) {
-		Point[] shapeCoords = { new Point(1536, 689), new Point(1280, 945), new Point(1024, 689),new Point(1280, 433) };
+		Point[] shapeCoords = { new Point(1792, 689), new Point(1280, 1201), new Point(768, 689),new Point(1280, 177) };
 		shape = new Polygon();
 		for (int i = 0; i < shapeCoords.length; i++) {
 			shape.addPoint(shapeCoords[i].x, shapeCoords[i].y);

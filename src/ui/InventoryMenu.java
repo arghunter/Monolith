@@ -116,7 +116,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	}
 	public void draw(Graphics2D g, int JPanelX,int JPanelY) 
 	{
-		g.drawImage(createGradient(), 0, 0, null);
+		g.drawImage(createGradient(JPanelX,JPanelY), 0, 0, null);
 		Font text=null;
 		try {
 			text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
@@ -126,8 +126,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 			
 			e.printStackTrace();
 		}
-		g.setFont(text.deriveFont(120f));
-		g.drawString(titleString, 275, 175);
+
 		boolean tripped=false;
 		for(int i=0;i<items.size();i++) 
 		{
@@ -147,6 +146,10 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		{
 			selectedItem.setIsSelected(true);
 		}
+		
+		g.setColor(new Color(212/6,175/6,55/6));
+		g.fillRect(0, 0, 2560, 266);
+		g.fillRect(0,0, 275, 1377);
 		all.draw(g, JPanelX, JPanelY);
 		blueprints.draw(g, JPanelX, JPanelY);
 
@@ -156,10 +159,13 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 
 		weapons.draw(g, JPanelX, JPanelY);
 		consumables.draw(g, JPanelX, JPanelY);
+		g.setColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		g.setFont(text.deriveFont(120f));
+		g.drawString(titleString, 275, 175);
 
 
 	}
-	private static BufferedImage createGradient() {
+	private static BufferedImage createGradient(int JPanelX,int JPanelY) {
 	    int width = (int) Tester.WIDTH;
 	    int height = (int) Tester.HEIGHT;
 	    
@@ -169,7 +175,11 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 
 	    Color[] colors = {new Color((212)/3,(175)/3,(55)/3), new Color(212/6,175/6,55/6) };
 	    float[] ratio = { 0.0f, 0.6f };
-	    Point center=new Point((int)MouseInputParser.getX(),(int)MouseInputParser.getY());
+	    Point center=new Point((int)MouseInputParser.getX()-JPanelX,(int)MouseInputParser.getY()-JPanelY);
+	    if(MouseInputParser.getX()<275-JPanelX||MouseInputParser.getY()-JPanelY<266) 
+	    {
+	    	center=new Point(-200,-200);
+	    }
 	    RadialGradientPaint gradient =new RadialGradientPaint(center, 0.25f * width, ratio, colors);
 	    g.setPaint(gradient);
 	    g.fillRect(0, 0, width, height);

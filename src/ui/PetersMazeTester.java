@@ -91,8 +91,8 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 			}
 		}
 //		item.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
-//		menu.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
-		arsenal.draw(g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
+		menu.draw((Graphics2D)g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
+		//arsenal.draw(g, (int)this.getLocationOnScreen().getX(), (int)this.getLocationOnScreen().getY());
 	}
 	
 	@Override
