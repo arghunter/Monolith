@@ -11,7 +11,7 @@ public class Balkrada extends Mob {
 	public static final int[] stats={20,5,50,5,3000,100};
 	
 	public Balkrada(int x,int y,int id,int width,int height) {
-		super(x,y,stats[0],stats,id,width,height,"Balkrada",11);
+		super(x,y,stats[0],stats,id,width,height,"Balkrada",22);
 	}
 	
 	public int action(int playerX,int playerY) {
