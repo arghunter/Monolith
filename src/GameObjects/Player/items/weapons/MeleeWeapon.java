@@ -5,15 +5,15 @@ import GameObjects.mobs.Mob;
 
 public class MeleeWeapon extends Weapon {
 	private double sweepAngle;
-	public MeleeWeapon(String name,int damage,int range,int attackSpeed,double sweepAngle) {
-		super(name,damage,range,attackSpeed);
+	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle) {
+		super(name,tier,damage,range,attackSpeed);
 		this.sweepAngle=sweepAngle;
 	}
-	public MeleeWeapon(String saveData) 
-	{
-		super(saveData.split("MeleeWeapon:")[1].split("/")[0],Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[1]),Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[2]),Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[3]));
-		this.sweepAngle=Double.parseDouble(saveData.split("MeleeWeapon:")[1].split("/")[4]);
-	}
+//	public MeleeWeapon(String saveData) 
+//	{
+//		super(saveData.split("MeleeWeapon:")[1].split("/")[0],Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[1]),Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[2]),Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[3]));
+//		this.sweepAngle=Double.parseDouble(saveData.split("MeleeWeapon:")[1].split("/")[4]);
+//	}
 
 
 	public double euclidDist(int x1, int x2, int y1, int y2) {
@@ -64,12 +64,12 @@ public class MeleeWeapon extends Weapon {
 		
 	}
 
-	public String toString() 
-	{
-		String s="MeleeWeapon:"+getName()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+sweepAngle;
-		return s;
-		
-		
-	}
+//	public String toString() 
+//	{
+//		String s="MeleeWeapon:"+getName()+"/"+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+sweepAngle;
+//		return s;
+//		
+//		
+//	}
 
 }

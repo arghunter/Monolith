@@ -1,4 +1,5 @@
 package ui;
+import java.awt.BasicStroke; 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -17,6 +18,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JButton;
 
+import input.InputParser;
 import input.MouseInputParser;
 
 public class Button extends Component implements MouseListener {
@@ -39,6 +41,9 @@ public class Button extends Component implements MouseListener {
     private int stringY;
     private ActionListener[] actionListeners;
     private boolean calibrationRequired;
+    private boolean fontSizeSet=false;
+    private boolean hoverEffectsOn=true;
+    private Color outLineColor=color;
   
 
 
@@ -59,7 +64,7 @@ public class Button extends Component implements MouseListener {
     {
     	this.text=(text);
     	try {
-			font=Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Black.ttf"));
+			font=Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
 		} catch (FontFormatException | IOException e) {
 		
 			e.printStackTrace();
@@ -128,11 +133,26 @@ public class Button extends Component implements MouseListener {
         {
         	if(isPressed) 
         	{
-        		
-        		g.setColor(new Color((int)(color.getRed()*0.5),(int)(color.getGreen()*0.5),(int)(color.getBlue()*0.5)));
+        		if(hoverEffectsOn) 
+        		{
+        			g.setColor(new Color((int)(color.getRed()*0.5),(int)(color.getGreen()*0.5),(int)(color.getBlue()*0.5)));
+
+        		}else 
+        		{
+                	g.setColor(color);
+
+        		}
         	}else 
-        	{
-            	g.setColor(new Color((int)(color.getRed()*0.75),(int)(color.getGreen()*0.75),(int)(color.getBlue()*0.75)));
+        	{	
+        		if(this.hoverEffectsOn) 
+        		{
+        			
+        			g.setColor(new Color((int)(color.getRed()*0.75),(int)(color.getGreen()*0.75),(int)(color.getBlue()*0.75)));
+        		}else 
+        		{
+                	g.setColor(color);
+
+        		}
             	isHovering=true;
         	}
         }
@@ -141,8 +161,10 @@ public class Button extends Component implements MouseListener {
         	g.setColor(color);
         	isHovering=false;
         }
-        
         g.fill(polygon);
+        g.setColor(outLineColor);
+        g.setStroke(new BasicStroke(4f));
+        g.draw(polygon);
         if(calibrationRequired) 
         {
         	calibrateText(g);
@@ -156,8 +178,34 @@ public class Button extends Component implements MouseListener {
         
 
     }
+    public void setHoverEffectsOn(boolean isOn) 
+    {
+    	this.hoverEffectsOn=isOn;
+    }
+    public boolean isHoverEffectsOn() 
+    {
+    	return this.hoverEffectsOn;
+    }
+    public void autoSizeFont() 
+    {
+    	this.fontSizeSet=false;
+    	this.calibrationRequired=true;
+    }
+    public void setFontSize(float size) 
+    {
+    	this.fontSizeSet=true;
+    	this.fontSize=size;
+    }
+    public void setOutlineColor(Color color) 
+    {
+    	this.outLineColor=color;
+    }
     private void calibrateText(Graphics2D g) 
     {
+    	if(fontSizeSet) 
+    	{
+    		return;
+    	}
     	int fontSize=4;
     	
     	while(true) 
@@ -280,7 +328,7 @@ public class Button extends Component implements MouseListener {
 	//Fires action events to all listeners if this button has been clicked 
 	public void mouseClicked(MouseEvent e) {
 
-		
+
 		if(super.getParent()!=null&&e.getButton()==MouseEvent.BUTTON1&&buttonContainsMouse()) 
 		{
 			for(ActionListener i: this.getActionListeners()) 

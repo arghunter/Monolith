@@ -1,6 +1,6 @@
 package render;
 
-import java.awt.*;
+import java.awt.*;  
 import java.awt.event.*;
 import java.io.FileNotFoundException;
 
@@ -43,13 +43,15 @@ public class Tester extends JPanel implements ActionListener {
 	private Button zombieButton;
 	private SaveSystem save;
 	private RenderableMenuItem item;
+	public static final double WIDTH=2560.0;
+	public static final double HEIGHT=1377.0;
 
 	public Tester() {
 
 		mobList[0] = theSpider;
 		mobList[1] = secondSpider;
 		mobList[2] = theZombie;
-		Material steel=new Material("Spider",100);
+		Material steel=new Material("Spider",0,0);
 		item=new RenderableMenuItem(steel,900,800,this);
 		Point[] points = { new Point(238, 108), new Point(162, 108), new Point(108, 162), new Point(108, 238),
 				new Point(162, 292), new Point(238, 292), new Point(292, 238), new Point(292, 162) };
@@ -67,8 +69,8 @@ public class Tester extends JPanel implements ActionListener {
 		thePlayer = save.loadSave();
 		this.initInput(w);
 		this.frame = w;
-		ratioX = super.getWidth() / 2560.0;
-		ratioY = super.getHeight() / 1377.0;
+		ratioX = super.getWidth() / WIDTH;
+		ratioY = super.getHeight() / HEIGHT;
 
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = w.getContentPane();
@@ -110,7 +112,6 @@ public class Tester extends JPanel implements ActionListener {
 
 		super.paintComponent(g);
 		save.save(thePlayer);
-		
 		g.scale(ratioX, ratioY);
 
 		setBackground(Color.WHITE);

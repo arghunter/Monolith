@@ -12,6 +12,7 @@ import GameObjects.Player.items.blueprints.Blueprint;
 import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
 import GameObjects.Player.items.weapons.MeleeWeapon;
+
 import GameObjects.Player.items.weapons.Weapon;
 
 public class Inventory {
@@ -26,11 +27,11 @@ public class Inventory {
 	public Inventory() {
 		arsenal = new Item[16];
 		storage = new ArrayList<Item>();
-		arsenal[0]=(new Armor("DefaultHelmet",ItemType.HELMET,10,25,25,BattleSuitSet.NONE));
-		arsenal[1]=(new Armor("DefaultChestplate",ItemType.CHESTPLATE,15,25,50,BattleSuitSet.NONE));
-		arsenal[2]=(new Armor("DefaultLeggings",ItemType.LEGGINGS,15,25,50,BattleSuitSet.NONE));
-		arsenal[3]=(new Armor("DefaultBoots",ItemType.BOOTS,10,25,25,BattleSuitSet.NONE));
-		arsenal[4]=(new MeleeWeapon("Rusty Sword",50, 30, 30,10/18.0*Math.PI));
+		arsenal[0]=(new Armor("Baklava",0,ItemType.HELMET,10,25,25,BattleSuitSet.NONE));
+		arsenal[1]=(new Armor("Baklava",0,ItemType.CHESTPLATE,15,25,50,BattleSuitSet.NONE));
+		arsenal[2]=(new Armor("Baklava",0,ItemType.LEGGINGS,15,25,50,BattleSuitSet.NONE));
+		arsenal[3]=(new Armor("Baklava",0,ItemType.BOOTS,10,25,25,BattleSuitSet.NONE));
+		arsenal[4]=(new MeleeWeapon("Rusty Sword",0,50, 30, 30,10/18.0*Math.PI));
 		
 		equipped=4;
 	}
@@ -145,19 +146,28 @@ public class Inventory {
 			long consumableExtra=0;
 			for(int i=0;i<storage.size();i++) 
 			{
-				if(storage.get(i).equals(item)) 
+				if(storage.get(i)!=null&&storage.get(i).equals(item)) 
 				{
 					sameItem=storage.get(i);
 					if(item.getType()==ItemType.CONSUMABLE) 
 					{
-						Consumable sameConsumable=(Consumable) sameItem;
-						Consumable consItem=(Consumable)item;
-						consumableExtra=sameConsumable.add(consItem);
-						consItem.setCount(consumableExtra);
-						if(consItem.getCount()==0) 
+						if(((Consumable)sameItem).getCount()<((Consumable)sameItem).getMaxStack()) 
 						{
-							break;
+							
+							Consumable sameConsumable=(Consumable) sameItem;
+							Consumable consItem=(Consumable)item;
+							
+							consumableExtra=sameConsumable.add(consItem);
+							if(consumableExtra==0) 
+							{
+								return;
+							}else 
+							{
+								item=new Consumable(consItem.getName(),consItem.getTier(),consumableExtra,consItem.getMaxStack(),consItem.getBuff());
+								
+							}
 						}
+
 					}else 
 					{
 						break;
@@ -166,7 +176,7 @@ public class Inventory {
 			}
 			if(sameItem==null) 
 			{
-				storage.add(sameItem);
+				storage.add(item);
 				
 			}else if(item.getType()==ItemType.MATERIAL) 
 			{
@@ -176,10 +186,14 @@ public class Inventory {
 			{
 				Blueprint sameBlueprint=(Blueprint) sameItem;
 				sameBlueprint.add((Blueprint) item);
+			}else {
+				storage.add(item);
+				
 			}
 
 		} else {
 			storage.add(item);
+			
 		}
 	}
 	public boolean contains(Item item) 
@@ -210,6 +224,20 @@ public class Inventory {
 		for(int i=0;i<storage.size();i++) 
 		{
 			if(storage.get(i).getName().toLowerCase().contains(searchTerm)) 
+			{
+				selection.add(storage.get(i));
+			}
+		}
+		return selection;
+	}
+	public ArrayList<Item> searchStorage(ItemType type) 
+	{
+		
+		ArrayList<Item> selection=new ArrayList<Item>();
+		
+		for(int i=0;i<storage.size();i++) 
+		{
+			if(storage.get(i).getType()==type||(type==ItemType.ARMOR&&(storage.get(i).getType()==ItemType.BOOTS||storage.get(i).getType()==ItemType.CHESTPLATE||storage.get(i).getType()==ItemType.LEGGINGS||storage.get(i).getType()==ItemType.HELMET))) 
 			{
 				selection.add(storage.get(i));
 			}

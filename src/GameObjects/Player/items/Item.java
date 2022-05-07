@@ -5,11 +5,11 @@ import java.awt.Graphics2D;
 import general.AnimationSystem;
 
 public abstract class Item {
-	String name;
-	long id;
-	ItemType type;
-	
-	public Item(String name,ItemType type) 
+	private String name;
+	private long id;
+	private ItemType type;
+	private int tier;
+	public Item(String name,ItemType type, int tier) 
 	{
 		this.name=name;
 		this.id=System.currentTimeMillis();
@@ -22,6 +22,10 @@ public abstract class Item {
 	{
 		return id;
 		
+	}
+	public int getTier() 
+	{
+		return tier;
 	}
 	public String getName() 
 	{
