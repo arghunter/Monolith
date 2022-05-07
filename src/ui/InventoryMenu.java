@@ -175,8 +175,8 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 
 	    Color[] colors = {new Color((212)/3,(175)/3,(55)/3), new Color(212/6,175/6,55/6) };
 	    float[] ratio = { 0.0f, 0.6f };
-	    Point center=new Point((int)MouseInputParser.getX()-JPanelX,(int)MouseInputParser.getY()-JPanelY);
-	    if(MouseInputParser.getX()<275-JPanelX||MouseInputParser.getY()-JPanelY<266) 
+	    Point center=new Point((int)(MouseInputParser.getX()-JPanelX/MouseInputParser.getRatioX()),(int)(MouseInputParser.getY()-JPanelY/MouseInputParser.getRatioX()));
+	    if(MouseInputParser.getX()<275-JPanelX/MouseInputParser.getRatioX()||MouseInputParser.getY()-JPanelY/MouseInputParser.getRatioX()<266) 
 	    {
 	    	center=new Point(-200,-200);
 	    }
