@@ -20,23 +20,18 @@ import skills.Skill;
 import skills.SkillTree;
 import skills.StatType;
 
-public class SkillSelectionMenu implements ActionListener {
-	private int numSkills;
-	private SkillTree tree;
-	private GenericSkill[] availableSkills;
+public class SkillDisplayMenu implements ActionListener {
+
+
 	private GenericSkill[] currentSkills;
 	private Button[] currentSkillButtons;
-	private Button[] skillButtons;
 	private boolean isActive=true;
 
-	public SkillSelectionMenu(SkillTree tree, int timeSeconds, JPanel panel) {
+	public SkillDisplayMenu(SkillTree tree, JPanel panel) {
 
-		this.tree = tree;
-		this.numSkills = timeSeconds / 120;
-		if (numSkills > 7) {
-			numSkills = 7;
-		}
-		this.availableSkills = tree.skillSelection(numSkills);
+		
+
+	
 		this.currentSkills=new GenericSkill[tree.getSkills().size()];
 		for(int i=0;i<currentSkills.length;i++) 
 		{
@@ -45,56 +40,13 @@ public class SkillSelectionMenu implements ActionListener {
 		
 		currentSkillButtons=new Button[currentSkills.length];
 
-		skillButtons = new Button[availableSkills.length];
-		for (int i = 0; i < skillButtons.length; i++) {
-			int offsetX = 0;
-			int offsetY = 0;
-			switch (i) {
-			case 1:
-				offsetX = 0;
-				offsetY = -150;
-				break;
-			case 2:
-				offsetX = (int) (150 * Math.cos(Math.PI / 6));
-				offsetY = (int) (150 * Math.sin(Math.PI / 6));
-				break;
-			case 3:
-				offsetX = (int) (150 * Math.cos(Math.PI / 6));
-				offsetY = -(int) (150 * Math.sin(Math.PI / 6));
-				break;
-			case 4:
-				offsetX = 0;
-				offsetY = 150;
-				break;
-			case 5:
-				offsetX = -(int) (150 * Math.cos(Math.PI / 6));
-				offsetY = -(int) (150 * Math.sin(Math.PI / 6));
-				break;
-			case 6:
-				offsetX = -(int) (150 * Math.cos(Math.PI / 6));
-				offsetY = (int) (150 * Math.sin(Math.PI / 6));
-				break;
-			}
-			Point[] points = { new Point(463 + offsetX, 360 + offsetY), new Point(388 + offsetX, 360 + offsetY),
-					new Point(350 + offsetX, 425 + offsetY), new Point(388 + offsetX, 490 + offsetY),
-					new Point(462 + offsetX, 490 + offsetY), new Point(500 + offsetX, 425 + offsetY) };
-			Color color=skillColor(availableSkills[i]);
-
-			skillButtons[i] = new Button(points, color,
-					availableSkills[i].getName() + " " + availableSkills[i].getTier());
-
-			
-			
-			panel.add(skillButtons[i]);
-			skillButtons[i].addActionListener(this);
-			skillButtons[i].setFontColor(Constants.textColor);
-		}
+		
 		for (int i = 0; i < currentSkillButtons.length; i++) {
 			int offsetX = 0;
 			int offsetY = 0;
 			int modI=i%7;
 			int shiftX=i/7*390-75;
-			int shiftY=(int)(600+72*((Math.floor(i/7.0))%2));
+			int shiftY=(int)(72*((Math.floor(i/7.0))%2));
 			switch (modI) {
 			case 1:
 				offsetX = 0;
@@ -126,7 +78,6 @@ public class SkillSelectionMenu implements ActionListener {
 					new Point(462 + offsetX+ shiftX, 490 + offsetY+shiftY), new Point(500 + offsetX+ shiftX, 425 + offsetY+shiftY) };
 			Color color=skillColor(currentSkills[i]);
 
-			//System.out.println(availableSkills[i].getName()+" "+availableSkills[i].getType());
 			currentSkillButtons[i] = new Button(points, color,
 					currentSkills[i].getName() + " " + currentSkills[i].getTier());
 			panel.add(currentSkillButtons[i]);
@@ -194,58 +145,7 @@ public class SkillSelectionMenu implements ActionListener {
 	
 	public void render(Graphics2D g,int JPanelX,int JPanelY) 
 	{ 
-		for(int i=0;i<skillButtons.length;i++) 
-		{
-			skillButtons[i].draw(g, JPanelX, JPanelY);
-			if(skillButtons[i].isHovering()) 
-			{	
-		
-				Font text=null;
-				try {
-					text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
-				} catch (FontFormatException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-				}
-				g.setColor(Color.BLACK);
-				
-				g.setFont(text.deriveFont(36f));
-				String title=availableSkills[i].getName().toUpperCase()+" "+availableSkills[i].getTier();
-				g.drawString(title, 800, 200);
-				
-				if(availableSkills[i].getType()!=StatType.MULTIPLE) 
-				{
-					
-					g.setFont(text.deriveFont(30f));
-					Skill tempSkill=(Skill)availableSkills[i];
-					String sign="";
-					if(tempSkill.getModifiedPercent()>0) 
-					{
-						sign+='+';
-					}
-					g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
-				}else 
-				{
-					
-					g.setFont(text.deriveFont(30f));
-					MultipleSkill tempSkill=(MultipleSkill)availableSkills[i];
-					Skill[] skills=tempSkill.getSkills();
-					for(int j=0;j<skills.length;j++) 
-					{
-						String sign="";
-						if(skills[j].getModifiedPercent()>0) 
-						{
-							sign+='+';
-						}
-						g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
-					}
-				}
-				
-				
-			}
-		}
+
 		for(int i=0;i<currentSkillButtons.length;i++) 
 		{
 			currentSkillButtons[i].draw(g, JPanelX, JPanelY);
@@ -309,29 +209,13 @@ public class SkillSelectionMenu implements ActionListener {
 				
 				String name=b.getText();
 				GenericSkill skill=null;
-				for(int i=0;i<availableSkills.length;i++) 
+				for(int i=0;i<currentSkills.length;i++) 
 				{
-					if((availableSkills[i].getName() + " " + availableSkills[i].getTier()).equals(name)) 
+					if((currentSkills[i].getName() + " " + currentSkills[i].getTier()).equals(name)) 
 					{
 						
-						skill=availableSkills[i];
-						skill.setIsActive(true);
-						tree.addSkill(skill);
-						
-						for(int j=0;j<skillButtons.length;j++) 
-						{
-							skillButtons[j].dispose();
-							
-							
-						}
-						for(int j=0;j<currentSkillButtons.length;j++) 
-						{
-							
-							currentSkillButtons[j].dispose();
-						}
-						skillButtons=new Button[0];
-						currentSkillButtons=new Button[0];
-						this.isActive=false;
+						skill=currentSkills[i];
+						skill.setIsActive(!skill.getIsActive());
 						break;
 					}
 				}
@@ -346,4 +230,16 @@ public class SkillSelectionMenu implements ActionListener {
 	{
 		return isActive;
 	}
+	public void dispose() 
+	{
+		for(int j=0;j<currentSkillButtons.length;j++) 
+		{
+			
+			currentSkillButtons[j].dispose();
+		}
+		
+		currentSkillButtons=new Button[0];
+		this.isActive=false;
+	}
 }
+

@@ -114,6 +114,10 @@ public class Player extends MovingObject{
 	public int getCurrentHealth() {
 		return health;
 	}
+	public Inventory getInventory() 
+	{
+		return inventory;
+	}
 
 	public int getCurrentShields() {
 		return currentShields;

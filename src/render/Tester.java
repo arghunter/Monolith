@@ -1,6 +1,7 @@
 package render;
 
 import java.awt.*;  
+
 import java.awt.event.*;
 import java.io.FileNotFoundException;
 
@@ -15,7 +16,7 @@ import GameObjects.mobs.Zombie;
 import GameObjects.mobs.Balkrada;
 import general.SaveSystem;
 import input.InputParser;
-import skills.SkillTreeRenderMode;
+
 import ui.Button;
 import ui.RenderableMenuItem;
 import ui.SkillSelectionMenu;

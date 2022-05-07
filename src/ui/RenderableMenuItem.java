@@ -25,6 +25,7 @@ import GameObjects.Player.items.blueprints.Blueprint;
 import GameObjects.Player.items.blueprints.MissingResourcesException;
 import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
+import general.Constants;
 import general.ImageSystem;
 import input.MouseInputParser;
 
@@ -88,7 +89,7 @@ public class RenderableMenuItem implements ActionListener {
 		    	{
 		    		itemButtons[i].setText("Construct Item");
 		    	}
-		    	itemButtons[i].setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		    	itemButtons[i].setFontColor(Constants.textColor);
 		    	panel.add(itemButtons[i]);
 		    	itemButtons[i].addActionListener(this);
 		    	
@@ -126,7 +127,7 @@ public class RenderableMenuItem implements ActionListener {
 			e.printStackTrace();
 		}
 		g.setFont(text.deriveFont(30f));
-		g.setColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		g.setColor(Constants.textColor);
 		if(item.getType()==ItemType.CONSUMABLE) 
 		{
 
@@ -159,7 +160,7 @@ public class RenderableMenuItem implements ActionListener {
 		{
 			g.setColor(new Color(0.4f,0.4f,0.4f,0.5f));
 			g.fillRect(x+2,y-1+11*image.getHeight()/12,image.getWidth()+6,image.getHeight()/12+10);
-			g.setColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+			g.setColor(Constants.textColor);
 			g.setFont(text.deriveFont(30f));
 			g.drawString(item.getName(),x+5,11*image.getHeight()/12+25+y);			
 			g.setFont(text.deriveFont(60f));

@@ -25,6 +25,7 @@ import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
 import GameObjects.Player.items.weapons.MeleeWeapon;
+import general.Constants;
 import input.MouseInputParser;
 import render.Tester;
 
@@ -57,7 +58,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		Point[] points= {new Point(0,266),new Point(260,266),new Point(260,316),new Point(0,316)};
 		all=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"All");
 		panel.add(all);
-		all.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		all.setFontColor(Constants.textColor);
 		all.addActionListener(this);
 		for(int i=0;i<4;i++) 
 		{
@@ -65,7 +66,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 		consumables=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Consumables");
 		panel.add(consumables);
-		consumables.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		consumables.setFontColor(Constants.textColor);
 		consumables.addActionListener(this);
 
 		for(int i=0;i<4;i++) 
@@ -74,7 +75,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 		blueprints=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Blueprints");
 		panel.add(blueprints);
-		blueprints.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		blueprints.setFontColor(Constants.textColor);
 		blueprints.addActionListener(this);
 
 		for(int i=0;i<4;i++) 
@@ -83,7 +84,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 		armor=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Armor");
 		panel.add(armor);
-		armor.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		armor.setFontColor(Constants.textColor);
 		armor.addActionListener(this);
 		for(int i=0;i<4;i++) 
 		{
@@ -91,7 +92,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 		weapons=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Weapons");
 		panel.add(weapons);
-		weapons.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		weapons.setFontColor(Constants.textColor);
 		weapons.addActionListener(this);
 		for(int i=0;i<4;i++) 
 		{
@@ -99,7 +100,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 		materials=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Materials");
 		panel.add(materials);
-		materials.setFontColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		materials.setFontColor(Constants.textColor);
 		materials.addActionListener(this);
 		for(int i=0;i<4;i++) 
 		{
@@ -159,7 +160,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 
 		weapons.draw(g, JPanelX, JPanelY);
 		consumables.draw(g, JPanelX, JPanelY);
-		g.setColor(new Color((212*4)/5,(175*4)/5,(55*4)/5));
+		g.setColor(Constants.textColor);
 		g.setFont(text.deriveFont(120f));
 		g.drawString(titleString, 275, 175);
 

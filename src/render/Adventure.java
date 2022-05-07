@@ -1,6 +1,7 @@
 package render;
 
 import GameObjects.Player.Player;
+
 import input.InputParser;
 import mapGeneration.MapGenerator;
 import mapGeneration.MobSpawner;
@@ -17,7 +18,7 @@ import GameObjects.Player.items.materials.Material;
 import GameObjects.mobs.*;
 import general.SaveSystem;
 import input.InputParser;
-import skills.SkillTreeRenderMode;
+
 import ui.Button;
 import ui.RenderableMenuItem;
 import ui.SkillSelectionMenu;
