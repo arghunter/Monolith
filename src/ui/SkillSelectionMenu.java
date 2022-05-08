@@ -28,6 +28,7 @@ public class SkillSelectionMenu implements ActionListener {
 	private Button[] currentSkillButtons;
 	private Button[] skillButtons;
 	private boolean isActive=true;
+	
 
 	public SkillSelectionMenu(SkillTree tree, int timeSeconds, JPanel panel) {
 
@@ -194,115 +195,120 @@ public class SkillSelectionMenu implements ActionListener {
 	
 	public void render(Graphics2D g,int JPanelX,int JPanelY) 
 	{ 
-		for(int i=0;i<skillButtons.length;i++) 
+		if(isActive) 
 		{
-			skillButtons[i].draw(g, JPanelX, JPanelY);
-			if(skillButtons[i].isHovering()) 
-			{	
+			for(int i=0;i<skillButtons.length;i++) 
+			{
+				skillButtons[i].draw(g, JPanelX, JPanelY);
+				if(skillButtons[i].isHovering()) 
+				{	
+			
+					Font text=null;
+					try {
+						text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
+					} catch (FontFormatException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						
+						e.printStackTrace();
+					}
+					g.setColor(Color.BLACK);
+					
+					g.setFont(text.deriveFont(36f));
+					String title=availableSkills[i].getName().toUpperCase()+" "+availableSkills[i].getTier();
+					g.drawString(title, 800, 200);
+					
+					if(availableSkills[i].getType()!=StatType.MULTIPLE) 
+					{
+						
+						g.setFont(text.deriveFont(30f));
+						Skill tempSkill=(Skill)availableSkills[i];
+						String sign="";
+						if(tempSkill.getModifiedPercent()>0) 
+						{
+							sign+='+';
+						}
+						g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
+					}else 
+					{
+						
+						g.setFont(text.deriveFont(30f));
+						MultipleSkill tempSkill=(MultipleSkill)availableSkills[i];
+						Skill[] skills=tempSkill.getSkills();
+						for(int j=0;j<skills.length;j++) 
+						{
+							String sign="";
+							if(skills[j].getModifiedPercent()>0) 
+							{
+								sign+='+';
+							}
+							g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
+						}
+					}
+					
+					
+				}
+			}
+			for(int i=0;i<currentSkillButtons.length;i++) 
+			{
+				currentSkillButtons[i].draw(g, JPanelX, JPanelY);
+				if(currentSkillButtons[i].isHovering()) 
+				{	
+					Font text=null;
+					try {
+						text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
+					} catch (FontFormatException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						
+						e.printStackTrace();
+					}
+					g.setColor(Color.BLACK);
+					
+					g.setFont(text.deriveFont(36f));
+					String title=currentSkills[i].getName().toUpperCase()+" "+currentSkills[i].getTier();
+					g.drawString(title, 800, 200);
+					
+					if(currentSkills[i].getType()!=StatType.MULTIPLE) 
+					{
+						
+						g.setFont(text.deriveFont(30f));
+						Skill tempSkill=(Skill)currentSkills[i];
+						String sign="";
+						if(tempSkill.getModifiedPercent()>0) 
+						{
+							sign+='+';
+						}
+						g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
+					}else 
+					{
+						
+						g.setFont(text.deriveFont(30f));
+						MultipleSkill tempSkill=(MultipleSkill)currentSkills[i];
+						Skill[] skills=tempSkill.getSkills();
+						for(int j=0;j<skills.length;j++) 
+						{
+							String sign="";
+							if(skills[j].getModifiedPercent()>0) 
+							{
+								sign+='+';
+							}
+							g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
+						}
+					}
+					
+					
+				}
+			}
+		}
 		
-				Font text=null;
-				try {
-					text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
-				} catch (FontFormatException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-				}
-				g.setColor(Color.BLACK);
-				
-				g.setFont(text.deriveFont(36f));
-				String title=availableSkills[i].getName().toUpperCase()+" "+availableSkills[i].getTier();
-				g.drawString(title, 800, 200);
-				
-				if(availableSkills[i].getType()!=StatType.MULTIPLE) 
-				{
-					
-					g.setFont(text.deriveFont(30f));
-					Skill tempSkill=(Skill)availableSkills[i];
-					String sign="";
-					if(tempSkill.getModifiedPercent()>0) 
-					{
-						sign+='+';
-					}
-					g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
-				}else 
-				{
-					
-					g.setFont(text.deriveFont(30f));
-					MultipleSkill tempSkill=(MultipleSkill)availableSkills[i];
-					Skill[] skills=tempSkill.getSkills();
-					for(int j=0;j<skills.length;j++) 
-					{
-						String sign="";
-						if(skills[j].getModifiedPercent()>0) 
-						{
-							sign+='+';
-						}
-						g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
-					}
-				}
-				
-				
-			}
-		}
-		for(int i=0;i<currentSkillButtons.length;i++) 
-		{
-			currentSkillButtons[i].draw(g, JPanelX, JPanelY);
-			if(currentSkillButtons[i].isHovering()) 
-			{	
-				Font text=null;
-				try {
-					text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
-				} catch (FontFormatException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-				}
-				g.setColor(Color.BLACK);
-				
-				g.setFont(text.deriveFont(36f));
-				String title=currentSkills[i].getName().toUpperCase()+" "+currentSkills[i].getTier();
-				g.drawString(title, 800, 200);
-				
-				if(currentSkills[i].getType()!=StatType.MULTIPLE) 
-				{
-					
-					g.setFont(text.deriveFont(30f));
-					Skill tempSkill=(Skill)currentSkills[i];
-					String sign="";
-					if(tempSkill.getModifiedPercent()>0) 
-					{
-						sign+='+';
-					}
-					g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
-				}else 
-				{
-					
-					g.setFont(text.deriveFont(30f));
-					MultipleSkill tempSkill=(MultipleSkill)currentSkills[i];
-					Skill[] skills=tempSkill.getSkills();
-					for(int j=0;j<skills.length;j++) 
-					{
-						String sign="";
-						if(skills[j].getModifiedPercent()>0) 
-						{
-							sign+='+';
-						}
-						g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
-					}
-				}
-				
-				
-			}
-		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		
+		if(isActive) 
+		{
 			Button b=(Button)e.getSource();
 			if(b.isClicked(e)) 
 			{
@@ -337,11 +343,16 @@ public class SkillSelectionMenu implements ActionListener {
 				}
 				
 			}
+		}
+			
 		
 		
 		
 	}
 	
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 	public boolean isActive() 
 	{
 		return isActive;

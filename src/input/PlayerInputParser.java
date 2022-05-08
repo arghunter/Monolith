@@ -6,11 +6,11 @@ import javax.swing.JFrame;
 
 import GameObjects.Player.Player;
 
-public class InputParser {
+public class PlayerInputParser {
 	private KeyboardInputParser keyboard;
 	private MouseInputParser mouse;
 
-	public InputParser(Component component) {
+	public PlayerInputParser(Component component) {
 		keyboard = new KeyboardInputParser(component);
 		mouse = new MouseInputParser(component);
 	}
@@ -32,9 +32,18 @@ public class InputParser {
 		mouse.updatePlayerAngle(player);
 
 	}
+	public void updatePlayerAngle(Player player) 
+	{
+		mouse.updatePlayerAngle(player);
+
+	}
 
 	public void setRatio(double ratioX, double ratioY) {
 		mouse.setRatio(ratioX, ratioY);
+	}
+	public boolean isEscapePressed() 
+	{
+		return keyboard.isEscapePressed();
 	}
 
 }

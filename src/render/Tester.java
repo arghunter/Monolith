@@ -15,7 +15,7 @@ import GameObjects.mobs.Spider;
 import GameObjects.mobs.Zombie;
 import GameObjects.mobs.Balkrada;
 import general.SaveSystem;
-import input.InputParser;
+import input.PlayerInputParser;
 
 import ui.Button;
 import ui.RenderableMenuItem;
@@ -31,7 +31,7 @@ public class Tester extends JPanel implements ActionListener {
 	private Spider secondSpider = new Spider(1000, 1000, 3, 64, 64);
 	private Zombie theZombie = new Zombie(1200, 1200, 4, 64, 64);
 	private Mob[] mobList = new Mob[1000];
-	private InputParser input;
+	private PlayerInputParser input;
 
 	private JFrame frame;
 	private SkillSelectionMenu skillSelectionMenu;
@@ -132,7 +132,7 @@ public class Tester extends JPanel implements ActionListener {
 	}
 
 	public void initInput(JFrame frame) {
-		this.input = new InputParser(frame);
+		this.input = new PlayerInputParser(frame);
 	}
 
 	public void actionPerformed(ActionEvent e) {

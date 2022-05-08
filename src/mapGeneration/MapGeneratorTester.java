@@ -14,7 +14,7 @@ import GameObjects.mobs.Spider;
 import GameObjects.mobs.Zombie;
 import GameObjects.mobs.Balkrada;
 import general.SaveSystem;
-import input.InputParser;
+import input.PlayerInputParser;
 import ui.Button;
 import ui.RenderableMenuItem;
 import ui.SkillSelectionMenu;
@@ -26,7 +26,7 @@ import java.util.LinkedList;
 
 public class MapGeneratorTester extends JPanel implements ActionListener {
 	private Player thePlayer = new Player(300, 300, 1, 64, 64,this);
-	private InputParser input;
+	private PlayerInputParser input;
 
 	private JFrame frame;
 	private Timer clock=new Timer(10, this);
@@ -128,7 +128,7 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	}
 	
 	public void initInput(JFrame frame) {
-		this.input = new InputParser(frame);
+		this.input = new PlayerInputParser(frame);
 	}
 	
 	public static void main(String[] args) {

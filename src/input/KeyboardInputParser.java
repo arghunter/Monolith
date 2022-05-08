@@ -45,5 +45,9 @@ public class KeyboardInputParser {
 			}
 		}
 	}
+	public boolean isEscapePressed() 
+	{
+		return input.isEscapePressed();
+	}
 
 }

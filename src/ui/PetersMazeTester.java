@@ -25,7 +25,7 @@ import GameObjects.Player.items.blueprints.Blueprint;
 import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
 import GameObjects.Player.items.weapons.MeleeWeapon;
-import input.InputParser;
+import input.PlayerInputParser;
 import mapGeneration.MazeGenerator;
 import render.Tester;
 
@@ -35,7 +35,7 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 	Material steel=new Material("Spider",0,100);
 	private RenderableMenuItem item=new RenderableMenuItem(steel,900,200,this);
 	private Timer clock = new Timer(10, this);
-	private InputParser input=new InputParser(this);
+	private PlayerInputParser input=new PlayerInputParser(this);
 	Inventory inventory=new Inventory();
 	ArsenalMenu arsenal;
 	InventoryMenu menu;

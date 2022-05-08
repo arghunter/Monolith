@@ -2,7 +2,7 @@ package render;
 
 import GameObjects.Player.Player;
 
-import input.InputParser;
+import input.PlayerInputParser;
 import mapGeneration.MapGenerator;
 import mapGeneration.MobSpawner;
 
@@ -17,7 +17,7 @@ import GameObjects.Player.Player;
 import GameObjects.Player.items.materials.Material;
 import GameObjects.mobs.*;
 import general.SaveSystem;
-import input.InputParser;
+import input.PlayerInputParser;
 
 import ui.Button;
 import ui.RenderableMenuItem;
@@ -29,7 +29,7 @@ import general.Constants;
 
 public class Adventure extends JPanel implements ActionListener {
 	private Player thePlayer = new Player(300, 300, 1, 64, 64,this);
-	private InputParser input;
+	private PlayerInputParser input;
 
 	private JFrame frame;
 	private Timer clock=new Timer(10, this);

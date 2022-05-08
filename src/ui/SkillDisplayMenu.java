@@ -145,64 +145,67 @@ public class SkillDisplayMenu implements ActionListener {
 	
 	public void render(Graphics2D g,int JPanelX,int JPanelY) 
 	{ 
-
-		for(int i=0;i<currentSkillButtons.length;i++) 
+		if(isActive) 
 		{
-			currentSkillButtons[i].draw(g, JPanelX, JPanelY);
-			if(currentSkillButtons[i].isHovering()) 
-			{	
-				Font text=null;
-				try {
-					text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
-				} catch (FontFormatException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-				}
-				g.setColor(Color.BLACK);
-				
-				g.setFont(text.deriveFont(36f));
-				String title=currentSkills[i].getName().toUpperCase()+" "+currentSkills[i].getTier();
-				g.drawString(title, 800, 200);
-				
-				if(currentSkills[i].getType()!=StatType.MULTIPLE) 
-				{
-					
-					g.setFont(text.deriveFont(30f));
-					Skill tempSkill=(Skill)currentSkills[i];
-					String sign="";
-					if(tempSkill.getModifiedPercent()>0) 
-					{
-						sign+='+';
+			for(int i=0;i<currentSkillButtons.length;i++) 
+			{
+				currentSkillButtons[i].draw(g, JPanelX, JPanelY);
+				if(currentSkillButtons[i].isHovering()) 
+				{	
+					Font text=null;
+					try {
+						text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
+					} catch (FontFormatException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						
+						e.printStackTrace();
 					}
-					g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
-				}else 
-				{
+					g.setColor(Color.BLACK);
 					
-					g.setFont(text.deriveFont(30f));
-					MultipleSkill tempSkill=(MultipleSkill)currentSkills[i];
-					Skill[] skills=tempSkill.getSkills();
-					for(int j=0;j<skills.length;j++) 
+					g.setFont(text.deriveFont(36f));
+					String title=currentSkills[i].getName().toUpperCase()+" "+currentSkills[i].getTier();
+					g.drawString(title, 800, 200);
+					
+					if(currentSkills[i].getType()!=StatType.MULTIPLE) 
 					{
+						
+						g.setFont(text.deriveFont(30f));
+						Skill tempSkill=(Skill)currentSkills[i];
 						String sign="";
-						if(skills[j].getModifiedPercent()>0) 
+						if(tempSkill.getModifiedPercent()>0) 
 						{
 							sign+='+';
 						}
-						g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
+						g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
+					}else 
+					{
+						
+						g.setFont(text.deriveFont(30f));
+						MultipleSkill tempSkill=(MultipleSkill)currentSkills[i];
+						Skill[] skills=tempSkill.getSkills();
+						for(int j=0;j<skills.length;j++) 
+						{
+							String sign="";
+							if(skills[j].getModifiedPercent()>0) 
+							{
+								sign+='+';
+							}
+							g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
+						}
 					}
+					
+					
 				}
-				
-				
 			}
 		}
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		
+		if(this.isActive) 
+		{
 			Button b=(Button)e.getSource();
 			if(b.isClicked(e)) 
 			{
@@ -222,10 +225,16 @@ public class SkillDisplayMenu implements ActionListener {
 				
 			}
 		
+		}
+		
+			
 		
 		
 	}
 	
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 	public boolean isActive() 
 	{
 		return isActive;

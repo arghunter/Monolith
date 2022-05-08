@@ -40,6 +40,13 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	private Button armor;
 	private Button weapons;
 	private Button materials;
+	private boolean hidden=false;
+	public boolean isHidden() {
+		return hidden;
+	}
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
+	}
 	String titleString="Inventory / All";
 	public InventoryMenu(Inventory inventory,JPanel panel) 
 	{
@@ -110,59 +117,67 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	}
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		for(int i=0;i<items.size();i++) 
+		if(!hidden) 
 		{
-			items.get(i).translate(0, 24*(int)(e.getUnitsToScroll()));
+			for(int i=0;i<items.size();i++) 
+			{
+				items.get(i).translate(0, 24*(int)(e.getUnitsToScroll()));
+			}
 		}
+
 	}
 	public void draw(Graphics2D g, int JPanelX,int JPanelY) 
 	{
-		g.drawImage(createGradient(JPanelX,JPanelY), 0, 0, null);
-		Font text=null;
-		try {
-			text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
-		} catch (FontFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
-
-		boolean tripped=false;
-		for(int i=0;i<items.size();i++) 
+		if(!hidden) 
 		{
-			if(selectedItem!=null) 
-			{
-				if(items.get(i).isHovering()) 
-				{
-					tripped=true;
-					selectedItem.setIsSelected(false);
-				}
+			g.drawImage(createGradient(JPanelX,JPanelY), 0, 0, null);
+			Font text=null;
+			try {
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
 			}
 
+			boolean tripped=false;
+			for(int i=0;i<items.size();i++) 
+			{
+				if(selectedItem!=null) 
+				{
+					if(items.get(i).isHovering()) 
+					{
+						tripped=true;
+						selectedItem.setIsSelected(false);
+					}
+				}
+
+				
+				items.get(i).draw(g, JPanelX, JPanelY);
+			}
+			if(!tripped&&selectedItem!=null) 
+			{
+				selectedItem.setIsSelected(true);
+			}
 			
-			items.get(i).draw(g, JPanelX, JPanelY);
-		}
-		if(!tripped&&selectedItem!=null) 
-		{
-			selectedItem.setIsSelected(true);
+			g.setColor(new Color(212/6,175/6,55/6));
+			g.fillRect(0, 0, 2560, 266);
+			g.fillRect(0,0, 275, 1377);
+			all.draw(g, JPanelX, JPanelY);
+			blueprints.draw(g, JPanelX, JPanelY);
+
+			materials.draw(g, JPanelX, JPanelY);
+
+			armor.draw(g, JPanelX, JPanelY);
+
+			weapons.draw(g, JPanelX, JPanelY);
+			consumables.draw(g, JPanelX, JPanelY);
+			g.setColor(Constants.textColor);
+			g.setFont(text.deriveFont(120f));
+			g.drawString(titleString, 275, 175);
 		}
 		
-		g.setColor(new Color(212/6,175/6,55/6));
-		g.fillRect(0, 0, 2560, 266);
-		g.fillRect(0,0, 275, 1377);
-		all.draw(g, JPanelX, JPanelY);
-		blueprints.draw(g, JPanelX, JPanelY);
-
-		materials.draw(g, JPanelX, JPanelY);
-
-		armor.draw(g, JPanelX, JPanelY);
-
-		weapons.draw(g, JPanelX, JPanelY);
-		consumables.draw(g, JPanelX, JPanelY);
-		g.setColor(Constants.textColor);
-		g.setFont(text.deriveFont(120f));
-		g.drawString(titleString, 275, 175);
 
 
 	}
@@ -239,43 +254,47 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("ItemClicked")) 
+		if(!hidden) 
 		{
-			if(selectedItem!=null) 
+			if(e.getActionCommand().equals("ItemClicked")) 
 			{
-				selectedItem.setIsSelected(false);
+				if(selectedItem!=null) 
+				{
+					selectedItem.setIsSelected(false);
+				}
+				selectedItem=(RenderableMenuItem) e.getSource();
+				selectedItem.setIsSelected(true);
+			}else if(e.getActionCommand().equals("UpdateInventory")) 
+			{
+				this.update();
+			}else if(e.getSource()==all) 
+			{
+				this.update();
+				titleString="Inventory / All";
+			}else if(e.getSource()==blueprints) 
+			{
+				this.update(ItemType.BLUEPRINT);
+				titleString="Inventory / Blueprints";
+			}else if(e.getSource()==armor) 
+			{
+				//notes broken
+				this.update(ItemType.ARMOR);
+				titleString="Inventory / Armor";
+			}else if(e.getSource()==weapons) 
+			{
+				this.update(ItemType.WEAPON);
+				titleString="Inventory / Weapons";
+			}else if(e.getSource()==materials) 
+			{
+				this.update(ItemType.MATERIAL);
+				titleString="Inventory / Materials";
+			}else if(e.getSource()==consumables) 
+			{
+				this.update(ItemType.CONSUMABLE);
+				titleString="Inventory / Consumables";
 			}
-			selectedItem=(RenderableMenuItem) e.getSource();
-			selectedItem.setIsSelected(true);
-		}else if(e.getActionCommand().equals("UpdateInventory")) 
-		{
-			this.update();
-		}else if(e.getSource()==all) 
-		{
-			this.update();
-			titleString="Inventory / All";
-		}else if(e.getSource()==blueprints) 
-		{
-			this.update(ItemType.BLUEPRINT);
-			titleString="Inventory / Blueprints";
-		}else if(e.getSource()==armor) 
-		{
-			//notes broken
-			this.update(ItemType.ARMOR);
-			titleString="Inventory / Armor";
-		}else if(e.getSource()==weapons) 
-		{
-			this.update(ItemType.WEAPON);
-			titleString="Inventory / Weapons";
-		}else if(e.getSource()==materials) 
-		{
-			this.update(ItemType.MATERIAL);
-			titleString="Inventory / Materials";
-		}else if(e.getSource()==consumables) 
-		{
-			this.update(ItemType.CONSUMABLE);
-			titleString="Inventory / Consumables";
 		}
+
 
 		
 		

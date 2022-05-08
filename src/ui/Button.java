@@ -18,7 +18,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JButton;
 
-import input.InputParser;
+import input.PlayerInputParser;
 import input.MouseInputParser;
 
 public class Button extends Component implements MouseListener {

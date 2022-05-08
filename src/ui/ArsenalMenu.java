@@ -19,8 +19,9 @@ import input.MouseInputParser;
 import render.Tester;
 
 public class ArsenalMenu {
-	Polygon shape;
-	RenderableMenuItem[] arsenalItems;
+	private Polygon shape;
+	private RenderableMenuItem[] arsenalItems;
+	private boolean hidden=false;
 
 	public ArsenalMenu(Inventory inventory, JPanel panel) {
 		Point[] shapeCoords = { new Point(1792, 689), new Point(1280, 1201), new Point(768, 689),new Point(1280, 177) };
@@ -40,28 +41,38 @@ public class ArsenalMenu {
 //		}
 
 	}
+	public boolean isHidden() {
+		return hidden;
+	}
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
+	}
 	public void draw(Graphics2D g, int JPanelX,int JPanelY) 
 	{
-		g.drawImage(createGradient(), 0, 0, null);
-		Font text=null;
-		try {
-			text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
-		} catch (FontFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
-
-		boolean tripped=false;
-		g.draw(shape);
-		for(int i=0;i<arsenalItems.length;i++) 
+		if(!hidden) 
 		{
+			g.drawImage(createGradient(), 0, 0, null);
+			Font text=null;
+			try {
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+
+			boolean tripped=false;
+			g.draw(shape);
+			for(int i=0;i<arsenalItems.length;i++) 
+			{
 
 
-			if(arsenalItems[i]!=null)
-			arsenalItems[i].draw(g, JPanelX, JPanelY);
+				if(arsenalItems[i]!=null)
+				arsenalItems[i].draw(g, JPanelX, JPanelY);
+			}	
 		}
+
 
 
 

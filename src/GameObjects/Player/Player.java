@@ -61,6 +61,8 @@ public class Player extends MovingObject{
 		health = stats[3];
 		currentShields = stats[6];
 		lastRegen=System.currentTimeMillis();
+		inventory=new Inventory();
+
 		this.game=game;
 
 
@@ -147,9 +149,7 @@ public class Player extends MovingObject{
 		}
 	}
 	
-	public void leveledUp() {
-		//Armaan put code here
-	}
+
 	
 	@Override
 	public String toString() {
@@ -160,7 +160,6 @@ public class Player extends MovingObject{
 	
 	@Override
 	public void render(Graphics2D g) {
-		// super.refillLastPos(g);
 		super.getImage().drawAnimation(g);
 		regen();
 		super.setMovementDelay(stats[7]);
