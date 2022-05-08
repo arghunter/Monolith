@@ -5,8 +5,10 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RadialGradientPaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,6 +16,7 @@ import javax.swing.JPanel;
 
 import general.Constants;
 import input.MouseInputParser;
+import render.Tester;
 import skills.GenericSkill;
 import skills.MultipleSkill;
 import skills.Skill;
@@ -46,7 +49,7 @@ public class SkillDisplayMenu implements ActionListener {
 			int offsetY = 0;
 			int modI=i%7;
 			int shiftX=i/7*390-75;
-			int shiftY=(int)(72*((Math.floor(i/7.0))%2));
+			int shiftY=(int)(300+72*((Math.floor(i/7.0))%2));
 			switch (modI) {
 			case 1:
 				offsetX = 0;
@@ -147,6 +150,7 @@ public class SkillDisplayMenu implements ActionListener {
 	{ 
 		if(isActive) 
 		{
+			g.drawImage(createGradient(JPanelX, JPanelY), JPanelX, JPanelY, null);
 			for(int i=0;i<currentSkillButtons.length;i++) 
 			{
 				currentSkillButtons[i].draw(g, JPanelX, JPanelY);
@@ -200,6 +204,25 @@ public class SkillDisplayMenu implements ActionListener {
 			}
 		}
 		
+	}
+	private static BufferedImage createGradient(int JPanelX, int JPanelY) {
+		int width = (int) Tester.WIDTH;
+		int height = (int) Tester.HEIGHT;
+
+		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		Graphics2D g = img.createGraphics();
+
+		Color[] colors = { new Color((212) / 3, (175) / 3, (55) / 3), new Color(212 / 6, 175 / 6, 55 / 6) };
+		float[] ratio = { 0.0f, 0.6f };
+		Point center = new Point((int) (MouseInputParser.getX() - JPanelX / MouseInputParser.getRatioX()),
+				(int) (MouseInputParser.getY() - JPanelY / MouseInputParser.getRatioX()));
+
+		RadialGradientPaint gradient = new RadialGradientPaint(center, 0.25f * width, ratio, colors);
+		g.setPaint(gradient);
+		g.fillRect(0, 0, width, height);
+		g.dispose();
+
+		return img;
 	}
 
 	@Override
