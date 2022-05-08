@@ -1,11 +1,16 @@
+//Author: Armaan Gomes
+//Date: 5/8/22
+//Rev: 01
+//Notes: Represents a skill that modifies multiple values
 package skills;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class MultipleSkill extends GenericSkill {
-	Skill[] skills;
+	Skill[] skills;//Array of the skills that this multipleSkill has
 
+	//Constructor
 	public MultipleSkill(StatType type,String name, StatType[] skillTypes,int[] values, int tier,boolean isActive) {
 		super(type,name,tier,isActive);
 		if(!(skillTypes.length==values.length)) 
@@ -20,12 +25,15 @@ public class MultipleSkill extends GenericSkill {
 		}
 		
 	}
+	//Constructor
 	public MultipleSkill(StatType type,String name,int tier, boolean isActive,Skill[] skills) 
 	{
 		super(type,name,tier,isActive);
 		this.skills=skills;
 	}
+	
 	@Override
+	//Overridden setisActive 
 	public void setIsActive(boolean isActive) 
 	{
 		super.setIsActive(isActive);
@@ -36,15 +44,17 @@ public class MultipleSkill extends GenericSkill {
 	}
 
 	@Override
-	//Do not touch this method. Never call it.
+	//Dead apply
 	public int apply(int value) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	//Returns the skills that this multipleSkill object has
 	public Skill[] getSkills() 
 	{
 		return skills;
 	}
+	//Applies this skill to an array of stats
 	public void apply(StatType[] valueTypes,int[] modifiedStats) 
 	{
 		if(!(valueTypes.length==modifiedStats.length)) 
@@ -64,10 +74,6 @@ public class MultipleSkill extends GenericSkill {
 		}
 	}
 
-	@Override
-	public void render(Graphics2D g,int x,int y) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

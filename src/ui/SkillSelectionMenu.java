@@ -186,10 +186,8 @@ public class SkillSelectionMenu implements ActionListener {
 		case XP:
 			color=new Color(88,132,44);
 			break;
-		case MISC:
-			color=new Color(128, 37, 118);
-			break;
 		}
+
 		return color;
 	}
 	

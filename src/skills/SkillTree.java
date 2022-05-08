@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/8/22
+//Rev: 01
+//Notes: Represents a skill tree
 package skills;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -14,15 +18,16 @@ import ui.Button;
 
 
 
-public class SkillTree implements Serializable {
-	private int[] baseStats;
-	private int[] modifiedBaseStats;
-	private StatType[] statTypes;
-	private ArrayList<GenericSkill> skills=new ArrayList<GenericSkill>();
+public class SkillTree {
+	private int[] baseStats;//the base player stats
+	private int[] modifiedBaseStats;//the player stats after modification Also a direct reference to the array of stats inside of a player object
+	private StatType[] statTypes;//the  player's statypes
+	private ArrayList<GenericSkill> skills=new ArrayList<GenericSkill>();// ArrayList of the Skills that this skillTree has
+	//Constant skill construction data
 	public final String[] SKILL_NAMES= {"Accuracy","Armor","Attack Speed","Health","Power","Regen","Shield","Speed","Strength", "Tank","Marksman","Sword Master","Curse","Master","Sprinter","Weight Training","Eagle Eyes","Recovery","Shield Master","Armor Master", "Greased Lightning", "Sharpened Steel"};
 	public final StatType[][] SKILL_TYPES=  { { StatType.ACCURACY}, {StatType.ARMOR },{StatType.ATTACKSPEED},{StatType.HEALTH},{StatType.POWER},{StatType.REGEN},{StatType.SHIELD},{StatType.SPEED},{StatType.STRENGTH},{StatType.HEALTH,StatType.SHIELD,StatType.REGEN,StatType.STRENGTH,StatType.SPEED},{StatType.ACCURACY,StatType.POWER},{StatType.STRENGTH},{StatType.ACCURACY,StatType.ARMOR,StatType.ATTACKSPEED,StatType.HEALTH,StatType.POWER,StatType.REGEN,StatType.SHIELD,StatType.SPEED,StatType.STRENGTH,StatType.XP},{StatType.ACCURACY,StatType.ARMOR,StatType.ATTACKSPEED,StatType.HEALTH,StatType.POWER,StatType.REGEN,StatType.SHIELD,StatType.SPEED,StatType.STRENGTH,StatType.XP},{StatType.SPEED},{StatType.STRENGTH, StatType.HEALTH},{StatType.ACCURACY},{StatType.REGEN},{StatType.SHIELD},{StatType.ARMOR},{StatType.ATTACKSPEED},{StatType.POWER,StatType.STRENGTH}};
-	public final int[][][] SKILL_RANGE= {{{2,8}},{{5,15}},{{5,15}},{{8,16}},{{2,16}},{{5,15}},{{8,16}},{{2,8}},{{2,16}},{{15,20},{15,20},{10,18},{2,5},{-20,-10}},{{15,25},{15,25}},{{20,35}},{{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{5,10}},{{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{-5,-10}},{{12,24}},{{10,20},{5,10}},{{25,35}},{{25,30}},{{15,24}},{{25,35}},{{15,25}},{{15,25},{15,22}}};
-	
+	public final int[][][] SKILL_RANGE= {{{2,8}},{{5,15}},{{5,15}},{{8,16}},{{2,16}},{{5,15}},{{8,16}},{{2,8}},{{2,16}},{{15,20},{15,20},{10,18},{2,5},{-20,-10}},{{15,20},{15,20}},{{15,25}},{{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{-5,-5},{5,10}},{{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{5,5},{-5,-10}},{{12,24}},{{10,20},{5,10}},{{15,25}},{{15,25}},{{15,24}},{{15,25}},{{15,25}},{{15,25},{15,22}}};
+	//Constructor that uses saveData to create skills
 	public SkillTree(String saveData,int[] baseStats,StatType[]statTypes) 
 	{
 		
@@ -45,16 +50,14 @@ public class SkillTree implements Serializable {
 		}
 		
 	}
+	//Constructor for a skillTree with no skills
 	public SkillTree(int[] baseStats,StatType[] statTypes) 
 	{
 		this.baseStats=Arrays.copyOf(baseStats, baseStats.length);
 		this.modifiedBaseStats=baseStats;
 		this.statTypes=statTypes;
 	}
-	public SkillTree(SkillTree tree) 
-	{
-		this.skills=tree.skills;
-	}
+	//Add xp into this skillTree
 	public void addXP(int xp) 
 	{
 		for(int i=0;i<statTypes.length;i++) 
@@ -78,11 +81,12 @@ public class SkillTree implements Serializable {
 			try {
 				skills.get(i).addXP(divXp);
 			} catch (SkillUpdateException e) {
-				applyLastAddedSkill();
+				applyAllSkills();
 
 			}
 		}
 	}
+	//Applies the skill that was last added into the skillTree
 	public void applyLastAddedSkill() 
 	{
 		StatType type=skills.get(skills.size()-1).getType();
@@ -100,11 +104,15 @@ public class SkillTree implements Serializable {
 			}
 		}
 		
-		//System.out.println(Arrays.toString(modifiedBaseStats)+"   base");
 	}
+	//Applies all skills in this skillTree
 	private void applyAllSkills() 
 	{
-		modifiedBaseStats=Arrays.copyOf(baseStats, baseStats.length);
+
+		for(int i=0;i<baseStats.length;i++) 
+		{
+			modifiedBaseStats[i]=baseStats[i];
+		}
 		for(int i=0;i<skills.size();i++) 
 		{
 			if(!skills.get(i).getIsActive()) 
@@ -124,7 +132,7 @@ public class SkillTree implements Serializable {
 			}
 		}
 	}
-
+	//Adds a skill to this skill tree
 	public void addSkill(GenericSkill skill) 
 	{
 		for(int i=0;i<skills.size();i++) 
@@ -132,6 +140,7 @@ public class SkillTree implements Serializable {
 			if(skills.get(i).getName().equals(skill.getName())) 
 			{
 				skills.set(i, skill);
+				applyAllSkills();
 				return;
 			}
 		}
@@ -139,7 +148,7 @@ public class SkillTree implements Serializable {
 		applyLastAddedSkill();
 	
 	}
-
+	//Returns a set of skills that are randomly generated
 	public GenericSkill[] skillSelection(int skillCount) 
 	{
 		//System.out.println(skillCount+" count");
@@ -174,7 +183,7 @@ public class SkillTree implements Serializable {
 		}
 		return availableSkills;
 	}
-	
+	//Parses skill data to create a skill
 	private Skill parseSkillData(String skillData) 
 	{
 		String[] data=skillData.split("/");
@@ -214,13 +223,12 @@ public class SkillTree implements Serializable {
 		case "XP":
 			type=StatType.XP;
 			break;
-		case "MISC":
-			type=StatType.MISC;
-			break;
+
 		}
 
 		return new Skill(type,data[0].replace('_', ' '),Integer.parseInt(data[5]),Integer.parseInt(data[1]),Boolean.parseBoolean(data[2]));
 	}
+	//Parses multipleSkillData to create a multipleSkill
 	private MultipleSkill parseMultipleSkillData(String skillData) 
 	{
 		String[] faceData=skillData.split("/");
@@ -244,6 +252,7 @@ public class SkillTree implements Serializable {
 
 	
 	@Override
+	//To string for save purposes
 	public String toString() 
 	{
 		String s="SkillTreeSkill:";
@@ -271,7 +280,7 @@ public class SkillTree implements Serializable {
 	}
 	 
 	
-	
+	//Returns the arraylist that holds the skills of this skillTree
 	public ArrayList<GenericSkill> getSkills()
 	{
 		return skills;

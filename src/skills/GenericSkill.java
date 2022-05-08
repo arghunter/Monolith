@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/8/22
+//Rev:01
+//Notes: Represents a generic skill that boosts play stats
 package skills;
 
 import java.awt.Graphics;
@@ -5,24 +9,17 @@ import java.awt.Graphics2D;
 
 
 public abstract class GenericSkill {
-	private StatType type;
-	private String name;
-	private int tier;
-	private int xp;
-	private int nextLevelXp;
-	private boolean isActive;
+	//Fields
+	private StatType type;//What type of skill it boosts 
+	private String name;//Skill name
+	private int tier;//Skill tier
+	private int xp;//current xp
+	private int nextLevelXp;// xp till next level
+	private boolean isActive;// if this skill is active
 	
-	//Fields Percent increase/decrease
-//	private int speed;
-//	private int strength;//Affects melee weapons
-//	private int accuracy;
-//	private int health;
-//	private int shield;
-//	private int armor;
-//	private int attackspeed;//In attacks per minute for my sanity
-//	private int power;//Affects melee and ranged weapons
+
 	
-	
+	//Construcotr
 	public GenericSkill(StatType type,String name,int tier,boolean isActive) 
 	{
 		this.type=type;
@@ -30,29 +27,34 @@ public abstract class GenericSkill {
 		this.tier=tier;
 		this.isActive=isActive;
 		this.xp=0;
-		this.nextLevelXp=(int)Math.pow(8, tier+6);
+		this.nextLevelXp=(int)Math.pow(4, tier+6);
 		
 	}
 
 	
-	
+	//Returns stat type
 	public StatType getType() {
 		return type;
 	}
+	//Returns this skill's name
 	public String getName() {
 		return name;
 	}
+	//Returns this skill's tier
 	public int getTier() {
 		return tier;
 	}
+    //Returns if this skill is Active
 	public boolean getIsActive() 
 	{
 		return isActive;
 	}
+	//Sets isActive
 	public void setIsActive(boolean isActive) 
 	{
 		this.isActive=isActive;
 	}
+	//Add XP to this skill. Throws an exception that tells the skill tree to update stats if it levels up
 	public void addXP(int xp) throws SkillUpdateException 
 	{
 		this.xp+=xp;
@@ -66,32 +68,25 @@ public abstract class GenericSkill {
 			}
 		}
 	}
+	//Sets this skill's Xp
 	public void setXP(int xp) 
 	{
 		this.xp=xp;
 	}
+	//Returns this Skills xp
 	public int getXP() 
 	{
 		return xp;
 	}
+	//Sets this skills tier
 	public void setTier(int tier) 
 	{
 		this.tier=tier;
 	}
-	
+	//Applies this skill 
 	public abstract int apply(int value);
+	//Alternative apply
 	public abstract void apply(StatType[] valueTypes, int[] values) ;
-	public abstract void render(Graphics2D g,int x,int y);
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
 	
 
 }

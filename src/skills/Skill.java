@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/8/22
+//Rev: 01
+//Notes: Represents a skill that modifies a singular value;
 package skills;
 
 import java.awt.Graphics;
@@ -5,26 +9,29 @@ import java.awt.Graphics2D;
 
 public class Skill extends GenericSkill {
 
-	private int percent;
-	private int modifiedPercent;
-
+	private int percent;// the base percent that this skill modifies
+	private int modifiedPercent;// the actual value the skill uses to modify stats.
+	//Constructor
 	public Skill(StatType type, String name, int percent, int tier, boolean isActive) {
 		super(type, name, tier, isActive);
 		this.percent = percent;
-		this.modifiedPercent = percent * tier;
+		this.modifiedPercent = (int)(percent * (tier/2.0));
 		
 
 	}
+	//Returns the modifiedpercent
 	public int getModifiedPercent() 
 	{
 		return modifiedPercent;
 	}
+	//Returns the percent
 	public int getPercent() 
 	{
 		return percent;
 	}
 
 	@Override
+	//Applies this skill to a value
 	public int apply(int value) {
 		this.modifiedPercent= percent * super.getTier();
 		switch (super.getType()) {
@@ -69,20 +76,18 @@ public class Skill extends GenericSkill {
 			return (int)(value*10*0.88*Math.log(1.0+modifiedPercent/12.0)*Math.log(1.0+modifiedPercent/12.0)+0.5) ;
 			case XP:
 				return (int)(value*(1+modifiedPercent/100.0));
+			
 
-			case MISC:
-				return 0;
+
 
 		}
 		return -404;
 	}
 
-	@Override
-	public void render(Graphics2D g, int x, int y) {
 
-	}
 
 	@Override
+	//Dead apply
 	public void apply(StatType[] valueTypes, int[] values) {
 		// TODO Auto-generated method stub
 

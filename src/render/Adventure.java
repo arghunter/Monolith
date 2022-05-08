@@ -27,8 +27,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import general.Constants;
 
-public class Adventure extends JPanel implements ActionListener {
-	private Player thePlayer = new Player(300, 300, 1, 64, 64,this);
+public class Adventure implements ActionListener {
+	private Player thePlayer;
 	private PlayerInputParser input;
 
 	private JFrame frame;
@@ -58,15 +58,19 @@ public class Adventure extends JPanel implements ActionListener {
 	//Whether the game is paused and mobs move
 	private boolean paused=false;
 	
-	public Adventure() {
-		
+	public Adventure(Player player) {
+		thePlayer=player;
+	}
+	public Adventure() 
+	{
+		thePlayer=new Player(300, 300, 1, 64, 64,this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		
 	}
 	
-	public void paintComponent(Graphics g) {
+	public void draw(Graphics2D g) {
 		
 	}
 }

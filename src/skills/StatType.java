@@ -15,5 +15,5 @@ public enum StatType implements Serializable
     POWER,// all weapon dmg
     XP,// xp boost
     MULTIPLE,// combination of multiple
-    MISC// idk yet
+   
 }
