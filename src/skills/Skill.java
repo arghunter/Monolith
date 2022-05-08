@@ -12,6 +12,7 @@ public class Skill extends GenericSkill {
 		super(type, name, tier, isActive);
 		this.percent = percent;
 		this.modifiedPercent = percent * tier;
+		
 
 	}
 	public int getModifiedPercent() 

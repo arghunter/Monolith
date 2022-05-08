@@ -28,6 +28,7 @@ public abstract class GenericSkill {
 		this.type=type;
 		this.name=name;
 		this.tier=tier;
+		this.isActive=isActive;
 		this.xp=0;
 		this.nextLevelXp=(int)Math.pow(8, tier+6);
 		

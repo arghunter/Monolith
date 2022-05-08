@@ -218,6 +218,7 @@ public class SkillTree implements Serializable {
 			type=StatType.MISC;
 			break;
 		}
+
 		return new Skill(type,data[0].replace('_', ' '),Integer.parseInt(data[5]),Integer.parseInt(data[1]),Boolean.parseBoolean(data[2]));
 	}
 	private MultipleSkill parseMultipleSkillData(String skillData) 

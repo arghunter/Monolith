@@ -151,12 +151,24 @@ public class SkillDisplayMenu implements ActionListener {
 		if(isActive) 
 		{
 			g.drawImage(createGradient(JPanelX, JPanelY), JPanelX, JPanelY, null);
+			g.setColor(Constants.textColor);
+			Font text=null;
+			try {
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+			g.setFont(text.deriveFont(120f));
+			g.drawString("Skills", 275, 175);
 			for(int i=0;i<currentSkillButtons.length;i++) 
 			{
 				currentSkillButtons[i].draw(g, JPanelX, JPanelY);
 				if(currentSkillButtons[i].isHovering()) 
 				{	
-					Font text=null;
+					text=null;
 					try {
 						text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
 					} catch (FontFormatException e) {
@@ -165,12 +177,19 @@ public class SkillDisplayMenu implements ActionListener {
 						
 						e.printStackTrace();
 					}
-					g.setColor(Color.BLACK);
+					g.setColor(Constants.textColor);
 					
 					g.setFont(text.deriveFont(36f));
 					String title=currentSkills[i].getName().toUpperCase()+" "+currentSkills[i].getTier();
-					g.drawString(title, 800, 200);
-					
+					g.drawString(title, 1600, 200);
+					if(currentSkills[i].getIsActive()==true) 
+					{
+						g.drawString("Active", 1600, 250);
+					}else 
+					{
+						g.drawString("Inactive", 1600, 250);
+
+					}
 					if(currentSkills[i].getType()!=StatType.MULTIPLE) 
 					{
 						
@@ -181,7 +200,7 @@ public class SkillDisplayMenu implements ActionListener {
 						{
 							sign+='+';
 						}
-						g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
+						g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(),1600,300);
 					}else 
 					{
 						
@@ -195,7 +214,7 @@ public class SkillDisplayMenu implements ActionListener {
 							{
 								sign+='+';
 							}
-							g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
+							g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 1600,300+50*j);
 						}
 					}
 					
