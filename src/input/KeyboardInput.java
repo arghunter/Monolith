@@ -104,7 +104,6 @@ public class KeyboardInput implements KeyListener {
 
 
 	public boolean isEscapePressed() {
-		System.out.println(escapePressed);
 		return escapePressed;
 		
 	}
