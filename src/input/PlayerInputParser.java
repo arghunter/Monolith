@@ -15,21 +15,26 @@ public class PlayerInputParser {
 		mouse = new MouseInputParser(component);
 	}
 
-	public double getMouseX() {
-		return mouse.getX();
+	public static double getMouseX() {
+		return MouseInputParser.getX();
 	}
 
-	public double getMouseY() {
-		return mouse.getY();
+	public static double getMouseY() {
+		return MouseInputParser.getY();
 	}
 
-	public boolean getMBPressed(int MB) {
-		return mouse.isMBDown(MB);
+	public static boolean getMBPressed(int MB) {
+		return MouseInputParser.isMBDown(MB);
 	}
 
-	public void updatePlayerPosAndAngle(Player player) {
+	public void updatePlayer(Player player) {
 		keyboard.updatePlayerPos(player);
 		mouse.updatePlayerAngle(player);
+		if(MouseInputParser.isMBDown(0)) 
+		{
+			player.useItem();
+			
+		}
 
 	}
 	public void updatePlayerAngle(Player player) 

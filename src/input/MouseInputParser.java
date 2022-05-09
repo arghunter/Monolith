@@ -30,9 +30,9 @@ public class MouseInputParser {
 		player.updateAngle(getX(), getY());
 	}
 
-	public boolean isMBDown(int MB) {
+	public static boolean isMBDown(int MB) {
 		if (MB < 3) {
-			return input.getButtonStates()[0];
+			return MouseInput.getButtonStates()[MB];
 		}
 		return false;
 

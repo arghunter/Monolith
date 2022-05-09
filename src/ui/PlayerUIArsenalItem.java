@@ -73,10 +73,7 @@ public class PlayerUIArsenalItem {
 			g.drawRect(x+10, y+10, 96-5, 96-5);
 		}
 	}
-	public void leftClick() 
-	{
-		
-	}
+
 
 	public Item getItem() {
 		return item;

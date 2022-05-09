@@ -50,8 +50,6 @@ public class Tester extends JPanel implements ActionListener {
 		mobList[0] = theSpider;
 		mobList[1] = secondSpider;
 		mobList[2] = theZombie;
-		Material steel=new Material("Spider",0,0);
-		item=new RenderableMenuItem(steel,900,800,this);
 		Point[] points = { new Point(238, 108), new Point(162, 108), new Point(108, 162), new Point(108, 238),
 				new Point(162, 292), new Point(238, 292), new Point(292, 238), new Point(292, 162) };
 
@@ -66,7 +64,7 @@ public class Tester extends JPanel implements ActionListener {
 		}
 		w.addWindowListener(save);
 		thePlayer = save.loadSave();
-		this.initInput(w);
+		this.initInput(this);
 		this.frame = w;
 		ratioX = super.getWidth() / WIDTH;
 		ratioY = super.getHeight() / HEIGHT;
@@ -119,18 +117,17 @@ public class Tester extends JPanel implements ActionListener {
 			skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
 		}
 		zombieButton.draw(g, this.getXOnScreen(), this.getYOnScreen());
-		input.updatePlayerPosAndAngle(thePlayer);
+		input.updatePlayer(thePlayer);
 		thePlayer.render(g);
 
 		for (int i = 0; i < numMobs; i++) {
 			mobList[i].render(g);
 			mobList[i].update(thePlayer.getX(), thePlayer.getY());
 		}
-		item.draw(g, this.getXOnScreen(), this.getYOnScreen());
 	}
 
-	public void initInput(JFrame frame) {
-		this.input = new PlayerInputParser(frame);
+	public void initInput(Component component) {
+		this.input = new PlayerInputParser(component);
 	}
 
 	public void actionPerformed(ActionEvent e) {

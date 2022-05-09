@@ -51,6 +51,16 @@ public class Consumable extends Item {
 		count=0;
 		add(num);
 	}
+	public void consume() 
+	{
+		if(count>0) 
+		{
+			buff.start();
+			this.count--;
+		}
+
+		
+	}
 	public Buff getBuff() 
 	{
 		return buff;

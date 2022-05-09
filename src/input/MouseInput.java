@@ -10,7 +10,7 @@ import GameObjects.Player.Player;
 
 public class MouseInput implements MouseListener {
 	private Component component;
-	private boolean[] buttonStates=new boolean[3];
+	private static boolean[] buttonStates=new boolean[3];
 	Player currentPlayer;
 	public MouseInput(Component component) 
 	{
@@ -22,7 +22,7 @@ public class MouseInput implements MouseListener {
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
-	
+		
 
 		
 		
@@ -33,10 +33,11 @@ public class MouseInput implements MouseListener {
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
+	
+
 		if(e.getButton()==MouseEvent.BUTTON1) 
 		{
 			buttonStates[0]=true;
-			System.out.println("clicked");
 		}else if(e.getButton()==MouseEvent.BUTTON2) 
 		{
 			buttonStates[1]=true;
@@ -69,7 +70,7 @@ public class MouseInput implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
-	public boolean[] getButtonStates() 
+	public static boolean[] getButtonStates() 
 	{
 		return buttonStates;
 	}

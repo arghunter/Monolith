@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.awt.Graphics2D;
 
 import javax.swing.JButton;
@@ -357,6 +358,7 @@ public class Button extends Component implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 	
 		isPressed=false;
+
 
 	}
 	@Override

@@ -108,7 +108,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		
 		setBackground(Color.WHITE);
 		
-		input.updatePlayerPosAndAngle(thePlayer);
+		input.updatePlayer(thePlayer);
 		curRoom=op.getRoom(curRoomX, curRoomY);
 		
 		if(!(curRoom==null)) {

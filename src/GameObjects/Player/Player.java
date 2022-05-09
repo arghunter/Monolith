@@ -1,6 +1,6 @@
 package GameObjects.Player;
 
-import java.awt.Color; 
+import java.awt.Color;  
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -20,10 +20,11 @@ import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.weapons.MeleeWeapon;
 import GameObjects.Player.items.weapons.Weapon;
+import GameObjects.Player.items.consumables.Consumable;
 import general.ImageSystem;
 import skills.*;
 import ui.PlayerUI;
-
+ 
 
 public class Player extends MovingObject{
 	SkillTree skills;
@@ -169,13 +170,15 @@ public class Player extends MovingObject{
 		if(item==null) 
 		{
 			//fist
+			return;
 		}
 		if(item.getType()==ItemType.WEAPON) 
 		{
 			//weapon
 		}else if(item.getType()==ItemType.CONSUMABLE) 
 		{
-			//consumestuff
+			Consumable consumable=(Consumable)item;
+			consumable.consume();
 		}
 	}
 

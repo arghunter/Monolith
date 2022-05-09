@@ -21,6 +21,7 @@ public class MeleeWeapon extends Weapon {
 	}
 	@Override
 	public void primaryFire(Mob[] mobs, Player player) {
+		System.out.println("Here");
 		for(Mob m : mobs) {
 			if(this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
 				double hyp = this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY());
