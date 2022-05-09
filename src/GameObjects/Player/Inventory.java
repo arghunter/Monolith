@@ -260,6 +260,10 @@ public class Inventory {
 	{
 		return (Armor) arsenal[3];
 	}
+	public int getEquipped() 
+	{
+		return equipped;
+	}
 	public void setEquipped(int equipped) 
 	{
 		if(equipped>15||equipped<0) 

@@ -16,7 +16,7 @@ import GameObjects.Player.Player;
 public class PlayerUI implements MouseWheelListener {
 	Player player;
 	PlayerUIArsenalItem[] arsenalItems=new PlayerUIArsenalItem[16];
-	private int selected=4;
+	
 	private int scrollCount=0;
 	public PlayerUI(Player player,JPanel panel)
 	{
@@ -38,7 +38,7 @@ public class PlayerUI implements MouseWheelListener {
 		arsenalItems[13]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[13], 1088, 1277);
 		arsenalItems[14]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[14], 1088, 1181);
 		arsenalItems[15]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[15], 1088, 989+96);
-		arsenalItems[selected].setSelected(true);
+		arsenalItems[player.getInventory().getEquipped()].setSelected(true);
 		
 
 
@@ -85,17 +85,21 @@ public class PlayerUI implements MouseWheelListener {
 				{
 					dif=-1;
 				}
-				arsenalItems[this.selected].setSelected(false);
-				selected+=dif;
+				arsenalItems[player.getInventory().getEquipped()].setSelected(false);
+				int selected=player.getInventory().getEquipped()+dif;
 				if(selected>15) 
 				{
-					selected=4;
-				}
+					player.getInventory().setEquipped(4);
+				}else
 				if(selected<4) 
 				{
-					selected=15;
+					player.getInventory().setEquipped(15);
+				}else
+				{
+					player.getInventory().setEquipped(selected);
+
 				}
-				arsenalItems[this.selected].setSelected(true);
+				arsenalItems[player.getInventory().getEquipped()].setSelected(true);
 				scrollCount=0;
 			}
 
