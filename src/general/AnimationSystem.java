@@ -52,6 +52,7 @@ public class AnimationSystem {
 		}
 	}
 	
+	
 	public void drawAnimation(Graphics2D g) 
 	{
 		if(System.currentTimeMillis()-this.lastFrame>=this.delay&&numFrames>1) 

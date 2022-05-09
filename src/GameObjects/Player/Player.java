@@ -1,6 +1,6 @@
 package GameObjects.Player;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -17,7 +17,9 @@ import javax.swing.ImageIcon;
 import GameObjects.MovingObject;
 import general.ImageSystem;
 import skills.*;
-import java.io.Serializable;
+import ui.PlayerUI;
+
+
 public class Player extends MovingObject{
 	SkillTree skills;
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
@@ -27,7 +29,7 @@ public class Player extends MovingObject{
 	private int currentLevel=0;
 	private int currentXP=0;
 	private int xpToNextLevel=1;
-	
+	private PlayerUI ui;
 	private Inventory inventory;
 	private int currentShields;
 	private boolean isDead = false;
@@ -48,6 +50,7 @@ public class Player extends MovingObject{
 		skills = new SkillTree(stats, statTypes);
 		health = stats[3];
 		currentShields = stats[6];
+		ui=new PlayerUI(this);
 		lastRegen=System.currentTimeMillis();
 		this.game=game;
 		
@@ -58,11 +61,15 @@ public class Player extends MovingObject{
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
 		skills = new SkillTree(saveData,stats, statTypes);
+		inventory=new Inventory();
+		stats[3]=(int)inventory.getHealth();
+		stats[1]=(int)inventory.getArmor();
+		stats[6]=(int) inventory.getShields();
 		health = stats[3];
 		currentShields = stats[6];
 		lastRegen=System.currentTimeMillis();
-		inventory=new Inventory();
-
+	
+		ui=new PlayerUI(this);
 		this.game=game;
 
 
@@ -82,18 +89,21 @@ public class Player extends MovingObject{
 	}
 
 	private void regen() {
-		if (System.currentTimeMillis() - lastRegen >= 60000) {
+//		System.out.println(stats[3]);
+		if (System.currentTimeMillis() - lastRegen >= 1000) {
 			if (currentShields < stats[6]) {
 				currentShields += stats[5];
-				if (currentShields > stats[6]) {
-					currentShields = stats[6];
-				}
+
+			}
+			if (currentShields > stats[6]) {
+				currentShields = stats[6];
 			}
 			if (health < stats[3]) {
 				health += stats[5] / 2;
-				if (health > stats[3]) {
-					health = stats[3];
-				}
+				
+			}
+			if (health > stats[3]) {
+				health = stats[3];
 			}
 			lastRegen = System.currentTimeMillis();
 
@@ -160,6 +170,7 @@ public class Player extends MovingObject{
 	
 	@Override
 	public void render(Graphics2D g) {
+		ui.draw(g);
 		super.getImage().drawAnimation(g);
 		regen();
 		super.setMovementDelay(stats[7]);

@@ -1,16 +1,20 @@
+//Author: Armaan Gomes
+//Date: 5/8/22
+//Rev: 01
+//Notes: An enum that stores Stat types.
 package skills;
 
-import java.io.Serializable;
 
-public enum StatType implements Serializable
+
+public enum StatType 
 {
     SPEED, //player speed
     STRENGTH, //melee dmg
-    ACCURACY, //ranged accuracy not sure how this works yet
+    ACCURACY, //ranged accuracy
     HEALTH,// player health
-    REGEN,// player shield regen
+    REGEN,// player regen
     SHIELD,// player shields
-    ARMOR,// player armors which is dmg reduction
+    ARMOR,// player armor
     ATTACKSPEED,// player weapon attack speed
     POWER,// all weapon dmg
     XP,// xp boost

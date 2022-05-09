@@ -16,6 +16,8 @@ public class ImageSystem {
 	private int height;
 	private int x;
 	private int y;
+	private double scaleX=1.0;
+	private double scaleY=1.0;
 	
 	public ImageSystem(int x,int y,Image pic) 
 	{
@@ -26,6 +28,7 @@ public class ImageSystem {
 	    this.x=x;
 	    this.y=y;
 	    transform.translate(x - width/2, y - height/2);
+	   
 	}
 	
 
@@ -43,13 +46,13 @@ public class ImageSystem {
 
 
 	public int getWidth() {
-		return width;
+		return (int)(width*scaleX);
 	}
 
 
 
 	public int getHeight() {
-		return height;
+		return (int)(height*scaleY);
 	}
 
 
@@ -64,7 +67,21 @@ public class ImageSystem {
 		return y;
 	}
 
-
+	public void setScale(double scaleX,double scaleY) 
+	{
+		this.scaleX=scaleX;
+		this.scaleY=scaleY;
+		transform.scale(scaleX, scaleY);
+		
+	}
+	public double getScaleX() 
+	{
+		return scaleX;
+	}
+	public double getScaleY() 
+	{
+		return scaleY;
+	}
 
 	public void move(int x, int y)
 	{
@@ -76,6 +93,7 @@ public class ImageSystem {
 	public void setRotation(double radians) 
 	{
 		transform.setToTranslation(x - width/2.0, y - height/2.0);
+		transform.scale(scaleX, scaleY);
 		transform.rotate(radians+Math.PI/2,width/2,height/2);
 		
 	}

@@ -15,7 +15,7 @@ public class Skill extends GenericSkill {
 	public Skill(StatType type, String name, int percent, int tier, boolean isActive) {
 		super(type, name, tier, isActive);
 		this.percent = percent;
-		this.modifiedPercent = (int)(percent * (tier/2.0));
+		this.modifiedPercent = (int)(percent * (tier));
 		
 
 	}

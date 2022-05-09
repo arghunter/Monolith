@@ -113,23 +113,12 @@ public class SkillTree {
 		{
 			modifiedBaseStats[i]=baseStats[i];
 		}
-		for(int i=0;i<skills.size();i++) 
+		ArrayList<GenericSkill> temp=skills;
+		skills=new ArrayList<GenericSkill>();
+		for(int i=0;i<temp.size();i++) 
 		{
-			if(!skills.get(i).getIsActive()) 
-			{
-				continue;
-			}
-			StatType type=skills.get(i).getType();
-			for(int j=0;j<statTypes.length;j++) 
-			{
-				if(type==statTypes[i]) 
-				{
-					modifiedBaseStats[i]=skills.get(i).apply(modifiedBaseStats[i]);
-				}else if(statTypes[i]==StatType.MULTIPLE) 
-				{
-					skills.get(i).apply(statTypes, modifiedBaseStats);
-				}
-			}
+			skills.add(temp.get(i));
+			applyLastAddedSkill();
 		}
 	}
 	//Adds a skill to this skill tree
@@ -139,7 +128,8 @@ public class SkillTree {
 		{
 			if(skills.get(i).getName().equals(skill.getName())) 
 			{
-				skills.set(i, skill);
+				skills.remove(skills.get(i));
+				skills.add(skill);
 				applyAllSkills();
 				return;
 			}
@@ -157,6 +147,7 @@ public class SkillTree {
 		for(int j=0;j<skillCount;j++) 
 		{
 			int index=rng.nextInt(SKILL_NAMES.length);
+			
 			int[] values=new int[SKILL_TYPES[index].length];
 			for(int i=0;i<SKILL_TYPES[index].length;i++) 
 			{
@@ -225,7 +216,6 @@ public class SkillTree {
 			break;
 
 		}
-
 		return new Skill(type,data[0].replace('_', ' '),Integer.parseInt(data[5]),Integer.parseInt(data[1]),Boolean.parseBoolean(data[2]));
 	}
 	//Parses multipleSkillData to create a multipleSkill
@@ -242,7 +232,7 @@ public class SkillTree {
 			//System.out.println(skillsData[i].replace('~', '/').replace('(', '\u0000')+" a");
 			innerSkills[i]=parseSkillData(skillsData[i].replace('~', '/'));
 		}
-		MultipleSkill skill=new MultipleSkill(StatType.MULTIPLE,faceData[0],Integer.parseInt(faceData[1]),Boolean.parseBoolean(faceData[2]),innerSkills);
+		MultipleSkill skill=new MultipleSkill(StatType.MULTIPLE,faceData[0].replace('_', ' '),Integer.parseInt(faceData[1]),Boolean.parseBoolean(faceData[2]),innerSkills);
 		
 		return skill;
 		
