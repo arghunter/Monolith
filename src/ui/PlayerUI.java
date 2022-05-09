@@ -17,7 +17,7 @@ public class PlayerUI implements MouseWheelListener {
 	Player player;
 	PlayerUIArsenalItem[] arsenalItems=new PlayerUIArsenalItem[16];
 	
-	private int scrollCount=0;
+
 	public PlayerUI(Player player,JPanel panel)
 	{
 		panel.addMouseWheelListener(this);
@@ -76,10 +76,10 @@ public class PlayerUI implements MouseWheelListener {
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		
 		
-			scrollCount++;
+		
 			int dif=1;
 
-			if(scrollCount>4) 
+			if(e.getWheelRotation()!=0) 
 			{
 				if(e.getPreciseWheelRotation()<0) 
 				{
@@ -100,7 +100,7 @@ public class PlayerUI implements MouseWheelListener {
 
 				}
 				arsenalItems[player.getInventory().getEquipped()].setSelected(true);
-				scrollCount=0;
+		
 			}
 
 	}

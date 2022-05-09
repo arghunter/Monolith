@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import GameObjects.MovingObject;
+import GameObjects.Player.items.Item;
 import GameObjects.Player.items.weapons.MeleeWeapon;
 import GameObjects.Player.items.weapons.Weapon;
 import general.ImageSystem;
@@ -162,8 +163,9 @@ public class Player extends MovingObject{
 			game.actionPerformed(new ActionEvent(this,88891,"LevelUp"));
 		}
 	}
-	public Weapon getWeapon() {
-		return new MeleeWeapon("Stick",1,5,30,5,120);
+	public void useItem() {
+		Item item=inventory.getEquippedItem();
+		
 	}
 
 	
