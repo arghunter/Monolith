@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import GameObjects.MovingObject;
 import GameObjects.Player.items.Item;
+import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.weapons.MeleeWeapon;
 import GameObjects.Player.items.weapons.Weapon;
 import general.ImageSystem;
@@ -165,7 +166,17 @@ public class Player extends MovingObject{
 	}
 	public void useItem() {
 		Item item=inventory.getEquippedItem();
-		
+		if(item==null) 
+		{
+			//fist
+		}
+		if(item.getType()==ItemType.WEAPON) 
+		{
+			//weapon
+		}else if(item.getType()==ItemType.CONSUMABLE) 
+		{
+			//consumestuff
+		}
 	}
 
 	
