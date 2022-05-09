@@ -26,7 +26,7 @@ import java.util.LinkedList;
 //import java.util.*;
 
 public class TeMainMenu extends JPanel implements ActionListener {
-	private Player thePlayer = new Player(300, 300, 1, 64, 64,this);
+	private Player thePlayer = new Player(300, 300, 1, 64, 64,this,this);
 
 	private PlayerInputParser input;
 
@@ -46,7 +46,7 @@ public class TeMainMenu extends JPanel implements ActionListener {
 
 		w.setSize(800, 500);
 		try {
-			save = new SaveSystem(this);
+			save = new SaveSystem(this,this);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Save system broken");
