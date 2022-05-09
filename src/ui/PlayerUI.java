@@ -4,33 +4,42 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JPanel;
+
 import GameObjects.Player.Player;
 
-public class PlayerUI {
+public class PlayerUI implements MouseWheelListener {
 	Player player;
 	PlayerUIArsenalItem[] arsenalItems=new PlayerUIArsenalItem[16];
-	public PlayerUI(Player player)
+	private int selected=4;
+	private int scrollCount=0;
+	public PlayerUI(Player player,JPanel panel)
 	{
-		this.player=player;
-		arsenalItems[0]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1248, 1181);
-		arsenalItems[1]=new PlayerUIArsenalItem(player.getInventory().getChestplate(), 1280, 1181);
-		arsenalItems[2]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1280, 1213);
-		arsenalItems[3]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1248, 1213);
-		arsenalItems[4]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[4], 1216, 1149);
-		arsenalItems[5]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[5], 1248, 1149);
-		arsenalItems[6]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[6], 1280, 1149);
-		arsenalItems[7]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[7], 1312, 1149);
-		arsenalItems[8]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[8], 1312, 1181);
-		arsenalItems[9]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[9], 1312, 1213);
-		arsenalItems[10]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[10], 1312, 1245);
-		arsenalItems[11]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[11], 1280, 1245);
-		arsenalItems[12]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[12], 1248, 1245);
-		arsenalItems[13]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[13], 1216, 1245);
-		arsenalItems[14]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[14], 1216, 1213);
-		arsenalItems[15]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[15], 1216, 1181);
+		panel.addMouseWheelListener(this);
+		this.player=player;		
+		arsenalItems[0]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1184, 989+96);
+		arsenalItems[1]=new PlayerUIArsenalItem(player.getInventory().getChestplate(), 1280, 989+96);
+		arsenalItems[2]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1280, 1085+96);
+		arsenalItems[3]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1184, 1085+96);
+		arsenalItems[4]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[4], 1088, 893+96);
+		arsenalItems[5]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[5], 1184, 893+96);
+		arsenalItems[6]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[6], 1280, 893+96);
+		arsenalItems[7]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[7], 1376, 893+96);
+		arsenalItems[8]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[8], 1376, 989+96);
+		arsenalItems[9]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[9], 1376, 1181);
+		arsenalItems[10]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[10], 1376, 1277);
+		arsenalItems[11]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[11], 1280, 1277);
+		arsenalItems[12]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[12], 1184, 1277);
+		arsenalItems[13]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[13], 1088, 1277);
+		arsenalItems[14]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[14], 1088, 1181);
+		arsenalItems[15]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[15], 1088, 989+96);
+		arsenalItems[selected].setSelected(true);
+		
 
 
 
@@ -63,6 +72,36 @@ public class PlayerUI {
 			arsenalItems[i].draw(g);
 		}
 	}
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		
+		
+			scrollCount++;
+			int dif=1;
+
+			if(scrollCount>4) 
+			{
+				if(e.getPreciseWheelRotation()<0) 
+				{
+					dif=-1;
+				}
+				arsenalItems[this.selected].setSelected(false);
+				selected+=dif;
+				if(selected>15) 
+				{
+					selected=4;
+				}
+				if(selected<4) 
+				{
+					selected=15;
+				}
+				arsenalItems[this.selected].setSelected(true);
+				scrollCount=0;
+			}
+
+	}
+
+		
 	
 
 

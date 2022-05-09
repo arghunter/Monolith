@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -22,6 +23,7 @@ public class PlayerUIArsenalItem {
 	private ImageSystem image;
 	private int x;
 	private int y;
+	private boolean selected=false;;
 	public PlayerUIArsenalItem(Item item,int x,int y) 
 	{
 		this.item=item;
@@ -64,6 +66,56 @@ public class PlayerUIArsenalItem {
 	public void draw(Graphics2D g) 
 	{
 		image.drawImage(g);
+		if(selected) 
+		{
+			g.setStroke(new BasicStroke(10f));
+			g.setColor(new Color(0.4f,0.4f,0.4f,0.4f));
+			g.drawRect(x+10, y+10, 96-5, 96-5);
+		}
+	}
+	public void leftClick() 
+	{
+		
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public ImageSystem getImage() {
+		return image;
+	}
+
+	public void setImage(ImageSystem image) {
+		this.image = image;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 	
 

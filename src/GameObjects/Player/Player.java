@@ -13,8 +13,11 @@ import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 import GameObjects.MovingObject;
+import GameObjects.Player.items.weapons.MeleeWeapon;
+import GameObjects.Player.items.weapons.Weapon;
 import general.ImageSystem;
 import skills.*;
 import ui.PlayerUI;
@@ -38,7 +41,7 @@ public class Player extends MovingObject{
 	
 
 	// Note the speed will come from skill tree
-	public Player(int x, int y, int id, int width, int height,ActionListener game) {
+	public Player(int x, int y, int id, int width, int height,ActionListener game,JPanel panel) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
 	
@@ -50,14 +53,14 @@ public class Player extends MovingObject{
 		skills = new SkillTree(stats, statTypes);
 		health = stats[3];
 		currentShields = stats[6];
-		ui=new PlayerUI(this);
+		ui=new PlayerUI(this,panel);
 		lastRegen=System.currentTimeMillis();
 		this.game=game;
 		
 		
 
 	}
-	public Player(int x, int y, int id, int width, int height,ActionListener game, String saveData) {
+	public Player(int x, int y, int id, int width, int height,ActionListener game,JPanel panel, String saveData) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
 		
@@ -70,7 +73,7 @@ public class Player extends MovingObject{
 		currentShields = stats[6];
 		lastRegen=System.currentTimeMillis();
 	
-		ui=new PlayerUI(this);
+		ui=new PlayerUI(this,panel);
 		this.game=game;
 
 
@@ -159,7 +162,9 @@ public class Player extends MovingObject{
 			game.actionPerformed(new ActionEvent(this,88891,"LevelUp"));
 		}
 	}
-	
+	public Weapon getWeapon() {
+		return new MeleeWeapon("Stick",1,5,30,5,120);
+	}
 
 	
 	@Override

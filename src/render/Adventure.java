@@ -63,7 +63,7 @@ public class Adventure implements ActionListener {
 	}
 	public Adventure() 
 	{
-		thePlayer=new Player(300, 300, 1, 64, 64,this);
+//		thePlayer=new Player(300, 300, 1, 64, 64,this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {

@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+import javax.swing.JPanel;
+
 import GameObjects.Player.Player;
 
 public class SaveSystem implements WindowListener {
@@ -14,15 +16,15 @@ public class SaveSystem implements WindowListener {
 	PrintWriter output;
 	String save="";
 	Player savedPlayer;
-	public SaveSystem(ActionListener game) throws FileNotFoundException 
+	public SaveSystem(ActionListener game,JPanel panel) throws FileNotFoundException 
 	{
 		
 		input = new FileInput("save.txt");
 		try {
-			savedPlayer=new Player(300,300,1,64,64,game,input.next());
+			savedPlayer=new Player(300,300,1,64,64,game,panel,input.next());
 		}catch( Exception e) 
 		{
-			savedPlayer=new Player(300,300,1,64,64,game);
+			savedPlayer=new Player(300,300,1,64,64,game,panel);
 		}
 		
 		output=new PrintWriter("save.txt");
