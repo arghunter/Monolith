@@ -1,0 +1,12 @@
+11
+Crystal~0~1
+Crystal~1~2
+Crystal~2~3
+Crystal~3~5
+Crystal~4~8
+Crystal~5~13
+Crystal~6~21
+Crystal~7~34
+Crystal~8~55
+Crystal~9~89
+Crystal~10~144
