@@ -53,18 +53,10 @@ public class PlayerUIArsenalItem {
 			g.drawImage(iconImg.getImage(), 0, 0, null);
 		}
 		
-		image=new ImageSystem(x+5,y+5,img);
+		image=new ImageSystem(x+5,y+5,img); 
 		image.move(image.getWidth()/2, image.getHeight()/2);
-		if(image.getWidth()==image.getHeight()||true) 
-		{
-			image.setScale(32.0/image.getWidth(), 32.0/image.getHeight());
-		}else if(image.getWidth()>image.getHeight()) 
-		{
-			image.setScale(32.0/image.getWidth(), 32.0/image.getWidth());
-		}else 
-		{
-			image.setScale(32.0/image.getHeight(), 32.0/image.getHeight());
-		}
+		image.setScale(32.0/image.getWidth(), 32.0/image.getHeight());
+		
 
 		
 	}
