@@ -41,7 +41,7 @@ public class PlayerUIArsenalItem {
 			img=new BufferedImage(iconImg.getIconWidth(),iconImg.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
 		}else 
 		{
-			img=new BufferedImage(32,32,BufferedImage.TYPE_INT_ARGB);
+			img=new BufferedImage(96,96,BufferedImage.TYPE_INT_ARGB);
 		}
 	
 		Graphics2D g=img.createGraphics();
@@ -55,7 +55,7 @@ public class PlayerUIArsenalItem {
 		
 		image=new ImageSystem(x+5,y+5,img); 
 		image.move(image.getWidth()/2, image.getHeight()/2);
-		image.setScale(32.0/image.getWidth(), 32.0/image.getHeight());
+		image.setScale(96.0/image.getWidth(), 96.0/image.getHeight());
 		
 
 		

@@ -100,7 +100,7 @@ public class SkillDisplayMenu implements ActionListener {
 			break;
 			 
 		case ARMOR:
-			color=new Color(168, 120, 8);
+			color=new Color(168, 168, 168);
 			break;
 			 
 		case ATTACKSPEED:

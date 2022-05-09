@@ -60,11 +60,12 @@ public class Player extends MovingObject{
 	public Player(int x, int y, int id, int width, int height,ActionListener game, String saveData) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
-		skills = new SkillTree(saveData,stats, statTypes);
+		
 		inventory=new Inventory();
 		stats[3]=(int)inventory.getHealth();
 		stats[1]=(int)inventory.getArmor();
 		stats[6]=(int) inventory.getShields();
+		skills = new SkillTree(saveData,stats, statTypes);
 		health = stats[3];
 		currentShields = stats[6];
 		lastRegen=System.currentTimeMillis();
