@@ -84,37 +84,46 @@ public class Player extends MovingObject{
 
 	// alters the players health and shield values based on damage dealt and armor
 	public void takeDamage(int damage) {
-		damage = (int) ((2 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5);
-		if (currentShields > 0) {
-			currentShields -= damage;
-		} else {
-			health -= damage;
+		if(!isDead) 
+		{
+			damage = (int) ((2 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5);
+			if (currentShields > 0) {
+				currentShields=Math.max(0, currentShields-damage);
+			} else {
+				health=Math.max(0, health-damage);
+			}
+			if (health <= 0) {
+				isDead = true;
+			}
 		}
-		if (health <= 0) {
-			isDead = true;
-		}
+
+
 	}
 
 	private void regen() {
 //		System.out.println(stats[3]);
-		if (System.currentTimeMillis() - lastRegen >= 1000) {
-			if (currentShields < stats[6]) {
-				currentShields += stats[5];
+		if(!isDead) 
+		{
+			if (System.currentTimeMillis() - lastRegen >= 1000) {
+				if (currentShields < stats[6]) {
+					currentShields += stats[5];
+
+				}
+				if (currentShields > stats[6]) {
+					currentShields = stats[6];
+				}
+				if (health < stats[3]) {
+					health += stats[5] / 2;
+					
+				}
+				if (health > stats[3]) {
+					health = stats[3];
+				}
+				lastRegen = System.currentTimeMillis();
 
 			}
-			if (currentShields > stats[6]) {
-				currentShields = stats[6];
-			}
-			if (health < stats[3]) {
-				health += stats[5] / 2;
-				
-			}
-			if (health > stats[3]) {
-				health = stats[3];
-			}
-			lastRegen = System.currentTimeMillis();
-
 		}
+
 	}
 
 	public SkillTree getSkills() {

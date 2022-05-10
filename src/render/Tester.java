@@ -155,7 +155,7 @@ public class Tester extends JPanel implements ActionListener {
 			
 		}
 		for (int i = 0; i < numMobs; i++) {
-			mobList[i].action(thePlayer.getX(), thePlayer.getY());
+			mobList[i].action(thePlayer);
 		}
 
 		repaint();
