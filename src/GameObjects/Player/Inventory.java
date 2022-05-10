@@ -36,7 +36,7 @@ public class Inventory {
 		arsenal[4]=(new MeleeWeapon("Rusty Sword",0,50, 30, 30,10/18.0*Math.PI));
 		StatType[] buffTypes= {StatType.HEALTH,StatType.REGEN};
 		int[] buffs= {1000,500};
-		arsenal[5]=new Consumable("Baklava",0,10,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getStats()));
+		arsenal[5]=new Consumable("Baklava",0,10,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs()));
 		equipped=4;
 	}
 

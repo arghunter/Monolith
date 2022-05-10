@@ -32,10 +32,11 @@ public class Player extends MovingObject {
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH, StatType.XP };
 	private int[] stats = { 10, 25, 60, 100, 10, 30, 100, 0, 10, 100 };
+	private int[] buffs =new int[10];
 
 	private int currentLevel = 0;
 	private int currentXP = 0;
-	private int xpToNextLevel = 1;
+	private int xpToNextLevel = 1000;
 	private PlayerUI ui;
 	private Inventory inventory;
 	private int currentShields;
@@ -55,7 +56,7 @@ public class Player extends MovingObject {
 		stats[1] = (int) inventory.getArmor();
 		stats[6] = (int) inventory.getShields();
 		skills = new SkillTree(stats, statTypes);
-		health = stats[3];
+		health = stats[3]+buffs[3];
 		currentShields = stats[6];
 		ui = new PlayerUI(this, panel);
 		lastRegen = System.currentTimeMillis();
@@ -101,19 +102,19 @@ public class Player extends MovingObject {
 //		System.out.println(stats[3]);
 		if (!isDead) {
 			if (System.currentTimeMillis() - lastRegen >= 1000) {
-				if (currentShields < stats[6]) {
-					currentShields += stats[5];
+				if (currentShields < stats[6]+buffs[6]) {
+					currentShields += stats[5]+buffs[5];
 
-				} else if (health < stats[3]) {
-					health += stats[5] / 2;
+				} else if (health < stats[3]+buffs[3]) {
+					health += (stats[5]+buffs[5]) / 4;
 
 				}
-				if (currentShields > stats[6]) {
-					currentShields = stats[6];
+				if (currentShields > stats[6]+buffs[6]) {
+					currentShields = stats[6]+buffs[6];
 				}
 
-				if (health > stats[3]) {
-					health = stats[3];
+				if (health > stats[3]+buffs[3]) {
+					health = stats[3]+buffs[3];
 				}
 				lastRegen = System.currentTimeMillis();
 
@@ -124,6 +125,10 @@ public class Player extends MovingObject {
 
 	public SkillTree getSkills() {
 		return skills;
+	}
+	public int[] getBuffs() 
+	{
+		return buffs;
 	}
 
 	public StatType[] getStatTypes() {
@@ -220,7 +225,7 @@ public class Player extends MovingObject {
 		ui.draw(g);
 		super.getImage().drawAnimation(g);
 		regen();
-		super.setMovementDelay(stats[7]);
+		super.setMovementDelay(stats[7]+buffs[7]);
 
 	}
 
