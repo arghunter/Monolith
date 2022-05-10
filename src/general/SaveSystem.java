@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/9/22
+//Rev: 02
+//Notes: A save system for restoring the player after shutdown
 package general;
 
 import java.awt.event.ActionListener;
@@ -12,10 +16,12 @@ import javax.swing.JPanel;
 import GameObjects.Player.Player;
 
 public class SaveSystem implements WindowListener {
+	//Fields
 	FileInput input;
 	PrintWriter output;
 	String save="";
 	Player savedPlayer;
+	//Constructor
 	public SaveSystem(ActionListener game,JPanel panel) throws FileNotFoundException 
 	{
 		
@@ -30,29 +36,33 @@ public class SaveSystem implements WindowListener {
 		output=new PrintWriter("save.txt");
 		
 	}
-	
+	//Saves the current player data
 	public void save(Player player) 
 	{
 		
 		save=player.toString();
 
 	}
+	//Writes the save to a file
 	public void writeSave() 
 	{
 		output.println(save);
 	}
+	//Loads the save
 	public Player loadSave() {
 		
 		return savedPlayer;
 	}
 
 	@Override
+
 	public void windowOpened(WindowEvent e) {
-		loadSave();
+		
 		
 	}
 
 	@Override
+	//Writes the save when the window is closing
 	public void windowClosing(WindowEvent e) {
 
 		writeSave();

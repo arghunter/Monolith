@@ -1,3 +1,7 @@
+//Author: Peter Ferolito
+//Date: 5/9/22
+//Rev: 01
+//Notes: Uses KeyboardInput to model higher level player functionality like player movement
 package input;
 import java.awt.Component;
 
@@ -7,12 +11,15 @@ import GameObjects.Direction;
 import GameObjects.Player.Player;
 
 public class KeyboardInputParser {
+	//Fields
 	KeyboardInput input;
+	//Constructor
 	public KeyboardInputParser(Component component) 
 	{
 		this.input=new KeyboardInput(component);
 	}
 	
+	//Updates the player position based on the keys currently presses
 	public void updatePlayerPos(Player player) 
 	{
 		int leftComp=(input.isLeftPressed()||input.isaPressed()?1:0);
@@ -45,6 +52,7 @@ public class KeyboardInputParser {
 			}
 		}
 	}
+	//Returns true if the escape key is pressed
 	public boolean isEscapePressed() 
 	{
 		return input.isEscapePressed();

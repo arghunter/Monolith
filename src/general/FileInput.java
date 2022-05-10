@@ -1,6 +1,6 @@
-//Author: Armaan Gomes
-//Date:
-//Rev: 00
+//Author: Armaan Gomes 
+//Date:5/8/22
+//Rev: 01
 //Notes: Model of a scanner class, but for file input and with capabilities of file output because it is a PrintWriter
 package general;
 
@@ -13,26 +13,18 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class FileInput {
+	//Fields
 	public BufferedReader reader;
 	public StringTokenizer tokens;
 
-	public FileInput(InputStream in) {
-		
-		reader = new BufferedReader(new InputStreamReader(in));
 
-	}
-
-	public FileInput() {
-		
-		reader = new BufferedReader(new InputStreamReader(System.in));
-	}
-
+    //Constructor
 	public FileInput(String inputFileName) throws FileNotFoundException {
 		
 		reader = new BufferedReader(new FileReader(inputFileName));
 
 	}
-
+	//Returns the next string in the file
 	public String next() {
 		while (tokens == null || !tokens.hasMoreTokens()) {
 			try {

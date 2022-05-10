@@ -1,3 +1,7 @@
+//Author: Adithya Giri
+//Date: 5/10/22
+//Rev: 03
+//Notes: Stores all public constants
 package general;
 
 import java.awt.Color;
