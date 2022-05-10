@@ -40,6 +40,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 
 	private Mob[][][] mobList=new Mob[Constants.YSIZE][Constants.XSIZE][Constants.MAXMOBS];
 	
+	private int[][] numMobs=new int[Constants.YSIZE][Constants.XSIZE];
 	private String[][] curRoom;
 	//private ImageSystem image=new ImageSystem(0,0,new ImageIcon("StoneBig.png").getImage());
 	
@@ -55,8 +56,13 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		w.setVisible(true);
 		this.initInput(w);
 		this.frame = w;
-		thePlayer.addXP(1000000);
+		thePlayer.addXP(10000);
 		System.out.println(thePlayer.getLevel());
+		for(int i=0;i<Constants.YSIZE;i++) {
+			for(int j=0;j<Constants.XSIZE;j++) {
+				numMobs[i][j]=0;
+			}
+		}
 		clock.start();
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
@@ -88,9 +94,28 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 			int[] n=test.generateMobs(thePlayer.getLevel());
 			for(int i=0;i<n.length;i++) {
 				System.out.print(n[i]+" ");
+				numMobs[curRoomY][curRoomX]++;
+				if(n[i]==0) {
+					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Zombie(100,100,10,64,64);
+				}else if(n[i]==1) {
+					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Spider(200,200,10,64,64);
+				}else if(n[i]==2) {
+					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Balkrada(300,300,10,64,64);
+
+				}
 			}
 			System.out.println();
 			resetMobSpawnTime();
+		}
+		//
+		//
+		//NOTES ADD NUMMOBS ARRAY AT THE TOP AND THEN USE THAT TO RENDER MOBS + MAKE THEM DO ACTIONS
+		//
+		//
+		for(int i=0;i<numMobs[curRoomY][curRoomX];i++) {
+			if(!(mobList[curRoomY][curRoomX][i]==null)) {
+				mobList[curRoomY][curRoomX][i].action(thePlayer.getX(),thePlayer.getY());
+			}
 		}
 		//System.out.println(curRoomX+" "+curRoomY);
 		repaint();
@@ -124,7 +149,13 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 				}
 			}
 		}
-		
+		for(int i=0;i<numMobs[curRoomY][curRoomX];i++) {
+			if(!(mobList[curRoomY][curRoomX][i]==null)) {
+				mobList[curRoomY][curRoomX][i].render(graphic);
+				mobList[curRoomY][curRoomX][i].update(thePlayer.getX(), thePlayer.getY());
+
+			}
+		}
 		thePlayer.render(graphic);
 		
 	}
