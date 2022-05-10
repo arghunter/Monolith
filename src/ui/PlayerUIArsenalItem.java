@@ -2,18 +2,23 @@ package ui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
 import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 
 import GameObjects.Player.Inventory;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
+import GameObjects.Player.items.consumables.Consumable;
 import general.Constants;
 import general.ImageSystem;
 import input.MouseInputParser;
@@ -23,49 +28,79 @@ public class PlayerUIArsenalItem {
 	private ImageSystem image;
 	private int x;
 	private int y;
-	private boolean selected=false;;
-	public PlayerUIArsenalItem(Item item,int x,int y) 
-	{
-		this.item=item;
+	private boolean selected = false;;
 
-		this.x=x;
-		this.y=y;
+	public PlayerUIArsenalItem(Item item, int x, int y) {
+		this.item = item;
+
+		this.x = x;
+		this.y = y;
 		BufferedImage img;
-		ImageIcon iconImg=null;
-		if(item!=null) 
-		{
-			iconImg=(new ImageIcon("imgs/"+item.getName().replace(" ", "")+"/"+item.getName().replace(" ", "")+0+".png"));
+		ImageIcon iconImg = null;
+		if (item != null) {
+			iconImg = (new ImageIcon(
+					"imgs/" + item.getName().replace(" ", "") + "/" + item.getName().replace(" ", "") + 0 + ".png"));
 
-			if(iconImg.getIconWidth()==-1) 
-			{
-				throw new IllegalArgumentException("Image not found "+ item.getName());
+			if (iconImg.getIconWidth() == -1) {
+				throw new IllegalArgumentException("Image not found " + item.getName());
 			}
-			img=new BufferedImage(iconImg.getIconWidth(),iconImg.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
-		}else 
-		{
-			img=new BufferedImage(96,96,BufferedImage.TYPE_INT_ARGB);
+			img = new BufferedImage(iconImg.getIconWidth(), iconImg.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+		} else {
+			img = new BufferedImage(96, 96, BufferedImage.TYPE_INT_ARGB);
 		}
-	
-		Graphics2D g=img.createGraphics();
-		g.setColor(new Color(0.2f,0.2f,0.2f,0.2f));
-		g.fillRect(0,0,img.getWidth(),img.getHeight());
 
-		if(item!=null) 
-		{
+		Graphics2D g = img.createGraphics();
+		g.setColor(new Color(0.2f, 0.2f, 0.2f, 0.2f));
+		g.fillRect(0, 0, img.getWidth(), img.getHeight());
+
+		if (item != null) {
+
 			g.drawImage(iconImg.getImage(), 0, 0, null);
 		}
-		
-		image=new ImageSystem(x+5,y+5,img); 
-		image.move(image.getWidth()/2, image.getHeight()/2);
-		image.setScale(96.0/image.getWidth(), 96.0/image.getHeight());
-		
 
-		
+		image = new ImageSystem(x + 5, y + 5, img);
+		image.move(image.getWidth() / 2, image.getHeight() / 2);
+		image.setScale(96.0 / image.getWidth(), 96.0 / image.getHeight());
+
 	}
-	
+
 	public void draw(Graphics2D g) 
 	{
+		if(this.item!=null&&this.item.getType()==ItemType.CONSUMABLE)
+
+				 
+		{
+			if(((Consumable)item).getCount()==0)
+			{	
+				item=null;
+				BufferedImage img=new BufferedImage(96,96,BufferedImage.TYPE_INT_ARGB);
+				Graphics2D gi=img.createGraphics();
+				gi.setColor(new Color(0.2f,0.2f,0.2f,0.2f));
+				gi.fillRect(0,0,img.getWidth(),img.getHeight());
+				
+				image=new ImageSystem(x+5,y+5,img); 
+				image.move(image.getWidth()/2, image.getHeight()/2);
+				image.setScale(96.0/image.getWidth(), 96.0/image.getHeight());
+			}else 
+			{
+				Font text=null;
+				try {
+					text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
+				} catch (FontFormatException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}
+
+				g.setColor(Constants.textColor);
+				g.setFont(text.deriveFont(30f));
+				g.drawString(""+((Consumable)item).getCount(), x+15, y+35);
+			}
+			
+		}
 		image.drawImage(g);
+		
 		if(selected) 
 		{
 			g.setStroke(new BasicStroke(10f));
@@ -73,7 +108,6 @@ public class PlayerUIArsenalItem {
 			g.drawRect(x+10, y+10, 96-5, 96-5);
 		}
 	}
-
 
 	public Item getItem() {
 		return item;
@@ -114,6 +148,5 @@ public class PlayerUIArsenalItem {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
-	
 
 }

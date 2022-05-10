@@ -9,7 +9,7 @@ import GameObjects.Player.Player;
 public class PlayerInputParser {
 	private KeyboardInputParser keyboard;
 	private MouseInputParser mouse;
-
+	private double lastCoolDown=System.currentTimeMillis();
 	public PlayerInputParser(JFrame frame,Component component) {
 		keyboard = new KeyboardInputParser(frame);
 		mouse = new MouseInputParser(component);
@@ -30,9 +30,10 @@ public class PlayerInputParser {
 	public void updatePlayer(Player player) {
 		keyboard.updatePlayerPos(player);
 		mouse.updatePlayerAngle(player);
-		if(MouseInputParser.isMBDown(0)) 
+		if(MouseInputParser.isMBDown(0)&&System.currentTimeMillis()-lastCoolDown>100) 
 		{
 			player.useItem();
+			lastCoolDown=System.currentTimeMillis();
 			
 		}
 

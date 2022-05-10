@@ -55,7 +55,7 @@ public class Consumable extends Item {
 	{
 		if(count>0) 
 		{
-			buff.start();
+			new Buff(buff).start();
 			this.count--;
 		}
 

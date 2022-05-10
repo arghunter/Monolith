@@ -36,7 +36,7 @@ public class Inventory {
 		arsenal[4]=(new MeleeWeapon("Rusty Sword",0,50, 30, 30,10/18.0*Math.PI));
 		StatType[] buffTypes= {StatType.HEALTH,StatType.REGEN};
 		int[] buffs= {1000,500};
-		arsenal[5]=new Consumable("Baklava",0,1,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getStats()));
+		arsenal[5]=new Consumable("Baklava",0,10,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getStats()));
 		equipped=4;
 	}
 
@@ -268,8 +268,22 @@ public class Inventory {
 	{
 		return equipped;
 	}
+	public void updateArsenal() 
+	{
+		for(int i=0;i<arsenal.length;i++) 
+		{
+			if(arsenal[i]!=null&&arsenal[i].getType()==ItemType.CONSUMABLE) 
+			{
+				if(((Consumable)arsenal[i]).getCount()<=0) 
+				{
+					arsenal[i]=null;
+				}
+			}
+		}
+	}
 	public void setEquipped(int equipped) 
 	{
+		updateArsenal();
 		if(equipped>15||equipped<0) 
 		{
 			throw new IllegalArgumentException("Out of arsenal bounds");

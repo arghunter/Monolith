@@ -13,6 +13,7 @@ public class Buff implements ActionListener {
 	private int[] buffs;
 	private int[] playerStats;
 	private StatType[] playerStatTypes;
+	private int duration;
 	Timer timer;
 
 	public Buff(StatType[] types, int[] statBuffs, int duration, StatType[] playerTypes, int[] playerStats) {
@@ -20,8 +21,18 @@ public class Buff implements ActionListener {
 		this.buffs = statBuffs;
 		this.playerStats = playerStats;
 		this.playerStatTypes = playerTypes;
+		this.duration=duration;
 		timer = new Timer(duration * 1000, this);
-		timer.start();
+		
+	}
+	public Buff(Buff buff) {
+		this.types = buff.types;
+		this.buffs = buff.buffs;
+		this.playerStats = buff.playerStats;
+		this.playerStatTypes = buff.playerStatTypes;
+		this.duration=buff.duration;
+		timer = new Timer(buff.duration * 1000, this);
+		
 	}
 
 	public void start() {
