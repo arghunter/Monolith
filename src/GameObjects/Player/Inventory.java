@@ -9,11 +9,13 @@ import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.armor.Armor;
 import GameObjects.Player.items.armor.BattleSuitSet;
 import GameObjects.Player.items.blueprints.Blueprint;
+import GameObjects.Player.items.consumables.Buff;
 import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
 import GameObjects.Player.items.weapons.MeleeWeapon;
 
 import GameObjects.Player.items.weapons.Weapon;
+import skills.StatType;
 
 public class Inventory {
 	private Item[] arsenal;// For all consumables weapons and armor gets emptied on death
@@ -24,7 +26,7 @@ public class Inventory {
 
 	}
 
-	public Inventory() {
+	public Inventory(Player player) {
 		arsenal = new Item[16];
 		storage = new ArrayList<Item>();
 		arsenal[0]=(new Armor("Baklava",0,ItemType.HELMET,10,25,25,BattleSuitSet.NONE));
@@ -32,7 +34,9 @@ public class Inventory {
 		arsenal[2]=(new Armor("Baklava",0,ItemType.LEGGINGS,15,25,50,BattleSuitSet.NONE));
 		arsenal[3]=(new Armor("Baklava",0,ItemType.BOOTS,10,25,25,BattleSuitSet.NONE));
 		arsenal[4]=(new MeleeWeapon("Rusty Sword",0,50, 30, 30,10/18.0*Math.PI));
-		
+		StatType[] buffTypes= {StatType.HEALTH,StatType.REGEN};
+		int[] buffs= {1000,500};
+		arsenal[5]=new Consumable("Baklava",0,1,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getStats()));
 		equipped=4;
 	}
 

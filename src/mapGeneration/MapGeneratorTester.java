@@ -128,7 +128,7 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 	}
 	
 	public void initInput(JFrame frame) {
-		this.input = new PlayerInputParser(frame);
+		this.input = new PlayerInputParser(frame,this);
 	}
 	
 	public static void main(String[] args) {

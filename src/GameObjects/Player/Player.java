@@ -48,7 +48,7 @@ public class Player extends MovingObject{
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
 	
-		inventory=new Inventory();
+		inventory=new Inventory(this);
 		
 		stats[3]=(int)inventory.getHealth();
 		stats[1]=(int)inventory.getArmor();
@@ -67,7 +67,7 @@ public class Player extends MovingObject{
 		// Just going to use the helmet image for player
 		super(x, y, 20, id, width, height, "DefaultHelmet",1);
 		
-		inventory=new Inventory();
+		inventory=new Inventory(this);
 		stats[3]=(int)inventory.getHealth();
 		stats[1]=(int)inventory.getArmor();
 		stats[6]=(int) inventory.getShields();

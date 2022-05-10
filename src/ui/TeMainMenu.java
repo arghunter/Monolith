@@ -106,7 +106,7 @@ public class TeMainMenu extends JPanel implements ActionListener {
 	}
 
 	public void initInput(JFrame frame) {
-		this.input = new PlayerInputParser(frame);
+		this.input = new PlayerInputParser(frame,this);
 	}
 
 	public void actionPerformed(ActionEvent e) {

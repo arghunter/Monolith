@@ -9,11 +9,8 @@ import GameObjects.Player.items.ItemType;
 import skills.StatType;
 
 public class Buff implements ActionListener {
-	private long startTime = System.currentTimeMillis() / 1000;
 	private StatType[] types;
 	private int[] buffs;
-	private long stopTime;
-	private boolean complete = false;
 	private int[] playerStats;
 	private StatType[] playerStatTypes;
 	Timer timer;
@@ -21,7 +18,6 @@ public class Buff implements ActionListener {
 	public Buff(StatType[] types, int[] statBuffs, int duration, StatType[] playerTypes, int[] playerStats) {
 		this.types = types;
 		this.buffs = statBuffs;
-		this.stopTime = startTime += duration;
 		this.playerStats = playerStats;
 		this.playerStatTypes = playerTypes;
 		timer = new Timer(duration * 1000, this);
@@ -31,11 +27,11 @@ public class Buff implements ActionListener {
 	public void start() {
 
 		for (int i = 0; i < types.length; i++) {
-			for (int j = 0; j < playerStatTypes.length; i++) {
+			for (int j = 0; j < playerStatTypes.length; j++) {
 				if (!(types[i] == playerStatTypes[j])) {
 					continue;
 				}
-				playerStats[j] -= buffs[i];
+				playerStats[j] += buffs[i];
 			}
 		}
 
@@ -47,14 +43,16 @@ public class Buff implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == timer) {
 			for (int i = 0; i < types.length; i++) {
-				for (int j = 0; j < playerStatTypes.length; i++) {
+				for (int j = 0; j < playerStatTypes.length; j++) {
 					if (!(types[i] == playerStatTypes[j])) {
 						continue;
 					}
 					playerStats[j] -= buffs[i];
 				}
 			}
+			timer.stop();
 		}
+		
 
 	}
 

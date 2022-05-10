@@ -10,8 +10,8 @@ public class PlayerInputParser {
 	private KeyboardInputParser keyboard;
 	private MouseInputParser mouse;
 
-	public PlayerInputParser(Component component) {
-		keyboard = new KeyboardInputParser(component);
+	public PlayerInputParser(JFrame frame,Component component) {
+		keyboard = new KeyboardInputParser(frame);
 		mouse = new MouseInputParser(component);
 	}
 

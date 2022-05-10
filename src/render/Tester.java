@@ -64,7 +64,7 @@ public class Tester extends JPanel implements ActionListener {
 		}
 		w.addWindowListener(save);
 		thePlayer = save.loadSave();
-		this.initInput(this);
+		
 		this.frame = w;
 		ratioX = super.getWidth() / WIDTH;
 		ratioY = super.getHeight() / HEIGHT;
@@ -72,6 +72,7 @@ public class Tester extends JPanel implements ActionListener {
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = w.getContentPane();
 		c.add(this);
+		this.initInput(w,this);
 
 		w.setResizable(true);
 		w.setVisible(true);
@@ -126,8 +127,8 @@ public class Tester extends JPanel implements ActionListener {
 		}
 	}
 
-	public void initInput(Component component) {
-		this.input = new PlayerInputParser(component);
+	public void initInput(JFrame frame,Component component) {
+		this.input = new PlayerInputParser(frame,component);
 	}
 
 	public void actionPerformed(ActionEvent e) {
