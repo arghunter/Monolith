@@ -96,7 +96,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 				System.out.print(n[i]+" ");
 				numMobs[curRoomY][curRoomX]++;
 				if(n[i]==0) {
-					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Zombie(100,100,10,64,64);
+					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Zombie(100, 100, 4, 64, 64);
 				}else if(n[i]==1) {
 					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Spider(200,200,10,64,64);
 				}else if(n[i]==2) {

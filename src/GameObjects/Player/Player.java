@@ -94,6 +94,8 @@ public class Player extends MovingObject {
 			if (health <= 0) {
 				isDead = true;
 			}
+			lastRegen = System.currentTimeMillis()+1000;
+
 		}
 
 	}
