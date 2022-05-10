@@ -114,7 +114,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		//
 		for(int i=0;i<numMobs[curRoomY][curRoomX];i++) {
 			if(!(mobList[curRoomY][curRoomX][i]==null)) {
-				mobList[curRoomY][curRoomX][i].action(thePlayer.getX(),thePlayer.getY());
+				mobList[curRoomY][curRoomX][i].action(thePlayer);
 			}
 		}
 		//System.out.println(curRoomX+" "+curRoomY);
