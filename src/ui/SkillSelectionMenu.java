@@ -5,8 +5,10 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RadialGradientPaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,6 +16,7 @@ import javax.swing.JPanel;
 
 import general.Constants;
 import input.MouseInputParser;
+import render.Tester;
 import skills.GenericSkill;
 import skills.MultipleSkill;
 import skills.Skill;
@@ -195,6 +198,7 @@ public class SkillSelectionMenu implements ActionListener {
 	{ 
 		if(isActive) 
 		{
+			g.drawImage(createGradient(JPanelX, JPanelY), 0, 0, null);
 			for(int i=0;i<skillButtons.length;i++) 
 			{
 				skillButtons[i].draw(g, JPanelX, JPanelY);
@@ -210,7 +214,7 @@ public class SkillSelectionMenu implements ActionListener {
 						
 						e.printStackTrace();
 					}
-					g.setColor(Color.BLACK);
+					g.setColor(Constants.textColor);
 					
 					g.setFont(text.deriveFont(36f));
 					String title=availableSkills[i].getName().toUpperCase()+" "+availableSkills[i].getTier();
@@ -346,6 +350,25 @@ public class SkillSelectionMenu implements ActionListener {
 		
 		
 		
+	}
+	private static BufferedImage createGradient(int JPanelX, int JPanelY) {
+		int width = (int) Tester.WIDTH;
+		int height = (int) Tester.HEIGHT;
+
+		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		Graphics2D g = img.createGraphics();
+
+		Color[] colors = { new Color((212) / 3, (175) / 3, (55) / 3), new Color(212 / 6, 175 / 6, 55 / 6) };
+		float[] ratio = { 0.0f, 0.6f };
+		Point center = new Point((int) (MouseInputParser.getX() - JPanelX / MouseInputParser.getRatioX()),
+				(int) (MouseInputParser.getY() - JPanelY / MouseInputParser.getRatioX()));
+
+		RadialGradientPaint gradient = new RadialGradientPaint(center, 0.25f * width, ratio, colors);
+		g.setPaint(gradient);
+		g.fillRect(0, 0, width, height);
+		g.dispose();
+
+		return img;
 	}
 	
 	public void setActive(boolean isActive) {

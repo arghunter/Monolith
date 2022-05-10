@@ -13,7 +13,7 @@ public abstract class Mob extends MovingObject {
 
 	public Mob(int x, int y, int movementDelay, int[] stats, int id, int width, int height, String name,
 			int numFrames) {
-		super(x, y, movementDelay, id, width, height, name, numFrames);
+		super(x, y, movementDelay, id, width, height, name, numFrames,stats[2]);
 		this.stats = stats;
 	}
 
