@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import GameObjects.Direction;
 import GameObjects.MovingObject;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
@@ -162,33 +163,57 @@ public class Player extends MovingObject{
 	public int getLevel() {
 		return currentLevel;
 	}
-	
-	public void addXP(int xp) {
-		skills.addXP(xp/2);
-		currentXP+=(xp+1)/2;
-		while(currentXP>=xpToNextLevel) {
-			currentLevel++;
-			currentXP-=xpToNextLevel;
-			xpToNextLevel+=currentLevel;
-			
-			game.actionPerformed(new ActionEvent(this,88891,"LevelUp"));
+	@Override
+	public void move (Direction direction) 
+	{
+		if(!isDead) 
+		{
+			super.move(direction);
 		}
 	}
+	@Override
+	public void updateAngle(double pointX,double pointY) 
+	{
+		if(!isDead) 
+		{
+			super.updateAngle(pointX, pointY);
+		}
+	}
+	
+	public void addXP(int xp) {
+		if(!isDead) 
+		{
+			skills.addXP(xp/2);
+			currentXP+=(xp+1)/2;
+			while(currentXP>=xpToNextLevel) {
+				currentLevel++;
+				currentXP-=xpToNextLevel;
+				xpToNextLevel+=currentLevel;
+				
+				game.actionPerformed(new ActionEvent(this,88891,"LevelUp"));
+			}
+		}
+
+	}
 	public void useItem() {
-		Item item=inventory.getEquippedItem();
-		if(item==null) 
+		if(!isDead) 
 		{
-			//fist
-			return;
+			Item item=inventory.getEquippedItem();
+			if(item==null) 
+			{
+				//fist
+				return;
+			}
+			if(item.getType()==ItemType.WEAPON) 
+			{
+				//weapon
+			}else if(item.getType()==ItemType.CONSUMABLE) 
+			{
+				Consumable consumable=(Consumable)item;
+				consumable.consume();
+			}
 		}
-		if(item.getType()==ItemType.WEAPON) 
-		{
-			//weapon
-		}else if(item.getType()==ItemType.CONSUMABLE) 
-		{
-			Consumable consumable=(Consumable)item;
-			consumable.consume();
-		}
+		
 	}
 
 	
