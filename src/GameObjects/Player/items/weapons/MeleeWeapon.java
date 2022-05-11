@@ -1,5 +1,6 @@
 package GameObjects.Player.items.weapons;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import GameObjects.Player.Player;
@@ -26,9 +27,7 @@ public class MeleeWeapon extends Weapon {
 		return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
 	}
 	@Override
-	public void primaryFire(Mob[] mobs, Player player) {
-		
-		System.out.println(Arrays.deepToString(mobs));
+	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		for(Mob m : mobs) {
 			
 			if(m!=null&&this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
@@ -64,14 +63,14 @@ public class MeleeWeapon extends Weapon {
 
 
 	@Override
-	public void secondaryFire(Mob[] mobs, Player player) {
+	public void secondaryFire(ArrayList<Mob> mobs, Player player) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
 	@Override
-	public void tertiaryFire(Mob[] mobs, Player player) {
+	public void tertiaryFire(ArrayList<Mob> mobs, Player player) {
 		// TODO Auto-generated method stub
 		
 	}

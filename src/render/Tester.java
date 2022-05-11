@@ -30,7 +30,7 @@ public class Tester extends JPanel implements ActionListener {
 	private Spider theSpider = new Spider(600, 600, 2, 64, 64);
 	private Spider secondSpider = new Spider(1000, 1000, 3, 64, 64);
 	private Zombie theZombie = new Zombie(1200, 1200, 4, 64, 64);
-	private Mob[] mobList = new Mob[1000];
+	private ArrayList<Mob> mobList = new ArrayList<>();
 	private PlayerInputParser input;
 
 	private JFrame frame;
@@ -47,9 +47,9 @@ public class Tester extends JPanel implements ActionListener {
 
 	public Tester() {
 
-		mobList[0] = theSpider;
-		mobList[1] = secondSpider;
-		mobList[2] = theZombie;
+		mobList.add(theSpider);
+		mobList.add(secondSpider);
+		mobList.add(theZombie);
 		Point[] points = { new Point(238, 108), new Point(162, 108), new Point(108, 162), new Point(108, 238),
 				new Point(162, 292), new Point(238, 292), new Point(292, 238), new Point(292, 162) };
 
@@ -123,11 +123,11 @@ public class Tester extends JPanel implements ActionListener {
 
 		thePlayer.render(g);
 		
-		for (int i = 0; i < numMobs; i++) {
-			if(!mobList[i].isDead()) {
-				mobList[i].render(g);
+		for (Mob m : mobList) {
+			if(!m.isDead()) {
+				m.render(g);
 			}
-			mobList[i].update(thePlayer.getX(), thePlayer.getY());
+			m.update(thePlayer.getX(), thePlayer.getY());
 		}
 		if (skillSelectionMenu != null) {
 			skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
@@ -145,8 +145,7 @@ public class Tester extends JPanel implements ActionListener {
 		thePlayer.addXP(1);
 		if (zombieButton.isClicked(e)) {
 			
-			this.mobList[numMobs] = new Balkrada((int) (Math.random() * 2560), (int) (Math.random() * 1377), 4, 64, 64);
-			numMobs++;
+			mobList.add(new Balkrada((int) (Math.random() * 2560), (int) (Math.random() * 1377), 4, 64, 64));
 
 		}
 
@@ -161,8 +160,8 @@ public class Tester extends JPanel implements ActionListener {
 			}
 			
 		}
-		for (int i = 0; i < numMobs; i++) {
-			mobList[i].action(thePlayer);
+		for (Mob m : mobList) {
+			m.action(thePlayer);
 		}
 
 		repaint();

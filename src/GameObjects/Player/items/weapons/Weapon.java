@@ -1,5 +1,7 @@
 package GameObjects.Player.items.weapons;
 
+import java.util.ArrayList;
+
 import GameObjects.Player.Player;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
@@ -23,9 +25,9 @@ public abstract class Weapon extends Item{
 		this.currentAttackDelay=attackDelay;
 	}
 	
-	public abstract void primaryFire(Mob[] mobs,Player player);
-	public abstract void secondaryFire(Mob[] mobs,Player player);
-	public abstract void tertiaryFire(Mob[]mobs, Player player);
+	public abstract void primaryFire(ArrayList<Mob> mobs,Player player);
+	public abstract void secondaryFire(ArrayList<Mob> mobs,Player player);
+	public abstract void tertiaryFire(ArrayList<Mob> mobs, Player player);
 
 	public int getDamage() {
 		return damage;

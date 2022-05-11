@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.imageio.ImageIO;
@@ -42,7 +43,7 @@ public class Player extends MovingObject {
 	private int currentShields;
 	private boolean isDead = false;
 	private long lastRegen;
-	private Mob[] mobs = new Mob[1];
+	private ArrayList<Mob> mobs = new ArrayList<>();
 	private ActionListener game;
 
 	// Note the speed will come from skill tree
@@ -215,7 +216,7 @@ public class Player extends MovingObject {
 
 	}
 
-	public void setMobs(Mob[] mobs) {
+	public void setMobs(ArrayList<Mob> mobs) {
 		this.mobs = mobs;
 	}
 
