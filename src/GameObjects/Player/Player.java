@@ -138,14 +138,7 @@ public class Player extends MovingObject {
 		return statTypes;
 	}
 
-	public MeleeWeapon getWeapon() {
-		Item item = inventory.getEquippedItem();
-		if(item instanceof MeleeWeapon) {
-			return (MeleeWeapon) item;
-		} else {
-			return new MeleeWeapon("Stick",1,10,100,3,300,this);
-		}
-	}
+
 	public int[] getStats() {
 		return stats;
 	}
@@ -207,7 +200,7 @@ public class Player extends MovingObject {
 		if (!isDead) {
 			Item item = inventory.getEquippedItem();
 			if (item == null) {
-				Weapon weapon=new MeleeWeapon("Stick",1,10,100,3,300,this);
+				Weapon weapon=new MeleeWeapon("Fist",1,10,100,3,300);
 				weapon.primaryFire(mobs, this);
 				return;
 			}

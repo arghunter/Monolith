@@ -8,7 +8,7 @@ import GameObjects.mobs.Mob;
 public class MeleeWeapon extends Weapon {
 	private double sweepAngle;
 
-	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle,Player player) {
+	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle) {
 		super(name,tier,damage,range,attackSpeed);
 		this.sweepAngle=sweepAngle;
 
