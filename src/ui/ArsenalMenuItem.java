@@ -13,12 +13,15 @@ import GameObjects.Player.Inventory;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.armor.Armor;
+import GameObjects.Player.items.consumables.Buff;
+import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.weapons.Weapon;
 import general.Constants;
 
 public class ArsenalMenuItem extends RenderableMenuItem {
 
 	private Inventory inventory;
+	
 	public ArsenalMenuItem(Item item, int x, int y, JPanel panel,Inventory inventory) {
 		super(item, x, y, panel);
 		super.setShowDescription(false);
@@ -75,10 +78,20 @@ public class ArsenalMenuItem extends RenderableMenuItem {
 								
 				}else if(item.getType()==ItemType.CONSUMABLE) 
 				{
-					//stuff
+					Consumable consumable=(Consumable)item;
+					Buff buff =consumable.getBuff();
+					g.drawString(buff.getDuration()+" Seconds", 2180-metrics.stringWidth(buff.getDuration()+" Seconds")/2, 300);
+
+					for(int i=0;i<buff.getTypes().length;i++) 
+					{
+						g.drawString("+"+buff.getBuffs()[i]+" "+buff.getTypes()[i], 2180-metrics.stringWidth("+"+buff.getBuffs()[i]+" "+buff.getTypes()[i])/2, 350+i*50);
+
+					}
 				}
 			}
+
 		}
+		
 
 		
 		

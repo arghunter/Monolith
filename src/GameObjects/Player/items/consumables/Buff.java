@@ -9,6 +9,8 @@ import GameObjects.Player.items.ItemType;
 import skills.StatType;
 
 public class Buff implements ActionListener {
+
+
 	private StatType[] types;
 	private int[] buffs;
 	private int[] playerStats;
@@ -65,6 +67,36 @@ public class Buff implements ActionListener {
 		}
 		
 
+	}
+	public StatType[] getTypes() {
+		return types;
+	}
+	public void setTypes(StatType[] types) {
+		this.types = types;
+	}
+	public int[] getBuffs() {
+		return buffs;
+	}
+	public void setBuffs(int[] buffs) {
+		this.buffs = buffs;
+	}
+	public int[] getPlayerStats() {
+		return playerStats;
+	}
+	public void setPlayerStats(int[] playerStats) {
+		this.playerStats = playerStats;
+	}
+	public StatType[] getPlayerStatTypes() {
+		return playerStatTypes;
+	}
+	public void setPlayerStatTypes(StatType[] playerStatTypes) {
+		this.playerStatTypes = playerStatTypes;
+	}
+	public int getDuration() {
+		return duration;
+	}
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
 
 }

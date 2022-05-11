@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.RadialGradientPaint;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,13 +20,15 @@ import GameObjects.Player.Inventory;
 import input.MouseInputParser;
 import render.Tester;
 
-public class ArsenalMenu {
+public class ArsenalMenu implements MouseWheelListener{
 
 	private ArsenalMenuItem[] arsenalItems=new ArsenalMenuItem[16];
 	private boolean hidden=false;
+	ArrayList<RenderableMenuItem> items;
 
 	public ArsenalMenu(Inventory inventory, JPanel panel) {
 		int count=0;
+		
 		if(inventory.getArsenal()[count]!=null) 
 		{
 			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],541,532,panel,inventory);
@@ -169,7 +173,15 @@ public class ArsenalMenu {
 			arsenalItems[count]=new ArsenalMenuItem(275,532,panel,inventory);
 
 		}
-
+		items=new ArrayList<RenderableMenuItem>();
+		for(int i=0;i<inventory.getStorage().size();i++)
+		{
+			if(inventory.getStorage().get(i)!=null) 
+			{
+				items.add(new RenderableMenuItem(inventory.getStorage().get(i),1200+i%2,266+i/2*266,panel));
+			}
+			
+		}
 
 
 	}
@@ -202,7 +214,12 @@ public class ArsenalMenu {
 
 				if(arsenalItems[i]!=null)
 				arsenalItems[i].draw(g, JPanelX, JPanelY);
-			}	
+			}
+			for(int i=0;i<items.size();i++) 
+			{
+				
+				items.get(i).draw(g, JPanelX, JPanelY);
+			}
 		}
 
 
@@ -226,6 +243,17 @@ public class ArsenalMenu {
 	    g.dispose();
 
 	    return img;
+	}
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		if(!hidden) 
+		{
+			for(int i=0;i<items.size();i++) 
+			{
+				items.get(i).translate(0, 24*(int)(e.getUnitsToScroll()));
+			}
+		}
+
 	}
 
 }

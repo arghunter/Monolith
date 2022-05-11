@@ -122,7 +122,7 @@ public class RenderableMenuItem implements ActionListener {
 		button.setHoverEffectsOn(false);
 		
 	}
-	public RenderableMenuItem(int x, int y,JPanel panel) 
+	protected RenderableMenuItem(int x, int y,JPanel panel) 
 	{
 		this.item=null;
 		this.x=x;
