@@ -25,7 +25,7 @@ public class MeleeWeapon extends Weapon {
 	}
 	@Override
 	public void primaryFire(Mob[] mobs, Player player) {
-		System.out.println("Here");
+		
 		System.out.println(Arrays.deepToString(mobs));
 		for(Mob m : mobs) {
 			if(m!=null&&this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {

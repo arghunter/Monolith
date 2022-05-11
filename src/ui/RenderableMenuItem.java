@@ -56,7 +56,7 @@ public class RenderableMenuItem implements ActionListener {
 		this.item=item;
 		this.x=x;
 		this.y=y;
-		ImageIcon iconImg=(new ImageIcon("imgs/"+item.getName()+"/"+item.getName()+0+".png"));
+		ImageIcon iconImg=(new ImageIcon("imgs/"+item.getName().replace(" ", "")+"/"+item.getName().replace(" ", "")+0+".png"));
 		actionListeners=new ActionListener[0];
 		if(iconImg.getIconWidth()==-1) 
 		{
@@ -109,8 +109,9 @@ public class RenderableMenuItem implements ActionListener {
 		}
 		g.drawImage(iconImg.getImage(), 0, 0, null);
 		image=new ImageSystem(x+5,y+5,img);
-		image.setScale(256.0/image.getWidth(), 256.0/image.getHeight());
+
 		image.move(image.getWidth()/2, image.getHeight()/2);
+		image.setScale(256.0/image.getWidth(), 256.0/image.getHeight());
 		int tx=x;
 		int ty=y;
 
@@ -194,58 +195,63 @@ public class RenderableMenuItem implements ActionListener {
 			}
 		}
 
-		if((button.isHovering()||this.isSelected)&&(item!=null&&showDescription)) 
+		if((button.isHovering()||this.isSelected)&&(item!=null)) 
 		{
 			g.setColor(new Color(0.4f,0.4f,0.4f,0.5f));
 			g.fillRect(x+2,y-1+11*image.getHeight()/12,image.getWidth()+6,image.getHeight()/12+10);
 			g.setColor(Constants.textColor);
 			g.setFont(text.deriveFont(30f));
-			g.drawString(item.getName(),x+5,11*image.getHeight()/12+25+y);			
-			g.setFont(text.deriveFont(60f));
-			FontMetrics metrics=g.getFontMetrics();
-			g.drawString(item.getName(),2180-metrics.stringWidth(item.getName())/2,200);
-			
-			g.setFont(text.deriveFont(35f));
-			metrics=g.getFontMetrics();
-			g.drawString(""+item.getType(),2180-metrics.stringWidth(""+item.getType())/2,250);
-			for(int i=0;i<itemButtons.length;i++) 
+			g.drawString(item.getName(),x+5,11*image.getHeight()/12+25+y);	
+			if(showDescription)
 			{
-				itemButtons[i].draw(g, JPanelX, JPanelY);
-			}
-			if(item.getType()==ItemType.BLUEPRINT) 
-			{
-				Blueprint blueprint=(Blueprint) item;
-				g.drawString("Components:",2180-metrics.stringWidth("Components:")/2,400);
-				g.drawString("Product:",2180-metrics.stringWidth("Product:")/2,300);
-				if(blueprint.getProduct().getType()==ItemType.CONSUMABLE) 
+				g.setFont(text.deriveFont(60f));
+				FontMetrics metrics=g.getFontMetrics();
+				g.drawString(item.getName(),2180-metrics.stringWidth(item.getName())/2,200);
+				
+				g.setFont(text.deriveFont(35f));
+				metrics=g.getFontMetrics();
+				g.drawString(""+item.getType(),2180-metrics.stringWidth(""+item.getType())/2,250);
+				for(int i=0;i<itemButtons.length;i++) 
 				{
-					g.drawString(blueprint.getProduct().getName()+" x"+((Consumable)blueprint.getProduct()).getCount(),2180-metrics.stringWidth(blueprint.getProduct().getName()+" x"+((Consumable)blueprint.getProduct()).getCount())/2,340);
-				}else if(blueprint.getProduct().getType()==ItemType.MATERIAL) 
-				{
-					g.drawString(blueprint.getProduct().getName()+" x"+((Material)blueprint.getProduct()).getCount(),2180-metrics.stringWidth(blueprint.getProduct().getName()+" x"+((Material)blueprint.getProduct()).getCount())/2,340);
-				}else 
-				{
-					g.drawString(blueprint.getProduct().getName()+" x1",2180-metrics.stringWidth(blueprint.getProduct().getName()+" x1")/2,340);
-
+					itemButtons[i].draw(g, JPanelX, JPanelY);
 				}
-				for(int i=0;i<blueprint.getComponents().length;i++) 
+				if(item.getType()==ItemType.BLUEPRINT) 
 				{
-					g.setFont(text.deriveFont(30f));
-					metrics=g.getFontMetrics();
-					String compString=""+blueprint.getComponents()[i].getName();
-					if(blueprint.getComponents()[i].getType()==ItemType.CONSUMABLE) 
+					Blueprint blueprint=(Blueprint) item;
+					g.drawString("Components:",2180-metrics.stringWidth("Components:")/2,400);
+					g.drawString("Product:",2180-metrics.stringWidth("Product:")/2,300);
+					if(blueprint.getProduct().getType()==ItemType.CONSUMABLE) 
 					{
-						compString+=" x"+((Consumable) blueprint.getComponents()[i]).getCount();
-					}else if(blueprint.getComponents()[i].getType()==ItemType.MATERIAL) 
+						g.drawString(blueprint.getProduct().getName()+" x"+((Consumable)blueprint.getProduct()).getCount(),2180-metrics.stringWidth(blueprint.getProduct().getName()+" x"+((Consumable)blueprint.getProduct()).getCount())/2,340);
+					}else if(blueprint.getProduct().getType()==ItemType.MATERIAL) 
 					{
-						compString+=" x"+((Material) blueprint.getComponents()[i]).getCount();
+						g.drawString(blueprint.getProduct().getName()+" x"+((Material)blueprint.getProduct()).getCount(),2180-metrics.stringWidth(blueprint.getProduct().getName()+" x"+((Material)blueprint.getProduct()).getCount())/2,340);
 					}else 
 					{
-						compString += " x1";
+						g.drawString(blueprint.getProduct().getName()+" x1",2180-metrics.stringWidth(blueprint.getProduct().getName()+" x1")/2,340);
+
 					}
-					g.drawString(compString,2180-metrics.stringWidth(compString)/2,400+40*(i+1));
+					for(int i=0;i<blueprint.getComponents().length;i++) 
+					{
+						g.setFont(text.deriveFont(30f));
+						metrics=g.getFontMetrics();
+						String compString=""+blueprint.getComponents()[i].getName();
+						if(blueprint.getComponents()[i].getType()==ItemType.CONSUMABLE) 
+						{
+							compString+=" x"+((Consumable) blueprint.getComponents()[i]).getCount();
+						}else if(blueprint.getComponents()[i].getType()==ItemType.MATERIAL) 
+						{
+							compString+=" x"+((Material) blueprint.getComponents()[i]).getCount();
+						}else 
+						{
+							compString += " x1";
+						}
+						g.drawString(compString,2180-metrics.stringWidth(compString)/2,400+40*(i+1));
+					}
 				}
 			}
+		
+			
 			
 			
 		}

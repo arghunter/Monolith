@@ -13,6 +13,7 @@ import GameObjects.Player.Inventory;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.armor.Armor;
+import GameObjects.Player.items.weapons.Weapon;
 import general.Constants;
 
 public class ArsenalMenuItem extends RenderableMenuItem {
@@ -34,7 +35,7 @@ public class ArsenalMenuItem extends RenderableMenuItem {
 	{
 		super.draw(g, JPanelX, JPanelY);
 		
-		if(super.isHovering()&&!super.isSelected()) 
+		if(super.isHovering()||super.isSelected()) 
 		{
 			Font text=null;
 			try {
@@ -49,16 +50,32 @@ public class ArsenalMenuItem extends RenderableMenuItem {
 			g.setColor(Constants.textColor);
 			if(item!=null) 
 			{
+				g.setFont(text.deriveFont(60f));
+				FontMetrics metrics=g.getFontMetrics();
+				g.drawString(item.getName(),2180-metrics.stringWidth(item.getName())/2,200);
+				g.setFont(text.deriveFont(35f));
+				metrics=g.getFontMetrics();
+				g.drawString(""+item.getType(),2180-metrics.stringWidth(""+item.getType())/2,250);
 				if(item.getType()==ItemType.HELMET||item.getType()==ItemType.CHESTPLATE||item.getType()==ItemType.LEGGINGS||item.getType()==ItemType.BOOTS) 
 				{
 					Armor armor=(Armor)item;
-					g.setFont(text.deriveFont(60f));
-					FontMetrics metrics=g.getFontMetrics();
-					g.drawString(item.getName(),2180-metrics.stringWidth(item.getName())/2,200);
-					g.setFont(text.deriveFont(35f));
-					metrics=g.getFontMetrics();
-					g.drawString(""+item.getType(),2180-metrics.stringWidth(""+item.getType())/2,250);
+
 					g.drawString(armor.getSet()+"", 2180-metrics.stringWidth(""+armor.getSet())/2, 300);
+					g.drawString("+" +armor.getHealth()+" Health",  2180-metrics.stringWidth("+" +armor.getHealth()+" Health")/2, 350);
+					g.drawString("+" +armor.getShields()+" Shields",  2180-metrics.stringWidth("+" +armor.getShields()+" Shields")/2, 400);
+					g.drawString("+" +armor.getArmor()+" Armor",  2180-metrics.stringWidth("+" +armor.getArmor()+" Armor")/2, 450);
+					
+
+				}else if(item.getType()==ItemType.WEAPON)
+				{
+					Weapon weapon=(Weapon) item;
+					g.drawString(weapon.getDamage()+" Damage", 2180-metrics.stringWidth("+" +weapon.getDamage()+" Damage")/2, 300);
+					g.drawString(weapon.getAttackSpeed()+" APM", 2180-metrics.stringWidth("+" +weapon.getAttackSpeed()+" APM")/2, 350);
+					g.drawString(weapon.getRange()+" Range", 2180-metrics.stringWidth("+" +weapon.getRange()+" Range")/2, 400);
+								
+				}else if(item.getType()==ItemType.CONSUMABLE) 
+				{
+					//stuff
 				}
 			}
 		}

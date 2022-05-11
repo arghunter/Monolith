@@ -19,12 +19,157 @@ import input.MouseInputParser;
 import render.Tester;
 
 public class ArsenalMenu {
-	private Polygon shape;
-	private RenderableMenuItem[] arsenalItems;
+
+	private ArsenalMenuItem[] arsenalItems=new ArsenalMenuItem[16];
 	private boolean hidden=false;
 
 	public ArsenalMenu(Inventory inventory, JPanel panel) {
-	
+		int count=0;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],541,532,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(541,532,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],807,532,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(807,532,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],807,798,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(807,798,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],541,798,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(541,798,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			System.out.println(inventory.getArsenal()[count].getName());
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],275,266,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(275,266,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],541,266,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(541,266,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],807,266,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(807,266,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],1073,266,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(1073,266,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],1073,532,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(1073,532,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],1073,798,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(1073,798,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],1073,1064,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(1073,1064,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],807,1064,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(807,1064,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],541,1064,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(541,1064,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],275,1064,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(275,1064,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],275,798,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(275,798,panel,inventory);
+
+		}
+		count++;
+		if(inventory.getArsenal()[count]!=null) 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(inventory.getArsenal()[count],275,532,panel,inventory);
+		}else 
+		{
+			arsenalItems[count]=new ArsenalMenuItem(275,532,panel,inventory);
+
+		}
+
 
 
 	}
@@ -50,7 +195,7 @@ public class ArsenalMenu {
 			}
 
 			boolean tripped=false;
-			g.draw(shape);
+		
 			for(int i=0;i<arsenalItems.length;i++) 
 			{
 
