@@ -1,3 +1,7 @@
+//Author: Peter Ferolito
+//Date: 5/9/22
+//Rev: 02
+//Notes: Basic keyboard input functionality
 package input;
 
 import java.awt.Component;
@@ -7,7 +11,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 public class KeyboardInput implements KeyListener {
-	private Component component;
+	//Key fields
 	private boolean leftPressed = false;
 	private boolean rightPressed = false;
 	private boolean upPressed = false;
@@ -17,11 +21,11 @@ public class KeyboardInput implements KeyListener {
 	private boolean sPressed = false;
 	private boolean dPressed = false;
 	private boolean escapePressed=false;
-
+	
+	//Constructor
 	public KeyboardInput(Component component) 
 	{
-		this.component=component;
-		this.component.addKeyListener(this);
+		component.addKeyListener(this);
 	}
 
 
@@ -34,6 +38,7 @@ public class KeyboardInput implements KeyListener {
 
 
 	@Override
+	//Stores important keys as boolean variables
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode()==KeyEvent.VK_LEFT) {
 			leftPressed=true;
@@ -65,6 +70,7 @@ public class KeyboardInput implements KeyListener {
 	}
 	
 	@Override
+	//Stores important keys as boolean variables
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode()==KeyEvent.VK_LEFT) {
 			leftPressed=false;

@@ -12,7 +12,7 @@ public class MobSpawner {
 	private int[] levels =         {0        , 2       , 5       , 8        , 13      };
 	//Levels                          0-1        2-4      5-7        8-12       13+
 	private int numMobs=Constants.NUMMOBS;
-	private Random randNums = new Random(0);
+	private Random randNums = new Random();
 	
 	public MobSpawner(){
 		

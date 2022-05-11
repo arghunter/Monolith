@@ -28,10 +28,8 @@ public class MeleeWeapon extends Weapon {
 		System.out.println("Here");
 		System.out.println(Arrays.deepToString(mobs));
 		for(Mob m : mobs) {
-			if(m != null) {
-				System.out.println(this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) + " " + super.getRange());
-			}
-			if(m != null && this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
+			if(m!=null&&this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
+>
 				double hyp = this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY());
 				int xDist = m.getCenterX()-player.getCenterX();
 				int yDist = player.getCenterY()-m.getCenterY();
