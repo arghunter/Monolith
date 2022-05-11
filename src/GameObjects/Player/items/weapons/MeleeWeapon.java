@@ -7,9 +7,11 @@ import GameObjects.mobs.Mob;
 
 public class MeleeWeapon extends Weapon {
 	private double sweepAngle;
-	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle) {
+	private Player player;
+	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle,Player player) {
 		super(name,tier,damage,range,attackSpeed);
 		this.sweepAngle=sweepAngle;
+		this.player = player;
 	}
 //	public MeleeWeapon(String saveData) 
 //	{
@@ -28,6 +30,7 @@ public class MeleeWeapon extends Weapon {
 		
 		System.out.println(Arrays.deepToString(mobs));
 		for(Mob m : mobs) {
+			System.out.println(super.getRange());
 			if(m!=null&&this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
 				double hyp = this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY());
 				int xDist = m.getCenterX()-player.getCenterX();
@@ -47,10 +50,10 @@ public class MeleeWeapon extends Weapon {
 					trueAngle = sinAngle;
 				}
 				System.out.println("inside");
-				if(trueAngle > (Math.PI/2 - sweepAngle/2) && trueAngle < (Math.PI/2+sweepAngle)) {
+				System.out.println(player.getAngle());
+				if(trueAngle > ((Math.PI/2 - sweepAngle/2)+player.getAngle()) && trueAngle < ((Math.PI/2+sweepAngle) +player.getAngle())) {
 					System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					m.takeDamage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
-					
 				}
 			}
 		}
