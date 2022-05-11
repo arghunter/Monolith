@@ -1,3 +1,7 @@
+//Author: Peter Ferolito
+//Date: 5/11/22
+//Notes: 
+
 package render;
 
 import GameObjects.Player.Player;
@@ -58,8 +62,11 @@ public class Adventure implements ActionListener {
 	//Whether the game is paused and mobs move
 	private boolean paused=false;
 	
-	public Adventure(Player player) {
+	private JPanel panel;
+	
+	public Adventure(Player player,JPanel panel) {
 		thePlayer=player;
+		this.panel=panel;
 	}
 	public Adventure() 
 	{
@@ -69,6 +76,8 @@ public class Adventure implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 	}
+	
+	
 	
 	public void draw(Graphics2D g) {
 		

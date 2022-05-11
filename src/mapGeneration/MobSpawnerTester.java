@@ -52,11 +52,12 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = w.getContentPane();
 		c.add(this);
+		thePlayer.setMobs(mobList[curRoomY][curRoomX]);
 		w.setResizable(true);
 		w.setVisible(true);
 		this.initInput(w);
 		this.frame = w;
-		thePlayer.addXP(10000);
+		thePlayer.addXP(10);
 		System.out.println(thePlayer.getLevel());
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
@@ -72,6 +73,11 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		for(int i=0;i<Constants.MAXMOBS;i++) {
+			if(!(mobList[curRoomY][curRoomX][i]==null) && mobList[curRoomY][curRoomX][i].isDead()) {
+				mobList[curRoomY][curRoomX][i]=null;
+			}
+		}
 		t++;
 		if(thePlayer.getCenterX()>=op.getRoomSizeX()*32 && (curRoomX+1<op.getXSize())) {
 			curRoomX++;
@@ -94,24 +100,18 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 			int[] n=test.generateMobs(thePlayer.getLevel());
 			for(int i=0;i<n.length;i++) {
 				System.out.print(n[i]+" ");
-				numMobs[curRoomY][curRoomX]++;
 				if(n[i]==0) {
 					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Zombie(100, 100, 4, 64, 64);
 				}else if(n[i]==1) {
 					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Spider(200,200,10,64,64);
 				}else if(n[i]==2) {
 					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Balkrada(300,300,10,64,64);
-
 				}
+				numMobs[curRoomY][curRoomX]++;
 			}
 			System.out.println();
 			resetMobSpawnTime();
 		}
-		//
-		//
-		//NOTES ADD NUMMOBS ARRAY AT THE TOP AND THEN USE THAT TO RENDER MOBS + MAKE THEM DO ACTIONS
-		//
-		//
 		for(int i=0;i<numMobs[curRoomY][curRoomX];i++) {
 			if(!(mobList[curRoomY][curRoomX][i]==null)) {
 				mobList[curRoomY][curRoomX][i].action(thePlayer);
@@ -161,7 +161,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 	}
 	
 	private void changeRoom() {
-
+		thePlayer.setMobs(mobList[curRoomY][curRoomX]);
 	}
 	
 	private void resetMobSpawnTime() {
