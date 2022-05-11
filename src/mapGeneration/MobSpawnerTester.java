@@ -58,12 +58,13 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		this.frame = w;
 		thePlayer.addXP(10);
 		System.out.println(thePlayer.getLevel());
-		clock.start();
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
 				timeSinceLastSpawn[i][j]=-5000;
 			}
 		}
+		clock.start();
+
 	}
 	
 	public void actionPerformed(ActionEvent e) {
