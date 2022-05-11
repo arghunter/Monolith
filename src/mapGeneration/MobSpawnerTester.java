@@ -40,7 +40,6 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 
 	private ArrayList<Mob>[][] mobList=new ArrayList[Constants.YSIZE][Constants.XSIZE];
 	
-	private int[][] numMobs=new int[Constants.YSIZE][Constants.XSIZE];
 	private String[][] curRoom;
 	//private ImageSystem image=new ImageSystem(0,0,new ImageIcon("StoneBig.png").getImage());
 	
@@ -61,19 +60,15 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		System.out.println(thePlayer.getLevel());
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
-				numMobs[i][j]=0;
-			}
-		}
-		clock.start();
-		for(int i=0;i<Constants.YSIZE;i++) {
-			for(int j=0;j<Constants.XSIZE;j++) {
 				timeSinceLastSpawn[i][j]=-5000;
 			}
 		}
+		clock.start();
+
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		for(int i=0;i<Constants.MAXMOBS;i++) {
+		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 			if(mobList[curRoomY][curRoomX].get(i).isDead()) {
 				mobList[curRoomY][curRoomX].remove(i);
 			}
@@ -107,12 +102,11 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 				}else if(n[i]==2) {
 					mobList[curRoomY][curRoomX].add(new Balkrada(300,300,10,64,64));
 				}
-				numMobs[curRoomY][curRoomX]++;
 			}
 			System.out.println();
 			resetMobSpawnTime();
 		}
-		for(int i=0;i<numMobs[curRoomY][curRoomX];i++) {
+		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 			mobList[curRoomY][curRoomX].get(i).action(thePlayer);
 		}
 		//System.out.println(curRoomX+" "+curRoomY);
@@ -147,7 +141,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 				}
 			}
 		}
-		for(int i=0;i<numMobs[curRoomY][curRoomX];i++) {
+		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 			mobList[curRoomY][curRoomX].get(i).render(graphic);
 			mobList[curRoomY][curRoomX].get(i).update(thePlayer.getX(), thePlayer.getY());
 		}
