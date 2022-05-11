@@ -30,7 +30,7 @@ public class MeleeWeapon extends Weapon {
 		
 		System.out.println(Arrays.deepToString(mobs));
 		for(Mob m : mobs) {
-			System.out.println(super.getRange());
+			
 			if(m!=null&&this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
 				double hyp = this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY());
 				int xDist = m.getCenterX()-player.getCenterX();
@@ -50,8 +50,8 @@ public class MeleeWeapon extends Weapon {
 					trueAngle = sinAngle;
 				}
 				System.out.println("inside");
-				System.out.println(player.getAngle());
-				if(trueAngle > ((Math.PI/2 - sweepAngle/2)+player.getAngle()) && trueAngle < ((Math.PI/2+sweepAngle) +player.getAngle())) {
+				System.out.println(-player.getAngle() + " " + trueAngle);
+				if(trueAngle > (-player.getAngle() - sweepAngle/2) && trueAngle < (-player.getAngle()+sweepAngle/2)) {
 					System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					m.takeDamage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 				}
