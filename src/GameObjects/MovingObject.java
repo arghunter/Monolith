@@ -24,6 +24,7 @@ public abstract class MovingObject extends GameObject {
 	protected int health;
 	private boolean isDead=false;
 	private AnimationSystem image;
+	private double angle;
 
 	public MovingObject(int startX, int startY, int movementDelay, int id, int width, int height, String name, int numFrames) {
 		super(id, width, height);
@@ -94,10 +95,13 @@ public abstract class MovingObject extends GameObject {
 		if (pointX < getX()) {
 			angle += Math.PI;
 		}
+		this.angle=angle;
 		getImage().setRotation(angle);
 	}
 
-	
+	public double getAngle() {
+		return angle;
+	}
 
 	// Given a direction 1 unit in the direction
 	// Scales to prevent strafing from being faster
