@@ -51,17 +51,17 @@ public class PetersMazeTester extends JPanel implements MouseWheelListener,Actio
 		
 		inventory.addToStorage(test);
 		System.out.println(inventory.getStorage());
-
-		inventory.addToStorage(new Consumable("Baklava",0,10,64,null));
-		inventory.addToStorage(new Consumable("Baklava",0,50,64,null));
-		inventory.addToStorage(new Consumable("Baklava",0,50,64,null));
-		inventory.addToStorage(new Consumable("Baklava",0,50,64,null));
-		inventory.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
-		inventory.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
-		
-		Item[] it={new Material("Crystal",0,100)};
-		inventory.addToStorage(new Blueprint("Baklava",0,10,it,new Consumable("Baklava",0,15,64,null),inventory));
-		inventory.addToStorage(new Material("Crystal",0,100000));
+//
+//		inventory.addToStorage(new Consumable("Baklava",0,10,64,null));
+//		inventory.addToStorage(new Consumable("Baklava",0,50,64,null));
+//		inventory.addToStorage(new Consumable("Baklava",0,50,64,null));
+//		inventory.addToStorage(new Consumable("Baklava",0,50,64,null));
+//		inventory.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
+//		inventory.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
+//		
+//		Item[] it={new Material("Crystal",0,100)};
+//		inventory.addToStorage(new Blueprint("Baklava",0,10,it,new Consumable("Baklava",0,15,64,null),inventory));
+//		inventory.addToStorage(new Material("Crystal",0,100000));
 
 		menu=new InventoryMenu(inventory,this);
 		arsenal=new ArsenalMenu(inventory,this);
