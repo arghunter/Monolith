@@ -119,7 +119,8 @@ public class Inventory {
 				} else if (storageItem.getType() == ItemType.CONSUMABLE) {
 					Consumable consumableStorage = (Consumable) storageItem;
 					for (int i = 0; i < arsenal.length; i++) {
-						if (arsenal[i].equals(storageItem)) {
+						
+						if (arsenal[i]!=null&&arsenal[i].equals(storageItem)) {
 							long extra = ((Consumable) arsenal[i]).add(consumableStorage);
 							if (extra != 0) {
 								consumableStorage.setCount(extra);

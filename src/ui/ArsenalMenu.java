@@ -277,7 +277,7 @@ public class ArsenalMenu implements MouseWheelListener,ActionListener{
 					selectedItem=items.get(items.size()-1);
 				}
 			}
-			items.get(i).addActionListener(this);
+			items.get(items.size()-1).addActionListener(this);
 		}
 		selectedItem=null;
 		int count=0;
@@ -457,7 +457,7 @@ public class ArsenalMenu implements MouseWheelListener,ActionListener{
 			if(e.getActionCommand().equals("ItemClicked")&&items.contains(e.getSource())) 
 			{
 
-				if(selectedItem!=null) 
+				if(selectedItem!=null&&((RenderableMenuItem)e.getSource()).getItem()!=null) 
 				{
 					inventory.swapStoragetoArsenal(((RenderableMenuItem)e.getSource()).getItem(),selectedItem.getItem() );
 					update();
