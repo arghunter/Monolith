@@ -17,8 +17,7 @@ import GameObjects.mobs.Mob;
 public class MouseInput implements MouseListener {
 	// Fields
 	private Component component;
-	Player currentPlayer;
-	Mob[] mobs;
+
 	private static boolean[] buttonStates = new boolean[3];
 
 	// Constructor
@@ -34,12 +33,7 @@ public class MouseInput implements MouseListener {
 
 	}
 
-	public void setMobs(Mob[] mobs) {
-		this.mobs = mobs;
-	}
-	public void setPlayer(Player player) {
-		this.currentPlayer = player;
-	}
+
 	@Override
 	//Updates buttonStates based on which mouse button was pressed.
 	public void mousePressed(MouseEvent e) {
@@ -51,8 +45,7 @@ public class MouseInput implements MouseListener {
 		} else if (e.getButton() == MouseEvent.BUTTON3) {
 			buttonStates[2] = true;
 		}
-		MeleeWeapon weapon = currentPlayer.getWeapon();
-		weapon.primaryFire(mobs, currentPlayer);
+
 	}
 
 	@Override

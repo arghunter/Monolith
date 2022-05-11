@@ -31,9 +31,9 @@ import input.MouseInputParser;
 
 public class RenderableMenuItem implements ActionListener {
 	
-	ImageSystem image;
-	Item item;
-	Button button;
+	protected ImageSystem image;
+	protected Item item=null;
+	protected Button button;
 	private int x;
 	private int y;
 	private ActionListener[] actionListeners;
@@ -203,11 +203,6 @@ public class RenderableMenuItem implements ActionListener {
 			g.drawString(item.getName(),x+5,11*image.getHeight()/12+25+y);			
 			g.setFont(text.deriveFont(60f));
 			FontMetrics metrics=g.getFontMetrics();
-			if(item.getType()==ItemType.BLUEPRINT) 
-			{
-				
-				g.drawString(item.getName(),2180-metrics.stringWidth(item.getName())/2,200);
-			}
 			g.drawString(item.getName(),2180-metrics.stringWidth(item.getName())/2,200);
 			
 			g.setFont(text.deriveFont(35f));

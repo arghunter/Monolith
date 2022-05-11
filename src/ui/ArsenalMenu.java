@@ -24,21 +24,8 @@ public class ArsenalMenu {
 	private boolean hidden=false;
 
 	public ArsenalMenu(Inventory inventory, JPanel panel) {
-		Point[] shapeCoords = { new Point(1792, 689), new Point(1280, 1201), new Point(768, 689),new Point(1280, 177) };
-		shape = new Polygon();
-		for (int i = 0; i < shapeCoords.length; i++) {
-			shape.addPoint(shapeCoords[i].x, shapeCoords[i].y);
-		}
-		arsenalItems = new RenderableMenuItem[inventory.getArsenal().length];
-		arsenalItems[0]=new RenderableMenuItem(inventory.getHelemet(),shapeCoords[0].x-128,shapeCoords[0].y-128,panel);
-		arsenalItems[1]=new RenderableMenuItem(inventory.getChestplate(),shapeCoords[1].x-128,shapeCoords[1].y-128,panel);
-		arsenalItems[2]=new RenderableMenuItem(inventory.getLeggings(),shapeCoords[2].x-128,shapeCoords[2].y-128,panel);
-		arsenalItems[3]=new RenderableMenuItem(inventory.getBoots(),shapeCoords[3].x-128,shapeCoords[3].y-128,panel);
+	
 
-//		for(int i=0;i<shapeCoords.length;i++) 
-//		{
-//			
-//		}
 
 	}
 	public boolean isHidden() {

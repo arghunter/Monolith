@@ -35,7 +35,7 @@ public class MouseInputParser {
 	//updates the player's angle so that it faces the mouse
 	public void updatePlayerAngle(Player player) {
 		player.updateAngle(getX(), getY());
-		input.setPlayer(player);
+	
 	}
 	//Returns if the given mouse Button is pressed
 	public static boolean isMBDown(int MB) {
@@ -51,9 +51,7 @@ public class MouseInputParser {
 		this.ratioY = ratioY;
 	}
 
-	public void setMobs(Mob[] mobs) {
-		input.setMobs(mobs);
-	}
+
 
 	//Returns the scaling ratio for x values
 	public static double getRatioX() {

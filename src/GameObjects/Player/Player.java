@@ -111,15 +111,16 @@ public class Player extends MovingObject {
 					health += (stats[5]+buffs[5]) / 4;
 
 				}
-				if (currentShields > stats[6]+buffs[6]) {
-					currentShields = stats[6]+buffs[6];
-				}
 
-				if (health > stats[3]+buffs[3]) {
-					health = stats[3]+buffs[3];
-				}
 				lastRegen = System.currentTimeMillis();
 
+			}
+			if (currentShields > stats[6]+buffs[6]) {
+				currentShields = stats[6]+buffs[6];
+			}
+
+			if (health > stats[3]+buffs[3]) {
+				health = stats[3]+buffs[3];
 			}
 		}
 
@@ -206,7 +207,8 @@ public class Player extends MovingObject {
 		if (!isDead) {
 			Item item = inventory.getEquippedItem();
 			if (item == null) {
-				// fist
+				Weapon weapon=new MeleeWeapon("Stick",1,10,15,3,300);
+				weapon.primaryFire(mobs, this);
 				return;
 			}
 			if (item.getType() == ItemType.WEAPON) {

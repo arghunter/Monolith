@@ -1,1 +1,1 @@
-SkillTreeSkill:Regen/1/true/392/REGEN/8/ENDSkill:
+SkillTreeSkill:Regen/1/true/1366/REGEN/8/ENDSkill:Weight_Training/1/true/330/MULTIPLE/0~1~true~0~STRENGTH~20~,~1~1~true~0~HEALTH~9~,~/ENDSkill:

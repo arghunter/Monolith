@@ -22,9 +22,9 @@ public class Inventory {
 	private ArrayList<Item> storage;// For all blueprints materials and stuff that the player cannot access in the middle of a fight
 	private int equipped=4;
 
-	public Inventory(String saveData) {
-
-	}
+//	public Inventory(String saveData) {
+//
+//	}
 
 	public Inventory(Player player) {
 		arsenal = new Item[16];

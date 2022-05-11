@@ -120,7 +120,7 @@ public class Tester extends JPanel implements ActionListener {
 		//zombieButton.draw(g, this.getXOnScreen(), this.getYOnScreen());
 
 		input.updatePlayer(thePlayer);
-		input.updateMobs(mobList);
+
 		thePlayer.render(g);
 		
 		for (int i = 0; i < numMobs; i++) {

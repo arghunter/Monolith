@@ -162,7 +162,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 			}
 			
 			g.setColor(new Color(212/6,175/6,55/6));
-			g.fillRect(0, 0, 2560, 266);
+			g.fillRect(0, 0, 1865, 266);
 			g.fillRect(0,0, 275, 1377);
 			all.draw(g, JPanelX, JPanelY);
 			blueprints.draw(g, JPanelX, JPanelY);

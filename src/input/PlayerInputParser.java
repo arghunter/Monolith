@@ -47,9 +47,7 @@ public class PlayerInputParser {
 		}
 
 	}
-	public void updateMobs(Mob[] mobs) {
-		mouse.setMobs(mobs);
-	}
+
 	public void updatePlayerAngle(Player player) 
 	{
 		mouse.updatePlayerAngle(player);
