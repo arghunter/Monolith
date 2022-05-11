@@ -38,7 +38,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 	
 	private int[][] timeSinceLastSpawn=new int[Constants.YSIZE][Constants.XSIZE];
 
-	private Mob[][][] mobList=new Mob[Constants.YSIZE][Constants.XSIZE][Constants.MAXMOBS];
+	private ArrayList<Mob>[][] mobList=new ArrayList[Constants.YSIZE][Constants.XSIZE];
 	
 	private int[][] numMobs=new int[Constants.YSIZE][Constants.XSIZE];
 	private String[][] curRoom;
@@ -74,8 +74,8 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		for(int i=0;i<Constants.MAXMOBS;i++) {
-			if(!(mobList[curRoomY][curRoomX][i]==null) && mobList[curRoomY][curRoomX][i].isDead()) {
-				mobList[curRoomY][curRoomX][i]=null;
+			if(mobList[curRoomY][curRoomX].get(i).isDead()) {
+				mobList[curRoomY][curRoomX].remove(i);
 			}
 		}
 		t++;
@@ -101,11 +101,11 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 			for(int i=0;i<n.length;i++) {
 				System.out.print(n[i]+" ");
 				if(n[i]==0) {
-					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Zombie(100, 100, 4, 64, 64);
+					mobList[curRoomY][curRoomX].add(new Zombie(100, 100, 4, 64, 64));
 				}else if(n[i]==1) {
-					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Spider(200,200,10,64,64);
+					mobList[curRoomY][curRoomX].add(new Spider(200,200,10,64,64));
 				}else if(n[i]==2) {
-					mobList[curRoomY][curRoomX][numMobs[curRoomY][curRoomX]]=new Balkrada(300,300,10,64,64);
+					mobList[curRoomY][curRoomX].add(new Balkrada(300,300,10,64,64));
 				}
 				numMobs[curRoomY][curRoomX]++;
 			}
@@ -113,9 +113,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 			resetMobSpawnTime();
 		}
 		for(int i=0;i<numMobs[curRoomY][curRoomX];i++) {
-			if(!(mobList[curRoomY][curRoomX][i]==null)) {
-				mobList[curRoomY][curRoomX][i].action(thePlayer);
-			}
+			mobList[curRoomY][curRoomX].get(i).action(thePlayer);
 		}
 		//System.out.println(curRoomX+" "+curRoomY);
 		repaint();
@@ -150,11 +148,8 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 			}
 		}
 		for(int i=0;i<numMobs[curRoomY][curRoomX];i++) {
-			if(!(mobList[curRoomY][curRoomX][i]==null)) {
-				mobList[curRoomY][curRoomX][i].render(graphic);
-				mobList[curRoomY][curRoomX][i].update(thePlayer.getX(), thePlayer.getY());
-
-			}
+			mobList[curRoomY][curRoomX].get(i).render(graphic);
+			mobList[curRoomY][curRoomX].get(i).update(thePlayer.getX(), thePlayer.getY());
 		}
 		thePlayer.render(graphic);
 		
