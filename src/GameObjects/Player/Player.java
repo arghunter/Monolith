@@ -125,7 +125,14 @@ public class Player extends MovingObject{
 		return statTypes;
 	}
 
-
+	public MeleeWeapon getWeapon() {
+		Item item = inventory.getEquippedItem();
+		if(item instanceof MeleeWeapon) {
+			return (MeleeWeapon) item;
+		} else {
+			return new MeleeWeapon("Stick",1,10,15,3,300);
+		}
+	}
 	public int[] getStats() {
 		return stats;
 	}

@@ -6,6 +6,7 @@ import java.awt.MouseInfo;
 import javax.swing.JFrame;
 
 import GameObjects.Player.Player;
+import GameObjects.mobs.Mob;
 
 public class MouseInputParser {
 	MouseInput input;
@@ -28,6 +29,7 @@ public class MouseInputParser {
 
 	public void updatePlayerAngle(Player player) {
 		player.updateAngle(getX(), getY());
+		input.setPlayer(player);
 	}
 
 	public static boolean isMBDown(int MB) {
@@ -43,7 +45,9 @@ public class MouseInputParser {
 		this.ratioY = ratioY;
 		// System.out.println(ratioX+" "+ratioY);
 	}
-
+	public void setMobs(Mob[] mobs) {
+		input.setMobs(mobs);
+	}
 	public static double getRatioX() {
 		return ratioX;
 	}

@@ -45,7 +45,7 @@ public abstract class MovingObject extends GameObject {
 		health -= damage;
 		if(health<=0) 
 		{
-			this.isDead=true;
+			this.setDead(true);
 		}
 	}
 	// Sets the x and y coordinates to the passed values
@@ -142,6 +142,12 @@ public abstract class MovingObject extends GameObject {
 		image.move(x-this.x,y-this.y);
 		this.x=x;
 		this.y=y;
+	}
+	public boolean isDead() {
+		return isDead;
+	}
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
 	}
 
 }

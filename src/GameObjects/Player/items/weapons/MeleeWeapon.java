@@ -1,5 +1,7 @@
 package GameObjects.Player.items.weapons;
 
+import java.util.Arrays;
+
 import GameObjects.Player.Player;
 import GameObjects.mobs.Mob;
 
@@ -16,14 +18,20 @@ public class MeleeWeapon extends Weapon {
 //	}
 
 
-	public double euclidDist(int x1, int x2, int y1, int y2) {
+	public double euclidDist(int x1, int y1, int x2, int y2) {
+		//System.out.println(x1 + " " +y1 + " mob");
+		//System.out.println(x2+ " " +y2 + " player");
 		return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
 	}
 	@Override
 	public void primaryFire(Mob[] mobs, Player player) {
 		System.out.println("Here");
+		System.out.println(Arrays.deepToString(mobs));
 		for(Mob m : mobs) {
-			if(this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
+			if(m != null) {
+				System.out.println(this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) + " " + super.getRange());
+			}
+			if(m != null && this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
 				double hyp = this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY());
 				int xDist = m.getCenterX()-player.getCenterX();
 				int yDist = player.getCenterY()-m.getCenterY();
@@ -41,8 +49,11 @@ public class MeleeWeapon extends Weapon {
 				} else if(sin < 0 && cos > 0) {
 					trueAngle = sinAngle;
 				}
+				System.out.println("inside");
 				if(trueAngle > (Math.PI/2 - sweepAngle/2) && trueAngle < (Math.PI/2+sweepAngle)) {
+					System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					m.takeDamage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
+					
 				}
 			}
 		}

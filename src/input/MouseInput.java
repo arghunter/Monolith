@@ -6,12 +6,15 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 
 import GameObjects.Player.Player;
+import GameObjects.Player.items.weapons.MeleeWeapon;
+import GameObjects.mobs.Mob;
 
 
 public class MouseInput implements MouseListener {
 	private Component component;
 	private static boolean[] buttonStates=new boolean[3];
 	Player currentPlayer;
+	Mob[] mobs;
 	public MouseInput(Component component) 
 	{
 		this.component=component;
@@ -31,6 +34,9 @@ public class MouseInput implements MouseListener {
 	public void setPlayer(Player player) {
 		this.currentPlayer = player;
 	}
+	public void setMobs(Mob[] mobs) {
+		this.mobs = mobs;
+	}
 	@Override
 	public void mousePressed(MouseEvent e) {
 	
@@ -45,6 +51,8 @@ public class MouseInput implements MouseListener {
 		{
 			buttonStates[2]=true;
 		}
+		MeleeWeapon weapon = currentPlayer.getWeapon();
+		weapon.primaryFire(mobs, currentPlayer);
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {

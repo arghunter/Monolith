@@ -117,12 +117,15 @@ public class Tester extends JPanel implements ActionListener {
 		if (skillSelectionMenu != null) {
 			skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
 		}
-		zombieButton.draw(g, this.getXOnScreen(), this.getYOnScreen());
+		//zombieButton.draw(g, this.getXOnScreen(), this.getYOnScreen());
 		input.updatePlayer(thePlayer);
+		input.updateMobs(mobList);
 		thePlayer.render(g);
 
 		for (int i = 0; i < numMobs; i++) {
-			mobList[i].render(g);
+			if(!mobList[i].isDead()) {
+				mobList[i].render(g);
+			}
 			mobList[i].update(thePlayer.getX(), thePlayer.getY());
 		}
 	}

@@ -1,1 +1,1 @@
-SkillTreeSkill:Shield/1/true/457/SHIELD/13/ENDSkill:
+SkillTreeSkill:

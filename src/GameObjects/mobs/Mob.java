@@ -10,7 +10,7 @@ public abstract class Mob extends MovingObject {
 	private static int[] stats=new int[6];
 	
 	public Mob(int x,int y,int movementDelay, int[] stats,int id,int width, int height,String name,int numFrames) {
-		super(x,y,movementDelay,id,width,height,name,numFrames);
+		super(x,y,movementDelay,id,width,height,name,numFrames,stats[2]);
 	}
 	
 	public void setStat(int statNum,int newValue) {
@@ -21,6 +21,9 @@ public abstract class Mob extends MovingObject {
 		if(stats.length==6) {
 			Mob.stats=stats;
 		}
+	}
+	public int getHealth() {
+		return health;
 	}
 	public void update(double pointX, double pointY) {
 		updateAngle(pointX, pointY);

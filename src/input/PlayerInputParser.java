@@ -5,6 +5,7 @@ import java.awt.Component;
 import javax.swing.JFrame;
 
 import GameObjects.Player.Player;
+import GameObjects.mobs.Mob;
 
 public class PlayerInputParser {
 	private KeyboardInputParser keyboard;
@@ -38,10 +39,12 @@ public class PlayerInputParser {
 		}
 
 	}
+	public void updateMobs(Mob[] mobs) {
+		mouse.setMobs(mobs);
+	}
 	public void updatePlayerAngle(Player player) 
 	{
 		mouse.updatePlayerAngle(player);
-
 	}
 
 	public void setRatio(double ratioX, double ratioY) {
