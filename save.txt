@@ -1,1 +1,1 @@
-SkillTreeSkill:Regen/1/true/1041/REGEN/10/ENDSkill:Power/1/true/1041/POWER/11/ENDSkill:Health/1/true/1041/HEALTH/11/ENDSkill:Speed/1/true/1041/SPEED/3/ENDSkill:Shield_Master/1/true/1041/SHIELD/23/ENDSkill:Eagle_Eyes/1/true/1041/ACCURACY/18/ENDSkill:
+SkillTreeSkill:Regen/1/true/3016/REGEN/8/ENDSkill:Weight_Training/1/true/3016/MULTIPLE/0~1~true~0~STRENGTH~20~,~1~1~true~0~HEALTH~9~,~/ENDSkill:Health/1/true/1980/HEALTH/11/ENDSkill:Sprinter/1/true/958/SPEED/12/ENDSkill:

@@ -33,7 +33,18 @@ public class Inventory {
 		arsenal[1]=(new Armor("Baklava",0,ItemType.CHESTPLATE,15,25,50,BattleSuitSet.NONE));
 		arsenal[2]=(new Armor("Baklava",0,ItemType.LEGGINGS,15,25,50,BattleSuitSet.NONE));
 		arsenal[3]=(new Armor("Baklava",0,ItemType.BOOTS,10,25,25,BattleSuitSet.NONE));
-		arsenal[4]=(new MeleeWeapon("Rusty Sword",0,50, 100, 30,10/18.0*Math.PI,player));
+		arsenal[4]=(new MeleeWeapon("Rusty Sword",0,50, 20, 30,10/18.0*Math.PI));
+
+		this.addToStorage(new Consumable("Baklava",0,10,64,null));
+		this.addToStorage(new Consumable("Baklava",0,50,64,null));
+		this.addToStorage(new Consumable("Baklava",0,50,64,null));
+		this.addToStorage(new Consumable("Baklava",0,50,64,null));
+		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
+		this.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
+		
+		Item[] it={new Material("Crystal",0,100)};
+		this.addToStorage(new Blueprint("Baklava",0,10,it,new Consumable("Baklava",0,15,64,null),this));
+		this.addToStorage(new Material("Crystal",0,100000));
 		StatType[] buffTypes= {StatType.HEALTH,StatType.REGEN};
 		int[] buffs= {1000,500};
 		arsenal[5]=new Consumable("Baklava",0,10,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs()));
