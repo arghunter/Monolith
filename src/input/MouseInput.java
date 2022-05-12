@@ -58,7 +58,6 @@ public class MouseInput implements MouseListener {
 		} else if (e.getButton() == MouseEvent.BUTTON3) {
 			buttonStates[2] = false;
 		}
-
 	}
 
 	@Override

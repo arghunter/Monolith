@@ -80,6 +80,12 @@ public class Consumable extends Item {
 		buff.start();
 		this.count--;
 	}
-	
+	public String toString() 
+	{
+		String s="(Item:"+super.getName()+"/"+super.getType()+"/"+super.getTier()+"/"+count+"/"+maxStack+"/"+buff;
+		
+		
+		return s;
+	}
 
 }

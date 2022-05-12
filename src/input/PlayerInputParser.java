@@ -6,6 +6,7 @@
 package input;
 
 import java.awt.Component;
+import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 
@@ -18,10 +19,14 @@ public class PlayerInputParser {
 	private KeyboardInputParser keyboard;
 	private MouseInputParser mouse;
 	private double lastCoolDown=System.currentTimeMillis();
+	Graphics2D graphic;
 	//Constructor
 	public PlayerInputParser(JFrame frame,Component component) {
 		keyboard = new KeyboardInputParser(frame);
 		mouse = new MouseInputParser(component);
+	}
+	public void setGraphics(Graphics2D g) {
+		graphic = g;
 	}
 	//Returns the scaled mouse x
 	public static double getMouseX() {
@@ -41,7 +46,7 @@ public class PlayerInputParser {
 		mouse.updatePlayerAngle(player);
 		if(MouseInputParser.isMBDown(0)&&System.currentTimeMillis()-lastCoolDown>200) 
 		{
-			player.useItem();
+			player.useItem(graphic);
 			lastCoolDown=System.currentTimeMillis();
 			
 		}

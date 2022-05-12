@@ -32,5 +32,9 @@ public class Armor extends Item {
 	public BattleSuitSet getSet() {
 		return set;
 	}
+	public String toString() 
+	{
+		return "(Item:"+super.getName()+"/"+super.getType()+"/"+super.getTier()+"/"+armor+"/"+shields+"/"+health+"/"+set;
+	}
 
 }
