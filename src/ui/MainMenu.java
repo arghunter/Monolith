@@ -51,7 +51,7 @@ public class MainMenu implements ActionListener {
 
 			}
 			menuButtons[i] = new Button(menuPoints, new Color((212) / 2, (175) / 2, (55) / 2, 0), text);
-			menuButtons[i].setFontColor(Constants.textColor);
+			menuButtons[i].setFontColor(Constants.TEXTCOLOR);
 			panel.add(menuButtons[i]);
 			menuButtons[i].addActionListener(this);
 			for (int j = 0; j < menuPoints.length; j++) {
@@ -70,7 +70,7 @@ public class MainMenu implements ActionListener {
 				text = "Survival";
 			}
 			gameModeButtons[i] = new Button(gamePoints, new Color((212) / 2, (175) / 2, (55) / 2, 0), text);
-			gameModeButtons[i].setFontColor(Constants.textColor);
+			gameModeButtons[i].setFontColor(Constants.TEXTCOLOR);
 			panel.add(gameModeButtons[i]);
 			gameModeButtons[i].addActionListener(this);
 			System.out.println(text);
@@ -113,7 +113,7 @@ public class MainMenu implements ActionListener {
 			}
 			g.setFont(text.deriveFont(240f));
 			FontMetrics metrics = g.getFontMetrics();
-			g.setColor(Constants.textColor);
+			g.setColor(Constants.TEXTCOLOR);
 			g.drawString("Monolith", (2560 - metrics.stringWidth("Monolith")) / 2, 200);
 			for (int i = 0; i < menuButtons.length; i++) {
 				menuButtons[i].draw(g, JPanelX, JPanelY);

@@ -86,7 +86,7 @@ public class SkillDisplayMenu implements ActionListener {
 			panel.add(currentSkillButtons[i]);
 			currentSkillButtons[i].addActionListener(this);
 
-			currentSkillButtons[i].setFontColor(Constants.textColor);
+			currentSkillButtons[i].setFontColor(Constants.TEXTCOLOR);
 		}
 
 
@@ -149,7 +149,7 @@ public class SkillDisplayMenu implements ActionListener {
 		if(isActive) 
 		{
 			g.drawImage(createGradient(JPanelX, JPanelY), JPanelX, JPanelY, null);
-			g.setColor(Constants.textColor);
+			g.setColor(Constants.TEXTCOLOR);
 			Font text=null;
 			try {
 				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
@@ -175,7 +175,7 @@ public class SkillDisplayMenu implements ActionListener {
 						
 						e.printStackTrace();
 					}
-					g.setColor(Constants.textColor);
+					g.setColor(Constants.TEXTCOLOR);
 					
 					g.setFont(text.deriveFont(36f));
 					String title=currentSkills[i].getName().toUpperCase()+" "+currentSkills[i].getTier();

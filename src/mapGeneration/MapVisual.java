@@ -1,3 +1,7 @@
+//Author: Peter Ferolito
+//Date: 4/28/22
+//Notes: Provides a birds-eye view of the map
+
 package mapGeneration;
 
 import java.awt.*; 

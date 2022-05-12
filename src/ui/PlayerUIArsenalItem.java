@@ -93,7 +93,7 @@ public class PlayerUIArsenalItem {
 					e.printStackTrace();
 				}
 
-				g.setColor(Constants.textColor);
+				g.setColor(Constants.TEXTCOLOR);
 				g.setFont(text.deriveFont(30f));
 				g.drawString(""+((Consumable)item).getCount(), x+15, y+35);
 			}

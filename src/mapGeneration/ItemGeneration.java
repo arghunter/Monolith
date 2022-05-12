@@ -1,3 +1,7 @@
+//Author: Peter Ferolito
+//Date: 5/12/22
+//Notes: Randomly generates items based on player level
+
 package mapGeneration;
 
 import java.util.Random;

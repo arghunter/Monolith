@@ -52,7 +52,7 @@ public class ArsenalMenuItem extends RenderableMenuItem {
 				e.printStackTrace();
 			}
 
-			g.setColor(Constants.textColor);
+			g.setColor(Constants.TEXTCOLOR);
 			if(item!=null) 
 			{
 				g.setFont(text.deriveFont(60f));
