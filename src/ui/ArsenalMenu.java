@@ -494,33 +494,7 @@ public class ArsenalMenu implements MouseWheelListener,ActionListener,MouseMotio
 				selectedItem.setIsSelected(true);
 				
 			}
-//			if(e.getActionCommand().equals("ItemClicked")&&items.contains(e.getSource())) 
-//			{
-//
-//				if(selectedItem==null&&((RenderableMenuItem)e.getSource()).getItem()!=null) 
-//				{
-//					try {
-//						inventory.addToArsenal(((RenderableMenuItem)e.getSource()).getItem());
-//					} catch (ArsenalFullException e1) {
-//						//ArsenalFULL
-//					}
-//					
-//					
-//					update();
-//				}else if(!(selectedItem==null)&&((RenderableMenuItem)e.getSource()).getItem()!=null) 
-//				{
-//				
-//					inventory.removeFromArsenal(selectedItem.getItem());
-//					
-//					try {
-//						inventory.addToArsenal(((RenderableMenuItem)e.getSource()).getItem());
-//					} catch (ArsenalFullException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//					update();
-//				}
-//			}
+
 		}
 		
 	}
