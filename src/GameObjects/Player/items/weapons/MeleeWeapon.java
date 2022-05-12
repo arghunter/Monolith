@@ -25,7 +25,7 @@ public class MeleeWeapon extends Weapon {
 //		super(saveData.split("MeleeWeapon:")[1].split("/")[0],Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[1]),Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[2]),Integer.parseInt(saveData.split("MeleeWeapon:")[1].split("/")[3]));
 //		this.sweepAngle=Double.parseDouble(saveData.split("MeleeWeapon:")[1].split("/")[4]);
 //	}
-
+	@Override
 	public void drawWeapon(Player player, Graphics2D g) {
 		graphic.fillArc(player.getCenterX(), player.getCenterY() , super.getRange(), super.getRange(), (int)((-player.getAngle()-sweepAngle/2)*Math.PI/180), (int)(sweepAngle * Math.PI/180));
 	}

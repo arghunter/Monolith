@@ -6,6 +6,7 @@
  */
 package GameObjects.Player.items.weapons;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import GameObjects.Player.Player;
@@ -54,7 +55,7 @@ public abstract class Weapon extends Item{
 	public double getCurrentAttackDelay() {
 		return currentAttackDelay;
 	}
-	public abstract void drawWeapon(Graphics2D g);
+	public abstract void drawWeapon(Player p,Graphics2D g);
 	public void setCurrentAttackDelay(double currentAttackDelay) {
 		this.currentAttackDelay = currentAttackDelay;
 	}

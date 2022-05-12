@@ -212,7 +212,7 @@ public class Player extends MovingObject {
 		if (!isDead) {
 			Item item = inventory.getEquippedItem();
 			if (item == null) {
-				Weapon weapon=new MeleeWeapon("Fist",1,10,100,3,300, g);
+				Weapon weapon=new MeleeWeapon("Fist",1,10,100,3,300);
 				weapon.primaryFire(mobs, this);
 				return;
 			}
@@ -237,11 +237,12 @@ public class Player extends MovingObject {
 		return skills.toString();
 	}
 	public void renderWeapon(Graphics2D g) {
-		this.getWeapon().drawWeapon(g);
+		this.getWeapon().drawWeapon(this,g);
 	}
 	@Override
 	public void render(Graphics2D g) {
 		ui.draw(g);
+		renderWeapon(g);
 		super.getImage().drawAnimation(g);
 		regen();
 		super.setMovementDelay(stats[7]+buffs[7]);
