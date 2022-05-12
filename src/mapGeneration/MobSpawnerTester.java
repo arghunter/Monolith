@@ -51,26 +51,30 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = w.getContentPane();
 		c.add(this);
-		thePlayer.setMobs(mobList[curRoomY][curRoomX]);
 		w.setResizable(true);
 		w.setVisible(true);
 		this.initInput(w);
 		this.frame = w;
-		thePlayer.addXP(10);
+		thePlayer.addXP(100000);
 		System.out.println(thePlayer.getLevel());
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
 				timeSinceLastSpawn[i][j]=-5000;
+				mobList[i][j]=new ArrayList<Mob>();
 			}
 		}
+		thePlayer.setMobs(mobList[curRoomY][curRoomX]);
+
 		clock.start();
 
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
-			if(mobList[curRoomY][curRoomX].get(i).isDead()) {
-				mobList[curRoomY][curRoomX].remove(i);
+		if(!(mobList[curRoomY][curRoomX]==null)) {
+			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
+				if(mobList[curRoomY][curRoomX].get(i).isDead()) {
+					mobList[curRoomY][curRoomX].remove(i);
+				}
 			}
 		}
 		t++;
@@ -91,23 +95,26 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 			thePlayer.setCoordsMove(thePlayer.getX(),thePlayer.getY()+32*(op.getRoomSizeY()-3));
 			changeRoom();
 		}
-		if(t-timeSinceLastSpawn[curRoomY][curRoomX]>5000) {
-			int[] n=test.generateMobs(thePlayer.getLevel());
-			for(int i=0;i<n.length;i++) {
-				System.out.print(n[i]+" ");
-				if(n[i]==0) {
-					mobList[curRoomY][curRoomX].add(new Zombie(100, 100, 4, 64, 64));
-				}else if(n[i]==1) {
-					mobList[curRoomY][curRoomX].add(new Spider(200,200,10,64,64));
-				}else if(n[i]==2) {
-					mobList[curRoomY][curRoomX].add(new Balkrada(300,300,10,64,64));
+		if(!(mobList[curRoomY][curRoomX]==null)) {
+			if(t-timeSinceLastSpawn[curRoomY][curRoomX]>5000) {
+				int[] n=test.generateMobs(thePlayer.getLevel());
+				for(int i=0;i<n.length;i++) {
+					System.out.print(n[i]+" ");
+					if(n[i]==0) {
+						mobList[curRoomY][curRoomX].add(new Zombie(100, 100, 4, 64, 64));
+					}else if(n[i]==1) {
+						mobList[curRoomY][curRoomX].add(new Spider(200,200,10,64,64));
+					}else if(n[i]==2) {
+						mobList[curRoomY][curRoomX].add(new Balkrada(300,300,10,64,64));
+					}
 				}
 			}
-			System.out.println();
 			resetMobSpawnTime();
 		}
-		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
-			mobList[curRoomY][curRoomX].get(i).action(thePlayer);
+		if(!(mobList[curRoomY][curRoomX]==null)) {
+			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
+				mobList[curRoomY][curRoomX].get(i).action(thePlayer);
+			}
 		}
 		//System.out.println(curRoomX+" "+curRoomY);
 		repaint();
@@ -141,9 +148,11 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 				}
 			}
 		}
-		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
-			mobList[curRoomY][curRoomX].get(i).render(graphic);
-			mobList[curRoomY][curRoomX].get(i).update(thePlayer.getX(), thePlayer.getY());
+		if(!(mobList[curRoomY][curRoomX]==null)) {
+			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
+				mobList[curRoomY][curRoomX].get(i).render(graphic);
+				mobList[curRoomY][curRoomX].get(i).update(thePlayer.getX(), thePlayer.getY());
+			}
 		}
 		thePlayer.render(graphic);
 		
