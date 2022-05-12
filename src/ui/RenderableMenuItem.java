@@ -120,6 +120,7 @@ public class RenderableMenuItem implements ActionListener {
 		panel.add(button);
 		button.addActionListener(this);
 		button.setHoverEffectsOn(false);
+		button.setOutlineColor(Color.WHITE);
 		
 	}
 	protected RenderableMenuItem(int x, int y,JPanel panel) 
@@ -143,7 +144,8 @@ public class RenderableMenuItem implements ActionListener {
 		panel.add(button);
 		button.addActionListener(this);
 		button.setHoverEffectsOn(false);
-		
+		button.setOutlineColor(Color.WHITE);
+
 	}
 	
 	public void draw(Graphics2D g,int JPanelX, int JPanelY) 
