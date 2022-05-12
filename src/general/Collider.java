@@ -2,53 +2,32 @@ package general;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
-public abstract class Collider {
+
+import GameObjects.Player.Player;
+public class Collider {
 	ArrayList<Rectangle> objects = new ArrayList<>();
 	int x, y;
 	int prevX, prevY;
-	public abstract void move(int x, int y);
-	public Collider(String[][] grid) {
-		String[][] deepCopy = new String[grid.length][grid[0].length];
-		int rectWidth = 32, rectHeight = 32;
-		int rectType = 0;
+	Player player;
+	public Collider(String[][] grid, Player player) {
 		for(int i = 0; i < grid.length; i++) {
 			for(int j = 0; j < grid[i].length; j++) {
-				if(grid[i][j].equals("11")) {
-					if(j != 0 && grid[i][j-1].equals("11") && rectType != 2) {
-						rectWidth+=32;
-						rectType = 1;
-					}
-					if (i != 0 && grid[i][j-1].equals("11") && rectType != 1) {
-						rectHeight += 32;
-						rectType = 2;
-					}
-				} else {
-					if(j == grid[i].length-1 || !grid[i][j+1].equals("11")) {
-						int currX = j*32;
-						int currY = i * 32; 
-						objects.add(new Rectangle(currX - rectWidth,currY - rectHeight,rectWidth,rectHeight));
-						rectWidth = 32;
-						rectHeight = 32;
-						rectType = 0;
-					}
+				if(grid[i][j].equals("00")) {
+					int posX = 32 * j;
+					int posY = 32 * i;
+					objects.add(new Rectangle(posX,posY,32,32));
 				}
 			}
 		}
-	}
-	public String[][] deepCopy(String[][] grid) {
-		String[][] deepCopy = new String[grid.length][grid[0].length];
-		for(int i = 0; i < grid.length; i++) {
-			for(int j = 0; j < grid[i].length; j++) {
-				deepCopy[i][j] = grid[i][j];
-			}
-		}
-		return deepCopy;
+		this.player = player;
 	}
 	public void checkCollides(Rectangle playerRect){
 		for(Rectangle r : objects) {
+			System.out.println(r.x + " " + r.y + " " + r.width + " " + r.height + "    " + playerRect.x + " " + playerRect.y + " " + playerRect.width + " " + playerRect.height);
+			
 			if(r.intersects(playerRect)) {
-				x=prevX;
-				y=prevY;
+				System.out.println("colliding");
+				player.restorePrevPosition();
 			}
 		}
 	}

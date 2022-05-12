@@ -2,6 +2,7 @@ package GameObjects;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
@@ -51,6 +52,8 @@ public abstract class MovingObject extends GameObject {
 	}
 	// Sets the x and y coordinates to the passed values
 	public void setCoords(int x, int y) {
+		this.pastX = this.x;
+		this.pastY = this.y;
 		this.x = x;
 		this.y = y;
 
@@ -60,12 +63,17 @@ public abstract class MovingObject extends GameObject {
 		this.movementDelay = movementDelay;
 		this.currentMovementDelay = movementDelay;
 	}
-
+	public void restorePrevPosition() {
+		this.setCoords(pastX, pastY);
+	}
 	// Returns the current x coordinate
 	public int getX() {
 		return x;
 	}
-
+	//Finish
+	public Rectangle getRect() {
+		return new Rectangle(x,y,getWidth(),getHeight());
+	}
 	// Returns a refrence to the AnimationSystem in this class.
 	public AnimationSystem getImage() {
 		return image;
