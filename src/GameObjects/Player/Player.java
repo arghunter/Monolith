@@ -201,11 +201,11 @@ public class Player extends MovingObject {
 
 	}
 
-	public void useItem() {
+	public void useItem(Graphics2D g) {
 		if (!isDead) {
 			Item item = inventory.getEquippedItem();
 			if (item == null) {
-				Weapon weapon=new MeleeWeapon("Fist",1,10,100,3,300);
+				Weapon weapon=new MeleeWeapon("Fist",1,10,100,3,300, g);
 				weapon.primaryFire(mobs, this);
 				return;
 			}

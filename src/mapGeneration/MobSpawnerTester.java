@@ -132,7 +132,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		super.paintComponent(graphic);
 		
 		setBackground(Color.WHITE);
-		
+		input.setGraphics(graphic);
 		input.updatePlayer(thePlayer);
 		curRoom=op.getRoom(curRoomX, curRoomY);
 		Collider collider = new Collider(curRoom,thePlayer);
