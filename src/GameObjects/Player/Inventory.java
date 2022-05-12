@@ -35,10 +35,7 @@ public class Inventory {
 		arsenal[3]=(new Armor("Baklava",0,ItemType.BOOTS,10,25,25,BattleSuitSet.NONE));
 		arsenal[4]=(new MeleeWeapon("Rusty Sword",0,50, 10000, 30,10/18.0*Math.PI));
 
-		this.addToStorage(new Consumable("Baklava",0,10,64,null));
-		this.addToStorage(new Consumable("Baklava",0,50,64,null));
-		this.addToStorage(new Consumable("Baklava",0,50,64,null));
-		this.addToStorage(new Consumable("Baklava",0,50,64,null));
+
 		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
 		this.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
 		
@@ -48,6 +45,10 @@ public class Inventory {
 		StatType[] buffTypes= {StatType.HEALTH,StatType.REGEN};
 		int[] buffs= {1000,500};
 		arsenal[5]=new Consumable("Baklava",0,10,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs()));
+		this.addToStorage(new Consumable("Baklava",0,10,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
+		this.addToStorage(new Consumable("Baklava",0,50,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
+		this.addToStorage(new Consumable("Baklava",0,50,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
+		this.addToStorage(new Consumable("Baklava",0,50,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
 		equipped=4;
 	}
 
@@ -102,39 +103,8 @@ public class Inventory {
 		storage.remove(storage.indexOf(item));
 	}
 
-	public void swapStoragetoArsenal(Item storageItem, Item arsenalItem) {
-		if (storageItem.getType() == ItemType.MATERIAL || storageItem.getType() == ItemType.BLUEPRINT) {
-			return;
-		}
-		int emptyPos = removeFromArsenal(arsenalItem);
-		if (emptyPos != -1 && emptyPos < 4) {
-			if (storageItem.getType() == ItemType.BOOTS || storageItem.getType() == ItemType.CHESTPLATE
-					|| storageItem.getType() == ItemType.LEGGINGS || storageItem.getType() == ItemType.HELMET) {
-				addToArsenal((Armor) storageItem);
-			} else {
-				if (storageItem.getType() == ItemType.WEAPON) {
-					Item tempItem = storageItem;
-					storageItem = arsenalItem;
-					arsenalItem = tempItem;
-				} else if (storageItem.getType() == ItemType.CONSUMABLE) {
-					Consumable consumableStorage = (Consumable) storageItem;
-					for (int i = 0; i < arsenal.length; i++) {
-						
-						if (arsenal[i]!=null&&arsenal[i].equals(storageItem)) {
-							long extra = ((Consumable) arsenal[i]).add(consumableStorage);
-							if (extra != 0) {
-								consumableStorage.setCount(extra);
-							} else {
-								removeFromStorage(storageItem);
-							}
-						}
-					}
-				}
 
-			}
-		}
-
-	}
+	
 
 	public void addToArsenal(Armor armor) {
 		int pos = -1;
