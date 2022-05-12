@@ -237,11 +237,12 @@ public class Player extends MovingObject {
 		return skills.toString();
 	}
 	public void renderWeapon(Graphics2D g) {
-		this.getW
+//		this.getW
 	}
 	@Override
 	public void render(Graphics2D g) {
 		ui.draw(g);
+		System.out.println(new Inventory(inventory.toString()));
 		super.getImage().drawAnimation(g);
 		regen();
 		super.setMovementDelay(stats[7]+buffs[7]);
