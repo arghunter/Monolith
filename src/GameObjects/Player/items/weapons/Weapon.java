@@ -54,7 +54,7 @@ public abstract class Weapon extends Item{
 	public double getCurrentAttackDelay() {
 		return currentAttackDelay;
 	}
-
+	public abstract void drawWeapon(Graphics2D g);
 	public void setCurrentAttackDelay(double currentAttackDelay) {
 		this.currentAttackDelay = currentAttackDelay;
 	}

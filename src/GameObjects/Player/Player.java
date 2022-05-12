@@ -237,7 +237,7 @@ public class Player extends MovingObject {
 		return skills.toString();
 	}
 	public void renderWeapon(Graphics2D g) {
-		this.getW
+		this.getWeapon().drawWeapon(g);
 	}
 	@Override
 	public void render(Graphics2D g) {
