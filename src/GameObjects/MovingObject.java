@@ -26,6 +26,7 @@ public abstract class MovingObject extends GameObject {
 	private boolean isDead=false;
 	private AnimationSystem image;
 	private double angle;
+	protected int dist=1;
 
 	public MovingObject(int startX, int startY, int movementDelay, int id, int width, int height, String name, int numFrames) {
 		super(id, width, height);
@@ -115,7 +116,7 @@ public abstract class MovingObject extends GameObject {
 	// Given a direction 1 unit in the direction
 	// Scales to prevent strafing from being faster
 	public void move(Direction direction) {
-		int n=5;
+		int n=dist;
 		if (direction == Direction.NORTHEAST || direction == Direction.SOUTHWEST || direction == Direction.SOUTHEAST
 				|| direction == Direction.NORTHWEST) {
 			// Magic number

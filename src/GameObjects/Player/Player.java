@@ -52,7 +52,7 @@ public class Player extends MovingObject {
 		super(x, y, 20, id, width, height, "DefaultHelmet", 1);
 
 		inventory = new Inventory(this);
-
+		super.dist=2;
 		stats[3] = (int) inventory.getHealth();
 		stats[1] = (int) inventory.getArmor();
 		stats[6] = (int) inventory.getShields();

@@ -10,6 +10,9 @@ import java.awt.Point;
 import java.awt.RadialGradientPaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
@@ -25,17 +28,22 @@ import input.MouseInputParser;
 
 import render.Tester;
 
-public class ArsenalMenu implements MouseWheelListener,ActionListener{
+public class ArsenalMenu implements MouseWheelListener,ActionListener,MouseMotionListener,MouseListener{
 	private Inventory inventory;
 	private ArsenalMenuItem[] arsenalItems=new ArsenalMenuItem[16];
 	private boolean hidden=false;
 	private ArrayList<RenderableMenuItem> items;
 	private RenderableMenuItem selectedItem;
+	private RenderableMenuItem dragItem;
 	private JPanel panel;
+	private int mouseP1X;
+	private int mouseP1Y;
 
 	public ArsenalMenu(Inventory inventory, JPanel panel) {
 		panel.addMouseWheelListener(this);
 		this.panel=panel;
+		panel.addMouseMotionListener(this);
+		panel.addMouseListener(this);
 		int count=0;
 		this.inventory=inventory;
 	
@@ -475,7 +483,7 @@ public class ArsenalMenu implements MouseWheelListener,ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(!hidden) 
 		{
-			System.out.println("ugliugy "+(e.getActionCommand().equals("ItemClicked")&&!items.contains(e.getSource())));
+
 			if(e.getActionCommand().equals("ItemClicked")&&!items.contains(e.getSource())) 
 			{
 				if(selectedItem!=null) 
@@ -484,37 +492,94 @@ public class ArsenalMenu implements MouseWheelListener,ActionListener{
 				}
 				selectedItem=(RenderableMenuItem) e.getSource();
 				selectedItem.setIsSelected(true);
-				System.out.println(selectedItem.isSelected());
 				
 			}
-			if(e.getActionCommand().equals("ItemClicked")&&items.contains(e.getSource())) 
+//			if(e.getActionCommand().equals("ItemClicked")&&items.contains(e.getSource())) 
+//			{
+//
+//				if(selectedItem==null&&((RenderableMenuItem)e.getSource()).getItem()!=null) 
+//				{
+//					try {
+//						inventory.addToArsenal(((RenderableMenuItem)e.getSource()).getItem());
+//					} catch (ArsenalFullException e1) {
+//						//ArsenalFULL
+//					}
+//					
+//					
+//					update();
+//				}else if(!(selectedItem==null)&&((RenderableMenuItem)e.getSource()).getItem()!=null) 
+//				{
+//				
+//					inventory.removeFromArsenal(selectedItem.getItem());
+//					
+//					try {
+//						inventory.addToArsenal(((RenderableMenuItem)e.getSource()).getItem());
+//					} catch (ArsenalFullException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+//					update();
+//				}
+//			}
+		}
+		
+	}
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		if(dragItem!=null) 
+		{
+			dragItem.translate((int)(MouseInputParser.getX()-mouseP1X),(int) (MouseInputParser.getY()-mouseP1Y));
+			mouseP1X=(int)MouseInputParser.getX();
+			mouseP1Y=(int)MouseInputParser.getY();
+		}
+		
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		mouseP1X=(int)MouseInputParser.getX();
+		mouseP1Y=(int)MouseInputParser.getY();
+		for(int i=0;i<arsenalItems.length;i++) 
+		{
+			if(arsenalItems[i].isHovering()) 
 			{
-
-				if(selectedItem==null&&((RenderableMenuItem)e.getSource()).getItem()!=null) 
-				{
-					try {
-						inventory.addToArsenal(((RenderableMenuItem)e.getSource()).getItem());
-					} catch (ArsenalFullException e1) {
-						//ArsenalFULL
-					}
-					
-					
-					update();
-				}else if(!(selectedItem==null)&&((RenderableMenuItem)e.getSource()).getItem()!=null) 
-				{
-				
-					inventory.removeFromArsenal(selectedItem.getItem());
-					
-					try {
-						inventory.addToArsenal(((RenderableMenuItem)e.getSource()).getItem());
-					} catch (ArsenalFullException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					update();
-				}
+				dragItem=arsenalItems[i];
+				return;
 			}
 		}
+		for(int i=0;i<items.size();i++) 
+		{
+			if(items.get(i).isHovering()) 
+			{
+				dragItem=items.get(i);
+				return;
+			}
+		}
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		
+		mouseP1X=-1;
+		mouseP1Y=-1;
+		dragItem=null;
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 

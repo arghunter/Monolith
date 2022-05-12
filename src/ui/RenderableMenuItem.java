@@ -120,7 +120,6 @@ public class RenderableMenuItem implements ActionListener {
 		panel.add(button);
 		button.addActionListener(this);
 		button.setHoverEffectsOn(false);
-		button.setOutlineColor(Color.WHITE);
 		
 	}
 	protected RenderableMenuItem(int x, int y,JPanel panel) 
@@ -144,7 +143,6 @@ public class RenderableMenuItem implements ActionListener {
 		panel.add(button);
 		button.addActionListener(this);
 		button.setHoverEffectsOn(false);
-		button.setOutlineColor(Color.WHITE);
 
 	}
 	
@@ -281,7 +279,7 @@ public class RenderableMenuItem implements ActionListener {
 	public void translate(int x,int y) 
 	{
 		button.translate(x, y);
-		image.move(x, y);
+		image.move((int)(x/image.getScaleX()),(int) (y/image.getScaleY()));
 		this.x+=x;
 		this.y+=y;
 	}
