@@ -27,7 +27,7 @@ public class MeleeWeapon extends Weapon {
 //	}
 	@Override
 	public void drawWeapon(Player player, Graphics2D g) {
-		graphic.fillArc(player.getCenterX(), player.getCenterY() , super.getRange(), super.getRange(), (int)((-player.getAngle()-sweepAngle/2)*Math.PI/180), (int)(sweepAngle * Math.PI/180));
+		g.fillArc(player.getCenterX(), player.getCenterY() , super.getRange(), super.getRange(), (int)((-player.getAngle()-sweepAngle/2)*Math.PI/180), (int)(sweepAngle * Math.PI/180));
 	}
 	public double euclidDist(int x1, int y1, int x2, int y2) {
 		//System.out.println(x1 + " " +y1 + " mob");
