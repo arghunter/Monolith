@@ -1,8 +1,7 @@
 package GameObjects.Player;
 
-import java.util.ArrayList; 
-
-
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
@@ -51,6 +50,27 @@ public class Inventory {
 		this.addToStorage(new Consumable("Baklava",0,50,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
 		
 		equipped=4;
+	}
+	public Inventory(String saveData) 
+	{
+		String[] parts=saveData.split("`~`");
+		System.out.println("Begindsjfoijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjaioudhfouasdhofhbeaiufkjdsaf,mdjslifahrjdaoiusl dso,doivdskcdsoiLSJDOISHdyelfkdsofhdfmzbdsjoivz csoidsroikdiugolkfsz");
+		for(int i=0;i<parts.length;i++) 
+		{
+			System.out.println(parts[i]);
+		}
+		String[] items=(parts[1].substring(9, parts[1].length()-8)).split(":");
+		for(int i=0;i<items.length;i++) 
+		{
+			System.out.println(items[i]);
+		}
+	}
+	public Item parseItem(String s) 
+	{
+		String[] parts=s.split("/");
+		
+		return null;
+		
 	}
 
 	public Item[] getArsenal() {
@@ -315,5 +335,12 @@ public class Inventory {
 	{
 		return ((Armor)arsenal[0]).getHealth()+((Armor)arsenal[1]).getHealth()+((Armor)arsenal[2]).getHealth()+((Armor)arsenal[3]).getHealth();
 	}
+
+	@Override
+	public String toString() {
+		return ("Inventory `~`arsenal=" + Arrays.toString(arsenal) + ",storage`~`" + storage + ",equipped`~`" + equipped
+				+ "]").replace(" ", "");
+	}
+	
 
 }
