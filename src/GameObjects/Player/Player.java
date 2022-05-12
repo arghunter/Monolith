@@ -53,7 +53,7 @@ public class Player extends MovingObject {
 
 		inventory = new Inventory(this);
 		super.dist=2;
-		stats[3] = (int) inventory.getHealth();
+		stats[3] = (int) inventory.getHealth()+100;
 		stats[1] = (int) inventory.getArmor();
 		stats[6] = (int) inventory.getShields();
 		skills = new SkillTree(stats, statTypes);

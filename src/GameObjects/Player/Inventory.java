@@ -85,7 +85,7 @@ public class Inventory {
 		for (int i = 0; i < arsenal.length; i++) {
 			// checks if the memory references are the same and are thus the same object;
 			if (item == arsenal[i]) {
-				storage.add(item);
+				
 				arsenal[i] = null;
 				return i;
 			}
@@ -95,7 +95,7 @@ public class Inventory {
 	}
 
 	public void removeFromArsenal(int arsenalIndex) {
-		storage.add(arsenal[arsenalIndex]);
+		
 		arsenal[arsenalIndex] = null;
 	}
 

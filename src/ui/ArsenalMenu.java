@@ -473,7 +473,7 @@ public class ArsenalMenu implements MouseWheelListener,ActionListener,MouseMotio
 		{
 			for(int i=0;i<items.size();i++) 
 			{
-				items.get(i).translate(0, 24*(int)(e.getWheelRotation()));
+				items.get(i).translate(0, 100*(int)(e.getWheelRotation()));
 			}
 		}
 
@@ -566,10 +566,36 @@ public class ArsenalMenu implements MouseWheelListener,ActionListener,MouseMotio
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+		if(dragItem!=null) 
+		{
+			if(dragItem.getClass()==ArsenalMenuItem.class&&dragItem.getItem()!=null) 
+			{
+				if(dragItem.getX()>1300) 
+				{
+					inventory.removeFromArsenal(dragItem.getItem());
+					inventory.addToStorage(dragItem.getItem());
+					for(int i=0;i<items.size();i++) 
+					{
+						if(items.get(i).isHovering()) 
+						{
+							try {
+								inventory.addToArsenal(items.get(i).getItem());
+							} catch (ArsenalFullException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					}
+					update();
+
+					dragItem=null;
+				}
+			}
+		}
 		mouseP1X=-1;
 		mouseP1Y=-1;
 		dragItem=null;
+		update();
 		
 	}
 	@Override
