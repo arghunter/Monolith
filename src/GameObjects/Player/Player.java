@@ -144,7 +144,7 @@ public class Player extends MovingObject {
 		if(i instanceof Weapon) {
 			return (Weapon)i;
 		} else {
-			return (Weapon) new MeleeWeapon("Stick",1,10,100,10,Math.PI/4,githu);
+			return (Weapon) new MeleeWeapon("Stick",1,10,100,10,Math.PI/4);
 		}
 	}
 	public int[] getStats() {
