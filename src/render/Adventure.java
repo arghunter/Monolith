@@ -1,6 +1,6 @@
 //Author: Peter Ferolito
 //Date: 5/11/22
-//Notes: 
+//Notes: The engine for Adventure
 
 package render;
 

@@ -82,12 +82,12 @@ public class MeleeWeapon extends Weapon {
 		
 	}
 
-//	public String toString() 
-//	{
-//		String s="MeleeWeapon:"+getName()+"/"+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+sweepAngle;
-//		return s;
-//		
-//		
-//	}
+	public String toString() 
+	{
+		String s="(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+sweepAngle;
+		return s;
+		
+		
+	}
 
 }

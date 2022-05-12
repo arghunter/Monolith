@@ -1,4 +1,4 @@
-//Author: Adithya Giri
+//Author: Peter Ferolito
 //Date: 5/10/22
 //Rev: 03
 //Notes: Stores all public constants
@@ -14,5 +14,6 @@ public class Constants {
 	public static final int ROOMSIZEX=46;
 	public static final int ROOMSIZEY=36;
 	public static final int MAXMOBS=1000;
-	public static final Color textColor=new Color((212*4)/5,(175*4)/5,(55*4)/5);
+	public static final Color TEXTCOLOR=new Color((212*4)/5,(175*4)/5,(55*4)/5);
+	public static final int FIXEDSEED=0;
 }

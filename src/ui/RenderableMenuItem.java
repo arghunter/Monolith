@@ -99,7 +99,7 @@ public class RenderableMenuItem implements ActionListener {
 		    	{
 		    		itemButtons[i].setText("Construct Item");
 		    	}
-		    	itemButtons[i].setFontColor(Constants.textColor);
+		    	itemButtons[i].setFontColor(Constants.TEXTCOLOR);
 		    	panel.add(itemButtons[i]);
 		    	itemButtons[i].addActionListener(this);
 		    	
@@ -163,7 +163,7 @@ public class RenderableMenuItem implements ActionListener {
 			e.printStackTrace();
 		}
 		g.setFont(text.deriveFont(30f));
-		g.setColor(Constants.textColor);
+		g.setColor(Constants.TEXTCOLOR);
 		if(item!=null) 
 		{
 			if(item.getType()==ItemType.CONSUMABLE) 
@@ -200,7 +200,7 @@ public class RenderableMenuItem implements ActionListener {
 		{
 			g.setColor(new Color(0.4f,0.4f,0.4f,0.5f));
 			g.fillRect(x+2,y-1+11*image.getHeight()/12,image.getWidth()+6,image.getHeight()/12+10);
-			g.setColor(Constants.textColor);
+			g.setColor(Constants.TEXTCOLOR);
 			g.setFont(text.deriveFont(30f));
 			g.drawString(item.getName(),x+5,11*image.getHeight()/12+25+y);	
 			if(showDescription)

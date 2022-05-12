@@ -1,3 +1,8 @@
+//Author: Peter Ferolito
+//Date: 4/28/22
+//Notes: Generates the terrain for the game
+//       Uses MazeGenerator to make a maze, then adds rooms in to make the game more interesting
+
 package mapGeneration;
 
 import java.awt.*;
@@ -12,9 +17,11 @@ import java.util.Random;
 import general.Constants;
 
 public class MapGenerator {
+	//Number of rooms in each direction
 	public static final int XSIZE=Constants.XSIZE;
 	public static final int YSIZE=Constants.YSIZE;
 	
+	//Number of tiles in each room
 	public static final int ROOMSIZEX=Constants.ROOMSIZEX;
 	public static final int ROOMSIZEY=Constants.ROOMSIZEY;
 	
@@ -28,48 +35,66 @@ public class MapGenerator {
 	// |       |
 	// +-- 4 --+
 	// 
-	
-	ImageSystem image;
+		
+	//The generated maze
 	private char[][] maze;
 	
+	//The list of all possible rooms
 	private String[][][][] rooms;
 	
 	//VERY IMPORTANT THIS IS THE ACTUAL MAP
 	private String[][] map = new String[YSIZE][XSIZE];
 	
+	//The number of rooms of each type
 	private int[] numRooms = new int[16];
 	
-	private Random randomNums = new Random(2);
+	//Random number generator
+	private Random randomNums = new Random(Constants.FIXEDSEED);
 	
 	public MapGenerator() {
+		//Generate the maze
 		generateMaze();
+		
+		//Read rooms
 		try {
 			readRooms();
 		} catch(Exception e) {
 			System.out.println("Can't read rooms from files");
 			e.printStackTrace();
 		}
+		
+		//Generate the map
 		generateMap();
 	}
 	
+	//Read the rooms into the array rooms
 	private void readRooms() throws FileNotFoundException {
-		int maxRooms=-1;
+		int maxRooms=-1;   //Stores the maximum number of rooms of a type
+		
 		for(int i=0;i<16;i++) {
-			System.out.println("Rooms/Rooms"+(i<10?"0":"")+i+".txt");
+			//Read the number of rooms from each file
 			FileInput input = new FileInput("Rooms/Rooms"+(i<10?"0":"")+i+".txt");
 			numRooms[i]=Integer.parseInt(input.next());
 			maxRooms=(numRooms[i]>maxRooms?numRooms[i]:maxRooms);
-			
 		}
+		
 		rooms=new String[16][maxRooms][ROOMSIZEY][ROOMSIZEX];
+		
 		for(int i=0;i<16;i++) {
 			FileInput input = new FileInput("Rooms/Rooms"+(i<10?"0":"")+i+".txt");
 			input.next();
+			
 			for(int j=0;j<numRooms[i];j++) {
+				
 				input.next();
+				
 				for(int k=0;k<ROOMSIZEY;k++) {
+					
+					//Read in the line
 					String s=input.next();
+					
 					for(int m=0;m<ROOMSIZEX;m++) {
+						//Read in the tile
 						rooms[i][j][k][m]=s.substring(m*2,m*2+2);
 					}
 				}
@@ -77,33 +102,31 @@ public class MapGenerator {
 		}
 	}
 	
+	//Uses MazeGenerator to generate a maze
 	private void generateMaze() {
-		MazeGenerator generator=new MazeGenerator(0);
+		MazeGenerator generator=new MazeGenerator(Constants.FIXEDSEED);
 		maze=generator.generate(XSIZE,YSIZE);
 	}
 	
+	//Generate the actual map
 	private void generateMap() {
 		for(int i=0;i<YSIZE;i++) {
 			for(int j=0;j<XSIZE;j++) {
 				int[] adjY = {-1,0,1,0};
 				int[] adjX = {0,1,0,-1};
+				
+				//Stores the exits
 				int roomType=0;
 				int powTwo=1;
-				/*for(int k=0;k<maze.length;k++) {
-					for(int m=0;m<maze[0].length;m++) {
-						System.out.print(maze[k][m]);
-					}
-					System.out.println();
-				}*/
 				for(int k=0;k<4;k++) {
+					//If there is an exit, add to roomType
 					if(maze[1+2*i+adjY[k]][1+2*j+adjX[k]]==' ') {
 						roomType+=powTwo;
 					}
-					powTwo*=2;
+					powTwo<<=1;
 				}
-				if(numRooms[roomType]==0) {
-					roomType=0;
-				}
+				
+				//Choose a random room and add it to the map
 				int randRoom=randomNums.nextInt(numRooms[roomType]);
 				String output=(roomType<10?"0"+roomType:""+roomType)+(randRoom<10?"0"+randRoom:""+randRoom);
 				map[i][j]=output;
@@ -111,26 +134,32 @@ public class MapGenerator {
 		}
 	}
 	
+	//Returns the size of the room in the x direction
 	public int getRoomSizeX() {
 		return ROOMSIZEX;
 	}
 	
+	//Returns the size of the room in the y direction
 	public int getRoomSizeY() {
 		return ROOMSIZEY;
 	}
 	
+	//Returns the number of rooms in the x direction
 	public int getXSize() {
 		return XSIZE;
 	}
 	
+	//Returns the number of rooms in the y direction
 	public int getYSize() {
 		return YSIZE;
 	}
 	
+	//Returns the corresponding room from the array of rooms
 	private String[][] readRoom(String input) {
 		return rooms[Integer.parseInt(input.substring(0,2))][Integer.parseInt(input.substring(2,4))];
 	}
 	
+	//Returns an array with the tiles in the corresponding room
 	public String[][] getRoom(int x,int y) {
 		return readRoom(map[y][x]);
 	}

@@ -58,14 +58,16 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		items= new ArrayList<RenderableMenuItem>();
 		for(int i=0;i<inventory.getStorage().size();i++) 
 		{
+			System.out.println(inventory.getStorage().get(i));
 			if(inventory.getStorage().get(i)!=null)
 				items.add(new RenderableMenuItem(inventory.getStorage().get(i),266*(i%6)+275,((i/6)+1)*266,panel));
 			items.get(i).addActionListener(this);
+			
 		}
 		Point[] points= {new Point(0,266),new Point(260,266),new Point(260,316),new Point(0,316)};
 		all=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"All");
 		panel.add(all);
-		all.setFontColor(Constants.textColor);
+		all.setFontColor(Constants.TEXTCOLOR);
 		all.addActionListener(this);
 		for(int i=0;i<4;i++) 
 		{
@@ -73,7 +75,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 		consumables=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Consumables");
 		panel.add(consumables);
-		consumables.setFontColor(Constants.textColor);
+		consumables.setFontColor(Constants.TEXTCOLOR);
 		consumables.addActionListener(this);
 
 		for(int i=0;i<4;i++) 
@@ -82,7 +84,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 		blueprints=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Blueprints");
 		panel.add(blueprints);
-		blueprints.setFontColor(Constants.textColor);
+		blueprints.setFontColor(Constants.TEXTCOLOR);
 		blueprints.addActionListener(this);
 
 		for(int i=0;i<4;i++) 
@@ -91,7 +93,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 		armor=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Armor");
 		panel.add(armor);
-		armor.setFontColor(Constants.textColor);
+		armor.setFontColor(Constants.TEXTCOLOR);
 		armor.addActionListener(this);
 		for(int i=0;i<4;i++) 
 		{
@@ -99,7 +101,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 		weapons=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Weapons");
 		panel.add(weapons);
-		weapons.setFontColor(Constants.textColor);
+		weapons.setFontColor(Constants.TEXTCOLOR);
 		weapons.addActionListener(this);
 		for(int i=0;i<4;i++) 
 		{
@@ -107,7 +109,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 		materials=new Button(points,new Color(0.4f,0.4f,0.4f,0f),"Materials");
 		panel.add(materials);
-		materials.setFontColor(Constants.textColor);
+		materials.setFontColor(Constants.TEXTCOLOR);
 		materials.addActionListener(this);
 		for(int i=0;i<4;i++) 
 		{
@@ -173,7 +175,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 
 			weapons.draw(g, JPanelX, JPanelY);
 			consumables.draw(g, JPanelX, JPanelY);
-			g.setColor(Constants.textColor);
+			g.setColor(Constants.TEXTCOLOR);
 			g.setFont(text.deriveFont(120f));
 			g.drawString(titleString, 275, 175);
 		}

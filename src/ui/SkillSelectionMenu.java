@@ -91,7 +91,7 @@ public class SkillSelectionMenu implements ActionListener {
 			
 			panel.add(skillButtons[i]);
 			skillButtons[i].addActionListener(this);
-			skillButtons[i].setFontColor(Constants.textColor);
+			skillButtons[i].setFontColor(Constants.TEXTCOLOR);
 		}
 		for (int i = 0; i < currentSkillButtons.length; i++) {
 			int offsetX = 0;
@@ -136,7 +136,7 @@ public class SkillSelectionMenu implements ActionListener {
 			panel.add(currentSkillButtons[i]);
 			currentSkillButtons[i].addActionListener(this);
 
-			currentSkillButtons[i].setFontColor(Constants.textColor);
+			currentSkillButtons[i].setFontColor(Constants.TEXTCOLOR);
 		}
 
 
@@ -214,7 +214,7 @@ public class SkillSelectionMenu implements ActionListener {
 						
 						e.printStackTrace();
 					}
-					g.setColor(Constants.textColor);
+					g.setColor(Constants.TEXTCOLOR);
 					
 					g.setFont(text.deriveFont(36f));
 					String title=availableSkills[i].getName().toUpperCase()+" "+availableSkills[i].getTier();

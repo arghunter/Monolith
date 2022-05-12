@@ -49,6 +49,7 @@ public class Inventory {
 		this.addToStorage(new Consumable("Baklava",0,50,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
 		this.addToStorage(new Consumable("Baklava",0,50,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
 		this.addToStorage(new Consumable("Baklava",0,50,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
+		
 		equipped=4;
 	}
 

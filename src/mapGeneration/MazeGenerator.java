@@ -1,6 +1,7 @@
-//Main Author: Peter Ferolito
+//Author: Peter Ferolito
 //Date: 4/17/22
 //Notes: Generates a maze using a modified recursive backtracker
+//       Credits for original algorithm: Wikipedia Article, Maze Generation Algorithms
 
 package mapGeneration;
 import java.util.LinkedList;
@@ -43,6 +44,7 @@ public class MazeGenerator {
 		boolean[][] visited=new boolean[ySize][xSize];
 		char[][] maze=new char[2*ySize+1][2*xSize+1];
 		
+		//Create the initial maze
 		for(int i=0;i<2*ySize+1;i++) {
 			for(int j=0;j<2*xSize+1;j++) {
 				if(i%2==0 || j%2==0) {
@@ -57,6 +59,8 @@ public class MazeGenerator {
 		
 		while(stack.size()>0) {
 			Integer[] current;
+			
+			//Decide where to start the next path
 			if(randomNums.nextFloat()<branchingAmount) {
 				current=stack.remove(randomNums.nextInt(stack.size()));
 			}else {
@@ -101,10 +105,5 @@ public class MazeGenerator {
 	//Sets the value of branchingAmount to the passed value
 	public void setBranchingAmount(double branchingAmount) {
 		this.branchingAmount=branchingAmount;
-	}
-	
-	public static void main(String args[]) {
-		MazeGenerator mazeMaker=new MazeGenerator(0);
-		mazeMaker.generate(10,20);
 	}
 }

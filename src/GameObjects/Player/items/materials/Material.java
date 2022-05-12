@@ -40,5 +40,9 @@ public class Material extends Item {
 	public void setCount(double count) {
 		this.count = count;
 	}
+	public String toString() 
+	{
+		return "(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+count;
+	}
 
 }
