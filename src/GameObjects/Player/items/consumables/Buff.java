@@ -2,6 +2,7 @@ package GameObjects.Player.items.consumables;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.Timer;
 
@@ -98,5 +99,16 @@ public class Buff implements ActionListener {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+	@Override
+	public String toString() {
+		return "Buff[types=" + Arrays.toString(types) + ",buffs=" + Arrays.toString(buffs) + ",duration=" + duration
+				+ "]";
+	}
+	
+	
+	
+	
+	
+	
 
 }

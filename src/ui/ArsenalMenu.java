@@ -26,7 +26,6 @@ import javax.swing.JPanel;
 import GameObjects.Player.ArsenalFullException;
 import GameObjects.Player.Inventory;
 import input.MouseInputParser;
-
 import render.Tester;
 
 public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMotionListener, MouseListener {
@@ -173,7 +172,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 
 				items.add(new RenderableMenuItem(inventory.getStorage().get(i), 1400 + (i % 2 * 266),
 						(((i / 2)+1) * 266), panel));
-				System.out.println((((i /2)+1) * 266));
+				System.out.println(inventory.getStorage().get(i));
 				items.get(items.size() - 1).addActionListener(this);
 			}
 
@@ -253,7 +252,6 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	public void update() {
-		System.out.println("HEre");
 		for (int i = 0; i < items.size(); i++) {
 			items.get(i).dispose();
 		}
@@ -377,6 +375,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 			arsenalItems[i].addActionListener(this);
 		}
 		items = new ArrayList<RenderableMenuItem>();
+		int shift=0;
 		for (int i = 0; i < inventory.getStorage().size(); i++) {
 			if (inventory.getStorage().get(i) != null && (inventory.getStorage().get(i).getType() == ItemType.WEAPON
 					|| (inventory.getStorage().get(i).getType() == ItemType.CHESTPLATE)
@@ -385,9 +384,12 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 							|| (inventory.getStorage().get(i).getType() == ItemType.HELMET
 									|| (inventory.getStorage().get(i).getType() == ItemType.CONSUMABLE))))) {
 
-				items.add(new RenderableMenuItem(inventory.getStorage().get(i), 1400 + (i % 2 * 266),
-						(((i / 2)+1) * 266), panel));
+				items.add(new RenderableMenuItem(inventory.getStorage().get(i), 1400 + ((i+shift) % 2 * 266),
+						((((i+shift) / 2)+1) * 266), panel));
 				items.get(items.size() - 1).addActionListener(this);
+			}else 
+			{
+				shift--;
 			}
 
 		}
