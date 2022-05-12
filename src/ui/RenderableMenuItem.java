@@ -119,6 +119,7 @@ public class RenderableMenuItem implements ActionListener {
 		button=new Button(points,new Color(0f,0f,0f,0f));
 		panel.add(button);
 		button.addActionListener(this);
+
 		button.setHoverEffectsOn(false);
 		
 	}
