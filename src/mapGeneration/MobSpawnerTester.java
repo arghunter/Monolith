@@ -149,19 +149,14 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 				}
 			}
 		}
-<<<<<<< Updated upstream
-		if(!(mobList[curRoomY][curRoomX]==null)) {
-			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
-=======
 		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 			if(!(curRoom==null)) {
->>>>>>> Stashed changes
 				mobList[curRoomY][curRoomX].get(i).render(graphic);
 				mobList[curRoomY][curRoomX].get(i).update(thePlayer.getX(), thePlayer.getY());
 			}
 		}
 		thePlayer.render(graphic);
-		collider.checkCollides(thePlayer.getRect());
+		collider.checkCollides(thePlayer.getRect(),graphic);
 	}
 	
 	private void changeRoom() {

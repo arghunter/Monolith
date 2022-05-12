@@ -115,7 +115,7 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 				}
 			}
 		}
-		collider.checkCollides(thePlayer.getRect());
+		collider.checkCollides(thePlayer.getRect(),graphic);
 		thePlayer.render(graphic);
 		
 	}

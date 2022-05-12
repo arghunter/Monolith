@@ -64,6 +64,7 @@ public abstract class MovingObject extends GameObject {
 		this.currentMovementDelay = movementDelay;
 	}
 	public void restorePrevPosition() {
+		image.move(pastX-x,pastY-y);
 		this.setCoords(pastX, pastY);
 	}
 	// Returns the current x coordinate
@@ -72,7 +73,7 @@ public abstract class MovingObject extends GameObject {
 	}
 	//Finish
 	public Rectangle getRect() {
-		return new Rectangle(x,y,getWidth(),getHeight());
+		return new Rectangle(x-getWidth()/2,y-getHeight()/2,getWidth(),getHeight());
 	}
 	// Returns a refrence to the AnimationSystem in this class.
 	public AnimationSystem getImage() {

@@ -1,5 +1,6 @@
 package general;
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ public class Collider {
 	public Collider(String[][] grid, Player player) {
 		for(int i = 0; i < grid.length; i++) {
 			for(int j = 0; j < grid[i].length; j++) {
-				if(grid[i][j].equals("00")) {
+				if(grid[i][j].equals("11")) {
 					int posX = 32 * j;
 					int posY = 32 * i;
 					objects.add(new Rectangle(posX,posY,32,32));
@@ -21,10 +22,11 @@ public class Collider {
 		}
 		this.player = player;
 	}
-	public void checkCollides(Rectangle playerRect){
+	public void checkCollides(Rectangle playerRect,Graphics2D g){
+		g.drawRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
 		for(Rectangle r : objects) {
-			System.out.println(r.x + " " + r.y + " " + r.width + " " + r.height + "    " + playerRect.x + " " + playerRect.y + " " + playerRect.width + " " + playerRect.height);
-			
+			System.out.println(r+"    " + playerRect);
+			g.drawRect(r.x, r.y, r.width, r.height);
 			if(r.intersects(playerRect)) {
 				System.out.println("colliding");
 				player.restorePrevPosition();
