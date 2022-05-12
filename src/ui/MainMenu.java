@@ -91,10 +91,12 @@ public class MainMenu implements ActionListener {
 	public void draw(Graphics2D g, int JPanelX, int JPanelY) {
 		if(input.isEscapePressed()) 
 		{
-			System.out.println("Here");
+			player.updateUI();
 			inventoryMenu.setHidden(true);
+			inventoryMenu.update();
 			this.hidden=false;
 			arsenalMenu.setHidden(true);
+			arsenalMenu.update();
 			skillMenu.setActive(false);
 		}
 		if (!hidden) {

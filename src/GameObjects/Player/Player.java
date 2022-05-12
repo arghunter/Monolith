@@ -167,6 +167,10 @@ public class Player extends MovingObject {
 	public int getLevel() {
 		return currentLevel;
 	}
+	public void updateUI() 
+	{
+		ui.update();
+	}
 
 	@Override
 	public void move(Direction direction) {
