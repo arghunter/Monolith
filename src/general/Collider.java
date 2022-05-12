@@ -16,17 +16,17 @@ public class Collider {
 				if(grid[i][j].equals("11")) {
 					int posX = 32 * j;
 					int posY = 32 * i;
-					objects.add(new Rectangle(posX,posY,32,32));
+					objects.add(new Rectangle(posX,posY,33,33));
 				}
 			}
 		}
 		this.player = player;
 	}
 	public void checkCollides(Rectangle playerRect,Graphics2D g){
-		//g.drawRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
+		g.drawRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
 		for(Rectangle r : objects) {
 			System.out.println(r+"    " + playerRect);
-			//g.drawRect(r.x, r.y, r.width, r.height);
+			g.drawRect(r.x, r.y, r.width, r.height);
 			if(r.intersects(playerRect)) {
 				System.out.println("colliding");
 				player.restorePrevPosition();
