@@ -28,7 +28,7 @@ public class MeleeWeapon extends Weapon {
 		return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
 	}
 	@Override
-	public void primaryFire(ArrayList<Mob> mobs, Player player, Graphics2D g) {
+	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		for(Mob m : mobs) {
 			
 			if(m!=null&&this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
