@@ -16,11 +16,9 @@ import GameObjects.mobs.Mob;
 public class MeleeWeapon extends Weapon {
 	private double sweepAngle;
 	private Graphics2D graphic;
-	private Player player;
-	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle,Graphics2D g) {
+	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle) {
 		super(name,tier,damage,range,attackSpeed);
 		this.sweepAngle=sweepAngle;
-		graphic = g;
 	}
 //	public MeleeWeapon(String saveData) 
 //	{
@@ -28,7 +26,7 @@ public class MeleeWeapon extends Weapon {
 //		this.sweepAngle=Double.parseDouble(saveData.split("MeleeWeapon:")[1].split("/")[4]);
 //	}
 
-	public void drawWeapon(Player p) {
+	public void drawWeapon(Player player, Graphics2D g) {
 		graphic.fillArc(player.getCenterX(), player.getCenterY() , super.getRange(), super.getRange(), (int)((-player.getAngle()-sweepAngle/2)*Math.PI/180), (int)(sweepAngle * Math.PI/180));
 	}
 	public double euclidDist(int x1, int y1, int x2, int y2) {

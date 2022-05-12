@@ -139,7 +139,14 @@ public class Player extends MovingObject {
 		return statTypes;
 	}
 
-
+	public Weapon getWeapon() {
+		Item i = inventory.getEquippedItem();
+		if(i instanceof Weapon) {
+			return (Weapon)i;
+		} else {
+			return (Weapon) new MeleeWeapon("Stick",1,10,100,10,Math.PI/4,githu);
+		}
+	}
 	public int[] getStats() {
 		return stats;
 	}
@@ -229,7 +236,9 @@ public class Player extends MovingObject {
 
 		return skills.toString();
 	}
-
+	public void renderWeapon(Graphics2D g) {
+		this.getW
+	}
 	@Override
 	public void render(Graphics2D g) {
 		ui.draw(g);
