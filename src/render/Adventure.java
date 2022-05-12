@@ -29,6 +29,8 @@ import ui.SkillSelectionMenu;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+
+import general.Collider;
 import general.Constants;
 
 public class Adventure implements ActionListener {
@@ -57,17 +59,21 @@ public class Adventure implements ActionListener {
 	private String[][] curRoom;
 	
 	//Stores the current list of mobs in the room
-	private Mob[][][] mobList=new Mob[Constants.YSIZE][Constants.XSIZE][Constants.MAXMOBS];
+	private ArrayList<Mob>[][] mobList=new ArrayList[Constants.YSIZE][Constants.XSIZE];
 	
 	//Whether the game is paused and mobs move
 	private boolean paused=false;
 	
 	private JPanel panel;
 	
+	
+	
+	
 	public Adventure(Player player,JPanel panel) {
 		thePlayer=player;
 		this.panel=panel;
 	}
+	
 	public Adventure() 
 	{
 //		thePlayer=new Player(300, 300, 1, 64, 64,this);
@@ -80,6 +86,32 @@ public class Adventure implements ActionListener {
 	
 	
 	public void draw(Graphics2D g) {
-		
+		input.setGraphics(g);
+		input.updatePlayer(thePlayer);
+		curRoom=op.getRoom(curRoomX, curRoomY);
+		Collider collider = new Collider(curRoom,thePlayer);
+		if(!(curRoom==null)) {
+			for(int i=0;i<op.getRoomSizeY();i++) {
+				for(int j=0;j<op.getRoomSizeX();j++) {
+					g.setColor(Color.WHITE);
+					if(curRoom[i][j].equals("11")) {
+						g.setColor(Color.BLACK);
+					}else if(curRoom[i][j].equals("22")) {
+						g.setColor(Color.RED);
+					}
+					g.fillRect(j*32,i*32,32,32);
+				}
+			}
+		}
+		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
+			if(!(curRoom==null)) {
+				mobList[curRoomY][curRoomX].get(i).render(g);
+				mobList[curRoomY][curRoomX].get(i).update(thePlayer.getX(), thePlayer.getY());
+			}
+		}
+		thePlayer.render(g);
+		collider.checkCollides(thePlayer.getRect(),graphic);
 	}
+	
+	
 }
