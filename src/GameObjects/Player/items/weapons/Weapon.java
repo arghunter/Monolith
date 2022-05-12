@@ -1,3 +1,9 @@
+/*
+ * Author: Adithya
+ * Revs: 01
+ * Date: 5/9/22
+ * Notes:A weapon super class for damaging enemies
+ */
 package GameObjects.Player.items.weapons;
 
 import java.util.ArrayList;

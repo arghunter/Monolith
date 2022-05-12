@@ -1,3 +1,9 @@
+/*
+ * Authors: Adithya Giri
+ * Revs: 01
+ * Date: 5/10/22
+ * Notes: A Meleewepon that takes a range, and can damage enemies
+ */
 package GameObjects.Player.items.weapons;
 
 import java.awt.Graphics2D;
@@ -9,11 +15,12 @@ import GameObjects.mobs.Mob;
 
 public class MeleeWeapon extends Weapon {
 	private double sweepAngle;
-
-	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle) {
+	private Graphics2D graphic;
+	private Player player;
+	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle,Graphics2D g) {
 		super(name,tier,damage,range,attackSpeed);
 		this.sweepAngle=sweepAngle;
-
+		graphic = g;
 	}
 //	public MeleeWeapon(String saveData) 
 //	{
@@ -21,7 +28,9 @@ public class MeleeWeapon extends Weapon {
 //		this.sweepAngle=Double.parseDouble(saveData.split("MeleeWeapon:")[1].split("/")[4]);
 //	}
 
-
+	public void drawWeapon(Player p) {
+		graphic.fillArc(player.getCenterX(), player.getCenterY() , super.getRange(), super.getRange(), (int)((-player.getAngle()-sweepAngle/2)*Math.PI/180), (int)(sweepAngle * Math.PI/180));
+	}
 	public double euclidDist(int x1, int y1, int x2, int y2) {
 		//System.out.println(x1 + " " +y1 + " mob");
 		//System.out.println(x2+ " " +y2 + " player");
@@ -30,7 +39,6 @@ public class MeleeWeapon extends Weapon {
 	@Override
 	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		for(Mob m : mobs) {
-			
 			if(m!=null&&this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
 				double hyp = this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY());
 				int xDist = m.getCenterX()-player.getCenterX();
