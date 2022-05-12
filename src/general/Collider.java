@@ -25,7 +25,7 @@ public class Collider {
 	public void checkCollides(Rectangle playerRect,Graphics2D g){
 		g.drawRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
 		for(Rectangle r : objects) {
-			System.out.println(r+"    " + playerRect);
+			//.out.println(r+"    " + playerRect);
 			g.drawRect(r.x, r.y, r.width, r.height);
 			if(r.intersects(playerRect)) {
 				System.out.println("colliding");

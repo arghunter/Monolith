@@ -27,6 +27,7 @@ public class MeleeWeapon extends Weapon {
 //	}
 	@Override
 	public void drawWeapon(Player player, Graphics2D g) {
+		//System.out.println("hi");
 		g.fillArc(player.getCenterX(), player.getCenterY() , super.getRange(), super.getRange(), (int)((-player.getAngle()-sweepAngle/2)*Math.PI/180), (int)(sweepAngle * Math.PI/180));
 	}
 	public double euclidDist(int x1, int y1, int x2, int y2) {
@@ -49,9 +50,9 @@ public class MeleeWeapon extends Weapon {
 				if(sin > 0 && cos > 0) {
 					trueAngle = sinAngle;
 				} else if (sin > 0 && cos < 0) {
-					trueAngle = sinAngle+Math.PI/2;
+					trueAngle = Math.PI - sinAngle;
 				} else if (sin < 0 && cos < 0) {
-					trueAngle = sinAngle - Math.PI/2;
+					trueAngle = Math.PI - sinAngle;
 				} else if(sin < 0 && cos > 0) {
 					trueAngle = sinAngle;
 				}
