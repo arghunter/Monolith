@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import GameObjects.Player.items.ItemType;
+import GameObjects.Player.items.armor.Armor;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -508,6 +509,15 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 			} else if (dragItem.getClass() != ArsenalMenuItem.class) {
 				for (int i = 0; i < arsenalItems.length; i++) {
 					if (arsenalItems[i].isHovering()) {
+						if(i<4) 
+						{
+							if(dragItem.getItem().getClass()==Armor.class) 
+							{
+								inventory.addToArsenal((Armor)(dragItem.getItem()));
+							}
+							break;
+							
+						}
 						if (arsenalItems[i].getItem() == null) {
 							inventory.addToArsenal(dragItem.getItem(), i);
 						} else {
