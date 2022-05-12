@@ -55,7 +55,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		w.setVisible(true);
 		this.initInput(w);
 		this.frame = w;
-		thePlayer.addXP(100000);
+		thePlayer.addXP(10000);
 		System.out.println(thePlayer.getLevel());
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
