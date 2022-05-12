@@ -102,6 +102,24 @@ public class Inventory {
 	public void removeFromStorage(Item item) {
 		storage.remove(storage.indexOf(item));
 	}
+	public boolean addToArsenal(Item item,int pos) 
+	{
+		if (item.getType() == ItemType.WEAPON || item.getType() == ItemType.CONSUMABLE) {
+		
+				
+			arsenal[pos] = item;
+			storage.remove(item);
+			return true;	
+					
+				
+
+			
+		} else if (item.getType() != ItemType.MATERIAL || item.getType() != ItemType.BLUEPRINT) {
+			addToArsenal((Armor) item);
+			return false;
+		}
+		return false;
+	}
 
 
 	

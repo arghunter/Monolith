@@ -589,6 +589,59 @@ public class ArsenalMenu implements MouseWheelListener,ActionListener,MouseMotio
 					update();
 
 					dragItem=null;
+				}else 
+				{
+					if(dragItem.getItem()!=null) 
+					{
+						int pos=-1;
+						for(int i=0;i<arsenalItems.length;i++) 
+						{
+							if(dragItem==arsenalItems[i]) 
+							{
+								pos=i;
+								break;
+							}
+						}
+						for(int i=0;i<arsenalItems.length;i++) 
+						{
+							if(arsenalItems[i].isHovering()) 
+							{
+								if(arsenalItems[i].getItem()==null) 
+								{
+									inventory.addToArsenal(dragItem.getItem(), i);
+								}else 
+								{
+									inventory.addToArsenal(arsenalItems[i].getItem(),pos);
+									inventory.addToArsenal(dragItem.getItem(), i);
+
+									
+										
+									
+								}
+							}
+						}
+					}
+					
+				}
+			}else if(dragItem.getClass()!=ArsenalMenuItem.class) 
+			{
+				for(int i=0;i<arsenalItems.length;i++) 
+				{
+					if(arsenalItems[i].isHovering()) 
+					{
+						if(arsenalItems[i].getItem()==null) 
+						{
+							inventory.addToArsenal(dragItem.getItem(), i);
+						}else 
+						{
+							inventory.addToStorage(arsenalItems[i].getItem());
+							inventory.addToArsenal(dragItem.getItem(), i);
+
+							
+								
+							
+						}
+					}
 				}
 			}
 		}
