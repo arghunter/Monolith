@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.FontMetrics;
@@ -25,12 +26,13 @@ public class ArsenalMenuItem extends RenderableMenuItem {
 	public ArsenalMenuItem(Item item, int x, int y, JPanel panel,Inventory inventory) {
 		super(item, x, y, panel);
 		super.setShowDescription(false);
-		
+		super.getButton().setOutlineColor(Color.WHITE);
+
 	}
 	public ArsenalMenuItem(int x, int y, JPanel panel,Inventory inventory) {
 		super(x, y, panel);
 		super.setShowDescription(false);
-
+		super.getButton().setOutlineColor(Color.WHITE);
 		
 	}
 	@Override

@@ -137,7 +137,6 @@ public class Inventory {
 			pos = 3;
 		}
 		if (pos != -1 && arsenal[pos] != null) {
-			storage.add(arsenal[pos]);
 			storage.remove(armor);
 			arsenal[pos] = armor;
 		}
