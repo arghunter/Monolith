@@ -39,7 +39,7 @@ public class PlayerInputParser {
 	public void updatePlayer(Player player) {
 		keyboard.updatePlayerPos(player);
 		mouse.updatePlayerAngle(player);
-		if(MouseInputParser.isMBDown(0)&&System.currentTimeMillis()-lastCoolDown>100) 
+		if(MouseInputParser.isMBDown(0)&&System.currentTimeMillis()-lastCoolDown>200) 
 		{
 			player.useItem();
 			lastCoolDown=System.currentTimeMillis();

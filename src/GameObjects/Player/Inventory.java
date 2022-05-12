@@ -109,11 +109,7 @@ public class Inventory {
 				
 			arsenal[pos] = item;
 			storage.remove(item);
-			return true;	
-					
-				
-
-			
+			return true;			
 		} else if (item.getType() != ItemType.MATERIAL || item.getType() != ItemType.BLUEPRINT) {
 			addToArsenal((Armor) item);
 			return false;
@@ -138,7 +134,9 @@ public class Inventory {
 		}
 		if (pos != -1 && arsenal[pos] != null) {
 			storage.remove(armor);
+			storage.add(arsenal[pos]);
 			arsenal[pos] = armor;
+			
 		}
 	}
 
