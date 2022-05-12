@@ -16,7 +16,7 @@ import GameObjects.mobs.Mob;
 public class MeleeWeapon extends Weapon {
 	private double sweepAngle;
 	private Graphics2D graphic;
-	private Player player;
+
 	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle,Graphics2D g) {
 		super(name,tier,damage,range,attackSpeed);
 		this.sweepAngle=sweepAngle;
@@ -84,12 +84,12 @@ public class MeleeWeapon extends Weapon {
 		
 	}
 
-//	public String toString() 
-//	{
-//		String s="MeleeWeapon:"+getName()+"/"+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+sweepAngle;
-//		return s;
-//		
-//		
-//	}
+	public String toString() 
+	{
+		String s="(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+sweepAngle;
+		return s;
+		
+		
+	}
 
 }
