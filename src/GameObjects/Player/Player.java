@@ -245,7 +245,7 @@ public class Player extends MovingObject {
 	public void render(Graphics2D g) {
 		ui.draw(g);
 
-		System.out.println(new Inventory(inventory.toString()));
+		System.out.println(new Inventory(inventory.toString(),this));
 
 		renderWeapon(g);
 

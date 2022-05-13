@@ -101,8 +101,8 @@ public class Buff implements ActionListener {
 	}
 	@Override
 	public String toString() {
-		return "Buff[types=" + Arrays.toString(types) + ",buffs=" + Arrays.toString(buffs) + ",duration=" + duration
-				+ "]";
+		return ("Buff[types=" + Arrays.toString(types) + ",buffs=" + Arrays.toString(buffs) + ",duration=" + duration
+				+ "]").replace(",", ";~;");
 	}
 	
 	
