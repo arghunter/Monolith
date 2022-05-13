@@ -4,11 +4,8 @@
 
 package render;
 
-import GameObjects.Player.Player;
-
 import input.PlayerInputParser;
-import mapGeneration.MapGenerator;
-import mapGeneration.MobSpawner;
+import mapGeneration.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -17,15 +14,18 @@ import java.io.FileNotFoundException;
 import javax.swing.*;
 
 import GameObjects.*;
-import GameObjects.Player.Player;
-import GameObjects.Player.items.materials.Material;
 import GameObjects.mobs.*;
+import GameObjects.Player.*;
+import GameObjects.Player.items.*;
+import GameObjects.Player.items.armor.*;
+import GameObjects.Player.items.blueprints.*;
+import GameObjects.Player.items.consumables.*;
+import GameObjects.Player.items.materials.*;
+import GameObjects.Player.items.weapons.*;
 import general.SaveSystem;
-import input.PlayerInputParser;
+import input.*;
 
-import ui.Button;
-import ui.RenderableMenuItem;
-import ui.SkillSelectionMenu;
+import ui.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -64,9 +64,7 @@ public class Adventure implements ActionListener {
 	//Whether the game is paused and mobs move
 	private boolean paused=false;
 	
-	private JPanel panel;
-	
-	
+	private JPanel panel;	
 	
 	
 	public Adventure(Player player,JPanel panel) {
@@ -88,11 +86,11 @@ public class Adventure implements ActionListener {
 	public void draw(Graphics2D g) {
 		input.setGraphics(g);
 		input.updatePlayer(thePlayer);
-		curRoom=op.getRoom(curRoomX, curRoomY);
+		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 		Collider collider = new Collider(curRoom,thePlayer);
 		if(!(curRoom==null)) {
-			for(int i=0;i<op.getRoomSizeY();i++) {
-				for(int j=0;j<op.getRoomSizeX();j++) {
+			for(int i=0;i<mapGenerator.getRoomSizeY();i++) {
+				for(int j=0;j<mapGenerator.getRoomSizeX();j++) {
 					g.setColor(Color.WHITE);
 					if(curRoom[i][j].equals("11")) {
 						g.setColor(Color.BLACK);
@@ -110,7 +108,8 @@ public class Adventure implements ActionListener {
 			}
 		}
 		thePlayer.render(g);
-		collider.checkCollides(thePlayer.getRect(),graphic);
+		
+		collider.checkCollides(thePlayer.getRect(),g);
 	}
 	
 	
