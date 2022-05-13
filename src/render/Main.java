@@ -3,10 +3,14 @@ package render;
 import java.awt.Container;
 
 import javax.swing.*;
+
+import input.PlayerInputParser;
+
 import java.awt.*;
 
 public class Main extends JPanel {
 	Adventure adventureMode;
+	
 	public Main(){
 		adventureMode=new Adventure();
 		JFrame w = new JFrame("Monolith");
@@ -27,5 +31,9 @@ public class Main extends JPanel {
 		super.paintComponent(g);
 		adventureMode.draw(g);
 		
+	}
+	
+	public void initInput(JFrame frame) {
+		//this.input = new PlayerInputParser(frame,this);
 	}
 }
