@@ -32,7 +32,7 @@ public class Player extends MovingObject {
 	SkillTree skills;
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH, StatType.XP };
-	private int[] stats = { 10, 25, 60, 100, 10, 30, 100, 0, 10, 100 };
+	private int[] stats = { 10, 25, 60, 100, 10, 30, 10000, 0, 10, 100 };
 	private int[] buffs =new int[10];
 
 	private int currentLevel = 0;
@@ -245,7 +245,7 @@ public class Player extends MovingObject {
 	public void render(Graphics2D g) {
 		ui.draw(g);
 
-		System.out.println(new Inventory(inventory.toString(),this));
+		//System.out.println(new Inventory(inventory.toString(),this));
 
 		renderWeapon(g);
 

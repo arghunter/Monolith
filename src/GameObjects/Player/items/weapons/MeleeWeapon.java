@@ -36,25 +36,24 @@ public class MeleeWeapon extends Weapon {
 		for(Mob m : mobs) {
 			if(m!=null&&this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
 				double hyp = this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY());
-				int xDist = m.getCenterX()-player.getCenterX();
-				int yDist = player.getCenterY()-m.getCenterY();
+				int xDist = Math.abs(player.getCenterX()-m.getCenterX());
+				int yDist = Math.abs(player.getCenterY()-m.getCenterY());
 				double sinAngle = Math.asin(yDist/hyp);
-				double cosAngle = Math.asin(xDist/hyp);
-				double sin = yDist/hyp;
-				double cos = xDist/hyp;
+				double xDiff=m.getCenterX()-player.getCenterX();
+				double yDiff=m.getCenterY()-player.getCenterY();
 				double trueAngle = 0;
-				if(sin > 0 && cos > 0) {
+				if(xDiff >= 0 && yDiff >= 0) {
 					trueAngle = sinAngle;
-				} else if (sin > 0 && cos < 0) {
+				} else if (xDiff <= 0 && yDiff >= 0) {
 					trueAngle = Math.PI - sinAngle;
-				} else if (sin < 0 && cos < 0) {
-					trueAngle = Math.PI - sinAngle;
-				} else if(sin < 0 && cos > 0) {
+				} else if (xDiff <= 0 && yDiff <= 0) {
+					trueAngle = Math.PI + sinAngle;
+				} else if(xDiff >= 0 && yDiff <= 0) {
 					trueAngle = sinAngle;
 				}
 				System.out.println("inside");
 				System.out.println(-player.getAngle() + " " + trueAngle);
-				if(trueAngle > (-player.getAngle() - sweepAngle/2) && trueAngle < (-player.getAngle()+sweepAngle/2)) {
+				if(trueAngle > (player.getAngle() - sweepAngle/2) && trueAngle < (player.getAngle()+sweepAngle/2)) {
 					System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					m.takeDamage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 				}
