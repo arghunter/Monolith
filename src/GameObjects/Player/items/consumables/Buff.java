@@ -1,3 +1,7 @@
+//Author: Adithya Giri
+//Date: 5/11/22
+//Rev: 01
+//Notes: A Player buff that improves player stats
 package GameObjects.Player.items.consumables;
 
 import java.awt.event.ActionEvent;
@@ -11,14 +15,14 @@ import skills.StatType;
 
 public class Buff implements ActionListener {
 
-
+	//Fields
 	private StatType[] types;
 	private int[] buffs;
 	private int[] playerStats;
 	private StatType[] playerStatTypes;
 	private int duration;
-	Timer timer;
-
+	private Timer timer;
+	//Constructor
 	public Buff(StatType[] types, int[] statBuffs, int duration, StatType[] playerTypes, int[] playerStats) {
 		this.types = types;
 		this.buffs = statBuffs;
@@ -28,6 +32,7 @@ public class Buff implements ActionListener {
 		timer = new Timer(duration * 1000, this);
 		
 	}
+	//Duplicate Constructor
 	public Buff(Buff buff) {
 		this.types = buff.types;
 		this.buffs = buff.buffs;
@@ -37,7 +42,7 @@ public class Buff implements ActionListener {
 		timer = new Timer(buff.duration * 1000, this);
 		
 	}
-
+	//Starts this buff
 	public void start() {
 
 		for (int i = 0; i < types.length; i++) {
@@ -54,6 +59,7 @@ public class Buff implements ActionListener {
 	}
 
 	@Override
+	//Ends this buff
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == timer) {
 			for (int i = 0; i < types.length; i++) {
@@ -69,37 +75,25 @@ public class Buff implements ActionListener {
 		
 
 	}
+	// Gets the stat Types that this buff improves
 	public StatType[] getTypes() {
 		return types;
 	}
-	public void setTypes(StatType[] types) {
-		this.types = types;
-	}
+	
+	//Returns the buff vales for each stat type
 	public int[] getBuffs() {
 		return buffs;
 	}
-	public void setBuffs(int[] buffs) {
-		this.buffs = buffs;
-	}
-	public int[] getPlayerStats() {
-		return playerStats;
-	}
-	public void setPlayerStats(int[] playerStats) {
-		this.playerStats = playerStats;
-	}
-	public StatType[] getPlayerStatTypes() {
-		return playerStatTypes;
-	}
-	public void setPlayerStatTypes(StatType[] playerStatTypes) {
-		this.playerStatTypes = playerStatTypes;
-	}
+	//Gets the duration of this buff in seconds
 	public int getDuration() {
 		return duration;
 	}
+	//Sets the duration of this buff
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 	@Override
+	//String token for this buff for save data parsing
 	public String toString() {
 		return ("Buff[types=" + Arrays.toString(types) + ",buffs=" + Arrays.toString(buffs) + ",duration=" + duration
 				+ "]").replace(",", ";~;");

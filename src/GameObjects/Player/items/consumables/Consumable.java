@@ -1,12 +1,18 @@
+//Author: Adithya Giri
+//Date: 5/11/22
+//Rev: 01
+//Notes: A consumable that buffs the player
 package GameObjects.Player.items.consumables;
 
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 
 public class Consumable extends Item {
-	long count;
-	long maxStack;
-	Buff buff;
+	//Fields
+	private long count;
+	private long maxStack;
+	private Buff buff;
+	//Constructor
 	public Consumable(String name,int tier,long count,long maxStack,Buff buff) {
 		super(name, ItemType.CONSUMABLE,tier);
 		this.maxStack=maxStack;
@@ -14,7 +20,7 @@ public class Consumable extends Item {
 		this.buff=buff;
 		
 	}
-	
+	//Adds a number to the count of this consumable
 	private long add(long num) 
 	{
 		
@@ -32,12 +38,12 @@ public class Consumable extends Item {
 		}
 		
 	}
-	
+	//Adds a consumable to this consumable
 	public long add(Consumable consumable) 
 	{
-		System.out.println(this.getName()+" "+this.count+" "+consumable.getName()+""+consumable.count);
 		return add(consumable.getCount());
 	}
+	//Subtracts a count from this consumable
 	public void substract(long num) 
 	{
 		count-=num;
@@ -46,11 +52,13 @@ public class Consumable extends Item {
 			count=0;
 		}
 	}
+	//Sets the count of this consumable
 	public void setCount(long num) 
 	{
 		count=0;
 		add(num);
 	}
+	//Consumes one of these consumables
 	public void consume() 
 	{
 		if(count>0) 
@@ -61,25 +69,23 @@ public class Consumable extends Item {
 
 		
 	}
+	//Returns the buff that this consumable delivers
 	public Buff getBuff() 
 	{
 		return buff;
 	}
 
 
-
+	//Returns the count
 	public long getCount() {
 		return count;
 	}
-
+	//Returns the maxStack
 	public long getMaxStack() {
 		return maxStack;
 	}
-	public void use() 
-	{
-		buff.start();
-		this.count--;
-	}
+	@Override
+	//ToString conversion for save data parsing
 	public String toString() 
 	{
 		String s="(Item:"+super.getName()+"/"+super.getType()+"/"+super.getTier()+"/"+count+"/"+maxStack+"/"+buff;

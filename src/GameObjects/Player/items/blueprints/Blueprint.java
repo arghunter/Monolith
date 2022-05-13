@@ -1,7 +1,7 @@
 //Author: Adithya Giri
 //Date: 5/11/22
 //Rev: 01
-//Notes:
+//Notes: A blueprint that is used to construct items
 package GameObjects.Player.items.blueprints;
 
 import java.util.ArrayList;
@@ -14,11 +14,12 @@ import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
 
 public class Blueprint extends Item {
+	//Fields
 	private Item[] components;
 	private Item product;
 	private double count;
 	private Inventory inventory;
-
+	//Constructor
 	public Blueprint(String name, int tier, double count, Item[] components, Item product, Inventory inventory) {
 		super(name, ItemType.BLUEPRINT, tier);
 		this.components = components;
@@ -27,28 +28,28 @@ public class Blueprint extends Item {
 		this.inventory = inventory;
 
 	}
-
+	//Add the blueprint to this one
 	public void add(Blueprint blueprint) {
 		count += Math.round(blueprint.getCount());
 
 	}
-
+	//Returns the count
 	public double getCount() {
 		return count;
 	}
-
+	//Sets the count
 	public void setCount(double count) {
 		this.count = count;
 	}
-
+	//Returns the components required to construct this blueprint
 	public Item[] getComponents() {
 		return components;
 	}
-
+	//Returns the product of this blueprint
 	public Item getProduct() {
 		return product;
 	}
-
+	//Constructs this blueprint
 	public void construct() throws MissingResourcesException {
 		System.out.println("here");
 		boolean[] requirementsFulfilled = new boolean[components.length];
@@ -132,23 +133,12 @@ public class Blueprint extends Item {
 		}
 
 	}
-//	public String toString() 
-//	{
-//		String s="(Item:"+super.getName()+"/"+super.getType()+"/"+super.getTier()+"/"+count+"/`";
-//		for(int i=0;i<components.length;i++) 
-//		{
-//			s+=components[i].toString().substring(1);
-//		}
-//		s+="`~"+product.toString().substring(1)+"~";
-//		
-//		
-//		return s;
-//	}
 
 	@Override
 	public String toString() {
-		return "(Item:"+super.getName()+"/"+super.getType()+"/"+super.getTier()+"/"+count+"/"+"[components=" + Arrays.toString(components).replace("Item:", "I:") + ", product=" + product.toString().replace("Item:", "I:") + ", count=" + count
-				+ "]";
+		return "(Item:" + super.getName() + "/" + super.getType() + "/" + super.getTier() + "/" + count + "/"
+				+ "[components=" + Arrays.toString(components).replace("Item:", "I:") + ", product="
+				+ product.toString().replace("Item:", "I:") + ", count=" + count + "]";
 	}
 
 }
