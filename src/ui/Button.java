@@ -251,14 +251,17 @@ public class Button extends Component implements MouseListener {
     	
 
     }
+    //Returns the text that this button displays
     public String getText() 
     {
     	return text;
     }
+    //Sets the text this button displays
     public void setText(String text) 
     {
     	this.text=text;
     }
+    //Sets the font color
     public void setFontColor(Color color) 
     {
     	this.fontColor=color;
@@ -307,20 +310,24 @@ public class Button extends Component implements MouseListener {
 		
     }
     @Override 
+    //Sets the font
     public void setFont(Font font) 
     {
     	this.font=font;
     	
     }
     @Override
+    //Returns the font
     public Font getFont() 
     {
     	return this.font.deriveFont(fontSize);
     }
+    //Returns the action listenrs in this object
     public ActionListener[] getActionListeners() 
     {
     	return actionListeners;
     }
+    //Adds an action listener to this object
     public void addActionListener(ActionListener listener) 
     {
     	ActionListener[] temp=new ActionListener[actionListeners.length+1];

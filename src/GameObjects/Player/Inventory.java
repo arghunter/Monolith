@@ -41,7 +41,6 @@ public class Inventory {
 		this.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
 
 		Item[] it = { new Material("Crystal", 0, 100) };
-		this.addToStorage(new Blueprint("Baklava", 0, 10, it, new Consumable("Baklava", 0, 15, 64, null), this));
 		this.addToStorage(new Material("Crystal", 0, 100000));
 		StatType[] buffTypes = { StatType.HEALTH, StatType.REGEN };
 		int[] buffs = { 1000, 500 };
@@ -55,6 +54,7 @@ public class Inventory {
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
 		this.addToStorage(new Consumable("Baklava", 0, 50, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
+		this.addToStorage(new Blueprint("Baklava", 0, 10, it, new Consumable("Baklava", 0, 15, 64, new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())), this));
 
 		equipped = 4;
 	}
