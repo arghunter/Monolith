@@ -27,7 +27,7 @@ import java.util.LinkedList;
 //import general.ImageSystem;
 
 public class MobSpawnerTester extends JPanel implements ActionListener {
-	private Player thePlayer = new Player(300, 300, 1, 64, 64,this, this);
+	private Player thePlayer = new Player(300, 300, 64, 64, this,this);
 	private PlayerInputParser input;
 
 	private JFrame frame;
@@ -102,11 +102,11 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 				for(int i=0;i<n.length;i++) {
 					System.out.print(n[i]+" ");
 					if(n[i]==0) {
-						mobList[curRoomY][curRoomX].add(new Zombie(100, 100, 4, 64, 64));
+						mobList[curRoomY][curRoomX].add(new Zombie(100, 100, 64, 64));
 					}else if(n[i]==1) {
-						mobList[curRoomY][curRoomX].add(new Spider(200,200,10,64,64));
+						mobList[curRoomY][curRoomX].add(new Spider(200,200,64,64));
 					}else if(n[i]==2) {
-						mobList[curRoomY][curRoomX].add(new Balkrada(300,300,10,64,64));
+						mobList[curRoomY][curRoomX].add(new Balkrada(300,300,64,64));
 					}
 				}
 			}

@@ -11,8 +11,8 @@ public abstract class Mob extends MovingObject {
 	private int[] stats = new int[6];
 	private double lastAttack = System.currentTimeMillis();
 
-	public Mob(int x, int y, int movementDelay, int[] stats, int id, int width, int height, String name,int numFrames) {
-		super(x, y, movementDelay, id, width, height, name, numFrames,stats[2]);
+	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames) {
+		super(x, y, movementDelay, width, height, name, numFrames,stats[2]);
 		this.stats = stats;
 	}
 

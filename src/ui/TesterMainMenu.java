@@ -31,7 +31,7 @@ import java.util.LinkedList;
 
 public class TesterMainMenu extends JPanel implements ActionListener {
 	//Fields
-	private Player thePlayer = new Player(300, 300, 1, 64, 64, this, this);
+	private Player thePlayer = new Player(300, 300, 64, 64, this, this);
 	private PlayerInputParser input;
 	private Timer clock = new Timer(30, this);
 	private double ratioX = 1;

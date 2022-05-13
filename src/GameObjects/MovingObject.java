@@ -28,16 +28,16 @@ public abstract class MovingObject extends GameObject {
 	private double angle;
 	protected int dist=1;
 
-	public MovingObject(int startX, int startY, int movementDelay, int id, int width, int height, String name, int numFrames) {
-		super(id, width, height);
+	public MovingObject(int startX, int startY, int movementDelay, int width, int height, String name, int numFrames) {
+		super(width, height);
 		setMovementDelay(movementDelay);
 		setCoords(startX, startY);
 		this.image =new AnimationSystem(x,y,movementDelay*6,name,numFrames);
 		System.out.println(this.image);
 		this.health = Integer.MAX_VALUE;
 	}
-	public MovingObject(int startX, int startY, int movementDelay, int id, int width, int height, String name, int numFrames,int health) {
-		super(id, width, height);
+	public MovingObject(int startX, int startY, int movementDelay, int width, int height, String name, int numFrames, int health) {
+		super(width, height);
 		setMovementDelay(movementDelay);
 		setCoords(startX, startY);
 		this.image =new AnimationSystem(x,y,movementDelay*6,name,numFrames);

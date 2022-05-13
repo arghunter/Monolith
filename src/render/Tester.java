@@ -26,10 +26,10 @@ import java.util.LinkedList;
 //import java.util.*;
 
 public class Tester extends JPanel implements ActionListener {
-	private Player thePlayer = new Player(300, 300, 1, 64, 64,this,this);
-	private Spider theSpider = new Spider(600, 600, 2, 64, 64);
-	private Spider secondSpider = new Spider(1000, 1000, 3, 64, 64);
-	private Zombie theZombie = new Zombie(1200, 1200, 4, 64, 64);
+	private Player thePlayer = new Player(300, 300, 64, 64, this,this);
+	private Spider theSpider = new Spider(600, 600, 64, 64);
+	private Spider secondSpider = new Spider(1000, 1000, 64, 64);
+	private Zombie theZombie = new Zombie(1200, 1200, 64, 64);
 	private ArrayList<Mob> mobList = new ArrayList<>();
 	private PlayerInputParser input;
 
@@ -145,7 +145,7 @@ public class Tester extends JPanel implements ActionListener {
 		thePlayer.addXP(1);
 		if (zombieButton.isClicked(e)) {
 			
-			mobList.add(new Balkrada((int) (Math.random() * 2560), (int) (Math.random() * 1377), 4, 64, 64));
+			mobList.add(new Balkrada((int) (Math.random() * 2560), (int) (Math.random() * 1377), 64, 64));
 
 		}
 

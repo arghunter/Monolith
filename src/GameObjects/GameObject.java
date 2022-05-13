@@ -1,3 +1,7 @@
+//Author: Armaan Gomes 
+//Date: 5/12/22
+//Rev: 01
+
 package GameObjects;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -9,7 +13,7 @@ public abstract class GameObject {
     
     
 
-    public GameObject(int id, int width, int height ) {
+    public GameObject(int width, int height ) {
         this.id = id;
         this.width=width;
         this.height=height;

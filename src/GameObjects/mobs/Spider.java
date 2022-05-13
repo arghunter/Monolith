@@ -10,8 +10,8 @@ public class Spider extends Mob {
 	//speed, damage, health, armor, attackspeed, attack range
 	public static final int[] stats={20,10,10,0,120,20};
 	
-	public Spider(int x,int y,int id,int width,int height) {
-		super(x,y,stats[0],stats,id,width,height,"Spider",3);
+	public Spider(int x,int y,int width,int height) {
+		super(x,y,stats[0],stats,width,height,"Spider",3);
 	}
 	
 

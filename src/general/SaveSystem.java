@@ -30,7 +30,7 @@ public class SaveSystem implements WindowListener {
 			savedPlayer=new Player(300,300,1,64,64,game,panel,input.next());
 		}catch( Exception e) 
 		{
-			savedPlayer=new Player(300,300,1,64,64,game,panel);
+			savedPlayer=new Player(300,300,64,64,game,panel);
 		}
 		
 		output=new PrintWriter("save.txt");

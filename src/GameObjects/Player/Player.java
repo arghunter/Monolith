@@ -47,9 +47,9 @@ public class Player extends MovingObject {
 	private ActionListener game;
 
 	// Note the speed will come from skill tree
-	public Player(int x, int y, int id, int width, int height, ActionListener game, JPanel panel) {
+	public Player(int x, int y, int width, int height, ActionListener game, JPanel panel) {
 		// Just going to use the helmet image for player
-		super(x, y, 20, id, width, height, "DefaultHelmet", 1);
+		super(x, y, 20, width, height, "DefaultHelmet", 1);
 
 		inventory = new Inventory(this);
 		super.dist=2;
@@ -67,7 +67,7 @@ public class Player extends MovingObject {
 
 	public Player(int x, int y, int id, int width, int height, ActionListener game, JPanel panel, String saveData) {
 		// Just going to use the helmet image for player
-		super(x, y, 20, id, width, height, "DefaultHelmet", 1);
+		super(x, y, 20, width, height, "DefaultHelmet", 1);
 
 		inventory = new Inventory(this);
 		stats[3] = (int) inventory.getHealth();

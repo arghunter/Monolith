@@ -1,3 +1,7 @@
+//Author: Armaan Gomes 
+//Date: 5/12/22
+//Rev: 01
+// Notes: All possible movement directions
 package GameObjects;
 
 public enum Direction
