@@ -30,15 +30,15 @@ public abstract class Mob extends MovingObject {
 			this.stats = stats;
 		}
 	}
-	//
+	//Returns the health of this mob
 	public int getHealth() {
 		return health;
 	}
-
+	//Updates this mob
 	public void update(double pointX, double pointY) {
 		updateAngle(pointX, pointY);
 	}
-
+	//Makes this mob complete its next action, either moving or attacking the player.
 	public int action(Player player) {
 		int curX = this.getX();
 		int curY = this.getY();

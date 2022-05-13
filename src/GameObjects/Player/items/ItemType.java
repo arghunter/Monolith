@@ -1,3 +1,7 @@
+//Author: Adithya Giri
+//Date: 5/11/22
+//Rev: 01
+//Notes: ALl possible item types
 package GameObjects.Player.items;
 
 public enum ItemType {

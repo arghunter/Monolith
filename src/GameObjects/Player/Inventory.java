@@ -350,7 +350,7 @@ public class Inventory {
 	}
 
 	@Override
-	//String parsin
+	//String parsing for inventory
 	public String toString() {
 		return ("Inventory `~`arsenal=" + Arrays.toString(arsenal) + ",storage`~`" + storage + ",equipped`~`" + equipped
 				+ "]").replace(" ", "");

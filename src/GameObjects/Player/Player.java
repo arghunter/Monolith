@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/10/22
+//Rev: 02
+//Notes: A player in monolith
 package GameObjects.Player;
 
 import java.awt.Color;
@@ -29,11 +33,12 @@ import skills.*;
 import ui.PlayerUI;
 
 public class Player extends MovingObject {
+	// Fields
 	SkillTree skills;
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH, StatType.XP };
 	private int[] stats = { 10, 25, 60, 100, 10, 30, 10000, 0, 10, 100 };
-	private int[] buffs =new int[10];
+	private int[] buffs = new int[10];
 
 	private int currentLevel = 0;
 	private int currentXP = 0;
@@ -46,25 +51,25 @@ public class Player extends MovingObject {
 	private ArrayList<Mob> mobs = new ArrayList<>();
 	private ActionListener game;
 
-	// Note the speed will come from skill tree
+	//Constructor
 	public Player(int x, int y, int width, int height, ActionListener game, JPanel panel) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
 
 		inventory = new Inventory(this);
-		super.dist=2;
-		stats[3] = (int) inventory.getHealth()+100;
+		super.dist = 2;
+		stats[3] = (int) inventory.getHealth() + 100;
 		stats[1] = (int) inventory.getArmor();
 		stats[6] = (int) inventory.getShields();
 		skills = new SkillTree(stats, statTypes);
-		health = stats[3]+buffs[3];
+		health = stats[3] + buffs[3];
 		currentShields = stats[6];
 		ui = new PlayerUI(this, panel);
 		lastRegen = System.currentTimeMillis();
 		this.game = game;
 
 	}
-
+	//Save data constructor
 	public Player(int x, int y, int id, int width, int height, ActionListener game, JPanel panel, String saveData) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
@@ -83,7 +88,7 @@ public class Player extends MovingObject {
 
 	}
 
-	// alters the players health and shield values based on damage dealt and armor
+	// Alters the players health and shield values based on damage dealt and armor
 	public void takeDamage(int damage) {
 		if (!isDead) {
 			damage = (int) ((2 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5);
@@ -95,91 +100,92 @@ public class Player extends MovingObject {
 			if (health <= 0) {
 				isDead = true;
 			}
-			lastRegen = System.currentTimeMillis()+1000;
+			lastRegen = System.currentTimeMillis() + 1000;
 
 		}
 
 	}
-
+	//Regens health and shields
 	private void regen() {
-//		System.out.println(stats[3]);
 		if (!isDead) {
 			if (System.currentTimeMillis() - lastRegen >= 1000) {
-				if (currentShields < stats[6]+buffs[6]) {
-					currentShields += stats[5]+buffs[5];
+				if (currentShields < stats[6] + buffs[6]) {
+					currentShields += stats[5] + buffs[5];
 
-				} else if (health < stats[3]+buffs[3]) {
-					health += (stats[5]+buffs[5]) / 4;
+				} else if (health < stats[3] + buffs[3]) {
+					health += (stats[5] + buffs[5]) / 4;
 
 				}
 
 				lastRegen = System.currentTimeMillis();
 
 			}
-			if (currentShields > stats[6]+buffs[6]) {
-				currentShields = stats[6]+buffs[6];
+			if (currentShields > stats[6] + buffs[6]) {
+				currentShields = stats[6] + buffs[6];
 			}
 
-			if (health > stats[3]+buffs[3]) {
-				health = stats[3]+buffs[3];
+			if (health > stats[3] + buffs[3]) {
+				health = stats[3] + buffs[3];
 			}
 		}
 
 	}
-
+	//Returns the skilltree
 	public SkillTree getSkills() {
 		return skills;
 	}
-	public int[] getBuffs() 
-	{
+	//Returns the buff array
+	public int[] getBuffs() {
 		return buffs;
 	}
-
+	//Returns the stat types
 	public StatType[] getStatTypes() {
 		return statTypes;
 	}
-
+	//Returns the weapon
 	public Weapon getWeapon() {
 		Item i = inventory.getEquippedItem();
-		if(i instanceof Weapon) {
-			return (Weapon)i;
+		if (i instanceof Weapon) {
+			return (Weapon) i;
 		} else {
-			return (Weapon) new MeleeWeapon("Stick",1,10,100,10,Math.PI/4);
+			return (Weapon) new MeleeWeapon("Stick", 1, 10, 100, 10, Math.PI / 4);
 		}
 	}
+	//Returns stats without buffs
 	public int[] getStats() {
 		return stats;
 	}
-
+	//Returns current health
 	public int getCurrentHealth() {
 		return health;
 	}
-
+	//Returns inventory
 	public Inventory getInventory() {
 		return inventory;
 	}
-
+	//Returns current shields
 	public int getCurrentShields() {
 		return currentShields;
 	}
-
+	//Returns isDead
 	public boolean isDead() {
 		return isDead;
 	}
-
+	//Returns current XP
 	public int getXP() {
 		return currentXP;
 	}
-
+	//Returns current level
 	public int getLevel() {
 		return currentLevel;
 	}
-	public void updateUI() 
-	{
+	//Updates the ui
+	public void updateUI() {
 		ui.update();
 	}
 
 	@Override
+	//Moves the player
 	public void move(Direction direction) {
 		if (!isDead) {
 			super.move(direction);
@@ -187,12 +193,13 @@ public class Player extends MovingObject {
 	}
 
 	@Override
+	//Updates the player angle
 	public void updateAngle(double pointX, double pointY) {
 		if (!isDead) {
 			super.updateAngle(pointX, pointY);
 		}
 	}
-
+	//Adds xp to the player and skilltree
 	public void addXP(int xp) {
 		if (!isDead) {
 			skills.addXP(xp / 2);
@@ -207,12 +214,12 @@ public class Player extends MovingObject {
 		}
 
 	}
-
+	//Uses the currently held item
 	public void useItem(Graphics2D g) {
 		if (!isDead) {
 			Item item = inventory.getEquippedItem();
 			if (item == null) {
-				Weapon weapon=new MeleeWeapon("Fist",1,10,100,3,300);
+				Weapon weapon = new MeleeWeapon("Fist", 1, 10, 100, 3, 300);
 				weapon.primaryFire(mobs, this);
 				return;
 			}
@@ -226,32 +233,36 @@ public class Player extends MovingObject {
 		}
 
 	}
-
+	//Sets the current mobs that are on screen
 	public void setMobs(ArrayList<Mob> mobs) {
 		this.mobs = mobs;
 	}
 
 	@Override
+	//TODO to string part done
 	public String toString() {
 
 		return skills.toString();
 	}
+	//Renders the currently held weapon
 	public void renderWeapon(Graphics2D g) {
 
-		this.getWeapon().drawWeapon(this,g);
+		this.getWeapon().drawWeapon(this, g);
 
 	}
+
 	@Override
+	//Renders the player
 	public void render(Graphics2D g) {
 		ui.draw(g);
 
-		//System.out.println(new Inventory(inventory.toString(),this));
+		// System.out.println(new Inventory(inventory.toString(),this));
 
 		renderWeapon(g);
 
 		super.getImage().drawAnimation(g);
 		regen();
-		super.setMovementDelay(stats[7]+buffs[7]);
+		super.setMovementDelay(stats[7] + buffs[7]);
 
 	}
 
