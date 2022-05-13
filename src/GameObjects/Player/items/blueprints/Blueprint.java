@@ -1,3 +1,7 @@
+//Author: Adithya Giri
+//Date: 5/11/22
+//Rev: 01
+//Notes:
 package GameObjects.Player.items.blueprints;
 
 import java.util.ArrayList;
