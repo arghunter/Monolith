@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/12/22
+//Rev: 01
+// Notes: Represents a main menu
 package ui;
 
 import java.awt.Color;
@@ -24,6 +28,7 @@ import input.PlayerInputParser;
 import render.Tester;
 
 public class MainMenu implements ActionListener {
+	//Fields
 	Player player;
 	Button[] menuButtons = new Button[3];// 0=storageButton, 1=arsenalButton, 2==skillDisplayButton
 	Button[] gameModeButtons = new Button[2];// 0=adventureButton 1==survivalButton
@@ -33,6 +38,7 @@ public class MainMenu implements ActionListener {
 	SkillDisplayMenu skillMenu;
 	private boolean hidden = false;
 	private PlayerInputParser input;
+	//Constructor
 	public MainMenu(Player player, JPanel panel,PlayerInputParser input) {
 		this.player = player;
 		this.input=input;
@@ -87,7 +93,7 @@ public class MainMenu implements ActionListener {
 		player.setCoordsMove(1280, 668);
 
 	}
-
+	//Draws this menu
 	public void draw(Graphics2D g, int JPanelX, int JPanelY) {
 		if(input.isEscapePressed()) 
 		{
@@ -128,7 +134,7 @@ public class MainMenu implements ActionListener {
 		skillMenu.render(g, JPanelX, JPanelY);
 
 	}
-
+	//Fancy gradient creation
 	private static BufferedImage createGradient(int JPanelX, int JPanelY) {
 		int width = (int) Tester.WIDTH;
 		int height = (int) Tester.HEIGHT;
@@ -150,6 +156,7 @@ public class MainMenu implements ActionListener {
 	}
 
 	@Override
+	//Decides which submenu should be shown;
 	public void actionPerformed(ActionEvent e) {
 
 		if (!hidden) {
