@@ -1,3 +1,7 @@
+//Author: Armaan Gomes 
+//Date: 5/12/22
+//Rev: 01
+// Notes: Represents an item for te player UI
 package ui;
 
 import java.awt.BasicStroke;
@@ -24,12 +28,13 @@ import general.ImageSystem;
 import input.MouseInputParser;
 
 public class PlayerUIArsenalItem {
+	//Fields
 	private Item item;
 	private ImageSystem image;
 	private int x;
 	private int y;
 	private boolean selected = false;;
-
+	//Constructor
 	public PlayerUIArsenalItem(Item item, int x, int y) {
 		this.item = item;
 
@@ -63,7 +68,7 @@ public class PlayerUIArsenalItem {
 		image.setScale(96.0 / image.getWidth(), 96.0 / image.getHeight());
 
 	}
-
+	//Draws this item
 	public void draw(Graphics2D g) 
 	{
 		if(this.item!=null&&this.item.getType()==ItemType.CONSUMABLE)
@@ -108,43 +113,43 @@ public class PlayerUIArsenalItem {
 			g.drawRect(x+10, y+10, 96-5, 96-5);
 		}
 	}
-
+	//Returns the item this ui item represents
 	public Item getItem() {
 		return item;
 	}
-
+	//Sets the item this ui item represents
 	public void setItem(Item item) {
 		this.item = item;
 	}
-
+	//Returns the image of the item 
 	public ImageSystem getImage() {
 		return image;
 	}
-
+	//Sets the image
 	public void setImage(ImageSystem image) {
 		this.image = image;
 	}
-
+	//Returns the x location of this item
 	public int getX() {
 		return x;
 	}
-
+	//Sets the x location of this item
 	public void setX(int x) {
 		this.x = x;
 	}
-
+	//Returns the y location of this item
 	public int getY() {
 		return y;
 	}
-
+	//Sets the  y of this item
 	public void setY(int y) {
 		this.y = y;
 	}
-
+	//returns the isSelected boolean
 	public boolean isSelected() {
 		return selected;
 	}
-
+	//Sets the selected boolean
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}

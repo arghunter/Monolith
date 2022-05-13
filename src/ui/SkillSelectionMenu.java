@@ -1,3 +1,7 @@
+//Author: Armaan Gomes 
+//Date: 5/12/22
+//Rev: 01
+// Notes: Represents a skill selection menu
 package ui;
 
 import java.awt.Color;
@@ -24,6 +28,7 @@ import skills.SkillTree;
 import skills.StatType;
 
 public class SkillSelectionMenu implements ActionListener {
+	//Fields
 	private int numSkills;
 	private SkillTree tree;
 	private GenericSkill[] availableSkills;
@@ -32,7 +37,7 @@ public class SkillSelectionMenu implements ActionListener {
 	private Button[] skillButtons;
 	private boolean isActive=true;
 	
-
+	//Constructor
 	public SkillSelectionMenu(SkillTree tree, int timeSeconds, JPanel panel) {
 
 		this.tree = tree;
@@ -141,6 +146,7 @@ public class SkillSelectionMenu implements ActionListener {
 
 
 	}
+	//Decides skill color
 	public Color skillColor(GenericSkill skill) 
 	{
 		Color color=null;
@@ -193,7 +199,7 @@ public class SkillSelectionMenu implements ActionListener {
 
 		return color;
 	}
-	
+	//Renders this menu
 	public void render(Graphics2D g,int JPanelX,int JPanelY) 
 	{ 
 		if(isActive) 
@@ -307,6 +313,7 @@ public class SkillSelectionMenu implements ActionListener {
 	}
 
 	@Override
+	//Selects a skill and closes this menu
 	public void actionPerformed(ActionEvent e) {
 		
 		if(isActive) 
@@ -351,6 +358,7 @@ public class SkillSelectionMenu implements ActionListener {
 		
 		
 	}
+	//Creates  a gradient for the background
 	private static BufferedImage createGradient(int JPanelX, int JPanelY) {
 		int width = (int) Tester.WIDTH;
 		int height = (int) Tester.HEIGHT;
@@ -370,10 +378,11 @@ public class SkillSelectionMenu implements ActionListener {
 
 		return img;
 	}
-	
+	//Sets the active
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+	//Gets isActive
 	public boolean isActive() 
 	{
 		return isActive;

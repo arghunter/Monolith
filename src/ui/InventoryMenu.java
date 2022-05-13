@@ -1,4 +1,4 @@
-//Author: Armaan Gomes
+//Author: Armaan Gomes 
 //Date: 5/12/22
 //Rev: 01
 // Notes: Represents a menu that displays the inventory

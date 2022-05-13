@@ -1,3 +1,7 @@
+//Author: Armaan Gomes 
+//Date: 5/12/22
+//Rev: 01
+// Notes: A renderable item for the menus
 package ui;
 
 import java.awt.Point;
@@ -30,7 +34,7 @@ import general.ImageSystem;
 import input.MouseInputParser;
 
 public class RenderableMenuItem implements ActionListener {
-	
+	//Fields
 	protected ImageSystem image;
 	protected Item item=null;
 	protected Button button;
@@ -41,12 +45,7 @@ public class RenderableMenuItem implements ActionListener {
 	private boolean isSelected=false;
 	private boolean isHovering=false;
 	private boolean showDescription=true;
-	public boolean isShowDescription() {
-		return showDescription;
-	}
-	public void setShowDescription(boolean showDescription) {
-		this.showDescription = showDescription;
-	}
+	//Constructor
 	public RenderableMenuItem(Item item,int x, int y,JPanel panel) 
 	{
 		if(item==null) 
@@ -123,6 +122,7 @@ public class RenderableMenuItem implements ActionListener {
 		button.setHoverEffectsOn(false);
 		
 	}
+	//Subclass constructor
 	protected RenderableMenuItem(int x, int y,JPanel panel) 
 	{
 		this.item=null;
@@ -146,7 +146,7 @@ public class RenderableMenuItem implements ActionListener {
 		button.setHoverEffectsOn(false);
 
 	}
-	
+	//Draws this item
 	public void draw(Graphics2D g,int JPanelX, int JPanelY) 
 	{
 		button.draw(g, JPanelX, JPanelY);
@@ -258,25 +258,31 @@ public class RenderableMenuItem implements ActionListener {
 		}
 		
 	}
-
+	//Returns the image
 	public ImageSystem getImage() {
 		return image;
 	}
+	//Returns the button
 	public Button getButton() {
 		return button;
 	}
+	//Returns the x coordinate
 	public int getX() {
 		return x;
 	}
+	//Returns the y coordinate
 	public int getY() {
 		return y;
 	}
+	//Rturns actionListeners
 	public ActionListener[] getActionListeners() {
 		return actionListeners;
 	}
+	//Returns the item specific buttons
 	public Button[] getItemButtons() {
 		return itemButtons;
 	}
+	//Translates this button
 	public void translate(int x,int y) 
 	{
 		button.translate(x, y);
@@ -284,10 +290,12 @@ public class RenderableMenuItem implements ActionListener {
 		this.x+=x;
 		this.y+=y;
 	}
+	//Returns isHovering
 	public boolean isHovering() 
 	{
 		return isHovering;
 	}
+	//Adds an actionListener
 	public void addActionListener(ActionListener listener) 
 	{
 		ActionListener[] temp=new ActionListener[actionListeners.length+1];
@@ -298,14 +306,17 @@ public class RenderableMenuItem implements ActionListener {
     	temp[actionListeners.length]=listener;
     	actionListeners=temp;
 	}
+	//Returns isSelected
 	public boolean isSelected() 
 	{
 		return isSelected;
 	}
+	//Sets isSelected
 	public void setIsSelected(boolean isSelected) 
 	{
 		this.isSelected=isSelected;
 	}
+	//Disposes this item
 	public void dispose() 
 	{
 		button.dispose();
@@ -314,13 +325,22 @@ public class RenderableMenuItem implements ActionListener {
 			itemButtons[i].dispose();
 		}
 	}
+	//Returns the item
 	public Item getItem() 
 	{
 		return item;
 	}
-	
+	//Gets show description
+	public boolean isShowDescription() {
+		return showDescription;
+	}
+	//Sets show description
+	public void setShowDescription(boolean showDescription) {
+		this.showDescription = showDescription;
+	}
 
 	@Override
+	//Stuff it does when buttons are pressed. Namely fire actions and updating inventory
 	public void actionPerformed(ActionEvent e) {
 		if(button.isClicked(e)) 
 		{

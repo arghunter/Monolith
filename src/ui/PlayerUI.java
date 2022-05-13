@@ -1,3 +1,7 @@
+//Author: Armaan Gomes 
+//Date: 5/12/22
+//Rev: 01
+// Notes: Renders and draws the player ui
 package ui;
 
 import java.awt.Color;
@@ -14,10 +18,11 @@ import javax.swing.JPanel;
 import GameObjects.Player.Player;
 
 public class PlayerUI implements MouseWheelListener {
+	//Fields
 	Player player;
 	PlayerUIArsenalItem[] arsenalItems=new PlayerUIArsenalItem[16];
 	
-
+	//Constructor
 	public PlayerUI(Player player,JPanel panel)
 	{
 		panel.addMouseWheelListener(this);
@@ -49,6 +54,7 @@ public class PlayerUI implements MouseWheelListener {
 		
 		
 	}
+	//Draws the UI
 	public void draw(Graphics2D g) 
 	{
 		Font text=null;
@@ -73,6 +79,7 @@ public class PlayerUI implements MouseWheelListener {
 		}
 	}
 	@Override
+	//Selects a different item in the arsenal
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		
 		
@@ -104,6 +111,7 @@ public class PlayerUI implements MouseWheelListener {
 			}
 
 	}
+	//Updates the menu
 	public void update() 
 	{
 		arsenalItems[0]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1184, 989+96);
