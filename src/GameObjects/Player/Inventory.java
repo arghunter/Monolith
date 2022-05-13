@@ -18,8 +18,9 @@ import skills.StatType;
 
 public class Inventory {
 	private Item[] arsenal;// For all consumables weapons and armor gets emptied on death
-	private ArrayList<Item> storage;// For all blueprints materials and stuff that the player cannot access in the middle of a fight
-	private int equipped=4;
+	private ArrayList<Item> storage;// For all blueprints materials and stuff that the player cannot access in the
+									// middle of a fight
+	private int equipped = 4;
 
 //	public Inventory(String saveData) {
 //
@@ -28,49 +29,92 @@ public class Inventory {
 	public Inventory(Player player) {
 		arsenal = new Item[16];
 		storage = new ArrayList<Item>();
-		arsenal[0]=(new Armor("Baklava",0,ItemType.HELMET,10,25,25,BattleSuitSet.NONE));
-		arsenal[1]=(new Armor("Baklava",0,ItemType.CHESTPLATE,15,25,50,BattleSuitSet.NONE));
-		arsenal[2]=(new Armor("Baklava",0,ItemType.LEGGINGS,15,25,50,BattleSuitSet.NONE));
-		arsenal[3]=(new Armor("Baklava",0,ItemType.BOOTS,10,25,25,BattleSuitSet.NONE));
-		arsenal[4]=(new MeleeWeapon("Rusty Sword",0,50, 250, 30,10/18.0*Math.PI));
-
+		arsenal[0] = (new Armor("Baklava", 0, ItemType.HELMET, 10, 25, 25, BattleSuitSet.NONE));
+		arsenal[1] = (new Armor("Baklava", 0, ItemType.CHESTPLATE, 15, 25, 50, BattleSuitSet.NONE));
+		arsenal[2] = (new Armor("Baklava", 0, ItemType.LEGGINGS, 15, 25, 50, BattleSuitSet.NONE));
+		arsenal[3] = (new Armor("Baklava", 0, ItemType.BOOTS, 10, 25, 25, BattleSuitSet.NONE));
+		arsenal[4] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
 
 		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
+
+
 		this.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
-		
-		Item[] it={new Material("Crystal",0,100)};
-		this.addToStorage(new Blueprint("Baklava",0,10,it,new Consumable("Baklava",0,15,64,null),this));
-		this.addToStorage(new Material("Crystal",0,100000));
-		StatType[] buffTypes= {StatType.HEALTH,StatType.REGEN};
-		int[] buffs= {1000,500};
-		arsenal[5]=new Consumable("Baklava",0,10,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs()));
-		this.addToStorage(new Consumable("Baklava",0,10,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
-		this.addToStorage(new Consumable("Baklava",0,50,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
-		this.addToStorage(new Consumable("Baklava",0,50,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
-		this.addToStorage(new Consumable("Baklava",0,50,64,new Buff(buffTypes,buffs,10,player.getStatTypes(),player.getBuffs())));
-		
-		equipped=4;
+
+		Item[] it = { new Material("Crystal", 0, 100) };
+		this.addToStorage(new Material("Crystal", 0, 100000));
+		StatType[] buffTypes = { StatType.HEALTH, StatType.REGEN };
+		int[] buffs = { 1000, 500 };
+		arsenal[5] = new Consumable("Baklava", 0, 10, 64,
+				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs()));
+		this.addToStorage(new Consumable("Baklava", 0, 10, 64,
+				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
+		this.addToStorage(new Consumable("Baklava", 0, 50, 64,
+				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
+		this.addToStorage(new Consumable("Baklava", 0, 50, 64,
+				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
+		this.addToStorage(new Consumable("Baklava", 0, 50, 64,
+				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
+		this.addToStorage(new Blueprint("Baklava", 0, 10, it, new Consumable("Baklava", 0, 15, 64, new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())), this));
+
+		equipped = 4;
 	}
-	public Inventory(String saveData) 
-	{
-		String[] parts=saveData.split("`~`");
-		System.out.println("Begindsjfoijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjaioudhfouasdhofhbeaiufkjdsaf,mdjslifahrjdaoiusl dso,doivdskcdsoiLSJDOISHdyelfkdsofhdfmzbdsjoivz csoidsroikdiugolkfsz");
-		for(int i=0;i<parts.length;i++) 
-		{
-			System.out.println(parts[i]);
-		}
-		String[] items=(parts[1].substring(9, parts[1].length()-8)).split(":");
-		for(int i=0;i<items.length;i++) 
-		{
-			System.out.println(items[i]);
+
+	public Inventory(String saveData, Player player) {
+		String[] parts = saveData.split("`~`");
+//		System.out.println("Begindsjfoijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjaioudhfouasdhofhbeaiufkjdsaf,mdjslifahrjdaoiusl dso,doivdskcdsoiLSJDOISHdyelfkdsofhdfmzbdsjoivz csoidsroikdiugolkfsz");
+//		for(int i=0;i<parts.length;i++) 
+//		{
+//			System.out.println(parts[i]);
+//		}
+		System.out.println(parts[2]);
+		String[] items = (parts[1].substring(9, parts[1].length() - 8)).split("Item:");
+		for (int i = 0; i < items.length; i++) {
+			if (items[i].contains(",")) {
+				parseItem(items[i].substring(0, items[i].indexOf(",")), player);
+//				System.out.println(items[i].substring(0, items[i].indexOf(",")));
+			} else {
+
+			}
+
 		}
 	}
-	public Item parseItem(String s) 
-	{
-		String[] parts=s.split("/");
-		
+
+	public Item parseItem(String s, Player player) {
+		String[] parts = s.split("/");
+		if(s.contains("BLUEPRINT")) 
+		{
+			
+		}else if (s.contains("HELMET") || s.contains("CHESTPLATE") || s.contains("LEGGINGS") || s.contains("BOOTS")) {
+
+			return new Armor(parts[0], Integer.parseInt(parts[2]), ItemType.valueOf(parts[1]),
+					Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]),
+					BattleSuitSet.valueOf(parts[6]));
+		} else if (s.contains("MATERIAL")) {
+			return new Material(parts[0], Integer.parseInt(parts[2]), Double.parseDouble(parts[3]));
+		} else if (s.contains("WEAPON")) {
+			return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[3]),
+					Integer.parseInt(parts[4]), (int) Double.parseDouble(parts[5]), Double.parseDouble(parts[6]));
+		} else if (s.contains("CONSUMABLE")) {
+			String[] buffParts = parts[5].split("=");
+			String[] buffTypes = (buffParts[1].substring(buffParts[1].indexOf('[') + 1, buffParts[1].lastIndexOf(']')))
+					.split(";~;");
+			String[] buffValues = (buffParts[2].substring(buffParts[1].indexOf('[') + 1, buffParts[1].lastIndexOf(']')))
+					.replace("]", "").split(";~;");
+			StatType[] types = new StatType[buffTypes.length];
+			int[] values = new int[buffTypes.length];
+			for (int i = 0; i < buffTypes.length; i++) {
+				types[i] = StatType.valueOf(buffTypes[i]);
+				values[i] = Integer.parseInt(buffValues[i]);
+			}
+			return new Consumable(parts[0], Integer.parseInt(parts[2]), Integer.parseInt(parts[3]),
+					Integer.parseInt(parts[4]),
+					new Buff(types, values, Integer.parseInt(buffParts[buffParts.length - 1].replace("]", "")),
+							player.getStatTypes(), player.getBuffs()));
+
+		}
+
 		return null;
-		
+
 	}
 
 	public Item[] getArsenal() {
@@ -106,7 +150,7 @@ public class Inventory {
 		for (int i = 0; i < arsenal.length; i++) {
 			// checks if the memory references are the same and are thus the same object;
 			if (item == arsenal[i]) {
-				
+
 				arsenal[i] = null;
 				return i;
 			}
@@ -116,30 +160,26 @@ public class Inventory {
 	}
 
 	public void removeFromArsenal(int arsenalIndex) {
-		
+
 		arsenal[arsenalIndex] = null;
 	}
 
 	public void removeFromStorage(Item item) {
 		storage.remove(storage.indexOf(item));
 	}
-	public boolean addToArsenal(Item item,int pos) 
-	{
+
+	public boolean addToArsenal(Item item, int pos) {
 		if (item.getType() == ItemType.WEAPON || item.getType() == ItemType.CONSUMABLE) {
-		
-				
+
 			arsenal[pos] = item;
 			storage.remove(item);
-			return true;			
+			return true;
 		} else if (item.getType() != ItemType.MATERIAL || item.getType() != ItemType.BLUEPRINT) {
 			addToArsenal((Armor) item);
 			return false;
 		}
 		return false;
 	}
-
-
-	
 
 	public void addToArsenal(Armor armor) {
 		int pos = -1;
@@ -157,183 +197,164 @@ public class Inventory {
 			storage.remove(armor);
 			storage.add(arsenal[pos]);
 			arsenal[pos] = armor;
-			
+
 		}
 	}
 
 	public void addToStorage(Item item) {
 		if (item.getType() == ItemType.BLUEPRINT || item.getType() == ItemType.CONSUMABLE
 				|| item.getType() == ItemType.MATERIAL) {
-			Item sameItem=null;
-			long consumableExtra=0;
-			for(int i=0;i<storage.size();i++) 
-			{
-				if(storage.get(i)!=null&&storage.get(i).equals(item)) 
-				{
-					sameItem=storage.get(i);
-					if(item.getType()==ItemType.CONSUMABLE) 
-					{
-						if(((Consumable)sameItem).getCount()<((Consumable)sameItem).getMaxStack()) 
-						{
-							
-							Consumable sameConsumable=(Consumable) sameItem;
-							Consumable consItem=(Consumable)item;
-							
-							consumableExtra=sameConsumable.add(consItem);
-							if(consumableExtra==0) 
-							{
+			Item sameItem = null;
+			long consumableExtra = 0;
+			for (int i = 0; i < storage.size(); i++) {
+				if (storage.get(i) != null && storage.get(i).equals(item)) {
+					sameItem = storage.get(i);
+					if (item.getType() == ItemType.CONSUMABLE) {
+						if (((Consumable) sameItem).getCount() < ((Consumable) sameItem).getMaxStack()) {
+
+							Consumable sameConsumable = (Consumable) sameItem;
+							Consumable consItem = (Consumable) item;
+
+							consumableExtra = sameConsumable.add(consItem);
+							if (consumableExtra == 0) {
 								return;
-							}else 
-							{
-								item=new Consumable(consItem.getName(),consItem.getTier(),consumableExtra,consItem.getMaxStack(),consItem.getBuff());
-								
+							} else {
+								item = new Consumable(consItem.getName(), consItem.getTier(), consumableExtra,
+										consItem.getMaxStack(), consItem.getBuff());
+
 							}
 						}
 
-					}else 
-					{
+					} else {
 						break;
 					}
 				}
 			}
-			if(sameItem==null) 
-			{
+			if (sameItem == null) {
 				storage.add(item);
-				
-			}else if(item.getType()==ItemType.MATERIAL) 
-			{
-				Material sameMaterial=(Material) sameItem;
+
+			} else if (item.getType() == ItemType.MATERIAL) {
+				Material sameMaterial = (Material) sameItem;
 				sameMaterial.add((Material) item);
-			}else if(item.getType()==ItemType.BLUEPRINT) 
-			{
-				Blueprint sameBlueprint=(Blueprint) sameItem;
+			} else if (item.getType() == ItemType.BLUEPRINT) {
+				Blueprint sameBlueprint = (Blueprint) sameItem;
 				sameBlueprint.add((Blueprint) item);
-			}else {
+			} else {
 				storage.add(item);
-				
+
 			}
 
 		} else {
 			storage.add(item);
-			
+
 		}
 	}
-	public boolean contains(Item item) 
-	{
-		for(int i=0;i<arsenal.length;i++) 
-		{
-			if(arsenal[i].equals(item)) 
-			{
+
+	public boolean contains(Item item) {
+		for (int i = 0; i < arsenal.length; i++) {
+			if (arsenal[i].equals(item)) {
 				return true;
 			}
 		}
-		for(int i=0;i<storage.size();i++) 
-		{
-			if(storage.get(i).equals(item)) 
-			{
+		for (int i = 0; i < storage.size(); i++) {
+			if (storage.get(i).equals(item)) {
 				return true;
-				
+
 			}
 		}
 		return false;
-		
-		
+
 	}
-	public ArrayList<Item> searchStorage(String searchTerm) 
-	{
-		searchTerm=searchTerm.toLowerCase();
-		ArrayList<Item> selection=new ArrayList<Item>();
-		for(int i=0;i<storage.size();i++) 
-		{
-			if(storage.get(i).getName().toLowerCase().contains(searchTerm)) 
-			{
+
+	public ArrayList<Item> searchStorage(String searchTerm) {
+		searchTerm = searchTerm.toLowerCase();
+		ArrayList<Item> selection = new ArrayList<Item>();
+		for (int i = 0; i < storage.size(); i++) {
+			if (storage.get(i).getName().toLowerCase().contains(searchTerm)) {
 				selection.add(storage.get(i));
 			}
 		}
 		return selection;
 	}
-	public ArrayList<Item> searchStorage(ItemType type) 
-	{
-		
-		ArrayList<Item> selection=new ArrayList<Item>();
-		
-		for(int i=0;i<storage.size();i++) 
-		{
-			if(storage.get(i).getType()==type||(type==ItemType.ARMOR&&(storage.get(i).getType()==ItemType.BOOTS||storage.get(i).getType()==ItemType.CHESTPLATE||storage.get(i).getType()==ItemType.LEGGINGS||storage.get(i).getType()==ItemType.HELMET))) 
-			{
+
+	public ArrayList<Item> searchStorage(ItemType type) {
+
+		ArrayList<Item> selection = new ArrayList<Item>();
+
+		for (int i = 0; i < storage.size(); i++) {
+			if (storage.get(i).getType() == type || (type == ItemType.ARMOR
+					&& (storage.get(i).getType() == ItemType.BOOTS || storage.get(i).getType() == ItemType.CHESTPLATE
+							|| storage.get(i).getType() == ItemType.LEGGINGS
+							|| storage.get(i).getType() == ItemType.HELMET))) {
 				selection.add(storage.get(i));
 			}
 		}
 		return selection;
 	}
-	public Armor getHelemet() 
-	{
-		return (Armor)arsenal[0];
+
+	public Armor getHelemet() {
+		return (Armor) arsenal[0];
 	}
-	public Armor getChestplate() 
-	{
+
+	public Armor getChestplate() {
 		return (Armor) arsenal[1];
 	}
-	public Armor getLeggings() 
-	{
+
+	public Armor getLeggings() {
 		return (Armor) arsenal[2];
 	}
-	public Armor getBoots() 
-	{
+
+	public Armor getBoots() {
 		return (Armor) arsenal[3];
 	}
-	public int getEquipped() 
-	{
+
+	public int getEquipped() {
 		return equipped;
 	}
-	public void updateArsenal() 
-	{
-		for(int i=0;i<arsenal.length;i++) 
-		{
-			if(arsenal[i]!=null&&arsenal[i].getType()==ItemType.CONSUMABLE) 
-			{
-				if(((Consumable)arsenal[i]).getCount()<=0) 
-				{
-					arsenal[i]=null;
+
+	public void updateArsenal() {
+		for (int i = 0; i < arsenal.length; i++) {
+			if (arsenal[i] != null && arsenal[i].getType() == ItemType.CONSUMABLE) {
+				if (((Consumable) arsenal[i]).getCount() <= 0) {
+					arsenal[i] = null;
 				}
 			}
 		}
 	}
-	public void setEquipped(int equipped) 
-	{
+
+	public void setEquipped(int equipped) {
 		updateArsenal();
-		if(equipped>15||equipped<0) 
-		{
+		if (equipped > 15 || equipped < 0) {
 			throw new IllegalArgumentException("Out of arsenal bounds");
-			
-		}else 
-		{
-			this.equipped=equipped;
+
+		} else {
+			this.equipped = equipped;
 		}
 	}
-	public double getAttackSpeed() 
-	{
-		if(arsenal[equipped].getType()==ItemType.WEAPON) 
-		{
-			Weapon equippedWeapon=(Weapon)arsenal[equipped];
+
+	public double getAttackSpeed() {
+		if (arsenal[equipped].getType() == ItemType.WEAPON) {
+			Weapon equippedWeapon = (Weapon) arsenal[equipped];
 			return equippedWeapon.getAttackSpeed();
-		}else 
-		{
+		} else {
 			return 60;
-			
+
 		}
 	}
-	public double getArmor() 
-	{
-		return ((Armor)arsenal[0]).getArmor()+((Armor)arsenal[1]).getArmor()+((Armor)arsenal[2]).getArmor()+((Armor)arsenal[3]).getArmor();
+
+	public double getArmor() {
+		return ((Armor) arsenal[0]).getArmor() + ((Armor) arsenal[1]).getArmor() + ((Armor) arsenal[2]).getArmor()
+				+ ((Armor) arsenal[3]).getArmor();
 	}
-	public double getShields() 
-	{
-		return ((Armor)arsenal[0]).getShields()+((Armor)arsenal[1]).getShields()+((Armor)arsenal[2]).getShields()+((Armor)arsenal[3]).getShields();
+
+	public double getShields() {
+		return ((Armor) arsenal[0]).getShields() + ((Armor) arsenal[1]).getShields() + ((Armor) arsenal[2]).getShields()
+				+ ((Armor) arsenal[3]).getShields();
 	}
-	public double getHealth() 
-	{
-		return ((Armor)arsenal[0]).getHealth()+((Armor)arsenal[1]).getHealth()+((Armor)arsenal[2]).getHealth()+((Armor)arsenal[3]).getHealth();
+
+	public double getHealth() {
+		return ((Armor) arsenal[0]).getHealth() + ((Armor) arsenal[1]).getHealth() + ((Armor) arsenal[2]).getHealth()
+				+ ((Armor) arsenal[3]).getHealth();
 	}
 
 	@Override
@@ -341,6 +362,5 @@ public class Inventory {
 		return ("Inventory `~`arsenal=" + Arrays.toString(arsenal) + ",storage`~`" + storage + ",equipped`~`" + equipped
 				+ "]").replace(" ", "");
 	}
-	
 
 }

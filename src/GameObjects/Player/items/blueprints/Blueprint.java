@@ -1,6 +1,7 @@
 package GameObjects.Player.items.blueprints;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import GameObjects.Player.Inventory;
 import GameObjects.Player.items.Item;
@@ -127,17 +128,23 @@ public class Blueprint extends Item {
 		}
 
 	}
-	public String toString() 
-	{
-		String s="(Item:"+super.getName()+"/"+super.getType()+"/"+super.getTier()+"/"+count+"/`";
-		for(int i=0;i<components.length;i++) 
-		{
-			s+=components[i].toString().substring(1);
-		}
-		s+="`~"+product.toString().substring(1)+"~";
-		
-		
-		return s;
+//	public String toString() 
+//	{
+//		String s="(Item:"+super.getName()+"/"+super.getType()+"/"+super.getTier()+"/"+count+"/`";
+//		for(int i=0;i<components.length;i++) 
+//		{
+//			s+=components[i].toString().substring(1);
+//		}
+//		s+="`~"+product.toString().substring(1)+"~";
+//		
+//		
+//		return s;
+//	}
+
+	@Override
+	public String toString() {
+		return "(Item:"+super.getName()+"/"+super.getType()+"/"+super.getTier()+"/"+count+"/"+"[components=" + Arrays.toString(components).replace("Item:", "I:") + ", product=" + product.toString().replace("Item:", "I:") + ", count=" + count
+				+ "]";
 	}
 
 }

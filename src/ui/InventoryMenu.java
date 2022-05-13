@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/12/22
+//Rev: 01
+// Notes: Represents a menu that displays the inventory
 package ui;
 
 import java.util.ArrayList;
@@ -30,9 +34,10 @@ import input.MouseInputParser;
 import render.Tester;
 
 public class InventoryMenu implements MouseWheelListener,ActionListener {
-	Inventory inventory;
-	ArrayList<RenderableMenuItem> items;
-	RenderableMenuItem selectedItem;
+	//Fields
+	private Inventory inventory;
+	private ArrayList<RenderableMenuItem> items;
+	private RenderableMenuItem selectedItem;
 	private JPanel panel;
 	private Button all;
 	private Button consumables;
@@ -41,13 +46,8 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	private Button weapons;
 	private Button materials;
 	private boolean hidden=false;
-	public boolean isHidden() {
-		return hidden;
-	}
-	public void setHidden(boolean hidden) {
-		this.hidden = hidden;
-	}
-	String titleString="Inventory / All";
+	private String titleString="Inventory / All";
+	//Constructor
 	public InventoryMenu(Inventory inventory,JPanel panel) 
 	{
 		
@@ -118,6 +118,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		
 	}
 	@Override
+	//Translates the items when the mouse wheel is moved
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		if(!hidden) 
 		{
@@ -128,6 +129,15 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 
 	}
+	//returns if this menu is hidden
+	public boolean isHidden() {
+		return hidden;
+	}
+	//sets the hidden boolean
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
+	}
+	//Draws this menu
 	public void draw(Graphics2D g, int JPanelX,int JPanelY) 
 	{
 		if(!hidden) 
@@ -183,6 +193,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 
 
 	}
+	//Draws a gradient with bounds centered around the player mouse
 	private static BufferedImage createGradient(int JPanelX,int JPanelY) {
 	    int width = (int) Tester.WIDTH;
 	    int height = (int) Tester.HEIGHT;
@@ -205,6 +216,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 
 	    return img;
 	}
+	//Updates this menu
 	public void update() 
 	{
 		for(int i=0;i<items.size();i++) 
@@ -229,6 +241,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 			selectedItem=null;
 		}
 	}
+	//Only shows the specific item type
 	public void update(ItemType type) 
 	{
 		for(int i=0;i<items.size();i++) 
@@ -255,6 +268,7 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		}
 	}
 	@Override
+	//Listens to buttons to perform actions
 	public void actionPerformed(ActionEvent e) {
 		if(!hidden) 
 		{

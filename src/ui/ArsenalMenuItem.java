@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/12/22
+//Rev: 01
+// Notes: Represents an item that is drawn in the menu
 package ui;
 
 import java.awt.Color;
@@ -10,7 +14,6 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
-import GameObjects.Player.Inventory;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.armor.Armor;
@@ -21,21 +24,22 @@ import general.Constants;
 
 public class ArsenalMenuItem extends RenderableMenuItem {
 
-	private Inventory inventory;
-	
-	public ArsenalMenuItem(Item item, int x, int y, JPanel panel,Inventory inventory) {
+
+	//Constructor
+	public ArsenalMenuItem(Item item, int x, int y, JPanel panel) {
 		super(item, x, y, panel);
 		super.setShowDescription(false);
 		super.getButton().setOutlineColor(Color.WHITE);
 
 	}
-	public ArsenalMenuItem(int x, int y, JPanel panel,Inventory inventory) {
+	public ArsenalMenuItem(int x, int y, JPanel panel) {
 		super(x, y, panel);
 		super.setShowDescription(false);
 		super.getButton().setOutlineColor(Color.WHITE);
 		
 	}
 	@Override
+	//Draws this item
 	public void draw(Graphics2D g, int JPanelX,int JPanelY) 
 	{
 		super.draw(g, JPanelX, JPanelY);

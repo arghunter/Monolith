@@ -179,28 +179,34 @@ public class Button extends Component implements MouseListener {
         
 
     }
+    //Sets the hover Effects to on or off
     public void setHoverEffectsOn(boolean isOn) 
     {
     	this.hoverEffectsOn=isOn;
     }
+    //Gets hover effects
     public boolean isHoverEffectsOn() 
     {
     	return this.hoverEffectsOn;
     }
+    //auto Sizes the font 
     public void autoSizeFont() 
     {
     	this.fontSizeSet=false;
     	this.calibrationRequired=true;
     }
+    //sets the fontSize
     public void setFontSize(float size) 
     {
     	this.fontSizeSet=true;
     	this.fontSize=size;
     }
+    //Sets the outline color
     public void setOutlineColor(Color color) 
     {
     	this.outLineColor=color;
     }
+    //Calibrates the font color and position of the text
     private void calibrateText(Graphics2D g) 
     {
     	if(fontSizeSet) 
@@ -235,6 +241,7 @@ public class Button extends Component implements MouseListener {
     	
 
     }
+    //Translates this button
     public void translate(int x, int y) 
     {
     	polygon.translate(x, y);
@@ -244,14 +251,17 @@ public class Button extends Component implements MouseListener {
     	
 
     }
+    //Returns the text that this button displays
     public String getText() 
     {
     	return text;
     }
+    //Sets the text this button displays
     public void setText(String text) 
     {
     	this.text=text;
     }
+    //Sets the font color
     public void setFontColor(Color color) 
     {
     	this.fontColor=color;
@@ -300,20 +310,24 @@ public class Button extends Component implements MouseListener {
 		
     }
     @Override 
+    //Sets the font
     public void setFont(Font font) 
     {
     	this.font=font;
     	
     }
     @Override
+    //Returns the font
     public Font getFont() 
     {
     	return this.font.deriveFont(fontSize);
     }
+    //Returns the action listenrs in this object
     public ActionListener[] getActionListeners() 
     {
     	return actionListeners;
     }
+    //Adds an action listener to this object
     public void addActionListener(ActionListener listener) 
     {
     	ActionListener[] temp=new ActionListener[actionListeners.length+1];
