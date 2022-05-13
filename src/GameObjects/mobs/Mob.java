@@ -1,3 +1,7 @@
+//Author: Peter Ferolito 
+//Date: 5/12/22
+//Rev: 01
+//Notes: An implementation of a mbo
 package GameObjects.mobs;
 
 import java.awt.Graphics;
@@ -7,24 +11,26 @@ import GameObjects.Player.Player;
 import GameObjects.Direction;
 
 public abstract class Mob extends MovingObject {
+	//Fields
 	// speed, damage, health, armor, attackspeed, attack range
 	private int[] stats = new int[6];
 	private double lastAttack = System.currentTimeMillis();
-
+	//Constructors
 	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames) {
 		super(x, y, movementDelay, width, height, name, numFrames,stats[2]);
 		this.stats = stats;
 	}
-
+	//Sets this mobs stats
 	public void setStat(int statNum, int newValue) {
 		stats[statNum] = newValue;
 	}
-
+	//Sets all Stats
 	public void setAllStats(int[] stats) {
 		if (stats.length == 6) {
 			this.stats = stats;
 		}
 	}
+	//
 	public int getHealth() {
 		return health;
 	}

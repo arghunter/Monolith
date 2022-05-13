@@ -1,3 +1,7 @@
+//Author: Adithya Giri
+//Date: 5/11/22
+//Rev: 01
+//Notes: A working inventory that stores items for the Player
 package GameObjects.Player;
 
 import java.util.ArrayList;
@@ -17,15 +21,14 @@ import GameObjects.Player.items.weapons.Weapon;
 import skills.StatType;
 
 public class Inventory {
+	//Fiedls
 	private Item[] arsenal;// For all consumables weapons and armor gets emptied on death
 	private ArrayList<Item> storage;// For all blueprints materials and stuff that the player cannot access in the
 									// middle of a fight
-	private int equipped = 4;
+	private int equipped = 4;//Equipped item
 
-//	public Inventory(String saveData) {
-//
-//	}
 
+	//Default constuctor. Forms an inventory with some basic items
 	public Inventory(Player player) {
 		arsenal = new Item[16];
 		storage = new ArrayList<Item>();
@@ -36,7 +39,6 @@ public class Inventory {
 		arsenal[4] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
 
 		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
-
 
 		this.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
 
@@ -54,18 +56,15 @@ public class Inventory {
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
 		this.addToStorage(new Consumable("Baklava", 0, 50, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
-		this.addToStorage(new Blueprint("Baklava", 0, 10, it, new Consumable("Baklava", 0, 15, 64, new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())), this));
+		this.addToStorage(new Blueprint("Baklava", 0, 10, it, new Consumable("Baklava", 0, 15, 64,
+				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())), this));
 
 		equipped = 4;
 	}
-
+	//Constructor that uses save data TODO Work in progress
 	public Inventory(String saveData, Player player) {
 		String[] parts = saveData.split("`~`");
-//		System.out.println("Begindsjfoijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjaioudhfouasdhofhbeaiufkjdsaf,mdjslifahrjdaoiusl dso,doivdskcdsoiLSJDOISHdyelfkdsofhdfmzbdsjoivz csoidsroikdiugolkfsz");
-//		for(int i=0;i<parts.length;i++) 
-//		{
-//			System.out.println(parts[i]);
-//		}
+
 		System.out.println(parts[2]);
 		String[] items = (parts[1].substring(9, parts[1].length() - 8)).split("Item:");
 		for (int i = 0; i < items.length; i++) {
@@ -78,13 +77,12 @@ public class Inventory {
 
 		}
 	}
-
+	//Parses a string, and returns an item
 	public Item parseItem(String s, Player player) {
 		String[] parts = s.split("/");
-		if(s.contains("BLUEPRINT")) 
-		{
-			
-		}else if (s.contains("HELMET") || s.contains("CHESTPLATE") || s.contains("LEGGINGS") || s.contains("BOOTS")) {
+		if (s.contains("BLUEPRINT")) {
+
+		} else if (s.contains("HELMET") || s.contains("CHESTPLATE") || s.contains("LEGGINGS") || s.contains("BOOTS")) {
 
 			return new Armor(parts[0], Integer.parseInt(parts[2]), ItemType.valueOf(parts[1]),
 					Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]),
@@ -116,19 +114,19 @@ public class Inventory {
 		return null;
 
 	}
-
+	//Returns the arsenal
 	public Item[] getArsenal() {
 		return arsenal;
 	}
-
+	//Returns the storage
 	public ArrayList<Item> getStorage() {
 		return storage;
 	}
-
+	//Returns the equipped item
 	public Item getEquippedItem() {
 		return arsenal[equipped];
 	}
-
+	//Adds an item to the arsenal
 	public void addToArsenal(Item item) throws ArsenalFullException {
 		if (item.getType() == ItemType.WEAPON || item.getType() == ItemType.CONSUMABLE) {
 			for (int i = 4; i < arsenal.length; i++) {
@@ -145,7 +143,7 @@ public class Inventory {
 			addToArsenal((Armor) item);
 		}
 	}
-
+	//Removes an item from the arsenal
 	public int removeFromArsenal(Item item) {
 		for (int i = 0; i < arsenal.length; i++) {
 			// checks if the memory references are the same and are thus the same object;
@@ -159,15 +157,16 @@ public class Inventory {
 		return -1;
 	}
 
+	//Removes an item from the arsenal by index
 	public void removeFromArsenal(int arsenalIndex) {
 
 		arsenal[arsenalIndex] = null;
 	}
-
+	//Removes an item from storage
 	public void removeFromStorage(Item item) {
 		storage.remove(storage.indexOf(item));
 	}
-
+	//Adds an item to storage in the given positon
 	public boolean addToArsenal(Item item, int pos) {
 		if (item.getType() == ItemType.WEAPON || item.getType() == ItemType.CONSUMABLE) {
 
@@ -180,7 +179,7 @@ public class Inventory {
 		}
 		return false;
 	}
-
+	//Adds an armor item to its respective position in the arsenal
 	public void addToArsenal(Armor armor) {
 		int pos = -1;
 		if (armor.getType() == ItemType.HELMET) {
@@ -200,7 +199,7 @@ public class Inventory {
 
 		}
 	}
-
+	//Adds an item to the storage
 	public void addToStorage(Item item) {
 		if (item.getType() == ItemType.BLUEPRINT || item.getType() == ItemType.CONSUMABLE
 				|| item.getType() == ItemType.MATERIAL) {
@@ -249,7 +248,7 @@ public class Inventory {
 
 		}
 	}
-
+	//Checks if the inventory contains the same item as the passed in item
 	public boolean contains(Item item) {
 		for (int i = 0; i < arsenal.length; i++) {
 			if (arsenal[i].equals(item)) {
@@ -265,7 +264,7 @@ public class Inventory {
 		return false;
 
 	}
-
+	//Searches the storage for a specific item by string name
 	public ArrayList<Item> searchStorage(String searchTerm) {
 		searchTerm = searchTerm.toLowerCase();
 		ArrayList<Item> selection = new ArrayList<Item>();
@@ -276,7 +275,7 @@ public class Inventory {
 		}
 		return selection;
 	}
-
+	//Searchs the storage for a specific item by item type
 	public ArrayList<Item> searchStorage(ItemType type) {
 
 		ArrayList<Item> selection = new ArrayList<Item>();
@@ -292,26 +291,28 @@ public class Inventory {
 		return selection;
 	}
 
+	//Returns the helmet
 	public Armor getHelemet() {
 		return (Armor) arsenal[0];
 	}
-
+	//Returns the chestplate
 	public Armor getChestplate() {
 		return (Armor) arsenal[1];
 	}
 
+	//Returns the leggings
 	public Armor getLeggings() {
 		return (Armor) arsenal[2];
 	}
-
+	//Returns the boots
 	public Armor getBoots() {
 		return (Armor) arsenal[3];
 	}
-
+	//Returns the position of the equipped item
 	public int getEquipped() {
 		return equipped;
 	}
-
+	//Updates the arsenal
 	public void updateArsenal() {
 		for (int i = 0; i < arsenal.length; i++) {
 			if (arsenal[i] != null && arsenal[i].getType() == ItemType.CONSUMABLE) {
@@ -321,7 +322,7 @@ public class Inventory {
 			}
 		}
 	}
-
+	//Sets the equipped item
 	public void setEquipped(int equipped) {
 		updateArsenal();
 		if (equipped > 15 || equipped < 0) {
@@ -332,32 +333,24 @@ public class Inventory {
 		}
 	}
 
-	public double getAttackSpeed() {
-		if (arsenal[equipped].getType() == ItemType.WEAPON) {
-			Weapon equippedWeapon = (Weapon) arsenal[equipped];
-			return equippedWeapon.getAttackSpeed();
-		} else {
-			return 60;
-
-		}
-	}
-
+	//Returns total armor
 	public double getArmor() {
 		return ((Armor) arsenal[0]).getArmor() + ((Armor) arsenal[1]).getArmor() + ((Armor) arsenal[2]).getArmor()
 				+ ((Armor) arsenal[3]).getArmor();
 	}
-
+	//Returns total shields
 	public double getShields() {
 		return ((Armor) arsenal[0]).getShields() + ((Armor) arsenal[1]).getShields() + ((Armor) arsenal[2]).getShields()
 				+ ((Armor) arsenal[3]).getShields();
 	}
-
+	//Returns total health
 	public double getHealth() {
 		return ((Armor) arsenal[0]).getHealth() + ((Armor) arsenal[1]).getHealth() + ((Armor) arsenal[2]).getHealth()
 				+ ((Armor) arsenal[3]).getHealth();
 	}
 
 	@Override
+	//String parsin
 	public String toString() {
 		return ("Inventory `~`arsenal=" + Arrays.toString(arsenal) + ",storage`~`" + storage + ",equipped`~`" + equipped
 				+ "]").replace(" ", "");
