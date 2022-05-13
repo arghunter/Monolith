@@ -179,28 +179,34 @@ public class Button extends Component implements MouseListener {
         
 
     }
+    //Sets the hover Effects to on or off
     public void setHoverEffectsOn(boolean isOn) 
     {
     	this.hoverEffectsOn=isOn;
     }
+    //Gets hover effects
     public boolean isHoverEffectsOn() 
     {
     	return this.hoverEffectsOn;
     }
+    //auto Sizes the font 
     public void autoSizeFont() 
     {
     	this.fontSizeSet=false;
     	this.calibrationRequired=true;
     }
+    //sets the fontSize
     public void setFontSize(float size) 
     {
     	this.fontSizeSet=true;
     	this.fontSize=size;
     }
+    //Sets the outline color
     public void setOutlineColor(Color color) 
     {
     	this.outLineColor=color;
     }
+    //Calibrates the font color and position of the text
     private void calibrateText(Graphics2D g) 
     {
     	if(fontSizeSet) 
@@ -235,6 +241,7 @@ public class Button extends Component implements MouseListener {
     	
 
     }
+    //Translates this button
     public void translate(int x, int y) 
     {
     	polygon.translate(x, y);

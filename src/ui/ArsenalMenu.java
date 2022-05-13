@@ -1,5 +1,7 @@
 //Author: Armaan Gomes
-//
+//Date: 5/12/22
+//Rev: 01
+// Notes: Represents an arsenal menu
 package ui;
 
 import java.awt.Color;
@@ -31,6 +33,8 @@ import input.MouseInputParser;
 import render.Tester;
 
 public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMotionListener, MouseListener {
+	
+	//Fields
 	private Inventory inventory;
 	private ArsenalMenuItem[] arsenalItems = new ArsenalMenuItem[16];
 	private boolean hidden = false;
@@ -41,6 +45,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	private int mouseP1X;
 	private int mouseP1Y;
 
+	//Constructor
 	public ArsenalMenu(Inventory inventory, JPanel panel) {
 		panel.addMouseWheelListener(this);
 		this.panel = panel;
@@ -50,114 +55,114 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 		this.inventory = inventory;
 
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 532, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(541, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(541, 532, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 532, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(807, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(807, 532, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 798, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(807, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(807, 798, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 798, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(541, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(541, 798, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 266, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(275, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(275, 266, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 266, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(541, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(541, 266, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 266, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(807, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(807, 266, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 266, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(1073, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(1073, 266, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 532, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(1073, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(1073, 532, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 798, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(1073, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(1073, 798, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 1064, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(1073, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(1073, 1064, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 1064, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(807, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(807, 1064, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 1064, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(541, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(541, 1064, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 1064, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(275, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(275, 1064, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 798, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(275, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(275, 798, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 532, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(275, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(275, 532, panel);
 
 		}
 		for (int i = 0; i < arsenalItems.length; i++) {
@@ -181,15 +186,15 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 		}
 
 	}
-
+	//Retursn if this menu is hidden
 	public boolean isHidden() {
 		return hidden;
 	}
-
+	//Sets the is hidden boolean
 	public void setHidden(boolean hidden) {
 		this.hidden = hidden;
 	}
-
+	//Draws this arsenal menu
 	public void draw(Graphics2D g, int JPanelX, int JPanelY) {
 		if (!hidden) {
 			g.drawImage(createGradient(), 0, 0, null);
@@ -234,7 +239,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 		}
 
 	}
-
+	//Creates a nice looking gradient centered around the mouse
 	private static BufferedImage createGradient() {
 		int width = (int) Tester.WIDTH;
 		int height = (int) Tester.HEIGHT;
@@ -252,7 +257,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 
 		return img;
 	}
-
+	//Updates this menu
 	public void update() {
 		for (int i = 0; i < items.size(); i++) {
 			items.get(i).dispose();
@@ -263,114 +268,114 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 			arsenalItems[i].dispose();
 		}
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 532, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(541, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(541, 532, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 532, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(807, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(807, 532, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 798, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(807, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(807, 798, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 798, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(541, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(541, 798, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 266, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(275, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(275, 266, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 266, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(541, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(541, 266, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 266, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(807, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(807, 266, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 266, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(1073, 266, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(1073, 266, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 532, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(1073, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(1073, 532, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 798, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(1073, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(1073, 798, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 1073, 1064, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(1073, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(1073, 1064, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 807, 1064, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(807, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(807, 1064, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 541, 1064, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(541, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(541, 1064, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 1064, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(275, 1064, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(275, 1064, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 798, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(275, 798, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(275, 798, panel);
 
 		}
 		count++;
 		if (inventory.getArsenal()[count] != null) {
-			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(inventory.getArsenal()[count], 275, 532, panel);
 		} else {
-			arsenalItems[count] = new ArsenalMenuItem(275, 532, panel, inventory);
+			arsenalItems[count] = new ArsenalMenuItem(275, 532, panel);
 
 		}
 		for (int i = 0; i < arsenalItems.length; i++) {
@@ -399,6 +404,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	@Override
+	//Checks if the mouse Wheel has been moved
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		if (!hidden) {
 			for (int i = 0; i < items.size(); i++) {
@@ -409,6 +415,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	@Override
+	//Selected the clicked item
 	public void actionPerformed(ActionEvent e) {
 		if (!hidden) {
 
@@ -426,6 +433,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	@Override
+	//Translation for drag and drop
 	public void mouseDragged(MouseEvent e) {
 		if (dragItem != null) {
 			dragItem.translate((int) (MouseInputParser.getX() - mouseP1X), (int) (MouseInputParser.getY() - mouseP1Y));
@@ -447,6 +455,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	@Override
+	//Gets the selected item and preps for translation
 	public void mousePressed(MouseEvent e) {
 		mouseP1X = (int) MouseInputParser.getX();
 		mouseP1Y = (int) MouseInputParser.getY();
@@ -465,6 +474,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	@Override
+	//Drops the selected item in its respective position and updates the menu
 	public void mouseReleased(MouseEvent e) {
 		if (dragItem != null) {
 			if (dragItem.getClass() == ArsenalMenuItem.class && dragItem.getItem() != null) {
