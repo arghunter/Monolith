@@ -1,9 +1,8 @@
-/*
- * Authors: Adithya Giri
- * Revs: 01
- * Date: 5/10/22
- * Notes: A Meleewepon that takes a range, and can damage enemies
- */
+//Authors: Adithya Giri
+//Revs: 01
+//Date: 5/10/22
+//Notes: A Meleewepon that takes a range, and can damage enemies
+ 
 package GameObjects.Player.items.weapons;
 
 import java.awt.Graphics2D;
