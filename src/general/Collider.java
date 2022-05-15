@@ -1,3 +1,10 @@
+/*
+ * Author: Adithya Giri
+ * Revs: 01
+ * Date: 5/13/22
+ * Notes: A class that can check if the player collided with the walls, and prevents
+ * the player from moving if he is colliding.
+ */
 package general;
 
 import java.awt.Graphics2D;

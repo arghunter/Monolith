@@ -124,10 +124,12 @@ public class Tester extends JPanel implements ActionListener {
 		thePlayer.render(g);
 		
 		for (Mob m : mobList) {
-			if(!m.isDead()) {
+			if(m.isDead()) {
+				mobList.remove(m);
+			} else {
 				m.render(g);
+				m.update(thePlayer.getX(), thePlayer.getY());
 			}
-			m.update(thePlayer.getX(), thePlayer.getY());
 		}
 		if (skillSelectionMenu != null) {
 			skillSelectionMenu.render(g, getXOnScreen(), getYOnScreen());
@@ -142,7 +144,7 @@ public class Tester extends JPanel implements ActionListener {
 		ratioX = super.getWidth() / 2560.0;
 		ratioY = super.getHeight() / 1377.0;
 		input.setRatio(ratioX, ratioY);
-		thePlayer.addXP(1);
+		//thePlayer.addXP(1);
 		if (zombieButton.isClicked(e)) {
 			
 			mobList.add(new Balkrada((int) (Math.random() * 2560), (int) (Math.random() * 1377), 64, 64));

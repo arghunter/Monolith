@@ -65,6 +65,10 @@ public abstract class MovingObject extends GameObject {
 		this.y = y;
 
 	}
+	public void setWithoutPrev(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 	//Sets the movement delay high delay low speed
 	public void setMovementDelay(double movementDelay) {
 		this.movementDelay = movementDelay;
@@ -73,7 +77,7 @@ public abstract class MovingObject extends GameObject {
 	//Restores the previous position
 	public void restorePrevPosition() {
 		image.move(pastX-x,pastY-y);
-		this.setCoords(pastX, pastY);
+		this.setWithoutPrev(pastX, pastY);
 	}
 	// Returns the current x coordinate
 	public int getX() {
@@ -91,14 +95,6 @@ public abstract class MovingObject extends GameObject {
 	// Returns the current y coordinate
 	public int getY() {
 		return y;
-	}
-	//Returns the center X of this object
-	public int getCenterX() {
-		return x+(getWidth()/2);
-	}
-	//Returns the center Y of this object 
-	public int getCenterY() {
-		return y+(getHeight()/2);
 	}
 
 

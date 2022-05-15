@@ -79,21 +79,21 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 			}
 		}
 		t++;
-		if(thePlayer.getCenterX()>=op.getRoomSizeX()*32 && (curRoomX+1<op.getXSize())) {
+		if(thePlayer.getX()>=op.getRoomSizeX()*32 && (curRoomX+1<op.getXSize())) {
 			curRoomX++;
-			thePlayer.setCoordsMove(thePlayer.getCenterX()-32*(op.getRoomSizeX()-3), thePlayer.getCenterY());
+			thePlayer.setCoordsMove(thePlayer.getX()-32*(op.getRoomSizeX()-3), thePlayer.getY());
 			changeRoom();
-		}else if(thePlayer.getCenterX()<=0 && (curRoomX-1>=0)) {
+		}else if(thePlayer.getX()<=0 && (curRoomX-1>=0)) {
 			curRoomX--;
-			thePlayer.setCoordsMove(thePlayer.getCenterX()+32*(op.getRoomSizeX()-3), thePlayer.getCenterY());
+			thePlayer.setCoordsMove(thePlayer.getX()+32*(op.getRoomSizeX()-3), thePlayer.getY());
 			changeRoom();
-		}else if(thePlayer.getCenterY()>=op.getRoomSizeY()*32 && (curRoomY+1<op.getYSize())) {
+		}else if(thePlayer.getY()>=op.getRoomSizeY()*32 && (curRoomY+1<op.getYSize())) {
 			curRoomY++;
-			thePlayer.setCoordsMove(thePlayer.getCenterX(),thePlayer.getCenterY()-32*(op.getRoomSizeY()-3));
+			thePlayer.setCoordsMove(thePlayer.getX(),thePlayer.getY()-32*(op.getRoomSizeY()-3));
 			changeRoom();
-		}else if(thePlayer.getCenterY()<=0 && (curRoomY-1>=0)) {
+		}else if(thePlayer.getY()<=0 && (curRoomY-1>=0)) {
 			curRoomY--;
-			thePlayer.setCoordsMove(thePlayer.getCenterX(),thePlayer.getCenterY()+32*(op.getRoomSizeY()-3));
+			thePlayer.setCoordsMove(thePlayer.getX(),thePlayer.getY()+32*(op.getRoomSizeY()-3));
 			changeRoom();
 		}
 		if(!(mobList[curRoomY][curRoomX]==null)) {

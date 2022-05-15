@@ -43,8 +43,8 @@ public abstract class Mob extends MovingObject {
 		int curX = this.getX();
 		int curY = this.getY();
 
-		int diffX = curX - player.getCenterX();
-		int diffY = curY - player.getCenterY();
+		int diffX = curX - player.getX();
+		int diffY = curY - player.getY();
 
 		if ((diffX) * (diffX) + (diffY) * (diffY) < stats[5] * stats[5]) {
 			if (System.currentTimeMillis() - lastAttack > 60000.0 / stats[4]) {

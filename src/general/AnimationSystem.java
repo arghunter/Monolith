@@ -48,7 +48,12 @@ public class AnimationSystem {
 			pics[i].setRotation(radians, centerX, centerY);
 		}
 	}
-
+	public int getWidth() {
+		return pics[0].getWidth();
+	}
+	public int getHeight() {
+		return pics[0].getHeight();
+	}
 	// Draws the current frame of the animation
 	public void drawAnimation(Graphics2D g) {
 		if (System.currentTimeMillis() - this.lastFrame >= this.delay && numFrames > 1) {

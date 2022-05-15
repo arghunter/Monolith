@@ -5,6 +5,7 @@
  
 package GameObjects.Player.items.weapons;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,9 @@ public class MeleeWeapon extends Weapon {
 	//Draws this weapon 
 	public void drawWeapon(Player player, Graphics2D g) {
 		//System.out.println("hi");
-		g.fillArc(player.getCenterX(), player.getCenterY() , super.getRange(), super.getRange(), (int)((-player.getAngle()-sweepAngle/2)*Math.PI/180), (int)(sweepAngle * Math.PI/180));
+		g.setColor(new Color(255,0,0,50));
+		graphic = g;
+		g.fillArc((int)player.getX()-super.getRange()/2, (int)player.getY()-super.getRange()/2, super.getRange(), super.getRange(), (int)((-player.getAngle()-sweepAngle/2)*180/Math.PI), (int)(sweepAngle * 180/Math.PI));
 	}
 	//Distance calculations
 	private double euclidDist(int x1, int y1, int x2, int y2) {
@@ -39,26 +42,30 @@ public class MeleeWeapon extends Weapon {
 	//Primary fire of this weapon
 	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		for(Mob m : mobs) {
-			if(m!=null&&this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY()) < super.getRange()) {
-				double hyp = this.euclidDist(m.getCenterX(), m.getCenterY(), player.getCenterX(), player.getCenterY());
-				int xDist = Math.abs(player.getCenterX()-m.getCenterX());
-				int yDist = Math.abs(player.getCenterY()-m.getCenterY());
-				double sinAngle = Math.asin(yDist/hyp);
-				double xDiff=m.getCenterX()-player.getCenterX();
-				double yDiff=m.getCenterY()-player.getCenterY();
+			if(graphic!=null) {
+			}
+			if(m!=null&&this.euclidDist(m.getX(), m.getY(), player.getX(), player.getY()) < super.getRange()) {
+				double hyp = this.euclidDist(m.getX(), m.getY(), player.getX(), player.getY());
+				double xDiff=m.getX()-player.getX();
+				double yDiff=-(m.getY()-player.getY());
+				double sinAngle = Math.asin(yDiff/hyp);
 				double trueAngle = 0;
 				if(xDiff >= 0 && yDiff >= 0) {
 					trueAngle = sinAngle;
 				} else if (xDiff <= 0 && yDiff >= 0) {
 					trueAngle = Math.PI - sinAngle;
 				} else if (xDiff <= 0 && yDiff <= 0) {
-					trueAngle = Math.PI + sinAngle;
+					trueAngle = Math.PI + -sinAngle;
 				} else if(xDiff >= 0 && yDiff <= 0) {
-					trueAngle = sinAngle;
+					trueAngle = 2*Math.PI + sinAngle;
 				}
-				System.out.println("inside");
-				System.out.println(-player.getAngle() + " " + trueAngle);
-				if(trueAngle > (player.getAngle() - sweepAngle/2) && trueAngle < (player.getAngle()+sweepAngle/2)) {
+				double playerAngle = player.getAngle();
+				if(playerAngle < 0) {
+					playerAngle = 2*Math.PI - playerAngle;
+				}
+				playerAngle = playerAngle%(2*Math.PI);
+				System.out.println(playerAngle + " " + trueAngle + " " + sinAngle + " " + playerAngle);
+				if(trueAngle > (playerAngle - sweepAngle/2) && trueAngle < (playerAngle+sweepAngle/2)) {
 					System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					m.takeDamage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 				}
