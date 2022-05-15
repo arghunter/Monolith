@@ -74,13 +74,13 @@ public class Player extends MovingObject {
 	public Player(int x, int y, int id, int width, int height, ActionListener game, JPanel panel, String saveData) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
+		String[] splitData=saveData.split(":;:~~~:;:");
 
-		inventory = new Inventory("Inventory`~`arsenal=[(Item:Baklava/HELMET/0/10/25/25/NONE,(Item:Baklava/CHESTPLATE/0/15/25/50/NONE,(Item:Baklava/LEGGINGS/0/15/25/50/NONE,(Item:Baklava/BOOTS/0/10/25/25/NONE,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295],storage`~`[(Item:Baklava/0/WEAPON/0/0/0.0/2.0,(Item:Baklava/HELMET/0/0/0/0/EMERALD,(Item:Crystal/0/MATERIAL/100000.0,(Item:Baklava/CONSUMABLE/0/64/64/Buff[types=[HEALTH;~;REGEN];~;buffs=[1000;~;500];~;duration=10],(Item:Baklava/CONSUMABLE/0/64/64/Buff[types=[HEALTH;~;REGEN];~;buffs=[1000;~;500];~;duration=10],(Item:Baklava/CONSUMABLE/0/32/64/Buff[types=[HEALTH;~;REGEN];~;buffs=[1000;~;500];~;duration=10],(Item:Baklava/BLUEPRINT/0/10.0/[components-++[(I:Crystal;~;0;~;MATERIAL;~;100.0~;~(I:Baklava;~;BOOTS;~;0;~;10;~;25;~;25;~;NONE]product-++(I:Baklava;~~;CONSUMABLE;~~;0;~~;15;~~;64;~~;Buff[types=[HEALTH;~;REGEN];~;buffs=[1000;~;500];~;duration=10]count-++10.0]],equipped`~`4]\r\n"
-				+ "",this);
+		inventory = new Inventory(splitData[1],this);
 		stats[3] = (int) inventory.getHealth();
 		stats[1] = (int) inventory.getArmor();
 		stats[6] = (int) inventory.getShields();
-		skills = new SkillTree(saveData, stats, statTypes);
+		skills = new SkillTree(splitData[0], stats, statTypes);
 		health = stats[3];
 		currentShields = stats[6];
 		lastRegen = System.currentTimeMillis();
@@ -260,7 +260,7 @@ public class Player extends MovingObject {
 	// TODO to string part done
 	public String toString() {
 
-		return skills.toString();
+		return skills.toString()+":;:~~~:;:"+inventory.toString();
 	}
 
 	// Renders the currently held weapon
