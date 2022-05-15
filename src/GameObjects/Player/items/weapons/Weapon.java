@@ -21,6 +21,7 @@ public abstract class Weapon extends Item{
 	private int attackSpeed;//In attacks per minute
 	private double attackDelay;
 	private double currentAttackDelay;
+	private double lastAttack=0;
 	//Constructor
 	public Weapon(String name,int tier,int damage,int range, int attackSpeed) 
 	{
@@ -34,8 +35,7 @@ public abstract class Weapon extends Item{
 	}
 	//Abstract fire methods
 	public abstract void primaryFire(ArrayList<Mob> mobs,Player player);
-	public abstract void secondaryFire(ArrayList<Mob> mobs,Player player);
-	public abstract void tertiaryFire(ArrayList<Mob> mobs, Player player);
+
 	//Returns the damage
 	public int getDamage() {
 		return damage;
@@ -61,6 +61,15 @@ public abstract class Weapon extends Item{
 	//Sets the current attack delay
 	public void setCurrentAttackDelay(double currentAttackDelay) {
 		this.currentAttackDelay = currentAttackDelay;
+	}
+	public boolean canFire() 
+	{
+		boolean canFire=System.currentTimeMillis()-lastAttack>currentAttackDelay;
+		if(canFire) 
+		{
+			lastAttack=System.currentTimeMillis();
+		}
+		return canFire;
 	}
 	
 	

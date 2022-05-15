@@ -93,6 +93,7 @@ public class ImageSystem {
 		this.y+=y;
 	    transform.translate(x, y);
 	}
+	
 	//Sets the rotation of this image
 	public void setRotation(double radians) 
 	{
