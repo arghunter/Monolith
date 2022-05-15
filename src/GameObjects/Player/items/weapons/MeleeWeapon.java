@@ -46,39 +46,9 @@ public class MeleeWeapon extends Weapon {
 			if(graphic!=null) {
 			}
 			if(m!=null&&this.euclidDist(m.getX(), m.getY(), player.getX(), player.getY()) < super.getRange()) {
-				double hyp = this.euclidDist(m.getX(), m.getY(), player.getX(), player.getY());
-				double xDiff=m.getX()-player.getX();
-				double yDiff=m.getY()-player.getY();
-				double sinAngle = Math.asin(yDiff/hyp);
-				double trueAngle = 0;
-				if(xDiff<=0) {
-					trueAngle=Math.PI-sinAngle;
-				}else {
-					if(yDiff<0) {
-						trueAngle=sinAngle+2*Math.PI;
-					}else {
-						trueAngle=sinAngle;
-					}
-				}
-<<<<<<< Updated upstream
-				double playerAngle = player.getAngle();
-				playerAngle*=-1;
-				if(playerAngle < 0) {
-					playerAngle = 2*Math.PI + playerAngle;
-				}
-				playerAngle=2*Math.PI-playerAngle;
-				playerAngle = playerAngle%(2*Math.PI);
-				System.out.println(playerAngle + " " + trueAngle + " " + sinAngle + " " + playerAngle);
-				if((trueAngle > (playerAngle - sweepAngle/2) && trueAngle < (playerAngle+sweepAngle/2))
-						|| (trueAngle > (playerAngle - sweepAngle/2+2*Math.PI) && trueAngle < (playerAngle+sweepAngle/2+2*Math.PI))
-						|| (trueAngle > (playerAngle - sweepAngle/2-2*Math.PI) && trueAngle < (playerAngle+sweepAngle/2-2*Math.PI))) {
-					
-=======
 				double playerAngle = -player.getAngle();
 				Arc2D.Double attackArc = new Arc2D.Double((int)player.getX()-super.getRange(), (int)player.getY()-super.getRange(), super.getRange()*2, super.getRange()*2, (int)((-player.getAngle()-sweepAngle/2)*180/Math.PI), (int)(sweepAngle * 180/Math.PI),Arc2D.PIE);
-				System.out.println(playerAngle + " " + trueAngle + " " + sinAngle + " " + playerAngle);
 				if(attackArc.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
->>>>>>> Stashed changes
 					System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					m.takeDamage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 				}

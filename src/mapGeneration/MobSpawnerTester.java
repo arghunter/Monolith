@@ -157,12 +157,8 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 			}
 		}
 		thePlayer.render(graphic);
-<<<<<<< Updated upstream
-		collider.checkCollides(thePlayer.getRect(),graphic);
-=======
 		collider.checkCollides(thePlayer.getRect(),graphic,thePlayer);
 		graphic.fillRect(thePlayer.getX(),thePlayer.getY(),64,64);
->>>>>>> Stashed changes
 	}
 	
 	private void changeRoom() {
