@@ -47,17 +47,17 @@ public class MeleeWeapon extends Weapon {
 			if(m!=null&&this.euclidDist(m.getX(), m.getY(), player.getX(), player.getY()) < super.getRange()) {
 				double hyp = this.euclidDist(m.getX(), m.getY(), player.getX(), player.getY());
 				double xDiff=m.getX()-player.getX();
-				double yDiff=-(m.getY()-player.getY());
+				double yDiff=m.getY()-player.getY();
 				double sinAngle = Math.asin(yDiff/hyp);
 				double trueAngle = 0;
-				if(xDiff >= 0 && yDiff >= 0) {
-					trueAngle = sinAngle;
-				} else if (xDiff <= 0 && yDiff >= 0) {
-					trueAngle = Math.PI - sinAngle;
-				} else if (xDiff <= 0 && yDiff <= 0) {
-					trueAngle = Math.PI + -sinAngle;
-				} else if(xDiff >= 0 && yDiff <= 0) {
-					trueAngle = 2*Math.PI + sinAngle;
+				if(xDiff<=0) {
+					trueAngle=Math.PI-sinAngle;
+				}else {
+					if(yDiff<0) {
+						trueAngle=sinAngle+2*Math.PI;
+					}else {
+						trueAngle=sinAngle;
+					}
 				}
 				double playerAngle = player.getAngle();
 				if(playerAngle < 0) {
