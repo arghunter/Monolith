@@ -60,12 +60,14 @@ public class MeleeWeapon extends Weapon {
 					}
 				}
 				double playerAngle = player.getAngle();
+				playerAngle*=-1;
 				if(playerAngle < 0) {
 					playerAngle = 2*Math.PI + playerAngle;
 				}
+				playerAngle=2*Math.PI-playerAngle;
 				playerAngle = playerAngle%(2*Math.PI);
 				System.out.println(playerAngle + " " + trueAngle + " " + sinAngle + " " + playerAngle);
-				if(trueAngle > (playerAngle - sweepAngle/2) && trueAngle < (playerAngle+sweepAngle/2)) {
+				if((trueAngle > (playerAngle - sweepAngle/2) && trueAngle < (playerAngle+sweepAngle/2)) || (trueAngle > (playerAngle - sweepAngle/2+2*Math.PI) && trueAngle < (playerAngle+sweepAngle/2+2*Math.PI)) || (trueAngle > (playerAngle - sweepAngle/2-2*Math.PI) && trueAngle < (playerAngle+sweepAngle/2-2*Math.PI))) {
 					System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					m.takeDamage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 				}
