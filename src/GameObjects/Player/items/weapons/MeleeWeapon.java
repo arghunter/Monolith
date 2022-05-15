@@ -61,7 +61,7 @@ public class MeleeWeapon extends Weapon {
 				}
 				double playerAngle = player.getAngle();
 				if(playerAngle < 0) {
-					playerAngle = 2*Math.PI - playerAngle;
+					playerAngle = 2*Math.PI + playerAngle;
 				}
 				playerAngle = playerAngle%(2*Math.PI);
 				System.out.println(playerAngle + " " + trueAngle + " " + sinAngle + " " + playerAngle);
