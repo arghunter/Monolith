@@ -136,9 +136,9 @@ public class Blueprint extends Item {
 
 	@Override
 	public String toString() {
-		return "(Item:" + super.getName() + "/" + super.getType() + "/" + super.getTier() + "/" + count + "/"
-				+ "[components=" + Arrays.toString(components).replace("Item:", "I:") + ", product="
-				+ product.toString().replace("Item:", "I:") + ", count=" + count + "]";
+		return ("(Item:" + super.getName() + "/" + super.getType() + "/" + super.getTier() + "/" + count + "/"
+				+ "[components-++" + Arrays.toString(components).replace("Item:", "I:").replace("/", ";~;").replace(",","~;~") + "product-++"
+				+ product.toString().replace("Item:", "I:").replace("/", ";~~;") + "count-++" + count + "]");
 	}
 
 }

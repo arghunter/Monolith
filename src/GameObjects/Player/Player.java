@@ -51,7 +51,7 @@ public class Player extends MovingObject {
 	private ArrayList<Mob> mobs = new ArrayList<>();
 	private ActionListener game;
 
-	//Constructor
+	// Constructor
 	public Player(int x, int y, int width, int height, ActionListener game, JPanel panel) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
@@ -69,12 +69,14 @@ public class Player extends MovingObject {
 		this.game = game;
 
 	}
-	//Save data constructor
+
+	// Save data constructor
 	public Player(int x, int y, int id, int width, int height, ActionListener game, JPanel panel, String saveData) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
 
-		inventory = new Inventory(this);
+		inventory = new Inventory("Inventory`~`arsenal=[(Item:Baklava/HELMET/0/10/25/25/NONE,(Item:Baklava/CHESTPLATE/0/15/25/50/NONE,(Item:Baklava/LEGGINGS/0/15/25/50/NONE,(Item:Baklava/BOOTS/0/10/25/25/NONE,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295,(Item:RustySword/0/WEAPON/50/250/30.0/1.7453292519943295],storage`~`[(Item:Baklava/0/WEAPON/0/0/0.0/2.0,(Item:Baklava/HELMET/0/0/0/0/EMERALD,(Item:Crystal/0/MATERIAL/100000.0,(Item:Baklava/CONSUMABLE/0/64/64/Buff[types=[HEALTH;~;REGEN];~;buffs=[1000;~;500];~;duration=10],(Item:Baklava/CONSUMABLE/0/64/64/Buff[types=[HEALTH;~;REGEN];~;buffs=[1000;~;500];~;duration=10],(Item:Baklava/CONSUMABLE/0/32/64/Buff[types=[HEALTH;~;REGEN];~;buffs=[1000;~;500];~;duration=10],(Item:Baklava/BLUEPRINT/0/10.0/[components-++[(I:Crystal;~;0;~;MATERIAL;~;100.0~;~(I:Baklava;~;BOOTS;~;0;~;10;~;25;~;25;~;NONE]product-++(I:Baklava;~~;CONSUMABLE;~~;0;~~;15;~~;64;~~;Buff[types=[HEALTH;~;REGEN];~;buffs=[1000;~;500];~;duration=10]count-++10.0]],equipped`~`4]\r\n"
+				+ "",this);
 		stats[3] = (int) inventory.getHealth();
 		stats[1] = (int) inventory.getArmor();
 		stats[6] = (int) inventory.getShields();
@@ -105,7 +107,8 @@ public class Player extends MovingObject {
 		}
 
 	}
-	//Regens health and shields
+
+	// Regens health and shields
 	private void regen() {
 		if (!isDead) {
 			if (System.currentTimeMillis() - lastRegen >= 1000) {
@@ -130,19 +133,23 @@ public class Player extends MovingObject {
 		}
 
 	}
-	//Returns the skilltree
+
+	// Returns the skilltree
 	public SkillTree getSkills() {
 		return skills;
 	}
-	//Returns the buff array
+
+	// Returns the buff array
 	public int[] getBuffs() {
 		return buffs;
 	}
-	//Returns the stat types
+
+	// Returns the stat types
 	public StatType[] getStatTypes() {
 		return statTypes;
 	}
-	//Returns the weapon
+
+	// Returns the weapon
 	public Weapon getWeapon() {
 		Item i = inventory.getEquippedItem();
 		if (i instanceof Weapon) {
@@ -151,41 +158,49 @@ public class Player extends MovingObject {
 			return (Weapon) new MeleeWeapon("Stick", 1, 10, 100, 10, Math.PI / 4);
 		}
 	}
-	//Returns stats without buffs
+
+	// Returns stats without buffs
 	public int[] getStats() {
 		return stats;
 	}
-	//Returns current health
+
+	// Returns current health
 	public int getCurrentHealth() {
 		return health;
 	}
-	//Returns inventory
+
+	// Returns inventory
 	public Inventory getInventory() {
 		return inventory;
 	}
-	//Returns current shields
+
+	// Returns current shields
 	public int getCurrentShields() {
 		return currentShields;
 	}
-	//Returns isDead
+
+	// Returns isDead
 	public boolean isDead() {
 		return isDead;
 	}
-	//Returns current XP
+
+	// Returns current XP
 	public int getXP() {
 		return currentXP;
 	}
-	//Returns current level
+
+	// Returns current level
 	public int getLevel() {
 		return currentLevel;
 	}
-	//Updates the ui
+
+	// Updates the ui
 	public void updateUI() {
 		ui.update();
 	}
 
 	@Override
-	//Moves the player
+	// Moves the player
 	public void move(Direction direction) {
 		if (!isDead) {
 			super.move(direction);
@@ -193,13 +208,14 @@ public class Player extends MovingObject {
 	}
 
 	@Override
-	//Updates the player angle
+	// Updates the player angle
 	public void updateAngle(double pointX, double pointY) {
 		if (!isDead) {
 			super.updateAngle(pointX, pointY);
 		}
 	}
-	//Adds xp to the player and skilltree
+
+	// Adds xp to the player and skilltree
 	public void addXP(int xp) {
 		if (!isDead) {
 			skills.addXP(xp / 2);
@@ -214,7 +230,8 @@ public class Player extends MovingObject {
 		}
 
 	}
-	//Uses the currently held item
+
+	// Uses the currently held item
 	public void useItem(Graphics2D g) {
 		if (!isDead) {
 			Item item = inventory.getEquippedItem();
@@ -233,18 +250,20 @@ public class Player extends MovingObject {
 		}
 
 	}
-	//Sets the current mobs that are on screen
+
+	// Sets the current mobs that are on screen
 	public void setMobs(ArrayList<Mob> mobs) {
 		this.mobs = mobs;
 	}
 
 	@Override
-	//TODO to string part done
+	// TODO to string part done
 	public String toString() {
 
 		return skills.toString();
 	}
-	//Renders the currently held weapon
+
+	// Renders the currently held weapon
 	public void renderWeapon(Graphics2D g) {
 
 		this.getWeapon().drawWeapon(this, g);
@@ -256,8 +275,9 @@ public class Player extends MovingObject {
 	public void render(Graphics2D g) {
 		ui.draw(g);
 
-		// System.out.println(new Inventory(inventory.toString(),this));
-
+//		System.out.println("Here");
+		
+		
 		renderWeapon(g);
 
 		super.getImage().drawAnimation(g);

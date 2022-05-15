@@ -37,12 +37,12 @@ public class Inventory {
 		arsenal[2] = (new Armor("Baklava", 0, ItemType.LEGGINGS, 15, 25, 50, BattleSuitSet.NONE));
 		arsenal[3] = (new Armor("Baklava", 0, ItemType.BOOTS, 10, 25, 25, BattleSuitSet.NONE));
 		arsenal[4] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
-
+		
 		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
 
 		this.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
 
-		Item[] it = { new Material("Crystal", 0, 100) };
+		Item[] it = { new Material("Crystal", 0, 100),new Armor("Baklava", 0, ItemType.BOOTS, 10, 25, 25, BattleSuitSet.NONE) };
 		this.addToStorage(new Material("Crystal", 0, 100000));
 		StatType[] buffTypes = { StatType.HEALTH, StatType.REGEN };
 		int[] buffs = { 1000, 500 };
@@ -58,29 +58,75 @@ public class Inventory {
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
 		this.addToStorage(new Blueprint("Baklava", 0, 10, it, new Consumable("Baklava", 0, 15, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())), this));
+		arsenal[5] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+
+		arsenal[6] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[7] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[8] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[9] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[10] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[11] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[12] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[13] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[14] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[15] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+//		arsenal[] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		
 
 		equipped = 4;
 	}
 	//Constructor that uses save data TODO Work in progress
 	public Inventory(String saveData, Player player) {
+		arsenal = new Item[16];
+		storage = new ArrayList<Item>();
+		
 		String[] parts = saveData.split("`~`");
 
-		System.out.println(parts[2]);
-		String[] items = (parts[1].substring(9, parts[1].length() - 8)).split("Item:");
-		for (int i = 0; i < items.length; i++) {
-			if (items[i].contains(",")) {
-				parseItem(items[i].substring(0, items[i].indexOf(",")), player);
+//		System.out.println(Arrays.toString(parts));
+
+//		System.out.println(parts[2]);
+		String[] arsenalItems = (parts[1].substring(9, parts[1].length() - 8)).split("Item:");
+		for (int i = 1; i < arsenalItems.length; i++) {
+			if (arsenalItems[i].contains(",")) {
+				arsenal [i-1]=parseItem(arsenalItems[i].substring(0, arsenalItems[i].indexOf(",")), player);
 //				System.out.println(items[i].substring(0, items[i].indexOf(",")));
 			} else {
-
+				arsenal[i-1]=parseItem(arsenalItems[i].substring(0,arsenalItems[i].length()-1),player);
 			}
 
 		}
+		String [] storageItems=(parts[2].substring(1, parts[2].length()-10)).split("Item:");
+		for(int i=0;i<storageItems.length;i++) 
+		{
+			if(storageItems[i].contains(","))
+				storage.add(parseItem(storageItems[i].substring(0, storageItems[i].indexOf(",")),player));
+			else
+				storage.add(parseItem(storageItems[i],player));
+
+		}
+		equipped=Integer.parseInt(parts[3].replace("]",""));
 	}
 	//Parses a string, and returns an item
 	public Item parseItem(String s, Player player) {
 		String[] parts = s.split("/");
+//		System.out.println(Arrays.toString(parts));
+
 		if (s.contains("BLUEPRINT")) {
+			String[] sehments=parts[4].split("-++");
+			String [] comps=sehments[1].substring(sehments[1].indexOf("[")+1, sehments[1].indexOf("]")).split("~;~");
+//			System.out.println("Htertyftk"+Arrays.toString(sehments));
+//			System.out.println(Arrays.toString(parts));
+			Item[] components=new Item[comps.length];
+			for(int i=0;i<comps.length;i++) 
+			{
+				components[i]=parseItem((comps[i].substring(comps[i].indexOf(':')+1).replace(";~;", "/")),player);
+
+			}
+//			System.out.println("huheghwiygf"+sehments[2]);
+			String product=(sehments[2].substring(sehments[2].indexOf(":")+1,sehments[2].indexOf("count"))).replace(";~~;", "/");
+//			System.out.println(product);
+			Item resultItem= parseItem(product,player);
+			return new Blueprint(parts[0],Integer.parseInt(parts[2]),Double.parseDouble(parts[3]),components,resultItem,this);
 
 		} else if (s.contains("HELMET") || s.contains("CHESTPLATE") || s.contains("LEGGINGS") || s.contains("BOOTS")) {
 
@@ -88,10 +134,11 @@ public class Inventory {
 					Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]),
 					BattleSuitSet.valueOf(parts[6]));
 		} else if (s.contains("MATERIAL")) {
-			return new Material(parts[0], Integer.parseInt(parts[2]), Double.parseDouble(parts[3]));
+//			System.out.println(Arrays.toString(parts));
+			return new Material(parts[0], Integer.parseInt(parts[1]), Double.parseDouble(parts[3]));
 		} else if (s.contains("WEAPON")) {
 			return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[3]),
-					Integer.parseInt(parts[4]), (int) Double.parseDouble(parts[5]), Double.parseDouble(parts[6]));
+					Integer.parseInt(parts[4]), (int) Double.parseDouble(parts[5]), Double.parseDouble(parts[6].replace(",(","")));
 		} else if (s.contains("CONSUMABLE")) {
 			String[] buffParts = parts[5].split("=");
 			String[] buffTypes = (buffParts[1].substring(buffParts[1].indexOf('[') + 1, buffParts[1].lastIndexOf(']')))
