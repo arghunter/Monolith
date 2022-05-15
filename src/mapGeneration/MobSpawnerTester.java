@@ -56,7 +56,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		w.setVisible(true);
 		this.initInput(w);
 		this.frame = w;
-		thePlayer.addXP(10000);
+		thePlayer.addXP(1000000000);
 		System.out.println(thePlayer.getLevel());
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
@@ -102,11 +102,11 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 				for(int i=0;i<n.length;i++) {
 					System.out.print(n[i]+" ");
 					if(n[i]==0) {
-						mobList[curRoomY][curRoomX].add(new Zombie(100, 100, 64, 64));
+						mobList[curRoomY][curRoomX].add(new Zombie((int) (Math.random() * 1200), (int) (Math.random() * 1100), 64, 64));
 					}else if(n[i]==1) {
-						mobList[curRoomY][curRoomX].add(new Spider(200,200,64,64));
+						mobList[curRoomY][curRoomX].add(new Spider((int) (Math.random() * 1200), (int) (Math.random() * 1100), 64, 64));
 					}else if(n[i]==2) {
-						mobList[curRoomY][curRoomX].add(new Balkrada(300,300,64,64));
+						mobList[curRoomY][curRoomX].add(new Balkrada((int) (Math.random() * 1200), (int) (Math.random() * 1100), 64, 64));
 					}
 				}
 			}
@@ -157,6 +157,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		}
 		thePlayer.render(graphic);
 		collider.checkCollides(thePlayer.getRect(),graphic);
+		graphic.fillRect(thePlayer.getX(),thePlayer.getY(),64,64);
 	}
 	
 	private void changeRoom() {
