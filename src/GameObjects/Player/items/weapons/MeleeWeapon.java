@@ -7,6 +7,7 @@ package GameObjects.Player.items.weapons;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Arc2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -30,7 +31,7 @@ public class MeleeWeapon extends Weapon {
 		//System.out.println("hi");
 		g.setColor(new Color(255,0,0,50));
 		graphic = g;
-		g.fillArc((int)player.getX()-super.getRange()/2, (int)player.getY()-super.getRange()/2, super.getRange(), super.getRange(), (int)((-player.getAngle()-sweepAngle/2)*180/Math.PI), (int)(sweepAngle * 180/Math.PI));
+		g.fillArc((int)player.getX()-super.getRange(), (int)player.getY()-super.getRange(), super.getRange()*2, super.getRange()*2, (int)((-player.getAngle()-sweepAngle/2)*180/Math.PI), (int)(sweepAngle * 180/Math.PI));
 	}
 	//Distance calculations
 	private double euclidDist(int x1, int y1, int x2, int y2) {
@@ -59,6 +60,7 @@ public class MeleeWeapon extends Weapon {
 						trueAngle=sinAngle;
 					}
 				}
+<<<<<<< Updated upstream
 				double playerAngle = player.getAngle();
 				playerAngle*=-1;
 				if(playerAngle < 0) {
@@ -71,6 +73,12 @@ public class MeleeWeapon extends Weapon {
 						|| (trueAngle > (playerAngle - sweepAngle/2+2*Math.PI) && trueAngle < (playerAngle+sweepAngle/2+2*Math.PI))
 						|| (trueAngle > (playerAngle - sweepAngle/2-2*Math.PI) && trueAngle < (playerAngle+sweepAngle/2-2*Math.PI))) {
 					
+=======
+				double playerAngle = -player.getAngle();
+				Arc2D.Double attackArc = new Arc2D.Double((int)player.getX()-super.getRange(), (int)player.getY()-super.getRange(), super.getRange()*2, super.getRange()*2, (int)((-player.getAngle()-sweepAngle/2)*180/Math.PI), (int)(sweepAngle * 180/Math.PI),Arc2D.PIE);
+				System.out.println(playerAngle + " " + trueAngle + " " + sinAngle + " " + playerAngle);
+				if(attackArc.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
+>>>>>>> Stashed changes
 					System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					m.takeDamage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 				}

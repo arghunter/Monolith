@@ -101,7 +101,7 @@ public class MapGeneratorTester extends JPanel implements ActionListener {
 		
 		input.updatePlayer(thePlayer);
 		curRoom=op.getRoom(curRoomX, curRoomY);
-		Collider collider = new Collider(curRoom,thePlayer);
+		Collider collider = new Collider(curRoom);
 		if(!(curRoom==null)) {
 			for(int i=0;i<op.getRoomSizeY();i++) {
 				for(int j=0;j<op.getRoomSizeX();j++) {

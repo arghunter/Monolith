@@ -87,7 +87,7 @@ public class Adventure implements ActionListener {
 		input.setGraphics(g);
 		input.updatePlayer(thePlayer);
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
-		Collider collider = new Collider(curRoom,thePlayer);
+		Collider collider = new Collider(curRoom);
 		if(!(curRoom==null)) {
 			for(int i=0;i<mapGenerator.getRoomSizeY();i++) {
 				for(int j=0;j<mapGenerator.getRoomSizeX();j++) {

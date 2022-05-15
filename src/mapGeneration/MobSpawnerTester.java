@@ -135,7 +135,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		input.setGraphics(graphic);
 		input.updatePlayer(thePlayer);
 		curRoom=op.getRoom(curRoomX, curRoomY);
-		Collider collider = new Collider(curRoom,thePlayer);
+		Collider collider = new Collider(curRoom);
 		if(!(curRoom==null)) {
 			for(int i=0;i<op.getRoomSizeY();i++) {
 				for(int j=0;j<op.getRoomSizeX();j++) {
@@ -153,10 +153,16 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 			if(!(curRoom==null)) {
 				mobList[curRoomY][curRoomX].get(i).render(graphic);
 				mobList[curRoomY][curRoomX].get(i).update(thePlayer.getX(), thePlayer.getY());
+				collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),graphic,mobList[curRoomY][curRoomX].get(i));
 			}
 		}
 		thePlayer.render(graphic);
+<<<<<<< Updated upstream
 		collider.checkCollides(thePlayer.getRect(),graphic);
+=======
+		collider.checkCollides(thePlayer.getRect(),graphic,thePlayer);
+		graphic.fillRect(thePlayer.getX(),thePlayer.getY(),64,64);
+>>>>>>> Stashed changes
 	}
 	
 	private void changeRoom() {
