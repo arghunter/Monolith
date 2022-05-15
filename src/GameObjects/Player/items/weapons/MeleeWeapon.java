@@ -36,8 +36,20 @@ public class MeleeWeapon extends Weapon {
 	public void drawWeapon(Player player, Graphics2D g) {
 		//System.out.println("hi");
 		g.setColor(new Color(255,0,0,50));
-		img.move((int)(player.getX()-(img.getX())+64*Math.cos(player.getAngle())), (int)(player.getY()-(img.getY()-64*Math.sin(player.getAngle()))));
-		img.setRotation(player.getAngle());
+		double angle=player.getAngle()-sweepAngle/2+sweepAngle*(2*(System.currentTimeMillis()-super.getLastAttack()))/super.getCurrentAttackDelay();
+		if((System.currentTimeMillis()-super.getLastAttack())/super.getCurrentAttackDelay()>0.5)
+
+		{
+			
+			angle=player.getAngle()+sweepAngle-(sweepAngle*(2*((System.currentTimeMillis()-super.getLastAttack()))/super.getCurrentAttackDelay())-0.5);
+		}
+		if(System.currentTimeMillis()-super.getLastAttack()>super.getCurrentAttackDelay()||angle<player.getAngle()-sweepAngle/2) 
+		{
+			angle=player.getAngle()-sweepAngle/2;
+		}
+
+		img.move((int)(player.getX()-(img.getX())+64*Math.cos(angle)), (int)(player.getY()-(img.getY()-64*Math.sin(angle))));
+		img.setRotation(angle);
 		
 		graphic = g;
 		
