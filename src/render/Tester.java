@@ -1,6 +1,6 @@
 package render;
 
-import java.awt.*;  
+import java.awt.*;   
 
 import java.awt.event.*;
 import java.io.FileNotFoundException;
@@ -87,11 +87,7 @@ public class Tester extends JPanel implements ActionListener {
 
 	}
 
-	public void buttonSize(Button button) {
-		button.setBounds(button.getX(), button.getY(), (int) button.getPreferredSize().getWidth(),
-				(int) button.getPreferredSize().getHeight());
 
-	}
 
 	public int getXOnScreen() {
 		return (int) this.getLocationOnScreen().getX();

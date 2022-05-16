@@ -34,8 +34,7 @@ import general.Collider;
 import general.Constants;
 
 public class Adventure implements ActionListener {
-	private Player thePlayer;
-	private PlayerInputParser input;
+	private Player player;
 
 	private JFrame frame;
 	private Timer clock=new Timer(10, this);
@@ -64,18 +63,14 @@ public class Adventure implements ActionListener {
 	//Whether the game is paused and mobs move
 	private boolean paused=false;
 	
-	private JPanel panel;	
 	
 	
-	public Adventure(Player player,JPanel panel) {
-		thePlayer=player;
-		this.panel=panel;
+	public Adventure(Player player) {
+		this.player=player;
+	
 	}
 	
-	public Adventure() 
-	{
-//		thePlayer=new Player(300, 300, 1, 64, 64,this);
-	}
+
 	
 	public void actionPerformed(ActionEvent e) {
 		
@@ -84,8 +79,7 @@ public class Adventure implements ActionListener {
 	
 	
 	public void draw(Graphics2D g) {
-		input.setGraphics(g);
-		input.updatePlayer(thePlayer);
+
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 		Collider collider = new Collider(curRoom);
 		if(!(curRoom==null)) {
@@ -104,12 +98,12 @@ public class Adventure implements ActionListener {
 		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 			if(!(curRoom==null)) {
 				mobList[curRoomY][curRoomX].get(i).render(g);
-				mobList[curRoomY][curRoomX].get(i).update(thePlayer.getX(), thePlayer.getY());
+				mobList[curRoomY][curRoomX].get(i).update(player.getX(), player.getY());
 			}
 		}
-		thePlayer.render(g);
+
 		
-		collider.checkCollides(thePlayer.getRect(),g);
+		collider.checkCollides(player.getRect(),player);
 	}
 	
 	

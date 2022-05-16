@@ -95,6 +95,7 @@ public class MainMenu implements ActionListener {
 	}
 	//Draws this menu
 	public void draw(Graphics2D g, int JPanelX, int JPanelY) {
+		
 		if(input.isEscapePressed()) 
 		{
 			player.updateUI();
@@ -183,6 +184,17 @@ public class MainMenu implements ActionListener {
 							arsenalMenu.setHidden(true);
 							skillMenu.setActive(true);
 							break;
+						}
+					}
+				}
+				for(int i=0;i<gameModeButtons.length;i++) 
+				{
+					if(b==gameModeButtons[i]) 
+					{
+						switch(i) 
+						{
+						case 0:
+							
 						}
 					}
 				}
