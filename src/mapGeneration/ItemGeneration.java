@@ -5,12 +5,14 @@
 package mapGeneration;
 
 import GameObjects.Player.items.*;
+import GameObjects.mobs.Mob;
+
 import java.util.Random;
 
 public class ItemGeneration {
-	int[] typeProbs = {40,20,20,20};
+	static int[] typeProbs = {40,20,20,20};
 	//Material, weapon, armor, consumables
-	int[][] tierProbs = {{35,25,15,10,5,3,2,2,1,1,1}, //0-3
+	static int[][] tierProbs = {{35,25,15,10,5,3,2,2,1,1,1}, //0-3
 			           {30,30,15,10,5,3,2,2,1,1,1},   //4-7
 			           {25,30,20,10,5,3,2,2,1,1,1},   //8-11
 			           {15,35,20,12,6,4,2,2,1,1,2},   //12-15
@@ -24,21 +26,18 @@ public class ItemGeneration {
 	
 	Random randNums=new Random(0);
 	
-	public ItemGeneration() {
-		
-	}
+
 	
 	public void getItem(int playerLevel) {
 		//return createItem(playerLevel*=2);
 	}
 	
-	public void getItem(int playerLevel,int mobLevel) {
-		//return createItem(playerLevel+mobLevel);
-	}
-	
-	public void createItem(int level) {
+	public static Item getItem(int playerLevel,int mobLevel) {
+		return null;
 		
 	}
+	
+
 	
 	
 }
