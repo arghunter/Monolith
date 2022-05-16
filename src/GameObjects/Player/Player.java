@@ -293,9 +293,7 @@ public class Player extends MovingObject {
 		super.setMovementDelay(stats[7] + buffs[7]);
 
 	}
-	public int getCurrentLevel() {
-		return currentLevel;
-	}
+
 
 
 
