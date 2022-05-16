@@ -34,7 +34,7 @@ public class Main extends JPanel implements ActionListener {
 		w.setResizable(true);
 		
 		initInput(w,this);
-		manager=new PlayerManager();
+		manager=new PlayerManager(this);
 		try {
 			save = new SaveSystem(manager,this);
 		} catch (Exception e) {
