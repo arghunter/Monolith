@@ -4,7 +4,7 @@
 // Notes: Represents a main menu
 package ui;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.FontMetrics;
@@ -23,9 +23,11 @@ import javax.swing.JPanel;
 
 import GameObjects.Player.Player;
 import general.Constants;
+
 import input.MouseInputParser;
 import input.PlayerInputParser;
-import render.Tester;
+import render.Adventure;
+import render.Main;
 
 public class MainMenu implements ActionListener {
 	//Fields
@@ -37,6 +39,7 @@ public class MainMenu implements ActionListener {
 	InventoryMenu inventoryMenu;
 	ArsenalMenu arsenalMenu;
 	SkillDisplayMenu skillMenu;
+	Adventure adventure;
 	private boolean hidden = false;
 	private PlayerInputParser input;
 	//Constructor
@@ -148,12 +151,16 @@ public class MainMenu implements ActionListener {
 		{
 			escape.draw(g, JPanelX, JPanelY);
 		}
+		if(adventure!=null) 
+		{
+			adventure.draw(g);
+		}
 
 	}
 	//Fancy gradient creation
 	private static BufferedImage createGradient(int JPanelX, int JPanelY) {
-		int width = (int) Tester.WIDTH;
-		int height = (int) Tester.HEIGHT;
+		int width = (int) Main.WIDTH;
+		int height = (int) Main.HEIGHT;
 
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = img.createGraphics();
@@ -210,6 +217,11 @@ public class MainMenu implements ActionListener {
 						switch(i) 
 						{
 						case 0:
+							adventure=new Adventure(player);
+							inventoryMenu.setHidden(true);
+							this.hidden=true;
+							arsenalMenu.setHidden(true);
+							skillMenu.setActive(false);
 							
 						}
 					}
