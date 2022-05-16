@@ -72,7 +72,6 @@ public class Inventory {
 		arsenal[13] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
 		arsenal[14] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
 		arsenal[15] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
-//		arsenal[] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
 		
 
 		equipped = 4;

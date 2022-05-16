@@ -82,6 +82,9 @@ public class Player extends MovingObject {
 		String[] splitData=saveData.split(":;:~~~:;:");
 
 		inventory = new Inventory(splitData[1],this);
+		currentLevel=Integer.parseInt(splitData[2]);
+		currentXP=Integer.parseInt(splitData[3]);
+		this.xpToNextLevel=Integer.parseInt(splitData[4]);
 		stats[3] = (int) inventory.getHealth();
 		stats[1] = (int) inventory.getArmor();
 		stats[6] = (int) inventory.getShields();
@@ -265,7 +268,7 @@ public class Player extends MovingObject {
 	// TODO to string part done
 	public String toString() {
 
-		return skills.toString()+":;:~~~:;:"+inventory.toString();
+		return skills.toString()+":;:~~~:;:"+inventory.toString()+":;:~~~:;:"+currentLevel+":;:~~~:;:"+currentXP+":;:~~~:;:"+xpToNextLevel;
 	}
 
 	// Renders the currently held weapon
