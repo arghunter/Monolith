@@ -56,12 +56,18 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 		this.panel=panel;
 		panel.addMouseWheelListener(this);
 		items= new ArrayList<RenderableMenuItem>();
+		int shift=0;
 		for(int i=0;i<inventory.getStorage().size();i++) 
 		{
-			System.out.println(inventory.getStorage().get(i));
-			if(inventory.getStorage().get(i)!=null)
-				items.add(new RenderableMenuItem(inventory.getStorage().get(i),266*(i%6)+275,((i/6)+1)*266,panel));
-			items.get(i).addActionListener(this);
+			if(inventory.getStorage().get(i)!=null) 
+			{
+				items.add(new RenderableMenuItem(inventory.getStorage().get(i),266*((i+shift)%6)+275,(((i+shift)/6)+1)*266,panel));
+				items.get(i+shift).addActionListener(this);
+			}else 
+			{
+				shift--;
+			}
+
 			
 		}
 		Point[] points= {new Point(0,266),new Point(260,266),new Point(260,316),new Point(0,316)};

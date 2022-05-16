@@ -77,21 +77,18 @@ public class Inventory {
 
 		equipped = 4;
 	}
-	//Constructor that uses save data TODO Work in progress
+	//Constructor that uses save data 
 	public Inventory(String saveData, Player player) {
 		arsenal = new Item[16];
 		storage = new ArrayList<Item>();
 		
 		String[] parts = saveData.split("`~`");
 
-//		System.out.println(Arrays.toString(parts));
 
-//		System.out.println(parts[2]);
 		String[] arsenalItems = (parts[1].substring(9, parts[1].length() - 8)).split("Item:");
 		for (int i = 1; i < arsenalItems.length; i++) {
 			if (arsenalItems[i].contains(",")) {
 				arsenal [i-1]=parseItem(arsenalItems[i].substring(0, arsenalItems[i].indexOf(",")), player);
-//				System.out.println(items[i].substring(0, items[i].indexOf(",")));
 			} else {
 				arsenal[i-1]=parseItem(arsenalItems[i].substring(0,arsenalItems[i].length()-1),player);
 			}
@@ -111,22 +108,17 @@ public class Inventory {
 	//Parses a string, and returns an item
 	public Item parseItem(String s, Player player) {
 		String[] parts = s.split("/");
-//		System.out.println(Arrays.toString(parts));
 
 		if (s.contains("BLUEPRINT")) {
 			String[] sehments=parts[4].split("-++");
 			String [] comps=sehments[1].substring(sehments[1].indexOf("[")+1, sehments[1].indexOf("]")).split("~;~");
-//			System.out.println("Htertyftk"+Arrays.toString(sehments));
-//			System.out.println(Arrays.toString(parts));
 			Item[] components=new Item[comps.length];
 			for(int i=0;i<comps.length;i++) 
 			{
 				components[i]=parseItem((comps[i].substring(comps[i].indexOf(':')+1).replace(";~;", "/")),player);
 
 			}
-//			System.out.println("huheghwiygf"+sehments[2]);
 			String product=(sehments[2].substring(sehments[2].indexOf(":")+1,sehments[2].indexOf("count"))).replace(";~~;", "/");
-//			System.out.println(product);
 			Item resultItem= parseItem(product,player);
 			return new Blueprint(parts[0],Integer.parseInt(parts[2]),Double.parseDouble(parts[3]),components,resultItem,this);
 
@@ -136,7 +128,6 @@ public class Inventory {
 					Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]),
 					BattleSuitSet.valueOf(parts[6]));
 		} else if (s.contains("MATERIAL")) {
-//			System.out.println(Arrays.toString(parts));
 			return new Material(parts[0], Integer.parseInt(parts[1]), Double.parseDouble(parts[3]));
 		} else if (s.contains("WEAPON")) {
 			return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[3]),

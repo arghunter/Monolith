@@ -48,7 +48,7 @@ public abstract class Mob extends MovingObject {
 
 		if ((diffX) * (diffX) + (diffY) * (diffY) < stats[5] * stats[5]) {
 			if (System.currentTimeMillis() - lastAttack > 60000.0 / stats[4]) {
-				//player.takeDamage(stats[1]);
+				player.takeDamage(stats[1]);
 				lastAttack=System.currentTimeMillis();
 			}
 
@@ -81,7 +81,7 @@ public abstract class Mob extends MovingObject {
 				}
 			}
 			if (diffX * diffX + diffY * diffY >= (stats[5] * stats[5])) {
-				//this.move(toMove);
+				this.move(toMove);
 			}
 		}
 		return 0;

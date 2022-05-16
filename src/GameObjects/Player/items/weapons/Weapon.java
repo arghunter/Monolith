@@ -71,6 +71,9 @@ public abstract class Weapon extends Item{
 		}
 		return canFire;
 	}
+	public double getLastAttack() {
+		return lastAttack;
+	}
 	
 	
 	

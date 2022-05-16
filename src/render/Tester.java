@@ -1,6 +1,6 @@
 package render;
 
-import java.awt.*;  
+import java.awt.*;   
 
 import java.awt.event.*;
 import java.io.FileNotFoundException;
@@ -87,11 +87,7 @@ public class Tester extends JPanel implements ActionListener {
 
 	}
 
-	public void buttonSize(Button button) {
-		button.setBounds(button.getX(), button.getY(), (int) button.getPreferredSize().getWidth(),
-				(int) button.getPreferredSize().getHeight());
 
-	}
 
 	public int getXOnScreen() {
 		return (int) this.getLocationOnScreen().getX();
@@ -144,7 +140,7 @@ public class Tester extends JPanel implements ActionListener {
 		ratioX = super.getWidth() / 2560.0;
 		ratioY = super.getHeight() / 1377.0;
 		input.setRatio(ratioX, ratioY);
-		thePlayer.addXP(10);
+		thePlayer.addXP(0);
 		if (zombieButton.isClicked(e)) {
 			
 			mobList.add(new Balkrada((int) (Math.random() * 2560), (int) (Math.random() * 1377), 64, 64));
