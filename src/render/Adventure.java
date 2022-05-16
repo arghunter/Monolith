@@ -70,8 +70,16 @@ public class Adventure {
 	
 	
 	public Adventure(Player player) {
+		Main.status=GameStatus.RUNNING;
 		this.player=player;
-	
+		for(int i=0;i<Constants.YSIZE;i++) {
+			for(int j=0;j<Constants.XSIZE;j++) {
+				timeSinceLastSpawn[i][j]=-5000;
+				mobList[i][j]=new ArrayList<Mob>();
+			}
+		}
+		player.setMobs(mobList[curRoomY][curRoomX]);
+		
 	}
 	
 
@@ -135,7 +143,7 @@ public class Adventure {
 	}
 	
 	private void resetMobSpawnTime() {
-		
+		timeSinceLastSpawn[curRoomY][curRoomX]=t;
 	}
 
 	
@@ -179,6 +187,7 @@ public class Adventure {
 					mobList[curRoomY][curRoomX].get(i).render(g);
 				}
 			}
+			player.render(g);
 			collider.checkCollides(player.getRect(),player);
 		}
 	}
