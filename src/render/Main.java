@@ -52,10 +52,6 @@ public class Main extends JPanel implements ActionListener {
 		
 	}
 	
-	public static void main(String args[]) {
-		Main theGame = new Main();
-	}
-	
 	public void paintComponent(Graphics graphic) {
 		Graphics2D g=(Graphics2D)graphic;
 		super.paintComponent(g);
@@ -87,5 +83,7 @@ public class Main extends JPanel implements ActionListener {
 		
 	}
 
-
+	public static void main(String args[]) {
+		Main theGame = new Main();
+	}
 }
