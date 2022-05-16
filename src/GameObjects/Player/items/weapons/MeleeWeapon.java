@@ -34,16 +34,19 @@ public class MeleeWeapon extends Weapon {
 	@Override
 	//Draws this weapon 
 	public void drawWeapon(Player player, Graphics2D g) {
-		//System.out.println("hi");
 		g.setColor(new Color(255,0,0,50));
-		double angle=player.getAngle()-sweepAngle/2+sweepAngle*(2*(System.currentTimeMillis()-super.getLastAttack()))/super.getCurrentAttackDelay();
-		if((System.currentTimeMillis()-super.getLastAttack())/super.getCurrentAttackDelay()>0.5)
+		double angle=player.getAngle()-sweepAngle/2+sweepAngle*(9*(System.currentTimeMillis()-super.getLastAttack()))/super.getCurrentAttackDelay();
+		if((System.currentTimeMillis()-super.getLastAttack())/super.getCurrentAttackDelay()>0.1)
 
 		{
 			
-			angle=player.getAngle()+sweepAngle-(sweepAngle*(2*((System.currentTimeMillis()-super.getLastAttack()))/super.getCurrentAttackDelay())-0.5);
+			angle=player.getAngle()+sweepAngle-(2*sweepAngle*(((System.currentTimeMillis()-super.getLastAttack()))/super.getCurrentAttackDelay()));
 		}
-		if(System.currentTimeMillis()-super.getLastAttack()>super.getCurrentAttackDelay()||angle<player.getAngle()-sweepAngle/2) 
+		if(angle>player.getAngle()+sweepAngle/2) 
+		{
+			angle=player.getAngle()+sweepAngle/2;
+		}
+		if(angle<player.getAngle()-sweepAngle/2) 
 		{
 			angle=player.getAngle()-sweepAngle/2;
 		}

@@ -63,7 +63,7 @@ public class Inventory {
 
 		arsenal[6] = (new Consumable("Baklava", 0, 50, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
-		arsenal[7] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[7] = (new MeleeWeapon("Rusty Sword", 0, 20, 100, 60, 10 / 18.0 * Math.PI));
 		arsenal[8] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
 		arsenal[9] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
 		arsenal[10] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));

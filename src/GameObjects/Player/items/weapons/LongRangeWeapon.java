@@ -28,7 +28,6 @@ public class LongRangeWeapon extends Weapon {
 	//Constructors
 	public LongRangeWeapon(String name,int tier,int damage,int range,int attackSpeed,int attackWidth, double randAngle) {
 		super(name,tier,damage,range,attackSpeed);
-		this.sweepAngle=sweepAngle;
 		this.attackWidth = attackWidth;
 		img=new ImageSystem(0,0,(new ImageIcon("imgs/"+name.replace(" ", "")+"/"+name.replace(" ", "")+0+".png").getImage()));
 
@@ -62,7 +61,6 @@ public class LongRangeWeapon extends Weapon {
 				if(graphic!=null) {
 				}
 				if(m!=null&&this.euclidDist(m.getX(), m.getY(), player.getX(), player.getY()) < super.getRange()) {
-					double playerAngle = -player.getAngle();
 					Rectangle attackRect = new Rectangle(player.getX() - attackWidth/2,player.getY() - super.getRange(),attackWidth,super.getRange());
 					if(attackRect.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
 						System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
