@@ -23,7 +23,7 @@ import general.ImageSystem;
 public class LongRangeWeapon extends Weapon {
 	
 	//Fields
-	private double sweepAngle;
+	private double randAngle;
 	private int attackWidth;
 	private Graphics2D graphic;
 	private ImageSystem img;
@@ -31,6 +31,7 @@ public class LongRangeWeapon extends Weapon {
 	public LongRangeWeapon(String name,int tier,int damage,int range,int attackSpeed,int attackWidth, double randAngle) {
 		super(name,tier,damage,range,attackSpeed);
 		this.attackWidth = attackWidth;
+		this.randAngle = randAngle;
 		img=new ImageSystem(0,0,(new ImageIcon("imgs/"+name.replace(" ", "")+"/"+name.replace(" ", "")+0+".png").getImage()));
 
 	}
@@ -44,8 +45,8 @@ public class LongRangeWeapon extends Weapon {
 		img.setRotation(player.getAngle());
 		
 		graphic = g;
-		Polygon attackRect = this.rotate(new Rectangle(player.getX() - attackWidth/2,player.getY() - super.getRange(),attackWidth,super.getRange()),new Point(player.getX(),player.getY()),player.getAngle()+Math.PI);
-		g.draw(attackRect);
+		Polygon attackRect = this.rotate(new Rectangle(player.getX() - attackWidth/2,player.getY() - super.getRange(),attackWidth,super.getRange()),new Point(player.getX(),player.getY()),(player.getAngle()+Math.PI));
+		g.fill(attackRect);
 		img.drawImage(g);
 	}
 	//Distance calculations
@@ -64,7 +65,7 @@ public class LongRangeWeapon extends Weapon {
 				if(graphic!=null) {
 				}
 				if(m!=null&&this.euclidDist(m.getX(), m.getY(), player.getX(), player.getY()) < super.getRange()) {
-					Polygon attackRect = this.rotate(new Rectangle(player.getX() - attackWidth/2,player.getY() - super.getRange(),attackWidth,super.getRange()),new Point(player.getX(),player.getY()),player.getAngle()+Math.PI);
+					Polygon attackRect = this.rotate(new Rectangle(player.getX() - attackWidth/2,player.getY() - super.getRange(),attackWidth,super.getRange()),new Point(player.getX(),player.getY()),(player.getAngle()+Math.PI) + Math.random()*randAngle);
 					
 					if(attackRect.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
 						System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
@@ -74,8 +75,6 @@ public class LongRangeWeapon extends Weapon {
 			}
 		}
 	}
-	
-
 
 
 	
@@ -101,7 +100,7 @@ public class LongRangeWeapon extends Weapon {
 	}
 	public String toString() 
 	{
-		String s="(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+sweepAngle;
+		String s="(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+randAngle;
 		return s;
 		
 		
