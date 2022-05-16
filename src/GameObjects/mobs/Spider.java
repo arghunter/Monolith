@@ -4,7 +4,7 @@
 //Notes: A Spider mob
 package GameObjects.mobs;
 
-import java.awt.Graphics;
+import java.awt.Graphics; 
 import java.awt.Graphics2D;
 import java.util.Random;
 
@@ -24,6 +24,8 @@ public class Spider extends Mob {
 	@Override
 	//Renders the spider
 	public void render(Graphics2D g) {
+		super.render(g);
+
 		super.getImage().drawAnimation(g);
 		
 	}

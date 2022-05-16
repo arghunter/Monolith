@@ -24,6 +24,8 @@ public class Zombie extends Mob {
 	@Override
 	//Renders this zombie
 	public void render(Graphics2D g) {
+		super.render(g);
+
 		super.getImage().drawAnimation(g);
 		
 	}

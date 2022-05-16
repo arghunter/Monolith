@@ -4,11 +4,17 @@
 //Notes: An implementation of a mbo
 package GameObjects.mobs;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 import GameObjects.MovingObject;
 import GameObjects.Player.Player;
+import general.Constants;
 import GameObjects.Direction;
 
 public abstract class Mob extends MovingObject {
@@ -18,6 +24,10 @@ public abstract class Mob extends MovingObject {
 	private int[] stats=new int[6];
 	private double lastAttack = System.currentTimeMillis();
 	private int playerLevel=1;
+	private int damageNumber=0;
+	private static final int DMG_DURATION=500;
+	private long dmgTime=0;
+	
 	//Constructors
 	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames) {
 		super(x, y, movementDelay, width, height, name, numFrames,stats[2]);
@@ -48,6 +58,8 @@ public abstract class Mob extends MovingObject {
 			super.setDead(true);
 			player.addXP(playerLevel*10);
 		}
+		this.damageNumber=damage;
+		this.dmgTime=System.currentTimeMillis();
 	}
 	
 	//Makes this mob complete its next action, either moving or attacking the player.
@@ -106,6 +118,25 @@ public abstract class Mob extends MovingObject {
 			}
 		}
 		return 0;
+	}
+	public void render(Graphics2D g) 
+	{
+		if(System.currentTimeMillis()-dmgTime<DMG_DURATION&&this.damageNumber>0) 
+		{
+			g.setColor(Constants.TEXTCOLOR);
+			Font text = null;
+			try {
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+
+			g.setFont(text.deriveFont(30f));
+			g.drawString(""+damageNumber,this.getX(),this.getY()-50);
+		}
 	}
 
 }

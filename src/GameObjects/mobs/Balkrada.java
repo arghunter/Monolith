@@ -23,6 +23,7 @@ public class Balkrada extends Mob {
 	@Override
 	//Renders this object
 	public void render(Graphics2D g) {
+		super.render(g);
 		super.getImage().drawAnimation(g);
 		
 	}
