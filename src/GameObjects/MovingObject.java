@@ -26,6 +26,7 @@ public abstract class MovingObject extends GameObject {
 	private double movementDelay;// In milliseconds Time between subsequent movements
 	private double lastMovement;
 	private double currentMovementDelay;// Changes based on direction
+
 	protected int health;
 	private boolean isDead=false;
 	private AnimationSystem image;
@@ -162,6 +163,12 @@ public abstract class MovingObject extends GameObject {
 	}
 	public void setDead(boolean isDead) {
 		this.isDead = isDead;
+	}
+	public void setCurrentMovementDelay(double currentMovementDelay) {
+		this.currentMovementDelay = currentMovementDelay;
+	}
+	public void setAngle(double angle) {
+		this.angle = angle;
 	}
 
 }

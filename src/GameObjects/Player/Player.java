@@ -40,6 +40,11 @@ public class Player extends MovingObject {
 	private int[] stats = { 10, 25, 60, 100, 10, 30, 10000, 0, 10, 100 };
 	private int[] buffs = new int[10];
 
+
+
+
+
+
 	private int currentLevel = 0;
 	private int currentXP = 0;
 	private int xpToNextLevel = 1000;
@@ -93,7 +98,7 @@ public class Player extends MovingObject {
 	// Alters the players health and shield values based on damage dealt and armor
 	public void takeDamage(int damage) {
 		if (!isDead) {
-			damage = (int) ((2 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5);
+			damage = damage/(int) (( 0.5*Math.log(stats[1] * Math.log(stats[1]))) + 0.5)+1;
 			if (currentShields > 0) {
 				currentShields = Math.max(0, currentShields - damage);
 			} else {
@@ -284,6 +289,20 @@ public class Player extends MovingObject {
 		regen();
 		super.setMovementDelay(stats[7] + buffs[7]);
 
+	}
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
+
+
+
+	public int getCurrentXP() {
+		return currentXP;
+	}
+
+
+	public int getXpToNextLevel() {
+		return xpToNextLevel;
 	}
 
 }

@@ -1,5 +1,6 @@
 package general;
 
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,6 +19,8 @@ public class PlayerManager implements ActionListener {
 	private Timer timer=new Timer(3,this);
 	private SkillSelectionMenu skillSelectionMenu;
 	private JPanel panel;
+	private Graphics2D g;
+	private int skillsNeeded=0;
 	public PlayerManager(JPanel panel) 
 	{
 		this.panel=panel;
@@ -28,6 +31,10 @@ public class PlayerManager implements ActionListener {
 		this.input=input;
 		timer=new Timer(3,this);
 		timer.start();
+	}
+	public void setGraphics(Graphics2D g) 
+	{
+		this.g=g;
 	}
 
 	@Override
@@ -43,13 +50,25 @@ public class PlayerManager implements ActionListener {
 			}
 		}
 		if (e.getSource()==player&&e.getActionCommand().equals("LevelUp")) {
-			if (skillSelectionMenu == null || !this.skillSelectionMenu.isActive()) {
-				skillSelectionMenu = null;
-				skillSelectionMenu = new SkillSelectionMenu(player.getSkills(),840, panel);
-
-			}
+			skillsNeeded++;
 			
 		}
+		if(skillsNeeded>0) 
+		{
+			if(input.isEnterPressed()) 
+			{
+				while(skillsNeeded>0) 
+				{
+					if (skillSelectionMenu == null || !this.skillSelectionMenu.isActive()) {
+						skillSelectionMenu = null;
+						skillSelectionMenu = new SkillSelectionMenu(player.getSkills(),840, panel);
+
+					}
+				}
+			}
+		}
+		
+		
 
 		
 	}

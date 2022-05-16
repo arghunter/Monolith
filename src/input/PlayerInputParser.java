@@ -66,5 +66,11 @@ public class PlayerInputParser {
 	{
 		return keyboard.isEscapePressed();
 	}
+	
+	public boolean isEnterPressed() {
+
+		return keyboard.isEnterPressed();
+
+	}
 
 }

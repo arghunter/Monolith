@@ -124,7 +124,6 @@ public class Tester extends JPanel implements ActionListener {
 				mobList.remove(m);
 			} else {
 				m.render(g);
-				m.update(thePlayer.getX(), thePlayer.getY());
 			}
 		}
 		if (skillSelectionMenu != null) {

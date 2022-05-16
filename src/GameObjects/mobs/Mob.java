@@ -5,6 +5,7 @@
 package GameObjects.mobs;
 
 import java.awt.Graphics;
+import java.util.Arrays;
 
 import GameObjects.MovingObject;
 import GameObjects.Player.Player;
@@ -13,12 +14,14 @@ import GameObjects.Direction;
 public abstract class Mob extends MovingObject {
 	//Fields
 	// speed, damage, health, armor, attackspeed, attack range
-	private int[] stats = new int[6];
+	private int[] baseStats = new int[6];
+	private int[] stats=new int[6];
 	private double lastAttack = System.currentTimeMillis();
+	private int playerLevel=1;
 	//Constructors
 	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames) {
 		super(x, y, movementDelay, width, height, name, numFrames,stats[2]);
-		this.stats = stats;
+		this.baseStats = stats;
 	}
 	//Sets this mobs stats
 	public void setStat(int statNum, int newValue) {
@@ -34,12 +37,30 @@ public abstract class Mob extends MovingObject {
 	public int getHealth() {
 		return health;
 	}
-	//Updates this mob
-	public void update(double pointX, double pointY) {
-		updateAngle(pointX, pointY);
+	
+	public void takeDamage(Player player,int damage) 
+	{
+		damage = damage/(int) ((0.5 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5)+1;
+		health-=damage;
+		super.setCurrentMovementDelay(damage*10<5000? damage*10:5000);
+		if(health<0) 
+		{
+			super.setDead(true);
+			player.addXP(playerLevel*10);
+		}
 	}
+	
 	//Makes this mob complete its next action, either moving or attacking the player.
 	public int action(Player player) {
+		playerLevel=player.getLevel();
+		updateAngle(player.getX(),player.getY());
+		for(int i=1;i<4;i++) 
+		{
+			stats[i]=baseStats[i]*playerLevel/5;
+		}
+		stats[0]=baseStats[0];
+		stats[4]=baseStats[4];
+		stats[5]=baseStats[5];
 		int curX = this.getX();
 		int curY = this.getY();
 
