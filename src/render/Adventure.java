@@ -98,7 +98,6 @@ public class Adventure implements ActionListener {
 		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 			if(!(curRoom==null)) {
 				mobList[curRoomY][curRoomX].get(i).render(g);
-				mobList[curRoomY][curRoomX].get(i).update(player.getX(), player.getY());
 			}
 		}
 

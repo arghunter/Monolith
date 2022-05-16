@@ -21,6 +21,7 @@ public class KeyboardInput implements KeyListener {
 	private boolean sPressed = false;
 	private boolean dPressed = false;
 	private boolean escapePressed=false;
+	private boolean enterPressed=false;
 	
 	//Constructor
 	public KeyboardInput(Component component) 
@@ -66,6 +67,9 @@ public class KeyboardInput implements KeyListener {
 		}else if(e.getKeyCode()==KeyEvent.VK_ESCAPE) 
 		{
 			escapePressed=true;
+		}else if(e.getKeyCode()==KeyEvent.VK_ENTER) 
+		{
+			enterPressed=true;
 		}
 	}
 	
@@ -99,6 +103,9 @@ public class KeyboardInput implements KeyListener {
 		if(e.getKeyCode()==KeyEvent.VK_ESCAPE) 
 		{
 			escapePressed=false;
+		}else if(e.getKeyCode()==KeyEvent.VK_ENTER) 
+		{
+			enterPressed=false;
 		}
 	}
 	
@@ -106,6 +113,12 @@ public class KeyboardInput implements KeyListener {
 
 
 
+
+
+
+	public boolean isEnterPressed() {
+		return enterPressed;
+	}
 
 
 

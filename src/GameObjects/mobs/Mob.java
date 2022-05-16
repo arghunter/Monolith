@@ -61,7 +61,6 @@ public abstract class Mob extends MovingObject {
 		stats[0]=baseStats[0];
 		stats[4]=baseStats[4];
 		stats[5]=baseStats[5];
-		System.out.println(this+" "+Arrays.toString(stats)+" "+playerLevel);
 		int curX = this.getX();
 		int curY = this.getY();
 

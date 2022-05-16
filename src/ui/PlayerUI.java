@@ -73,6 +73,10 @@ public class PlayerUI implements MouseWheelListener {
 		g.setColor(new Color(0, 219, 227));
 		g.drawString(""+player.getCurrentShields(), 100+(int)(66*Math.log10(player.getCurrentHealth())), 100);
 		g.fillRect(100+(int)(66*Math.log10(player.getCurrentHealth())), 100,Math.max((int)(66*Math.log10(player.getCurrentShields())),0) , 5);
+		g.setColor(new Color(100,100,100));
+		g.fillRect(100, 120, 250, 5);
+		g.setColor(new Color(150,150,150));
+		g.fillRect(100, 120, 250*player.getCurrentXP()/player.getXpToNextLevel(), 5);
 		for(int i=0;i<arsenalItems.length;i++) 
 		{
 			arsenalItems[i].draw(g);
