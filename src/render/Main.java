@@ -22,6 +22,8 @@ public class Main extends JPanel implements ActionListener {
 	private Timer timer=new Timer(10,this);
 	private double ratioX=1;
 	private double ratioY=1;
+	public static final double WIDTH= 2560.0;
+	public static final double HEIGHT= 1377.0;
 	public static GameStatus status=GameStatus.MAIN_MENU;
 	public Main(){
 		
