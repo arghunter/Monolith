@@ -37,7 +37,7 @@ public class Inventory {
 		arsenal[1] = (new Armor("Baklava", 0, ItemType.CHESTPLATE, 15, 25, 50, BattleSuitSet.NONE));
 		arsenal[2] = (new Armor("Baklava", 0, ItemType.LEGGINGS, 15, 25, 50, BattleSuitSet.NONE));
 		arsenal[3] = (new Armor("Baklava", 0, ItemType.BOOTS, 10, 25, 25, BattleSuitSet.NONE));
-		arsenal[4] = (new LongRangeWeapon("Rusty Sword", 0, 20, 100, 60, 100,10 / 18.0 * Math.PI));
+		arsenal[4] = (new LongRangeWeapon("Rusty Sword", 0, 20, 500, 60, 100, 3/ 18.0 * Math.PI));
 		
 		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
 

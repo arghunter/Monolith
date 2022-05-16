@@ -14,7 +14,9 @@ import java.util.Arrays;
 
 import GameObjects.MovingObject;
 import GameObjects.Player.Player;
+import GameObjects.Player.items.Item;
 import general.Constants;
+import mapGeneration.ItemGeneration;
 import GameObjects.Direction;
 
 public abstract class Mob extends MovingObject {
@@ -57,6 +59,11 @@ public abstract class Mob extends MovingObject {
 		{
 			super.setDead(true);
 			player.addXP(playerLevel*10);
+			Item item=ItemGeneration.getItem(playerLevel,playerLevel/5 );
+			if(item!=null) 
+			{
+				player.getInventory().addToStorage(item);
+			}
 		}
 		this.damageNumber=damage;
 		this.dmgTime=System.currentTimeMillis();
