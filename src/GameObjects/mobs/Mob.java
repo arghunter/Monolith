@@ -135,7 +135,7 @@ public abstract class Mob extends MovingObject {
 			}
 
 			g.setFont(text.deriveFont(30f));
-			g.drawString(""+damageNumber,this.getX(),this.getY()-50);
+			g.drawString(""+damageNumber,this.getX(),this.getY()-(System.currentTimeMillis()-dmgTime)/6);
 		}
 	}
 

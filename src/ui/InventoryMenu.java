@@ -239,8 +239,9 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 				{
 					selectedItem=items.get(items.size()-1);
 				}
+				items.get(items.size()-1).addActionListener(this);
 			}
-			items.get(i).addActionListener(this);
+			
 		}
 		if(!items.contains(selectedItem)) 
 		{
