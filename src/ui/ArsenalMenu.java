@@ -7,6 +7,7 @@ package ui;
 import java.awt.Color;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.armor.Armor;
+import general.Constants;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -207,6 +208,9 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 
 				e.printStackTrace();
 			}
+			g.setColor(Constants.TEXTCOLOR);
+			g.setFont(text.deriveFont(120f));
+			g.drawString("Arsenal", 275, 175);
 
 			for (int i = 0; i < arsenalItems.length; i++) {
 

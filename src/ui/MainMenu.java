@@ -32,6 +32,7 @@ public class MainMenu implements ActionListener {
 	Player player;
 	Button[] menuButtons = new Button[3];// 0=storageButton, 1=arsenalButton, 2==skillDisplayButton
 	Button[] gameModeButtons = new Button[2];// 0=adventureButton 1==survivalButton
+	Button escape;
 	Button settingsMenu;
 	InventoryMenu inventoryMenu;
 	ArsenalMenu arsenalMenu;
@@ -42,7 +43,9 @@ public class MainMenu implements ActionListener {
 	public MainMenu(Player player, JPanel panel,PlayerInputParser input) {
 		this.player = player;
 		this.input=input;
+		
 		Point[] menuPoints = { new Point(0, 266), new Point(0, 466), new Point(400, 466), new Point(400, 266) };
+
 		for (int i = 0; i < menuButtons.length; i++) {
 			String text = "";
 			switch (i) {
@@ -84,6 +87,7 @@ public class MainMenu implements ActionListener {
 				gamePoints[j].y += 200;
 			}
 		}
+		
 		inventoryMenu = new InventoryMenu(player.getInventory(), panel);
 		inventoryMenu.setHidden(true);
 		arsenalMenu = new ArsenalMenu(player.getInventory(), panel);
@@ -91,6 +95,11 @@ public class MainMenu implements ActionListener {
 		skillMenu = new SkillDisplayMenu(player.getSkills(), panel);
 		skillMenu.setActive(false);
 		player.setCoordsMove(1280, 668);
+		Point[] backPoints= {new Point(0,10),new Point(0,160),new Point(150,160),new Point(150,10)};
+		escape=new Button(backPoints, new Color((212) / 2, (175) / 2, (55) / 2, 0),"Back");
+		escape.setFontColor(Constants.TEXTCOLOR);
+		escape.addActionListener(this);
+		panel.add(escape);
 
 	}
 	//Draws this menu
@@ -130,9 +139,15 @@ public class MainMenu implements ActionListener {
 			}
 			player.render(g);
 		}
+	
+		
 		inventoryMenu.draw(g, JPanelX, JPanelY);
 		arsenalMenu.draw(g, JPanelX, JPanelY);
 		skillMenu.render(g, JPanelX, JPanelY);
+		if(hidden) 
+		{
+			escape.draw(g, JPanelX, JPanelY);
+		}
 
 	}
 	//Fancy gradient creation
@@ -163,6 +178,7 @@ public class MainMenu implements ActionListener {
 		if (!hidden) {
 			try {
 				Button b = (Button) e.getSource();
+
 				for (int i = 0; i < menuButtons.length; i++) {
 					if (b == menuButtons[i]) {
 						switch (i) {
@@ -202,6 +218,27 @@ public class MainMenu implements ActionListener {
 
 			} catch (Exception ex) {
 
+			}
+			
+		}
+		if(hidden) 
+		{
+			try 
+			{
+				Button b=(Button)e.getSource();
+				if(b==escape) 
+				{
+					player.updateUI();
+					inventoryMenu.setHidden(true);
+					inventoryMenu.update();
+					this.hidden=false;
+					arsenalMenu.setHidden(true);
+					arsenalMenu.update();
+					skillMenu.setActive(false);
+				}
+			}catch(Exception ex) 
+			{
+				
 			}
 		}
 
