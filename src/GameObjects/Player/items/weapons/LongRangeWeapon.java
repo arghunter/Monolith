@@ -54,6 +54,7 @@ public class LongRangeWeapon extends Weapon {
 	}
 	@Override
 	//Primary fire of this weapon
+	//Use sin and cos to write a rotate rect method
 	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		if(canFire()) 
 		{
