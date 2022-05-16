@@ -56,7 +56,7 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		w.setVisible(true);
 		this.initInput(w);
 		this.frame = w;
-		thePlayer.addXP(10000000);
+		thePlayer.addXP(100000);
 		System.out.println(thePlayer.getLevel());
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
@@ -152,7 +152,6 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 		for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 			if(!(curRoom==null)) {
 				mobList[curRoomY][curRoomX].get(i).render(graphic);
-				mobList[curRoomY][curRoomX].get(i).update(thePlayer.getX(), thePlayer.getY());
 				collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),mobList[curRoomY][curRoomX].get(i));
 			}
 		}

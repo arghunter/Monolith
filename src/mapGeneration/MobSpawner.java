@@ -29,8 +29,8 @@ public class MobSpawner {
 		}
 		
 		//Minimum and maximum mobs that can spawn
-		int minMobs=playerLevel/5+1;
-		int maxMobs=playerLevel/2+2;
+		int minMobs=playerLevel/5+5;
+		int maxMobs=playerLevel/2+6;
 		
 		int numMobsToSpawn=minMobs+randNums.nextInt(maxMobs-minMobs+1);
 		

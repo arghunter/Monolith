@@ -13,7 +13,7 @@ import GameObjects.Direction;
 public class Spider extends Mob {
 	//Fields
 	//speed, damage, health, armor, attackspeed, attack range
-	public static final int[] stats={5,10,10,0,120,20};
+	public static final int[] stats={5,10,100,0,120,20};
 	//Constructors
 	public Spider(int x,int y,int width,int height) {
 		super(x,y,stats[0],stats,width,height,"Spider",3);

@@ -205,23 +205,25 @@ public class SkillSelectionMenu implements ActionListener {
 		if(isActive) 
 		{
 			g.drawImage(createGradient(JPanelX, JPanelY), 0, 0, null);
+			g.setColor(Constants.TEXTCOLOR);
+			Font text = null;
+			try {
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+			g.setFont(text.deriveFont(120f));
+			g.drawString("Select A Skill", 275, 175);
 			for(int i=0;i<skillButtons.length;i++) 
 			{
 				skillButtons[i].draw(g, JPanelX, JPanelY);
 				if(skillButtons[i].isHovering()) 
 				{	
 			
-					Font text=null;
-					try {
-						text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
-					} catch (FontFormatException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						
-						e.printStackTrace();
-					}
 					g.setColor(Constants.TEXTCOLOR);
-					
 					g.setFont(text.deriveFont(36f));
 					String title=availableSkills[i].getName().toUpperCase()+" "+availableSkills[i].getTier();
 					g.drawString(title, 800, 200);
@@ -262,7 +264,7 @@ public class SkillSelectionMenu implements ActionListener {
 				currentSkillButtons[i].draw(g, JPanelX, JPanelY);
 				if(currentSkillButtons[i].isHovering()) 
 				{	
-					Font text=null;
+					text=null;
 					try {
 						text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Bold.ttf"));
 					} catch (FontFormatException e) {
@@ -271,7 +273,7 @@ public class SkillSelectionMenu implements ActionListener {
 						
 						e.printStackTrace();
 					}
-					g.setColor(Color.BLACK);
+					g.setColor(Constants.TEXTCOLOR);
 					
 					g.setFont(text.deriveFont(36f));
 					String title=currentSkills[i].getName().toUpperCase()+" "+currentSkills[i].getTier();

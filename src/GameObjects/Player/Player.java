@@ -93,7 +93,7 @@ public class Player extends MovingObject {
 	// Alters the players health and shield values based on damage dealt and armor
 	public void takeDamage(int damage) {
 		if (!isDead) {
-			damage = (int) ((2 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5);
+			damage = damage/(int) (( 0.5*Math.log(stats[1] * Math.log(stats[1]))) + 0.5)+1;
 			if (currentShields > 0) {
 				currentShields = Math.max(0, currentShields - damage);
 			} else {

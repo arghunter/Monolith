@@ -64,7 +64,7 @@ public class LongRangeWeapon extends Weapon {
 					Rectangle attackRect = new Rectangle(player.getX() - attackWidth/2,player.getY() - super.getRange(),attackWidth,super.getRange());
 					if(attackRect.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
 						System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
-						m.takeDamage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
+						m.takeDamage(player,(int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					}
 				}
 			}
