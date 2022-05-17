@@ -137,8 +137,11 @@ public class Adventure {
 						mobList[curRoomY][curRoomX].add(new Balkrada((int) (Math.random() * 1200), (int) (Math.random() * 1100), 96, 187));
 					}
 				}
+				resetMobSpawnTime();
 			}
-			resetMobSpawnTime();
+			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
+				mobList[curRoomY][curRoomX].get(i).action(player);
+			}
 		}
 	}
 	
@@ -148,7 +151,7 @@ public class Adventure {
 
 	
 	public void changeRoom() {
-		
+		player.setMobs(mobList[curRoomY][curRoomX]);
 	}
 	
 	//Sets the background color
@@ -162,6 +165,8 @@ public class Adventure {
 		g.fillRect(0,0,(int)Main.WIDTH+1,(int)Main.HEIGHT+1);
 	}
 	
+	
+	//Render the player and the mobs
 	public void draw(Graphics2D g) {
 		if(!paused) {
 			this.actions();
