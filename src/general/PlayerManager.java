@@ -1,5 +1,6 @@
 package general;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,10 +33,23 @@ public class PlayerManager implements ActionListener {
 		timer=new Timer(3,this);
 		timer.start();
 	}
-	public void setGraphics(Graphics2D g) 
+	public void draw(Graphics2D g,int JPanelX,int JPanelY) 
 	{
-		this.g=g;
+		
+		if(skillSelectionMenu!=null) 
+		{
+//			Main.status=GameStatus.PAUSED;
+			skillSelectionMenu.render(g, JPanelX, JPanelY);
+		}else if(skillsNeeded>0) 
+		{
+			g.setColor(new Color(200,200,200));
+			
+			g.drawString("Press Enter To Level Up ("+skillsNeeded+")", JPanelX, JPanelY);
+			
+		}
+		
 	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
