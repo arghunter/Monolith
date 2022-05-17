@@ -80,7 +80,7 @@ public class Player extends MovingObject {
 		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
 		String[] splitData=saveData.split(":;:~~~:;:");
-
+		super.dist = 2;
 		inventory = new Inventory(splitData[1],this);
 		currentLevel=Integer.parseInt(splitData[2]);
 		currentXP=Integer.parseInt(splitData[3]);
