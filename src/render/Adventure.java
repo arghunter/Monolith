@@ -208,14 +208,14 @@ public class Adventure {
 					}
 				}
 			}
-		
 			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
-				if(!(curRoom==null)) {
+				if(!(mobList[curRoomY][curRoomX]==null)) {
+					collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),mobList[curRoomY][curRoomX].get(i));
 					mobList[curRoomY][curRoomX].get(i).render(g);
 				}
 			}
-			player.render(g);
 			collider.checkCollides(player.getRect(),player);
+
 			if(input.isEscapePressed()) 
 			{
 				Main.status=GameStatus.PAUSED;
@@ -225,6 +225,9 @@ public class Adventure {
 			{
 				Main.status=GameStatus.RUNNING;
 			}
+
+			player.render(g);
+
 		}
 		pauseMenu.draw(g, JPanelX, JPanelY);
 
