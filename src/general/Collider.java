@@ -28,6 +28,17 @@ public class Collider {
 			}
 		}
 	}
+	public Collider(String[][] grid,int tlcX,int tlcY) {
+		for(int i = 0; i < grid.length; i++) {
+			for(int j = 0; j < grid[i].length; j++) {
+				if(grid[i][j].equals("11")) {
+					int posX = 32 * j;
+					int posY = 32 * i;
+					objects.add(new Rectangle(tlcX+posX,tlcY+posY,33,33));
+				}
+			}
+		}
+	}
 	public void checkCollides(Rectangle playerRect,MovingObject object){
 //		g.drawRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
 		for(Rectangle r : objects) {
