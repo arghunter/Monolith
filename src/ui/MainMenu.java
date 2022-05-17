@@ -27,6 +27,7 @@ import general.Constants;
 import input.MouseInputParser;
 import input.PlayerInputParser;
 import render.Adventure;
+import render.GameStatus;
 import render.Main;
 
 public class MainMenu implements ActionListener {
@@ -109,7 +110,7 @@ public class MainMenu implements ActionListener {
 	//Draws this menu
 	public void draw(Graphics2D g, int JPanelX, int JPanelY) {
 		
-		if(input.isEscapePressed()) 
+		if(input.isEscapePressed()&&Main.status==GameStatus.MAIN_MENU) 
 		{
 			player.updateUI();
 			inventoryMenu.setHidden(true);
@@ -148,7 +149,7 @@ public class MainMenu implements ActionListener {
 		inventoryMenu.draw(g, JPanelX, JPanelY);
 		arsenalMenu.draw(g, JPanelX, JPanelY);
 		skillMenu.render(g, JPanelX, JPanelY);
-		if(hidden) 
+		if(hidden&&Main.status==GameStatus.MAIN_MENU) 
 		{
 			escape.draw(g, JPanelX, JPanelY);
 		}
