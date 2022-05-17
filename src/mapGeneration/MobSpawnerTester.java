@@ -27,7 +27,7 @@ import java.util.LinkedList;
 //import general.ImageSystem;
 
 public class MobSpawnerTester extends JPanel implements ActionListener {
-	private Player thePlayer = new Player(300, 300, 64, 64, this,this);
+	private Player thePlayer = new Player(300, 300, 64, 64, this);
 	private PlayerInputParser input;
 
 	private JFrame frame;

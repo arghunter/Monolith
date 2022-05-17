@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 
 import general.Constants;
 import input.MouseInputParser;
+import render.GameStatus;
+import render.Main;
 import render.Tester;
 import skills.GenericSkill;
 import skills.MultipleSkill;
@@ -204,6 +206,7 @@ public class SkillSelectionMenu implements ActionListener {
 	{ 
 		if(isActive) 
 		{
+			Main.status=GameStatus.PAUSED;
 			g.drawImage(createGradient(JPanelX, JPanelY), 0, 0, null);
 			g.setColor(Constants.TEXTCOLOR);
 			Font text = null;
@@ -323,7 +326,8 @@ public class SkillSelectionMenu implements ActionListener {
 			Button b=(Button)e.getSource();
 			if(b.isClicked(e)) 
 			{
-				
+				Main.status=GameStatus.RUNNING;
+
 				String name=b.getText();
 				GenericSkill skill=null;
 				for(int i=0;i<availableSkills.length;i++) 

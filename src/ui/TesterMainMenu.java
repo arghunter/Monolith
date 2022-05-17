@@ -31,7 +31,7 @@ import java.util.LinkedList;
 
 public class TesterMainMenu extends JPanel implements ActionListener {
 	//Fields
-	private Player thePlayer = new Player(300, 300, 64, 64, this, this);
+	private Player thePlayer = new Player(300, 300, 64, 64, this);
 	private PlayerInputParser input;
 	private Timer clock = new Timer(30, this);
 	private double ratioX = 1;
@@ -47,7 +47,7 @@ public class TesterMainMenu extends JPanel implements ActionListener {
 
 		w.setSize(800, 500);
 		try {
-			save = new SaveSystem(this, this);
+			save = new SaveSystem(this);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Save system broken");

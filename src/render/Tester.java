@@ -26,7 +26,7 @@ import java.util.LinkedList;
 //import java.util.*;
 
 public class Tester extends JPanel implements ActionListener {
-	private Player thePlayer = new Player(300, 300, 64, 64, this,this);
+	private Player thePlayer = new Player(300, 300, 64, 64, this);
 	private Spider theSpider = new Spider(600, 600, 64, 64);
 	private Spider secondSpider = new Spider(1000, 1000, 64, 64);
 	private Zombie theZombie = new Zombie(1200, 1200, 64, 64);
@@ -57,7 +57,7 @@ public class Tester extends JPanel implements ActionListener {
 
 		w.setSize(800, 500);
 		try {
-			save = new SaveSystem(this,this);
+			save = new SaveSystem(this);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Save system broken");

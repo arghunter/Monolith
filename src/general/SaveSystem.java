@@ -4,7 +4,6 @@
 //Notes: A save system for restoring the player after shutdown
 package general;
 
-import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -22,15 +21,15 @@ public class SaveSystem implements WindowListener {
 	String save="";
 	Player savedPlayer;
 	//Constructor
-	public SaveSystem(ActionListener game,JPanel panel) throws FileNotFoundException 
+	public SaveSystem(JPanel panel) throws FileNotFoundException 
 	{
 		
 		input = new FileInput("save.txt");
 		try {
-			savedPlayer=new Player(300,300,1,64,64,game,panel,input.next());
+			savedPlayer=new Player(300,300,1,64,64,panel,input.next());
 		}catch( Exception e) 
 		{
-			savedPlayer=new Player(300,300,64,64,game,panel);
+			savedPlayer=new Player(300,300,64,64,panel);
 		}
 		
 		output=new PrintWriter("save.txt");

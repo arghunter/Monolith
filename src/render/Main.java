@@ -38,7 +38,7 @@ public class Main extends JPanel implements ActionListener {
 		initInput(w,this);
 		manager=new PlayerManager(this);
 		try {
-			save = new SaveSystem(manager,this);
+			save = new SaveSystem(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Save system broken");

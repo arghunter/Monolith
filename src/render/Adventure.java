@@ -77,9 +77,8 @@ public class Adventure {
 	public Adventure(Player player,PlayerInputParser input,JPanel panel) {
 		Main.status=GameStatus.RUNNING;
 		this.player=player;
-		pauseMenu=new PauseMenu(player,panel,input);
+		pauseMenu=new PauseMenu(player,panel);
 		this.input=input;
-		pauseMenu.setHidden(true);
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
 				timeSinceLastSpawn[i][j]=-5000;
@@ -218,14 +217,17 @@ public class Adventure {
 
 			if(input.isEscapePressed()) 
 			{
-				Main.status=GameStatus.PAUSED;
-				pauseMenu.setHidden(false);
+				if(Main.status==GameStatus.RUNNING)
+					Main.status=GameStatus.PAUSED;
+				else if(Main.status==GameStatus.RUNNING) 
+				{
+					Main.status=GameStatus.PAUSED;
+				}
 			}
-			if(pauseMenu.getStatus()==GameStatus.RUNNING) 
-			{
-				Main.status=GameStatus.RUNNING;
-			}
-
+			 
+			
+			
+			
 			player.render(g);
 
 		}

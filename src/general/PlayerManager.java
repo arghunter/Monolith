@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -26,6 +27,8 @@ public class PlayerManager implements ActionListener {
 	private JPanel panel;
 	private Graphics2D g;
 	private int skillsNeeded=0;
+	private Timer colorChanger=new Timer(400,this);
+	private Color textColor=new Color(200,200,200);
 	public PlayerManager(JPanel panel) 
 	{
 		this.panel=panel;
@@ -34,17 +37,17 @@ public class PlayerManager implements ActionListener {
 	{
 		player=p;
 		this.input=input;
-		timer=new Timer(3,this);
 		timer.start();
+		colorChanger.start();
 	}
 	public void draw(Graphics2D g,int JPanelX,int JPanelY) 
 	{
 		if(skillSelectionMenu!=null&&skillSelectionMenu.isActive()) 
 		{
 			skillSelectionMenu.render(g,JPanelX,JPanelY);
-		}else if(skillsNeeded>0) 
+		}else if(player.getSkillsNeeded()>0) 
 		{
-			g.setColor(new Color(200,200,200));
+			g.setColor(textColor);
 			Font text=null;
 			try {
 				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
@@ -55,7 +58,7 @@ public class PlayerManager implements ActionListener {
 				e.printStackTrace();
 			}
 			g.setFont(text.deriveFont(30f));
-			g.drawString("Press Enter To Learn New Skills("+skillsNeeded+")", JPanelX, JPanelY);
+			g.drawString("Press Enter To Learn New Skills("+player.getSkillsNeeded()+")", JPanelX, JPanelY);
 			
 		}
 	}
@@ -72,24 +75,27 @@ public class PlayerManager implements ActionListener {
 				input.updatePlayerAngle(player);
 			}
 		}
-		if (e.getSource()==player&&e.getActionCommand().equals("LevelUp")) {
-			skillsNeeded++;
-			
-		}
-		if(skillsNeeded>0) 
+
+		if(player.getSkillsNeeded()>0) 
 		{
 			if(input.isEnterPressed()) 
 			{
-				if(skillsNeeded>0) 
+				if(player.getSkillsNeeded()>0) 
 				{
 					if (skillSelectionMenu == null || !this.skillSelectionMenu.isActive()) {
 						skillSelectionMenu = null;
 						skillSelectionMenu = new SkillSelectionMenu(player.getSkills(),840, panel);
-						skillsNeeded--;
+						player.levelUP();
 
 					}
 				}
 			}
+		}
+		if(e.getSource()==colorChanger)
+		{
+			Random rng=new Random();
+
+			textColor=new Color(rng.nextInt(256),rng.nextInt(256),rng.nextInt(256));
 		}
 		
 		

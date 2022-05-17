@@ -9,7 +9,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -54,10 +53,13 @@ public class Player extends MovingObject {
 	private boolean isDead = false;
 	private long lastRegen;
 	private ArrayList<Mob> mobs = new ArrayList<>();
-	private ActionListener game;
+	private int skillsNeeded=0;
+
+	
+
 
 	// Constructor
-	public Player(int x, int y, int width, int height, ActionListener game, JPanel panel) {
+	public Player(int x, int y, int width, int height, JPanel panel) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
 
@@ -71,12 +73,11 @@ public class Player extends MovingObject {
 		currentShields = stats[6];
 		ui = new PlayerUI(this, panel);
 		lastRegen = System.currentTimeMillis();
-		this.game = game;
 
 	}
 
 	// Save data constructor
-	public Player(int x, int y, int id, int width, int height, ActionListener game, JPanel panel, String saveData) {
+	public Player(int x, int y, int id, int width, int height, JPanel panel, String saveData) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
 		String[] splitData=saveData.split(":;:~~~:;:");
@@ -84,7 +85,9 @@ public class Player extends MovingObject {
 		inventory = new Inventory(splitData[1],this);
 		currentLevel=Integer.parseInt(splitData[2]);
 		currentXP=Integer.parseInt(splitData[3]);
+		
 		this.xpToNextLevel=Integer.parseInt(splitData[4]);
+		skillsNeeded=Integer.parseInt(splitData[5]);
 		stats[3] = (int) inventory.getHealth();
 		stats[1] = (int) inventory.getArmor();
 		stats[6] = (int) inventory.getShields();
@@ -94,7 +97,6 @@ public class Player extends MovingObject {
 		lastRegen = System.currentTimeMillis();
 
 		ui = new PlayerUI(this, panel);
-		this.game = game;
 
 	}
 
@@ -156,6 +158,13 @@ public class Player extends MovingObject {
 	public StatType[] getStatTypes() {
 		return statTypes;
 	}
+	public void levelUP() 
+	{
+		if(skillsNeeded>0) 
+		{
+			skillsNeeded--;
+		}
+	}
 
 	// Returns the weapon
 	public Weapon getWeapon() {
@@ -170,6 +179,10 @@ public class Player extends MovingObject {
 	// Returns stats without buffs
 	public int[] getStats() {
 		return stats;
+	}
+	//Gets the total number of skills needed
+	public int getSkillsNeeded() {
+		return skillsNeeded;
 	}
 
 	// Returns current health
@@ -232,8 +245,7 @@ public class Player extends MovingObject {
 				currentLevel++;
 				currentXP -= xpToNextLevel;
 				xpToNextLevel += currentLevel;
-
-				game.actionPerformed(new ActionEvent(this, 88891, "LevelUp"));
+				skillsNeeded++;
 			}
 		}
 
@@ -268,7 +280,7 @@ public class Player extends MovingObject {
 	// TODO to string part done
 	public String toString() {
 
-		return skills.toString()+":;:~~~:;:"+inventory.toString()+":;:~~~:;:"+currentLevel+":;:~~~:;:"+currentXP+":;:~~~:;:"+xpToNextLevel;
+		return skills.toString()+":;:~~~:;:"+inventory.toString()+":;:~~~:;:"+currentLevel+":;:~~~:;:"+currentXP+":;:~~~:;:"+xpToNextLevel+":;:~~~:;:"+skillsNeeded;
 	}
 
 	// Renders the currently held weapon
