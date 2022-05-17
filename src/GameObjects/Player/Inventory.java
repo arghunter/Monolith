@@ -131,8 +131,16 @@ public class Inventory {
 		} else if (s.contains("MATERIAL")) {
 			return new Material(parts[0], Integer.parseInt(parts[1]), Double.parseDouble(parts[3]));
 		} else if (s.contains("WEAPON")) {
-			return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[3]),
-					Integer.parseInt(parts[4]), (int) Double.parseDouble(parts[5]), Double.parseDouble(parts[6].replace(",(","")));
+			if(s.contains("MeleeWeapon")) 
+			{
+				return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[3]),
+						Integer.parseInt(parts[4]), (int) Double.parseDouble(parts[5]), Double.parseDouble(parts[6].replace(",(","")));
+			}else if(s.contains("LongRangeWeapon")) 
+			{
+				return new LongRangeWeapon(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[3]),
+						Integer.parseInt(parts[4]), (int) Double.parseDouble(parts[5]), Integer.parseInt(parts[6].replace(",(","")),Double.parseDouble(parts[7].replace(",(","")));
+			}
+			
 		} else if (s.contains("CONSUMABLE")) {
 			String[] buffParts = parts[5].split("=");
 			String[] buffTypes = (buffParts[1].substring(buffParts[1].indexOf('[') + 1, buffParts[1].lastIndexOf(']')))

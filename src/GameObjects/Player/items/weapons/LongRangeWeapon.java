@@ -100,7 +100,7 @@ public class LongRangeWeapon extends Weapon {
 	}
 	public String toString() 
 	{
-		String s="(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+randAngle;
+		String s="(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+attackWidth+"/"+randAngle+"/LongRangeWeapon";
 		return s;
 		
 		
