@@ -29,8 +29,8 @@ public class PlayerUI implements MouseWheelListener {
 		this.player=player;		
 		arsenalItems[0]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1184, 989+96);
 		arsenalItems[1]=new PlayerUIArsenalItem(player.getInventory().getChestplate(), 1280, 989+96);
-		arsenalItems[2]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1280, 1085+96);
-		arsenalItems[3]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1184, 1085+96);
+		arsenalItems[2]=new PlayerUIArsenalItem(player.getInventory().getLeggings(), 1280, 1085+96);
+		arsenalItems[3]=new PlayerUIArsenalItem(player.getInventory().getBoots(), 1184, 1085+96);
 		arsenalItems[4]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[4], 1088, 893+96);
 		arsenalItems[5]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[5], 1184, 893+96);
 		arsenalItems[6]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[6], 1280, 893+96);
@@ -75,8 +75,10 @@ public class PlayerUI implements MouseWheelListener {
 		g.fillRect(100+(int)(66*Math.log10(player.getCurrentHealth())), 100,Math.max((int)(66*Math.log10(player.getCurrentShields())),0) , 5);
 		g.setColor(new Color(100,100,100));
 		g.fillRect(100, 120, 250, 5);
-		g.setColor(new Color(150,150,150));
+		g.setColor(new Color(200,200,200));
 		g.fillRect(100, 120, 250*player.getCurrentXP()/player.getXpToNextLevel(), 5);
+		g.setFont(text.deriveFont(30f));
+		g.drawString("Level:"+player.getLevel(), 100, 150);
 		for(int i=0;i<arsenalItems.length;i++) 
 		{
 			arsenalItems[i].draw(g);

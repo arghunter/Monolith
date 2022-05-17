@@ -33,11 +33,11 @@ public class Inventory {
 	public Inventory(Player player) {
 		arsenal = new Item[16];
 		storage = new ArrayList<Item>();
-		arsenal[0] = (new Armor("Baklava", 0, ItemType.HELMET, 10, 25, 25, BattleSuitSet.NONE));
-		arsenal[1] = (new Armor("Baklava", 0, ItemType.CHESTPLATE, 15, 25, 50, BattleSuitSet.NONE));
-		arsenal[2] = (new Armor("Baklava", 0, ItemType.LEGGINGS, 15, 25, 50, BattleSuitSet.NONE));
-		arsenal[3] = (new Armor("Baklava", 0, ItemType.BOOTS, 10, 25, 25, BattleSuitSet.NONE));
-		arsenal[4] = (new LongRangeWeapon("Rusty Sword", 0, 20, 500, 60, 100, 3/ 18.0 * Math.PI));
+		arsenal[0] = (new Armor("PrismarineHelm", 0, ItemType.HELMET, 100, 205, 205, BattleSuitSet.NONE));
+		arsenal[1] = (new Armor("PrismarineChestplate", 0, ItemType.CHESTPLATE, 100, 205, 250, BattleSuitSet.NONE));
+		arsenal[2] = (new Armor("PrismarineLeggings", 0, ItemType.LEGGINGS, 100, 205, 205, BattleSuitSet.NONE));
+		arsenal[3] = (new Armor("PrismarineBoots", 0, ItemType.BOOTS, 100, 100, 100, BattleSuitSet.NONE));
+		arsenal[10] = (new LongRangeWeapon("Rusty Sword", 0, 200, 500, 600, 100, 3/ 18.0 * Math.PI));
 		
 		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
 
@@ -59,14 +59,16 @@ public class Inventory {
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
 		this.addToStorage(new Blueprint("Baklava", 0, 10, it, new Consumable("Baklava", 0, 15, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())), this));
-		arsenal[5] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		this.addToStorage( (new MeleeWeapon("Night Harvester", 0, 500, 170, 20, 12 / 18.0 * Math.PI)));
+		
+		arsenal[5] = (new MeleeWeapon("Rusty Sword", 0, 500, 250, 30, 10 / 18.0 * Math.PI));
 
 		arsenal[6] = (new Consumable("Baklava", 0, 50, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
-		arsenal[7] = (new MeleeWeapon("Rusty Sword", 0, 20, 100, 120, 10 / 18.0 * Math.PI));
-		arsenal[8] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
-		arsenal[9] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
-		arsenal[10] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
+		arsenal[7] = (new MeleeWeapon("Rusty Sword", 0, 200, 100, 120, 10 / 18.0 * Math.PI));
+		arsenal[8] = (new MeleeWeapon("Night Harvester", 0, 500, 170, 20, 12 / 18.0 * Math.PI));
+		arsenal[9] = (new MeleeWeapon("Silver Rapier", 0, 80, 120, 240, 8 / 18.0 * Math.PI));
+		arsenal[4] = (new MeleeWeapon("Baklava", 0, 5000, 200, 100, 36 / 18.0 * Math.PI));
 		arsenal[11] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
 		arsenal[12] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
 		arsenal[13] = (new MeleeWeapon("Rusty Sword", 0, 50, 250, 30, 10 / 18.0 * Math.PI));
