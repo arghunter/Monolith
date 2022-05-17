@@ -1,17 +1,22 @@
 package general;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import GameObjects.Player.Player;
 import input.PlayerInputParser;
 import render.GameStatus;
 import render.Main;
 import ui.SkillSelectionMenu;
-import GameObjects.Player.Player;
 
 public class PlayerManager implements ActionListener {
 	private Player player;
@@ -32,9 +37,27 @@ public class PlayerManager implements ActionListener {
 		timer=new Timer(3,this);
 		timer.start();
 	}
-	public void setGraphics(Graphics2D g) 
+	public void draw(Graphics2D g,int JPanelX,int JPanelY) 
 	{
-		this.g=g;
+		if(skillSelectionMenu!=null&&skillSelectionMenu.isActive()) 
+		{
+			skillSelectionMenu.render(g,JPanelX,JPanelY);
+		}else if(skillsNeeded>0) 
+		{
+			g.setColor(new Color(200,200,200));
+			Font text=null;
+			try {
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+			g.setFont(text.deriveFont(30f));
+			g.drawString("Press Enter To Learn New Skills("+skillsNeeded+")", JPanelX, JPanelY);
+			
+		}
 	}
 
 	@Override

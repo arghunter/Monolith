@@ -226,7 +226,7 @@ public class SkillSelectionMenu implements ActionListener {
 					g.setColor(Constants.TEXTCOLOR);
 					g.setFont(text.deriveFont(36f));
 					String title=availableSkills[i].getName().toUpperCase()+" "+availableSkills[i].getTier();
-					g.drawString(title, 800, 200);
+					g.drawString(title, 1300, 200);
 					
 					if(availableSkills[i].getType()!=StatType.MULTIPLE) 
 					{
@@ -238,7 +238,7 @@ public class SkillSelectionMenu implements ActionListener {
 						{
 							sign+='+';
 						}
-						g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
+						g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 1300,300);
 					}else 
 					{
 						
@@ -252,7 +252,7 @@ public class SkillSelectionMenu implements ActionListener {
 							{
 								sign+='+';
 							}
-							g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
+							g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 1300,300+50*j);
 						}
 					}
 					
@@ -277,7 +277,7 @@ public class SkillSelectionMenu implements ActionListener {
 					
 					g.setFont(text.deriveFont(36f));
 					String title=currentSkills[i].getName().toUpperCase()+" "+currentSkills[i].getTier();
-					g.drawString(title, 800, 200);
+					g.drawString(title, 1300, 200);
 					
 					if(currentSkills[i].getType()!=StatType.MULTIPLE) 
 					{
@@ -289,7 +289,7 @@ public class SkillSelectionMenu implements ActionListener {
 						{
 							sign+='+';
 						}
-						g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 800,300);
+						g.drawString(sign+tempSkill.getModifiedPercent()+"% "+tempSkill.getType(), 1300,300);
 					}else 
 					{
 						
@@ -303,7 +303,7 @@ public class SkillSelectionMenu implements ActionListener {
 							{
 								sign+='+';
 							}
-							g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 800,300+50*j);
+							g.drawString(sign+skills[j].getModifiedPercent()+"% "+skills[j].getType(), 1300,300+50*j);
 						}
 					}
 					

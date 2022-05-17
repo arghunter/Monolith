@@ -61,6 +61,7 @@ public class Main extends JPanel implements ActionListener {
 		g.scale(ratioX, ratioY);
 		menu.draw(g,getXOnScreen(), getYOnScreen());
 		input.setGraphics(g);
+		manager.draw(g, getXOnScreen(), getYOnScreen());
 		
 	}
 	public int getXOnScreen() {

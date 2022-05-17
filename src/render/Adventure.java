@@ -58,8 +58,7 @@ public class Adventure {
 	//Stores the current list of mobs in the room
 	private ArrayList<Mob>[][] mobList=new ArrayList[Constants.YSIZE][Constants.XSIZE];
 	
-	//Whether the game is paused and mobs move
-	private boolean paused=false;
+
 	
 	private PauseMenu pauseMenu;
 	private PlayerInputParser input;
@@ -172,13 +171,9 @@ public class Adventure {
 	
 	//Render the player and the mobs
 	public void draw(Graphics2D g,int JPanelX,int JPanelY) {
-		
-		if(!paused) {
-			if(input.isEscapePressed()) 
-			{
-				Main.status=GameStatus.PAUSED;
-				pauseMenu.setHidden(false);
-			}
+
+		if(Main.status==GameStatus.RUNNING) {
+
 			this.actions();
 			curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 			Collider collider = new Collider(curRoom);
@@ -204,8 +199,18 @@ public class Adventure {
 			}
 			player.render(g);
 			collider.checkCollides(player.getRect(),player);
+			if(input.isEscapePressed()) 
+			{
+				Main.status=GameStatus.PAUSED;
+				pauseMenu.setHidden(false);
+			}
+			if(pauseMenu.getStatus()==GameStatus.RUNNING) 
+			{
+				Main.status=GameStatus.RUNNING;
+			}
 		}
 		pauseMenu.draw(g, JPanelX, JPanelY);
+
 	}
 	
 	
