@@ -58,7 +58,7 @@ public abstract class Mob extends MovingObject {
 		if(health<0) 
 		{
 			super.setDead(true);
-			player.addXP((playerLevel+8)*8);
+			player.addXP((playerLevel+8)*80);
 			Item item=ItemGeneration.getItem(playerLevel,playerLevel/5 );
 			if(item!=null) 
 			{

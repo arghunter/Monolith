@@ -122,8 +122,8 @@ public class PlayerUI implements MouseWheelListener {
 	{
 		arsenalItems[0]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1184, 989+96);
 		arsenalItems[1]=new PlayerUIArsenalItem(player.getInventory().getChestplate(), 1280, 989+96);
-		arsenalItems[2]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1280, 1085+96);
-		arsenalItems[3]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1184, 1085+96);
+		arsenalItems[2]=new PlayerUIArsenalItem(player.getInventory().getLeggings(), 1280, 1085+96);
+		arsenalItems[3]=new PlayerUIArsenalItem(player.getInventory().getBoots(), 1184, 1085+96);
 		arsenalItems[4]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[4], 1088, 893+96);
 		arsenalItems[5]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[5], 1184, 893+96);
 		arsenalItems[6]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[6], 1280, 893+96);

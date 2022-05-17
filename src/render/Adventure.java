@@ -36,7 +36,6 @@ import general.Constants;
 public class Adventure {
 	private Player player;
 
-	private JFrame frame;
 	
 	//Coordinates of the current room
 	private int curRoomX=0;
@@ -62,6 +61,8 @@ public class Adventure {
 	//Whether the game is paused and mobs move
 	private boolean paused=false;
 	
+	private PauseMenu pauseMenu;
+	private PlayerInputParser input;
 	//Time
 	private int t=0;
 	
@@ -69,9 +70,12 @@ public class Adventure {
 	Color bgColor=Color.WHITE;
 	
 	
-	public Adventure(Player player) {
+	public Adventure(Player player,PlayerInputParser input,JPanel panel) {
 		Main.status=GameStatus.RUNNING;
 		this.player=player;
+		pauseMenu=new PauseMenu(player,panel,input);
+		this.input=input;
+		pauseMenu.setHidden(true);
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
 				timeSinceLastSpawn[i][j]=-5000;
@@ -167,8 +171,14 @@ public class Adventure {
 	
 	
 	//Render the player and the mobs
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g,int JPanelX,int JPanelY) {
+		
 		if(!paused) {
+			if(input.isEscapePressed()) 
+			{
+				Main.status=GameStatus.PAUSED;
+				pauseMenu.setHidden(false);
+			}
 			this.actions();
 			curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 			Collider collider = new Collider(curRoom);
@@ -195,6 +205,7 @@ public class Adventure {
 			player.render(g);
 			collider.checkCollides(player.getRect(),player);
 		}
+		pauseMenu.draw(g, JPanelX, JPanelY);
 	}
 	
 	

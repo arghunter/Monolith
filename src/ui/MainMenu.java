@@ -41,12 +41,13 @@ public class MainMenu implements ActionListener {
 	SkillDisplayMenu skillMenu;
 	Adventure adventure;
 	private boolean hidden = false;
+	private JPanel panel;
 	private PlayerInputParser input;
 	//Constructor
 	public MainMenu(Player player, JPanel panel,PlayerInputParser input) {
 		this.player = player;
 		this.input=input;
-		
+		this.panel=panel;
 		Point[] menuPoints = { new Point(0, 266), new Point(0, 466), new Point(400, 466), new Point(400, 266) };
 
 		for (int i = 0; i < menuButtons.length; i++) {
@@ -153,7 +154,7 @@ public class MainMenu implements ActionListener {
 		}
 		if(adventure!=null) 
 		{
-			adventure.draw(g);
+			adventure.draw(g,JPanelX,JPanelY);
 		}
 
 	}
@@ -217,7 +218,7 @@ public class MainMenu implements ActionListener {
 						switch(i) 
 						{
 						case 0:
-							adventure=new Adventure(player);
+							adventure=new Adventure(player,input,panel);
 							inventoryMenu.setHidden(true);
 							this.hidden=true;
 							arsenalMenu.setHidden(true);

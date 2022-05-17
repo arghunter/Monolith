@@ -57,11 +57,12 @@ public class PlayerManager implements ActionListener {
 		{
 			if(input.isEnterPressed()) 
 			{
-				while(skillsNeeded>0) 
+				if(skillsNeeded>0) 
 				{
 					if (skillSelectionMenu == null || !this.skillSelectionMenu.isActive()) {
 						skillSelectionMenu = null;
 						skillSelectionMenu = new SkillSelectionMenu(player.getSkills(),840, panel);
+						skillsNeeded--;
 
 					}
 				}
