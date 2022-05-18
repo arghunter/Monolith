@@ -3,6 +3,7 @@ package render;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -14,23 +15,39 @@ public class TextureGenerator {
 	ImageSystem[][] imgs;
 	public TextureGenerator(String[][] room,long seed) 
 	{
-		int[][] roomCopy=new int[room.length][room[0].length];
+		int[][] roomCopy=new int[room.length+2][room[0].length+2];
+
 		for(int i=0;i<room.length;i++) 
 		{
 			for(int j=0;j<room[0].length;j++) 
 			{
 				if(room[i][j]!=null) 
 				{
-					roomCopy[i][j]=Integer.parseInt(room[i][j]);
+					roomCopy[i+1][j+1]=Integer.parseInt(room[i][j]);
 
 				}else 
 				{
-					roomCopy[i][j]=0;
+					roomCopy[i+1][j+1]=0;
 
 				}
 			}
+			
 		}
-		imgs=new ImageSystem[room.length][room[0].length];
+		roomCopy[0][0]=11;
+		roomCopy[roomCopy.length-1][roomCopy[0].length-1]=11;
+		roomCopy[0][roomCopy[0].length-1]=11;
+		roomCopy[roomCopy.length-1][0]=11;
+		for(int i=1;i<roomCopy.length-1;i++) 
+		{
+			roomCopy[i][0]=roomCopy[i][1];
+			roomCopy[i][roomCopy[0].length-1]=roomCopy[i][roomCopy[0].length-2];
+		}
+		for(int i=1;i<roomCopy[0].length-1;i++) 
+		{
+			roomCopy[0][i]=roomCopy[1][i];
+			roomCopy[roomCopy.length-1][i]=roomCopy[roomCopy.length-2][i];
+		}
+		imgs=new ImageSystem[room.length+2][room[0].length+2];
 		Random rng=new Random(seed);
 		int wall=rng.nextInt(5)+100;
 		int floor=rng.nextInt(21)+200;
@@ -53,9 +70,10 @@ public class TextureGenerator {
 				floor=rng.nextInt(21)+200;
 			}
 		}
-		for(int i=0;i<room.length;i++) 
+
+		for(int i=0;i<roomCopy.length;i++) 
 		{
-			for(int j=0;j<room[0].length;j++) 
+			for(int j=0;j<roomCopy[0].length;j++) 
 			{
 				
 				if(roomCopy[i][j]==11) 
@@ -78,9 +96,10 @@ public class TextureGenerator {
 			}
 		}
 		
-		for(int i=0;i<room.length;i++) 
+		
+		for(int i=0;i<room.length+2;i++) 
 		{
-			for(int j=0;j<room[0].length;j++) 
+			for(int j=0;j<room[0].length+2;j++) 
 			{
 				String type="";
 				
@@ -95,7 +114,7 @@ public class TextureGenerator {
 					type="Wall";
 				}
 //				System.out.println("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png");
-				imgs[i][j]=new ImageSystem(2560/2-32*23+(j*32)+16,(int)Main.HEIGHT/2-32*18+(i*32)+16,new ImageIcon("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png").getImage());
+				imgs[i][j]=new ImageSystem(2560/2-32*24+(j*32)+16,(int)Main.HEIGHT/2-32*19+(i*32)+16,new ImageIcon("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png").getImage());
 //				System.out.println(imgs[i][j].getWidth());
 			}
 		}
