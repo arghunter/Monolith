@@ -37,7 +37,7 @@ public abstract class MovingObject extends GameObject {
 		super(width, height);
 		setMovementDelay(movementDelay);
 		setCoords(startX, startY);
-		this.image =new AnimationSystem(x,y,movementDelay*6,name,numFrames);
+		this.image =new AnimationSystem(x,y,movementDelay*6,name);
 		System.out.println(this.image);
 		this.health = Integer.MAX_VALUE;
 	}
@@ -46,7 +46,7 @@ public abstract class MovingObject extends GameObject {
 		super(width, height);
 		setMovementDelay(movementDelay);
 		setCoords(startX, startY);
-		this.image =new AnimationSystem(x,y,movementDelay*6,name,numFrames);
+		this.image =new AnimationSystem(x,y,movementDelay*6,name);
 		System.out.println(this.image);
 		this.health = health;
 	}

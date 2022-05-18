@@ -17,9 +17,19 @@ public class AnimationSystem {
 	private ImageSystem[] pics;
 
 	// Constructor
-	public AnimationSystem(int x, int y, long delay, String name, int numFrames) {
+	public AnimationSystem(int x, int y, long delay, String name) {
 		this.delay = delay;
-		this.numFrames = numFrames;
+		numFrames=0;
+		while(true) 
+		{
+			if( new ImageIcon("imgs/" + name + "/" + name + numFrames + ".png").getImage().getHeight(null)==-1) 
+			{
+				break;
+			}else 
+			{
+				numFrames++;
+			}
+		}
 		pics = new ImageSystem[numFrames];
 		for (int i = 0; i < pics.length; i++) {
 			pics[i] = new ImageSystem(x, y, new ImageIcon("imgs/" + name + "/" + name + i + ".png").getImage());

@@ -64,6 +64,7 @@ public class Adventure {
 	private PlayerInputParser input;
 	//Time
 	private int t=0;
+	private TextureGenerator texture;
 	
 	private int topLeftCornerX=(int)Main.WIDTH-(Constants.ROOMSIZEX*16);
 	private int topLeftCornerY=(int)Main.HEIGHT-(Constants.ROOMSIZEY*16);
@@ -86,6 +87,8 @@ public class Adventure {
 			}
 		}
 		player.setMobs(mobList[curRoomY][curRoomX]);
+		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
+		texture=new TextureGenerator(curRoom,System.currentTimeMillis());
 		
 	}
 	
@@ -124,19 +127,19 @@ public class Adventure {
 		}
 		
 		//If the player is off the map, move the player and change the room
-		if((player.getX()>=topLeftCornerX+Constants.ROOMSIZEX*32) && (curRoomX+1<Constants.ROOMSIZEX)) {
+		if((player.getX()>topLeftCornerX+Constants.ROOMSIZEX*32) && (curRoomX+1<Constants.ROOMSIZEX)) {
 			curRoomX++;
 			player.setCoordsMove(player.getX()-32*(Constants.ROOMSIZEX-1), player.getY());
 			changeRoom();
-		}else if((player.getX()<=topLeftCornerX) && (curRoomX-1>=0)) {
+		}else if((player.getX()<topLeftCornerX) && (curRoomX-1>=0)) {
 			curRoomX--;
 			player.setCoordsMove(player.getX()+32*(Constants.ROOMSIZEX-1), player.getY());
 			changeRoom();
-		}else if((player.getY()>=topLeftCornerY+Constants.ROOMSIZEY*32) && (curRoomY+1<Constants.ROOMSIZEY)) {
+		}else if((player.getY()>topLeftCornerY+Constants.ROOMSIZEY*32) && (curRoomY+1<Constants.ROOMSIZEY)) {
 			curRoomY++;
 			player.setCoordsMove(player.getX(),player.getY()-32*(Constants.ROOMSIZEY-1));
 			changeRoom();
-		}else if(player.getY()<=topLeftCornerY && (curRoomY-1>=0)) {
+		}else if(player.getY()<topLeftCornerY && (curRoomY-1>=0)) {
 			curRoomY--;
 			player.setCoordsMove(player.getX(),player.getY()+32*(Constants.ROOMSIZEX-1));
 			changeRoom();
@@ -171,6 +174,9 @@ public class Adventure {
 	
 	public void changeRoom() {
 		player.setMobs(mobList[curRoomY][curRoomX]);
+		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
+		texture=new TextureGenerator(curRoom,System.currentTimeMillis());
+		
 	}
 	
 	//Sets the background color
@@ -180,7 +186,7 @@ public class Adventure {
 	
 	//Paint the background
 	public void paintBackground(Graphics2D g) {
-		g.setColor(bgColor);
+		g.setColor(new Color(212/6,175/6,55/6) );
 		g.fillRect(0,0,(int)Main.WIDTH+1,(int)Main.HEIGHT+1);
 	}
 	
@@ -192,21 +198,27 @@ public class Adventure {
 
 			this.actions();
 			curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
+
 			Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
 			paintBackground(g);
-			if(!(curRoom==null)) {
-				for(int i=0;i<mapGenerator.getRoomSizeY();i++) {
-					for(int j=0;j<mapGenerator.getRoomSizeX();j++) {
-						g.setColor(Color.WHITE);
-						if(curRoom[i][j].equals("11")) {
-							g.setColor(Color.BLACK);
-						}else if(curRoom[i][j].equals("22")) {
-							g.setColor(Color.RED);
-						}
-						g.fillRect(topLeftCornerX+j*32,topLeftCornerY+i*32,32,32);
-					}
-				}
+//			System.out.println("Here");
+			if(texture!=null) 
+			{
+				texture.draw(g);
 			}
+//			if(!(curRoom==null)) {
+//				for(int i=0;i<mapGenerator.getRoomSizeY();i++) {
+//					for(int j=0;j<mapGenerator.getRoomSizeX();j++) {
+//						g.setColor(Color.WHITE);
+//						if(curRoom[i][j].equals("11")) {
+//							g.setColor(Color.BLACK);
+//						}else if(curRoom[i][j].equals("22")) {
+//							g.setColor(Color.RED);
+//						}
+//						g.fillRect(topLeftCornerX+j*32,topLeftCornerY+i*32,32,32);
+//					}
+//				}
+//			}
 			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 				if(!(mobList[curRoomY][curRoomX]==null)) {
 					collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),mobList[curRoomY][curRoomX].get(i));

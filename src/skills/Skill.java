@@ -57,7 +57,7 @@ public class Skill extends GenericSkill {
 				return (int)(value*(1.0+modifiedPercent/100.0)+0.5);
 				 
 			case POWER:
-				return (int)(value*100*Math.log(1.0+modifiedPercent/12.0)*Math.log(1.0+modifiedPercent/12.0)+0.5);
+				return (int)(value*0.88*10*Math.log(1.0+modifiedPercent/12.0)*Math.log(1.0+modifiedPercent/12.0)+0.5);
 				 
 			case REGEN:
 			return (int)(value*(1+modifiedPercent/100.0)+0.5);

@@ -1,12 +1,17 @@
 package ui;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -39,7 +44,29 @@ public class PauseMenu implements ActionListener {
 		if (Main.status==GameStatus.PAUSED) {
 			g.drawImage(createGradient(),0,0,null);
 			resume.draw(g, JPanelX, JPanelY);
+			Font text = null;
+			try {
+				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
 
+				e.printStackTrace();
+			}
+			
+			g.setFont(text.deriveFont(240f));
+			FontMetrics metrics = g.getFontMetrics();
+			g.setColor(Constants.TEXTCOLOR);
+			g.drawString("Monolith", ((int)Main.WIDTH - metrics.stringWidth("Monolith")) / 2, ((int)Main.HEIGHT)/2);
+			g.setFont(text.deriveFont(40f));
+			metrics = g.getFontMetrics();
+			g.drawString("Player Stats", ((int)Main.WIDTH - metrics.stringWidth("playerStats")) / 2, ((int)Main.HEIGHT)/2+80);
+			for(int i=0;i<player.getStatTypes().length;i++) 
+			{
+				g.drawString(""+player.getStatTypes()[i]+":    "+player.getStats()[i]+" + "+player.getBuffs()[i]+" = "+(player.getStats()[i]+player.getBuffs()[i]),((int)Main.WIDTH - metrics.stringWidth("playerStats")) / 2-100, ((int)Main.HEIGHT)/2+(i+3)*50);
+			}
+
+			
 			
 
 		}
