@@ -151,12 +151,12 @@ public class TextureGenerator {
 					int rgb1=img1.getRGB(i, j);
 					int rgb2=img2.getRGB(i, j);
 					//Right shift
-					int r1 = (rgb1 >> 16)& 0xff ;
-                    int g1 = (rgb1 >> 8) & 0xff;
-                    int b1 = (rgb1)& 0xff;
-                    int r2 = (rgb2 >> 16) & 0xff;
-                    int g2 = (rgb2 >> 8) & 0xff;
-                    int b2 = (rgb2)& 0xff;
+					int r1 = (rgb1 >> 16)% 256 ;
+                    int g1 = (rgb1 >> 8) % 256;
+                    int b1 = (rgb1)% 256;
+                    int r2 = (rgb2 >> 16) %256;
+                    int g2 = (rgb2 >> 8) % 256;
+                    int b2 = (rgb2)% 256;
                     diff+=Math.abs(r1-r2);
                     diff+=Math.abs(b2-b1);
                     diff+=Math.abs(g2-g1);
