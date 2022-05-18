@@ -221,11 +221,11 @@ public class Adventure {
 //			}
 			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 				if(!(mobList[curRoomY][curRoomX]==null)) {
-					collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),mobList[curRoomY][curRoomX].get(i));
+					collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),mobList[curRoomY][curRoomX].get(i),g);
 					mobList[curRoomY][curRoomX].get(i).render(g);
 				}
 			}
-			collider.checkCollides(player.getRect(),player);
+			collider.checkCollides(player.getRect(),player,g);
 
 			if(input.isEscapePressed()) 
 			{

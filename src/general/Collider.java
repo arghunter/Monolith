@@ -7,6 +7,7 @@
  */
 package general;
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
@@ -39,11 +40,11 @@ public class Collider {
 			}
 		}
 	}
-	public void checkCollides(Rectangle playerRect,MovingObject object){
-//		g.drawRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
+	public void checkCollides(Rectangle playerRect,MovingObject object,Graphics2D g){
+		g.drawRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
 		for(Rectangle r : objects) {
 			//.out.println(r+"    " + playerRect);
-//			g.drawRect(r.x, r.y, r.width, r.height);
+			g.drawRect(r.x, r.y, r.width, r.height);
 			if(r.intersects(playerRect)) {
 //				System.out.println("colliding");
 				object.restorePrevPosition();
