@@ -13,7 +13,7 @@ import general.ImageSystem;
 
 public class TextureGenerator {
 	ImageSystem[][] imgs;
-	public TextureGenerator(String[][] room,long seed) 
+	public TextureGenerator(String[][] room,long seed,int x,int y) 
 	{
 		int[][] roomCopy=new int[room.length+2][room[0].length+2];
 

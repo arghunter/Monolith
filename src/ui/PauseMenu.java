@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import GameObjects.Player.Player;
 import general.Constants;
 import input.MouseInputParser;
+import mapGeneration.MapVisual;
 import render.GameStatus;
 import render.Main;
 import render.Tester;
@@ -25,8 +26,8 @@ import render.Tester;
 public class PauseMenu implements ActionListener {
 
 	private Button resume;
-
-	Player player;
+	private MapVisual mapVisualizer;
+	private Player player;
 
 
 	public PauseMenu(Player player, JPanel panel) {
