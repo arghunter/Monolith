@@ -88,7 +88,7 @@ public class Adventure {
 		}
 		player.setMobs(mobList[curRoomY][curRoomX]);
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
-		texture=new TextureGenerator(curRoom,System.currentTimeMillis());
+		texture=new TextureGenerator(curRoom,System.currentTimeMillis(),this.topLeftCornerX,this.topLeftCornerY);
 		
 	}
 	
@@ -154,7 +154,7 @@ public class Adventure {
 	public void changeRoom() {
 		player.setMobs(mobList[curRoomY][curRoomX]);
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
-		texture=new TextureGenerator(curRoom,System.currentTimeMillis());
+		texture=new TextureGenerator(curRoom,System.currentTimeMillis(),this.topLeftCornerX,this.topLeftCornerY);
 		
 	}
 	
