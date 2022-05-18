@@ -178,7 +178,6 @@ public class Adventure {
 			curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 
 			Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
-			collider.checkCollides(player.getRect(),player,g);
 			paintBackground(g);
 			
 			//Spawn new mobs
@@ -225,10 +224,11 @@ public class Adventure {
 //			}
 			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 				if(!(mobList[curRoomY][curRoomX]==null)) {
-					collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),mobList[curRoomY][curRoomX].get(i),g);
+					collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),mobList[curRoomY][curRoomX].get(i));
 					mobList[curRoomY][curRoomX].get(i).render(g);
 				}
 			}
+			collider.checkCollides(player.getRect(),player);
 
 			if(input.isEscapePressed()) 
 			{

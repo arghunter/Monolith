@@ -42,12 +42,12 @@ public class Collider {
 			}
 		}
 	}
-	public void checkCollides(Rectangle playerRect,MovingObject object,Graphics2D g){
-		g.setColor(Color.blue);
-		g.drawRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
+	public void checkCollides(Rectangle playerRect,MovingObject object){
+		//g.setColor(Color.blue);
+		//g.drawRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
 		for(Rectangle r : objects) {
 			//.out.println(r+"    " + playerRect);
-			g.drawRect(r.x, r.y, r.width, r.height);
+			//g.drawRect(r.x, r.y, r.width, r.height);
 			if(r.intersects(playerRect)) {
 //				System.out.println("colliding");
 				object.restorePrevPosition();
