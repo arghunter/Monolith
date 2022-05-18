@@ -63,7 +63,7 @@ public class MapVisual extends JPanel {
 							}else if(curRoom[i][j].equals("22")) {
 								g.setColor(Color.RED);
 							}
-							g.fillRect(op.getRoomSizeX()*2*n+j*2,op.getRoomSizeY()*2*m+i*2,2,2);
+							g.fillRect(op.getRoomSizeX()*n+j,op.getRoomSizeY()*m+i,1,1);
 						}
 					}
 				}

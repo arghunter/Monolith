@@ -176,7 +176,6 @@ public class Adventure {
 	
 	//Render the player and the mobs
 	public void draw(Graphics2D g,int JPanelX,int JPanelY) {
-
 		if(Main.status==GameStatus.RUNNING) {
 
 			this.actions();
