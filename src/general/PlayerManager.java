@@ -22,7 +22,7 @@ import ui.SkillSelectionMenu;
 public class PlayerManager implements ActionListener {
 	private Player player;
 	private PlayerInputParser input;
-	private Timer timer=new Timer(3,this);
+	private Timer timer=new Timer(10,this);
 	private SkillSelectionMenu skillSelectionMenu;
 	private JPanel panel;
 	private Graphics2D g;
