@@ -89,7 +89,7 @@ public class Adventure {
 		player.setMobs(mobList[curRoomY][curRoomX]);
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 		texture=new TextureGenerator(curRoom,System.currentTimeMillis());
-		
+		input.setRoom(curRoom);
 	}
 	
 	public int getTLCX() {
@@ -99,7 +99,9 @@ public class Adventure {
 	public int getTLCY() {
 		return topLeftCornerY;
 	}
-	
+	public String[][] getRoom() {
+		return curRoom;
+	}
 	public void actions() {
 
 		topLeftCornerX=(int)Main.WIDTH/2-(Constants.ROOMSIZEX*16);
@@ -155,7 +157,9 @@ public class Adventure {
 		player.setMobs(mobList[curRoomY][curRoomX]);
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 		texture=new TextureGenerator(curRoom,System.currentTimeMillis());
-		
+		if(curRoom != null) {
+			input.setRoom(curRoom);
+		}
 	}
 	
 	//Sets the background color
@@ -177,7 +181,6 @@ public class Adventure {
 
 			this.actions();
 			curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
-
 			Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
 			paintBackground(g);
 			

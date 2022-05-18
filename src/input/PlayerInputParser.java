@@ -20,6 +20,7 @@ public class PlayerInputParser {
 	private MouseInputParser mouse;
 	private double lastCoolDown=System.currentTimeMillis();
 	Graphics2D graphic;
+	String[][] room;
 	//Constructor
 	public PlayerInputParser(JFrame frame,Component component) {
 		keyboard = new KeyboardInputParser(frame);
@@ -40,9 +41,12 @@ public class PlayerInputParser {
 	public static boolean getMBPressed(int MB) {
 		return MouseInputParser.isMBDown(MB);
 	}
+	public void setRoom(String[][] room) {
+		this.room = room;
+	}
 	//Updates the player
 	public void updatePlayer(Player player) {
-		keyboard.updatePlayerPos(player);
+		keyboard.updatePlayerPos(player,room);
 		mouse.updatePlayerAngle(player);
 		if(MouseInputParser.isMBDown(0)&&System.currentTimeMillis()-lastCoolDown>200) 
 		{

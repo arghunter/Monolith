@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 
 import GameObjects.Direction;
 import GameObjects.Player.Player;
+import general.Collider;
 
 public class KeyboardInputParser {
 	// Fields
@@ -21,7 +22,7 @@ public class KeyboardInputParser {
 	}
 
 	// Updates the player position based on the keys currently presses
-	public void updatePlayerPos(Player player) {
+	public void updatePlayerPos(Player player,String[][] room) {
 		int leftComp = (input.isLeftPressed() || input.isaPressed() ? 1 : 0);
 		int rightComp = (input.isRightPressed() || input.isdPressed() ? 1 : 0);
 		int upComp = (input.isUpPressed() || input.iswPressed() ? 1 : 0);
@@ -51,6 +52,8 @@ public class KeyboardInputParser {
 				player.move(Direction.EAST);
 			}
 		}
+		Collider c = new Collider(room);
+		c.checkCollides(player.getRect(), player);
 	}
 
 	// Returns true if the escape key is pressed
