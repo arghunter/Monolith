@@ -141,7 +141,7 @@ public class Adventure {
 			changeRoom();
 		}else if(player.getY()<topLeftCornerY && (curRoomY-1>=0)) {
 			curRoomY--;
-			player.setCoordsMove(player.getX(),player.getY()+32*(Constants.ROOMSIZEX-1));
+			player.setCoordsMove(player.getX(),player.getY()+32*(Constants.ROOMSIZEY-1));
 			changeRoom();
 		}
 		
@@ -152,11 +152,11 @@ public class Adventure {
 				for(int i=0;i<n.length;i++) {
 					System.out.print(n[i]+" ");
 					if(n[i]==0) {
-						mobList[curRoomY][curRoomX].add(new Zombie((int) (Math.random() * 1200), (int) (Math.random() * 1100), 64, 64));
+						mobList[curRoomY][curRoomX].add(new Zombie((int) (Math.random() * (Constants.ROOMSIZEX-2)), (int) (Math.random() * 1100), 64, 64));
 					}else if(n[i]==1) {
-						mobList[curRoomY][curRoomX].add(new Spider((int) (Math.random() * 1200), (int) (Math.random() * 1100), 64, 64));
+						mobList[curRoomY][curRoomX].add(new Spider((int) (Math.random() * (Constants.ROOMSIZEX-2)), (int) (Math.random() * 1100), 64, 64));
 					}else if(n[i]==2) {
-						mobList[curRoomY][curRoomX].add(new Balkrada((int) (Math.random() * 1200), (int) (Math.random() * 1100), 96, 187));
+						mobList[curRoomY][curRoomX].add(new Balkrada((int) (Math.random() * (Constants.ROOMSIZEX-2)), (int) (Math.random() * 1100), 96, 187));
 					}
 				}
 				resetMobSpawnTime();
