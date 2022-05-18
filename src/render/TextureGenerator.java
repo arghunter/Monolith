@@ -113,10 +113,10 @@ public class TextureGenerator {
 				{
 					type="Wall";
 				}
-//				imgs[i][j]=new ImageSystem((x-32*24)/2+(j*32),(y-32*19)/2+(i*32),new ImageIcon("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png").getImage());
+				imgs[i][j]=new ImageSystem(x+(j*32)-16,(y)+(i*32)-16,new ImageIcon("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png").getImage());
 				
 //				System.out.println("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png");
-				imgs[i][j]=new ImageSystem(2560/2-32*24+(j*32)+16,(int)Main.HEIGHT/2-32*19+(i*32)+16,new ImageIcon("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png").getImage());
+//				imgs[i][j]=new ImageSystem(2560/2-32*24+(j*32)+16,(int)Main.HEIGHT/2-32*19+(i*32)+16,new ImageIcon("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png").getImage());
 //				System.out.println(imgs[i][j].getWidth());
 			}
 		}

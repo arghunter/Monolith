@@ -66,10 +66,9 @@ public class Adventure {
 	private int t=0;
 	private TextureGenerator texture;
 	
-	private int topLeftCornerX=(int)Main.WIDTH-(Constants.ROOMSIZEX*16);
-	private int topLeftCornerY=(int)Main.HEIGHT-(Constants.ROOMSIZEY*16);
-	private int bottomRightCornerX=(int)Main.WIDTH+(Constants.ROOMSIZEX*16);
-	private int bottomRightCornerY=(int)Main.WIDTH+(Constants.ROOMSIZEY*16);
+	private int topLeftCornerX=((int)Main.WIDTH-(Constants.ROOMSIZEX*32))/2;
+	private int topLeftCornerY=((int)Main.HEIGHT-(Constants.ROOMSIZEY*32))/2;
+
 	
 	//Current background color
 	Color bgColor=Color.WHITE;
@@ -106,8 +105,7 @@ public class Adventure {
 
 		topLeftCornerX=(int)Main.WIDTH/2-(Constants.ROOMSIZEX*16);
 		topLeftCornerY=(int)Main.HEIGHT/2-(Constants.ROOMSIZEY*16);
-		bottomRightCornerX=(int)Main.WIDTH/2+(Constants.ROOMSIZEX*16);
-		bottomRightCornerY=(int)Main.HEIGHT/2+(Constants.ROOMSIZEY*16);
+	
 		
 		t++;
 		if(t>2000000000) {
