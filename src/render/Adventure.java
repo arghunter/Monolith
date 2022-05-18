@@ -88,8 +88,8 @@ public class Adventure {
 		}
 		player.setMobs(mobList[curRoomY][curRoomX]);
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
-		texture=new TextureGenerator(curRoom,System.currentTimeMillis());
-		input.setRoom(curRoom);
+		texture=new TextureGenerator(curRoom,System.currentTimeMillis(),topLeftCornerX,topLeftCornerY);
+		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
 	}
 	
 	public int getTLCX() {
@@ -156,10 +156,9 @@ public class Adventure {
 	public void changeRoom() {
 		player.setMobs(mobList[curRoomY][curRoomX]);
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
-		texture=new TextureGenerator(curRoom,System.currentTimeMillis());
-		if(curRoom != null) {
-			input.setRoom(curRoom);
-		}
+		texture=new TextureGenerator(curRoom,System.currentTimeMillis(),topLeftCornerX,topLeftCornerY);
+		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
+		
 	}
 	
 	//Sets the background color
@@ -178,6 +177,7 @@ public class Adventure {
 	public void draw(Graphics2D g,int JPanelX,int JPanelY) {
 		if(Main.status==GameStatus.RUNNING) {
 
+			
 			this.actions();
 			curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 			Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
@@ -231,7 +231,8 @@ public class Adventure {
 					mobList[curRoomY][curRoomX].get(i).render(g);
 				}
 			}
-			collider.checkCollides(player.getRect(),player);
+//			collider.checkCollides(player.getRect(),player);
+			
 
 			if(input.isEscapePressed()) 
 			{

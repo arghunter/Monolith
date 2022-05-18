@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 
 import GameObjects.Player.Player;
 import GameObjects.mobs.Mob;
+import general.Collider;
 
 public class PlayerInputParser {
 	
@@ -19,8 +20,9 @@ public class PlayerInputParser {
 	private KeyboardInputParser keyboard;
 	private MouseInputParser mouse;
 	private double lastCoolDown=System.currentTimeMillis();
+	
 	Graphics2D graphic;
-	String[][] room;
+	Collider collider;
 	//Constructor
 	public PlayerInputParser(JFrame frame,Component component) {
 		keyboard = new KeyboardInputParser(frame);
@@ -41,12 +43,12 @@ public class PlayerInputParser {
 	public static boolean getMBPressed(int MB) {
 		return MouseInputParser.isMBDown(MB);
 	}
-	public void setRoom(String[][] room) {
-		this.room = room;
+	public void setRoom(String[][] room,int x,int y) {
+		collider=new Collider(room,x,y);
 	}
 	//Updates the player
 	public void updatePlayer(Player player) {
-		keyboard.updatePlayerPos(player,room);
+		keyboard.updatePlayerPos(player,collider);
 		mouse.updatePlayerAngle(player);
 		if(MouseInputParser.isMBDown(0)&&System.currentTimeMillis()-lastCoolDown>200) 
 		{

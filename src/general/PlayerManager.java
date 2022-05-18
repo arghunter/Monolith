@@ -22,11 +22,10 @@ import ui.SkillSelectionMenu;
 public class PlayerManager implements ActionListener {
 	private Player player;
 	private PlayerInputParser input;
-	private Timer timer=new Timer(10,this);
+	private Timer timer=new Timer(5,this);
 	private SkillSelectionMenu skillSelectionMenu;
 	private JPanel panel;
 	private Graphics2D g;
-	private int skillsNeeded=0;
 	private Timer colorChanger=new Timer(400,this);
 	private Color textColor=new Color(200,200,200);
 	public PlayerManager(JPanel panel) 

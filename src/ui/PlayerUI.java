@@ -120,22 +120,23 @@ public class PlayerUI implements MouseWheelListener {
 	//Updates the menu
 	public void update() 
 	{
-		arsenalItems[0]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1184, 989+96);
-		arsenalItems[1]=new PlayerUIArsenalItem(player.getInventory().getChestplate(), 1280, 989+96);
-		arsenalItems[2]=new PlayerUIArsenalItem(player.getInventory().getLeggings(), 1280, 1085+96);
-		arsenalItems[3]=new PlayerUIArsenalItem(player.getInventory().getBoots(), 1184, 1085+96);
-		arsenalItems[4]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[4], 1088, 893+96);
-		arsenalItems[5]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[5], 1184, 893+96);
-		arsenalItems[6]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[6], 1280, 893+96);
-		arsenalItems[7]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[7], 1376, 893+96);
-		arsenalItems[8]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[8], 1376, 989+96);
-		arsenalItems[9]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[9], 1376, 1181);
-		arsenalItems[10]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[10], 1376, 1277);
-		arsenalItems[11]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[11], 1280, 1277);
-		arsenalItems[12]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[12], 1184, 1277);
-		arsenalItems[13]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[13], 1088, 1277);
-		arsenalItems[14]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[14], 1088, 1181);
-		arsenalItems[15]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[15], 1088, 989+96);
+		
+		arsenalItems[0]=new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1184+1070, 989+96);
+		arsenalItems[1]=new PlayerUIArsenalItem(player.getInventory().getChestplate(), 1280+1070, 989+96);
+		arsenalItems[2]=new PlayerUIArsenalItem(player.getInventory().getLeggings(), 1280+1070, 1085+96);
+		arsenalItems[3]=new PlayerUIArsenalItem(player.getInventory().getBoots(), 1184+1070, 1085+96);
+		arsenalItems[4]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[4], 1088+1070, 893+96);
+		arsenalItems[5]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[5], 1184+1070, 893+96);
+		arsenalItems[6]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[6], 1280+1070, 893+96);
+		arsenalItems[7]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[7], 1376+1070, 893+96);
+		arsenalItems[8]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[8], 1376+1070, 989+96);
+		arsenalItems[9]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[9], 1376+1070, 1181);
+		arsenalItems[10]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[10], 1376+1070, 1277);
+		arsenalItems[11]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[11], 1280+1070, 1277);
+		arsenalItems[12]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[12], 1184+1070, 1277);
+		arsenalItems[13]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[13], 1088+1070, 1277);
+		arsenalItems[14]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[14], 1088+1070, 1181);
+		arsenalItems[15]=new PlayerUIArsenalItem(player.getInventory().getArsenal()[15], 1088+1070, 989+96);
 		arsenalItems[player.getInventory().getEquipped()].setSelected(true);
 	}
 
