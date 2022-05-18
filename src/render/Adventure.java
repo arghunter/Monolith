@@ -172,13 +172,13 @@ public class Adventure {
 	
 	//Render the player and the mobs
 	public void draw(Graphics2D g,int JPanelX,int JPanelY) {
-
 		if(Main.status==GameStatus.RUNNING) {
 
 			this.actions();
 			curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 
 			Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
+			collider.checkCollides(player.getRect(),player,g);
 			paintBackground(g);
 			
 			//Spawn new mobs
@@ -194,7 +194,7 @@ public class Adventure {
 						}else if(n[i]==2) {
 							mobList[curRoomY][curRoomX].add(new Balkrada(topLeftCornerX+64+32*(int) (Math.random() * (Constants.ROOMSIZEX-4)), topLeftCornerY+64+32*(int) (Math.random() * (Constants.ROOMSIZEY-4)), 96, 187));
 						}
-						if(collider.isColliding(mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size()-1).getRect(),mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size()-1),g)){
+						if(collider.isColliding(mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size()-1).getRect(),mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size()-1))){
 							mobList[curRoomY][curRoomX].remove(mobList[curRoomY][curRoomX].size()-1);
 						}
 					}
@@ -229,7 +229,6 @@ public class Adventure {
 					mobList[curRoomY][curRoomX].get(i).render(g);
 				}
 			}
-			collider.checkCollides(player.getRect(),player,g);
 
 			if(input.isEscapePressed()) 
 			{
