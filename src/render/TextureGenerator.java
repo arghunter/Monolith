@@ -43,7 +43,7 @@ public class TextureGenerator {
 			BufferedImage i2=new BufferedImage(32,32,BufferedImage.TYPE_INT_ARGB);
 			i2.createGraphics().drawImage(new ImageIcon("imgs/Textures/" +"Floor"+ "/" +(floor%100) +".png").getImage(), 0, 0, null);
 			System.out.println(contrast(i1,i2));
-			if(contrast(i1,i2)>20) 
+			if(contrast(i1,i2)>23) 
 			{
 				break;
 				
