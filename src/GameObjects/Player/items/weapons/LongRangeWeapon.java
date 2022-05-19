@@ -17,6 +17,8 @@ import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 import GameObjects.Player.Player;
+import GameObjects.elementalDamage.Damage;
+import GameObjects.elementalDamage.StatusEffect;
 import GameObjects.mobs.Mob;
 import general.ImageSystem;
 
@@ -28,8 +30,8 @@ public class LongRangeWeapon extends Weapon {
 	private Graphics2D graphic;
 	private ImageSystem img;
 	//Constructors
-	public LongRangeWeapon(String name,int tier,int damage,int range,int attackSpeed,int attackWidth, double randAngle) {
-		super(name,tier,damage,range,attackSpeed);
+	public LongRangeWeapon(String name,int tier,int damage,int range,int attackSpeed,StatusEffect effect,double duration ,double statusChance,int attackWidth, double randAngle) {
+		super(name,tier,damage,range,attackSpeed, effect, duration,statusChance);
 		this.attackWidth = attackWidth;
 		this.randAngle = randAngle;
 		img=new ImageSystem(0,0,(new ImageIcon("imgs/"+name.replace(" ", "")+"/"+name.replace(" ", "")+0+".png").getImage()));
@@ -69,7 +71,15 @@ public class LongRangeWeapon extends Weapon {
 					
 					if(attackRect.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
 						System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
-						m.takeDamage(player,(int)(super.getDamage()*(Math.log10(player.getStats()[4])+1)));
+						if(Math.random()<=getChance()) 
+						{
+							Damage dmg= new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4])+1)),getEffect(),getDuration(),m,player);
+
+						}else 
+						{
+							Damage dmg= new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4])+1)),StatusEffect.NONE,0,m,player);
+
+						}
 					}
 				}
 			}
@@ -100,7 +110,7 @@ public class LongRangeWeapon extends Weapon {
 	}
 	public String toString() 
 	{
-		String s="(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+attackWidth+"/"+randAngle+"/LongRangeWeapon";
+		String s="(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+getEffect()+"/"+getDuration()+"/"+getChance()+"/"+attackWidth+"/"+randAngle+"/LongRangeWeapon";
 		return s;
 		
 		

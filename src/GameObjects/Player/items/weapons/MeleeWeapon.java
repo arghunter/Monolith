@@ -14,6 +14,8 @@ import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 import GameObjects.Player.Player;
+import GameObjects.elementalDamage.Damage;
+import GameObjects.elementalDamage.StatusEffect;
 import GameObjects.mobs.Mob;
 import general.ImageSystem;
 
@@ -24,8 +26,8 @@ public class MeleeWeapon extends Weapon {
 	private Graphics2D graphic;
 	private ImageSystem img;
 	//Constructors
-	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,double sweepAngle) {
-		super(name,tier,damage,range,attackSpeed);
+	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,StatusEffect effect,double duration ,double statusChance,double sweepAngle) {
+		super(name,tier,damage,range,attackSpeed, effect, duration, statusChance);
 		this.sweepAngle=sweepAngle;
 		img=new ImageSystem(0,0,(new ImageIcon("imgs/"+name.replace(" ", "")+"/"+name.replace(" ", "")+0+".png").getImage()));
 
@@ -77,7 +79,16 @@ public class MeleeWeapon extends Weapon {
 					Arc2D.Double attackArc = new Arc2D.Double((int)player.getX()-super.getRange(), (int)player.getY()-super.getRange(), super.getRange()*2, super.getRange()*2, (int)((-player.getAngle()-sweepAngle/2)*180/Math.PI), (int)(sweepAngle * 180/Math.PI),Arc2D.PIE);
 					if(attackArc.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
 						System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
-						m.takeDamage(player,(int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
+						if(Math.random()<=getChance()) 
+						{
+							Damage dmg=new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)),getEffect(),getDuration(),m,player);
+
+						}else 
+						{
+							Damage dmg=new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)),StatusEffect.NONE,0,m,player);
+
+						}
+//						m.takeDamage(player,(int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					}
 				}
 			}
@@ -93,7 +104,7 @@ public class MeleeWeapon extends Weapon {
 	//toString for save data parsing
 	public String toString() 
 	{
-		String s="(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+sweepAngle+"/MeleeWeapon";
+		String s="(Item:"+super.getName()+"/"+super.getTier()+"/"+super.getType()+"/"+getDamage()+"/"+getRange()+"/"+getAttackSpeed()+"/"+getEffect()+"/"+getDuration()+"/"+getChance()+"/"+sweepAngle+"/MeleeWeapon";
 		return s;
 		
 		
