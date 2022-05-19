@@ -92,7 +92,7 @@ public class Adventure {
 		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
 		mapGenerator.visitRoom(curRoomX, curRoomY);
 		pauseMenu=new PauseMenu(player,panel,initTime,mapGenerator);
-		System.out.println("hi1");
+		System.out.println(curRoom);
 		projectile = new StraightProjectile(player.getX(),player.getY());
 		projectile.setRoom(curRoom);
 		System.out.println("hi");
