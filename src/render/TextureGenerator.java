@@ -54,7 +54,7 @@ public class TextureGenerator {
 		Random rng=new Random(seed);
 		int wall=rng.nextInt(13)+100;
 		int floor=rng.nextInt(34)+200;
-		int hazard=rng.nextInt(5)+300;
+		int hazard=rng.nextInt(4)+300;
 		while(true) 
 		{
 			
@@ -87,7 +87,7 @@ public class TextureGenerator {
 				}else if(roomCopy[i][j]==22) 
 				{
 					floodFill(roomCopy,i,j,hazard);
-					hazard=rng.nextInt(5)+300;
+					hazard=rng.nextInt(4)+300;
 
 				}else if(roomCopy[i][j]==0) 
 				{
