@@ -34,7 +34,7 @@ import java.util.LinkedList;
 import general.Collider;
 import general.Constants;
 
-public class Adventure {
+public class Tutorial {
 	private Player player;
 
 	
@@ -74,7 +74,7 @@ public class Adventure {
 	Color bgColor=Color.WHITE;
 	
 	
-	public Adventure(Player player,PlayerInputParser input,JPanel panel) {
+	public Tutorial(Player player,PlayerInputParser input,JPanel panel) {
 		Main.status=GameStatus.RUNNING;
 		this.player=player;
 		this.input=input;
@@ -179,7 +179,7 @@ public class Adventure {
 	
 	//Render the player and the mobs
 	public void draw(Graphics2D g,int JPanelX,int JPanelY) {
-		if(Main.status==GameStatus.RUNNING) {
+		if(Main.status==GameStatus.TUTORIAL) {
 
 			
 			this.actions();
@@ -187,65 +187,29 @@ public class Adventure {
 			Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
 			paintBackground(g);
 			
-			//Spawn new mobs
-			if(!(mobList[curRoomY][curRoomX]==null)) {
-				if(t-timeSinceLastSpawn[curRoomY][curRoomX]>5000) {
-					int[] n=mobSpawner.generateMobs(player.getLevel());
-					for(int i=0;i<n.length;i++) {
-						System.out.print(n[i]+" ");
-						if(n[i]==0) {
-							mobList[curRoomY][curRoomX].add(new Zombie(topLeftCornerX+64+32*(int) (Math.random() * (Constants.ROOMSIZEX-4)), topLeftCornerY+64+32*(int) (Math.random() * (Constants.ROOMSIZEY-4)), 64, 64));
-						}else if(n[i]==1) {
-							mobList[curRoomY][curRoomX].add(new Spider(topLeftCornerX+64+32*(int) (Math.random() * (Constants.ROOMSIZEX-4)), topLeftCornerY+64+32*(int) (Math.random() * (Constants.ROOMSIZEY-4)), 64, 64));
-						}else if(n[i]==2) {
-							mobList[curRoomY][curRoomX].add(new Balkrada(topLeftCornerX+64+32*(int) (Math.random() * (Constants.ROOMSIZEX-4)), topLeftCornerY+64+32*(int) (Math.random() * (Constants.ROOMSIZEY-4)), 96, 187));
-						}
-						if(collider.isColliding(mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size()-1).getRect(),mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size()-1))){
-							mobList[curRoomY][curRoomX].remove(mobList[curRoomY][curRoomX].size()-1);
-						}
-					}
-					resetMobSpawnTime();
-				}
-				for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
+			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 					mobList[curRoomY][curRoomX].get(i).action(player);
-				}
 			}
 			
-//			System.out.println("Here");
 			if(texture!=null) 
 			{
 				texture.draw(g);
 			}
-//			if(!(curRoom==null)) {
-//				for(int i=0;i<mapGenerator.getRoomSizeY();i++) {
-//					for(int j=0;j<mapGenerator.getRoomSizeX();j++) {
-//						g.setColor(Color.WHITE);
-//						if(curRoom[i][j].equals("11")) {
-//							g.setColor(Color.BLACK);
-//						}else if(curRoom[i][j].equals("22")) {
-//							g.setColor(Color.RED);
-//						}
-//						g.fillRect(topLeftCornerX+j*32,topLeftCornerY+i*32,32,32);
-//					}
-//				}
-//			}
 			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 				if(!(mobList[curRoomY][curRoomX]==null)) {
 					collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),mobList[curRoomY][curRoomX].get(i));
 					mobList[curRoomY][curRoomX].get(i).render(g);
 				}
 			}
-//			collider.checkCollides(player.getRect(),player);
-
 			player.render(g);
 
 		}
 		if(input.isEscapePressed()) 
 		{
-			if(Main.status==GameStatus.RUNNING) {
+			if(Main.status==GameStatus.TUTORIAL) {
 				Main.status=GameStatus.PAUSED;
 			}else if(Main.status==GameStatus.PAUSED) {
-				Main.status=GameStatus.RUNNING;
+				Main.status=GameStatus.TUTORIAL;
 			}
 		}
 		pauseMenu.draw(g, JPanelX, JPanelY);
