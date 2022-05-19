@@ -20,4 +20,8 @@ public class Path {
 		}
 		return false;
 	}
+	//Implement later
+	public void rotate(Point p, double angle) {
+		
+	}
 }
