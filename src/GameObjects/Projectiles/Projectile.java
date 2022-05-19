@@ -36,6 +36,7 @@ public class Projectile {
 	
 	public void draw(Graphics2D g) {
 		img.drawImage(g);
+		moveToNext();
 	}
 	public boolean collidingWithPlayer(Player player) {
 		if(player.getRect().intersects(getBoundingRect())) {

@@ -22,6 +22,8 @@ import GameObjects.Player.items.blueprints.*;
 import GameObjects.Player.items.consumables.*;
 import GameObjects.Player.items.materials.*;
 import GameObjects.Player.items.weapons.*;
+import GameObjects.Projectiles.Projectile;
+import GameObjects.Projectiles.StraightProjectile;
 import general.SaveSystem;
 import input.*;
 
@@ -60,7 +62,7 @@ public class Adventure {
 	private ArrayList<Mob>[][] mobList=new ArrayList[Constants.YSIZE][Constants.XSIZE];
 	
 
-	
+	private StraightProjectile projectile;
 	private PauseMenu pauseMenu;
 	private PlayerInputParser input;
 	//Time
@@ -90,10 +92,10 @@ public class Adventure {
 		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
 		mapGenerator.visitRoom(curRoomX, curRoomY);
 		pauseMenu=new PauseMenu(player,panel,initTime,mapGenerator);
-
-	
-
-
+		System.out.println("hi1");
+		projectile = new StraightProjectile(player.getX(),player.getY());
+		projectile.setRoom(curRoom);
+		System.out.println("hi");
 	}
 	
 	public int getTLCX() {
@@ -161,6 +163,7 @@ public class Adventure {
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 		texture=new TextureGenerator(curRoom,curRoomX*(curRoomY)+curRoomX+curRoomY+initTime,topLeftCornerX,topLeftCornerY,1);
 		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
+		
 		mapGenerator.visitRoom(curRoomX, curRoomY);
 		
 	}
@@ -186,7 +189,7 @@ public class Adventure {
 			curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 			Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
 			paintBackground(g);
-			
+			projectile.setRoom(curRoom);
 			//Spawn new mobs
 			if(!(mobList[curRoomY][curRoomX]==null)) {
 				if(t-timeSinceLastSpawn[curRoomY][curRoomX]>5000) {
@@ -210,7 +213,7 @@ public class Adventure {
 					mobList[curRoomY][curRoomX].get(i).action(player);
 				}
 			}
-			
+			projectile.draw(g);
 //			System.out.println("Here");
 			if(texture!=null) 
 			{
