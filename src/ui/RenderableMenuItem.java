@@ -104,7 +104,6 @@ public class RenderableMenuItem implements ActionListener {
 		    	
 		    	iShiftY+=150;
 		    }
-		    //Construct Button Discard/Sell button
 		}
 		g.drawImage(iconImg.getImage(), 0, 0, null);
 		image=new ImageSystem(x+5,y+5,img);
@@ -319,7 +318,14 @@ public class RenderableMenuItem implements ActionListener {
 	//Disposes this item
 	public void dispose() 
 	{
-		button.dispose();
+		try 
+		{
+			button.dispose();
+		}catch (Exception e) 
+		{
+			
+		}
+		
 		for(int i=0;i<itemButtons.length;i++) 
 		{
 			itemButtons[i].dispose();

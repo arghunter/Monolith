@@ -31,7 +31,7 @@ public abstract class MovingObject extends GameObject {
 	private boolean isDead=false;
 	private AnimationSystem image;
 	private double angle;
-	protected int dist=1;
+	protected int dist=2;
 	//Constructor
 	public MovingObject(int startX, int startY, int movementDelay, int width, int height, String name, int numFrames) {
 		super(width, height);

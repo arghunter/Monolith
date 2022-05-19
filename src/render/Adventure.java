@@ -26,6 +26,7 @@ import general.SaveSystem;
 import input.*;
 
 import ui.*;
+import ui.MapVisual;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -68,8 +69,7 @@ public class Adventure {
 	
 	private int topLeftCornerX=((int)Main.WIDTH-(Constants.ROOMSIZEX*32))/2;
 	private int topLeftCornerY=((int)Main.HEIGHT-(Constants.ROOMSIZEY*32))/2;
-
-	
+	private long initTime=System.currentTimeMillis();
 	//Current background color
 	Color bgColor=Color.WHITE;
 	
@@ -77,7 +77,6 @@ public class Adventure {
 	public Adventure(Player player,PlayerInputParser input,JPanel panel) {
 		Main.status=GameStatus.RUNNING;
 		this.player=player;
-		pauseMenu=new PauseMenu(player,panel);
 		this.input=input;
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
@@ -87,8 +86,14 @@ public class Adventure {
 		}
 		player.setMobs(mobList[curRoomY][curRoomX]);
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
-		texture=new TextureGenerator(curRoom,System.currentTimeMillis(),topLeftCornerX,topLeftCornerY);
+		texture=new TextureGenerator(curRoom,curRoomX*(curRoomY)+curRoomX+curRoomY+initTime,topLeftCornerX,topLeftCornerY,1);
 		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
+		mapGenerator.visitRoom(curRoomX, curRoomY);
+		pauseMenu=new PauseMenu(player,panel,initTime,mapGenerator);
+
+	
+
+
 	}
 	
 	public int getTLCX() {
@@ -154,8 +159,9 @@ public class Adventure {
 	public void changeRoom() {
 		player.setMobs(mobList[curRoomY][curRoomX]);
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
-		texture=new TextureGenerator(curRoom,System.currentTimeMillis(),topLeftCornerX,topLeftCornerY);
+		texture=new TextureGenerator(curRoom,curRoomX*(curRoomY)+curRoomX+curRoomY+initTime,topLeftCornerX,topLeftCornerY,1);
 		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
+		mapGenerator.visitRoom(curRoomX, curRoomY);
 		
 	}
 	

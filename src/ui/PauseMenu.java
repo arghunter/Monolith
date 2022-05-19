@@ -1,6 +1,6 @@
 package ui;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.FontMetrics;
@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import GameObjects.Player.Player;
 import general.Constants;
 import input.MouseInputParser;
-import mapGeneration.MapVisual;
+import mapGeneration.MapGenerator;
 import render.GameStatus;
 import render.Main;
 import render.Tester;
@@ -26,16 +26,23 @@ import render.Tester;
 public class PauseMenu implements ActionListener {
 
 	private Button resume;
-	private MapVisual mapVisualizer;
+	private MapVisual visual;
 	private Player player;
+	private Button mapButton;
 
 
-	public PauseMenu(Player player, JPanel panel) {
-		Point[] menuPoints = { new Point(0, 66), new Point(0, 266), new Point(400, 266), new Point(400, 66) };
-		resume = new Button(menuPoints, new Color((212) / 2, (175) / 2, (55) / 2, 0), "Resume");
+	public PauseMenu(Player player, JPanel panel,Long initTime,MapGenerator map) {
+		Point[] resumePoints = { new Point(0, 66), new Point(0, 266), new Point(400, 266), new Point(400, 66) };
+		resume = new Button(resumePoints, new Color((212) / 2, (175) / 2, (55) / 2, 0), "Resume");
 		resume.setFontColor(Constants.TEXTCOLOR);
 		panel.add(resume);
 		resume.addActionListener(this);
+		Point[] mapPoints = { new Point((int)Main.WIDTH-400, 66), new Point((int)Main.WIDTH-400, 266), new Point((int)Main.WIDTH, 266), new Point((int)Main.WIDTH, 66) };
+		mapButton=new Button(mapPoints, new Color((212) / 2, (175) / 2, (55) / 2, 0), "Map");
+		mapButton.setFontColor(Constants.TEXTCOLOR);
+		panel.add(mapButton);
+		mapButton.addActionListener(this);
+		visual=new MapVisual(map,initTime,panel);
 		this.player = player;
 
 
@@ -66,6 +73,12 @@ public class PauseMenu implements ActionListener {
 			{
 				g.drawString(""+player.getStatTypes()[i]+":    "+player.getStats()[i]+" + "+player.getBuffs()[i]+" = "+(player.getStats()[i]+player.getBuffs()[i]),((int)Main.WIDTH - metrics.stringWidth("playerStats")) / 2-100, ((int)Main.HEIGHT)/2+(i+3)*50);
 			}
+			if(!visual.getHidden()) 
+			{
+				visual.draw(g);
+
+			}
+			mapButton.draw(g, JPanelX, JPanelY);
 
 			
 			
@@ -95,7 +108,12 @@ public class PauseMenu implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		Main.status = GameStatus.RUNNING;
+		if(e.getSource()==resume)
+			Main.status = GameStatus.RUNNING;
+		else if(e.getSource()==mapButton) 
+		{
+			visual.setHidden(false);
+		}
 	}
 
 }

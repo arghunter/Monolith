@@ -9,11 +9,13 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import general.AnimationSystem;
+import general.Constants;
 import general.ImageSystem;
 
 public class TextureGenerator {
-	ImageSystem[][] imgs;
-	public TextureGenerator(String[][] room,long seed,int x,int y) 
+	private ImageSystem[][] imgs;
+	private double scale=1;
+	public TextureGenerator(String[][] room,long seed,int x,int y,double scale) 
 	{
 		int[][] roomCopy=new int[room.length+2][room[0].length+2];
 
@@ -33,6 +35,7 @@ public class TextureGenerator {
 			}
 			
 		}
+		this.scale=scale;
 		roomCopy[0][0]=11;
 		roomCopy[roomCopy.length-1][roomCopy[0].length-1]=11;
 		roomCopy[0][roomCopy[0].length-1]=11;
@@ -59,7 +62,6 @@ public class TextureGenerator {
 			i1.createGraphics().drawImage(new ImageIcon("imgs/Textures/" +"Wall"+ "/" +(wall%100) +".png").getImage(), 0, 0,null);
 			BufferedImage i2=new BufferedImage(32,32,BufferedImage.TYPE_INT_ARGB);
 			i2.createGraphics().drawImage(new ImageIcon("imgs/Textures/" +"Floor"+ "/" +(floor%100) +".png").getImage(), 0, 0, null);
-			System.out.println(contrast(i1,i2));
 			if(contrast(i1,i2)>23) 
 			{
 				break;
@@ -113,11 +115,9 @@ public class TextureGenerator {
 				{
 					type="Wall";
 				}
-				imgs[i][j]=new ImageSystem(x+(j*32)-16,(y)+(i*32)-16,new ImageIcon("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png").getImage());
-				
-//				System.out.println("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png");
-//				imgs[i][j]=new ImageSystem(2560/2-32*24+(j*32)+16,(int)Main.HEIGHT/2-32*19+(i*32)+16,new ImageIcon("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png").getImage());
-//				System.out.println(imgs[i][j].getWidth());
+				imgs[i][j]=new ImageSystem(x+((int)(j*32*(scale)))-(int)(16*scale),(y)+((int)(i*32*scale))-(int)(16*scale),new ImageIcon("imgs/Textures/" +type+ "/" +(roomCopy[i][j]%100) +".png").getImage());
+				imgs[i][j].setScale(scale, scale);
+
 			}
 		}
 		
@@ -186,6 +186,24 @@ public class TextureGenerator {
 			return diff/(img1.getHeight()*img2.getWidth()*3);
 		}
 		
+	}
+	public static int calcHeight(double scale) 
+	{
+		return (int)(32*scale*(Constants.ROOMSIZEY+2));
+	}
+	public static int calcWidth(double scale) 
+	{
+		return (int)(32*scale*(Constants.ROOMSIZEX+2));
+	}
+	public void translate(int x,int y) 
+	{
+		for(int i=0;i<imgs.length;i++) 
+		{
+			for(int j=0;j<imgs[0].length;j++)
+			{
+				imgs[i][j].move((int)(x/scale), (int)(y/scale));
+			}
+		}
 	}
 
 }

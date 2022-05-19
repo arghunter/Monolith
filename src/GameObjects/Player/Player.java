@@ -36,7 +36,7 @@ public class Player extends MovingObject {
 	SkillTree skills;
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH, StatType.XP };
-	private int[] stats = { 10, 25, 60, 100, 10, 30, 10000, 0, 10, 100 };
+	private int[] stats = { 10, 25, 60, 100, 10, 30, 10000, 0, 15, 100 };
 	private int[] buffs = new int[10];
 
 
@@ -64,7 +64,7 @@ public class Player extends MovingObject {
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
 
 		inventory = new Inventory(this);
-		super.dist = 2;
+		super.dist = 3;
 		stats[3] = (int) inventory.getHealth() + 100;
 		stats[1] = (int) inventory.getArmor();
 		stats[6] = (int) inventory.getShields();
@@ -81,7 +81,7 @@ public class Player extends MovingObject {
 		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
 		String[] splitData=saveData.split(":;:~~~:;:");
-		super.dist = 2;
+		super.dist = 3;
 		inventory = new Inventory(splitData[1],this);
 		currentLevel=Integer.parseInt(splitData[2]);
 		currentXP=Integer.parseInt(splitData[3]);
