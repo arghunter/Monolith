@@ -1,2 +1,2 @@
 1
-Baklava~9~1~64~add dis in
+Baklava~9~1~64~2~HEALTH~REGEN~1000~500~30
