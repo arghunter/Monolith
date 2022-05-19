@@ -52,8 +52,8 @@ public class TextureGenerator {
 		}
 		imgs=new ImageSystem[room.length+2][room[0].length+2];
 		Random rng=new Random(seed);
-		int wall=rng.nextInt(5)+100;
-		int floor=rng.nextInt(21)+200;
+		int wall=rng.nextInt(13)+100;
+		int floor=rng.nextInt(34)+200;
 		int hazard=rng.nextInt(5)+300;
 		while(true) 
 		{
@@ -68,8 +68,8 @@ public class TextureGenerator {
 				
 			}else 
 			{
-				wall=rng.nextInt(5)+100;
-				floor=rng.nextInt(21)+200;
+				wall=rng.nextInt(13)+100;
+				floor=rng.nextInt(34)+200;
 			}
 		}
 

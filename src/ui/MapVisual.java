@@ -19,7 +19,7 @@ import mapGeneration.MapGenerator;
 import render.Main;
 import render.TextureGenerator;
 
-public class MapVisual implements MouseWheelListener, MouseMotionListener, MouseListener, ActionListener {
+public class MapVisual implements MouseWheelListener, MouseMotionListener, MouseListener {
 	private MapGenerator map;
 	private long initTime;
 	private double scale = 1;
@@ -30,7 +30,7 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 	private int shiftY;
 	private boolean hidden=true;
 
-	private Timer timer = new Timer(3000, this);
+
 
 	public MapVisual(MapGenerator map, long initTime, JPanel panel) {
 		this.map = map;
@@ -48,7 +48,7 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 				}
 			}
 		}
-		timer.start();
+		
 
 	}
 
@@ -135,6 +135,16 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 	public void mouseReleased(MouseEvent e) {
 		lastX = -1;
 		lastY = -1;
+		for (int i = 0; i < textures.length; i++) {
+			for (int j = 0; j < textures[0].length; j++) {
+				if (map.hasVisited(i, j)) {
+					textures[i][j] = new TextureGenerator(map.getRoom(i, j), initTime + (i * j),
+							shiftX + TextureGenerator.calcWidth(scale) * i,
+							shiftY + TextureGenerator.calcHeight(scale) * j, scale);
+
+				}
+			}
+		}
 
 	}
 
@@ -150,18 +160,6 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		for (int i = 0; i < textures.length; i++) {
-			for (int j = 0; j < textures[0].length; j++) {
-				if (map.hasVisited(i, j)) {
-					textures[i][j] = new TextureGenerator(map.getRoom(i, j), initTime + (i * j),
-							shiftX + TextureGenerator.calcWidth(scale) * i,
-							shiftY + TextureGenerator.calcHeight(scale) * j, scale);
 
-				}
-			}
-		}
-	}
 
 }

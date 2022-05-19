@@ -51,7 +51,6 @@ public class PauseMenu implements ActionListener {
 	public void draw(Graphics2D g, int JPanelX, int JPanelY) {
 		if (Main.status==GameStatus.PAUSED) {
 			g.drawImage(createGradient(),0,0,null);
-			resume.draw(g, JPanelX, JPanelY);
 			Font text = null;
 			try {
 				text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
@@ -79,6 +78,8 @@ public class PauseMenu implements ActionListener {
 
 			}
 			mapButton.draw(g, JPanelX, JPanelY);
+			resume.draw(g, JPanelX, JPanelY);
+
 
 			
 			
@@ -112,7 +113,11 @@ public class PauseMenu implements ActionListener {
 			Main.status = GameStatus.RUNNING;
 		else if(e.getSource()==mapButton) 
 		{
-			visual.setHidden(false);
+			if(visual.getHidden())
+				visual.setHidden(false);
+			else
+				visual.setHidden(true);
+
 		}
 	}
 
