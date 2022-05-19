@@ -1,5 +1,5 @@
 package GameObjects.Projectiles;
 
-public class FunctionImplementer {
-
+public interface FunctionImplementer {
+	public abstract int doFunc();
 }
