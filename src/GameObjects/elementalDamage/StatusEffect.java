@@ -6,7 +6,11 @@ public enum StatusEffect {
 	FROST,
 	LIGHTNING,
 	ROT,
-	WATER,
+	TOXIN,
+	BLAST,
+	CORROSION,
+	GAS,
+	VIRAL,
 	SLASH,
 	IMPACT,
 	PUNCTURE

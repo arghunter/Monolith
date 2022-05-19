@@ -39,6 +39,7 @@ public class Inventory {
 		arsenal[2] = (new Armor("PrismarineLeggings", 0, ItemType.LEGGINGS, 100, 205, 205, BattleSuitSet.NONE));
 		arsenal[3] = (new Armor("PrismarineBoots", 0, ItemType.BOOTS, 100, 100, 100, BattleSuitSet.NONE));
 		arsenal[10] = (new LongRangeWeapon("Rusty Sword", 0, 200, 500, 600,StatusEffect.FIRE,5,0.5, 100, 3/ 18.0 * Math.PI));
+		arsenal[15] = (new MeleeWeapon("Rusty Sword", 0, 200, 500, 600,StatusEffect.FROST,5,0.5, 3/ 18.0 * Math.PI));
 		
 //		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
 
@@ -128,12 +129,14 @@ public class Inventory {
 		} else if (s.contains("WEAPON")) {
 			if(s.contains("MeleeWeapon")) 
 			{
+				return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]) ,Integer.parseInt(parts[3]),
+						Integer.parseInt(parts[4]),Integer.parseInt(parts[5]),StatusEffect.valueOf(parts[6]),(int) Double.parseDouble(parts[7]),(int) Double.parseDouble(parts[8]), Integer.parseInt(parts[9].replace(",(","")));
 //				return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[3]),
 //						Integer.parseInt(parts[4]), (int) Double.parseDouble(parts[5]), Double.parseDouble(parts[].replace(",(","")));
 			}else if(s.contains("LongRangeWeapon")) 
 			{
-//				return new LongRangeWeapon(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[3]),
-//						Integer.parseInt(parts[4]), (int) Double.parseDouble(parts[5]), Integer.parseInt(parts[6].replace(",(","")),Double.parseDouble(parts[7].replace(",(","")));
+				return new LongRangeWeapon(parts[0], Integer.parseInt(parts[1]) ,Integer.parseInt(parts[3]),
+						Integer.parseInt(parts[4]),Integer.parseInt(parts[5]),StatusEffect.valueOf(parts[6]),(int) Double.parseDouble(parts[7]),(int) Double.parseDouble(parts[8]), Integer.parseInt(parts[9].replace(",(","")),Double.parseDouble(parts[10].replace(",(","")));
 			}
 			
 		} else if (s.contains("CONSUMABLE")) {
