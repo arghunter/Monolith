@@ -230,16 +230,20 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 			items.get(i).dispose();
 		}
 		items= new ArrayList<RenderableMenuItem>();
+		int shift=0;
 		for(int i=0;i<inventory.getStorage().size();i++) 
 		{
 			if(inventory.getStorage().get(i)!=null) 
 			{
-				items.add(new RenderableMenuItem(inventory.getStorage().get(i),266*(i%6)+275,((i/6)+1)*266,panel));
+				items.add(new RenderableMenuItem(inventory.getStorage().get(i),266*((i+shift)%6)+275,(((i+shift)/6)+1)*266,panel));
 				if(selectedItem!=null&&items.get(items.size()-1).getItem()==selectedItem.getItem()) 
 				{
 					selectedItem=items.get(items.size()-1);
 				}
 				items.get(items.size()-1).addActionListener(this);
+			}else 
+			{
+				shift--;
 			}
 			
 		}
@@ -253,7 +257,12 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	{
 		for(int i=0;i<items.size();i++) 
 		{
-			items.get(i).dispose();
+			if(items.get(i)!=null) 
+			{
+				
+				items.get(i).dispose();
+			}
+		
 		}
 		ArrayList<Item> selection=inventory.searchStorage(type);
 		items= new ArrayList<RenderableMenuItem>();

@@ -330,10 +330,10 @@ public class Inventory {
 		ArrayList<Item> selection = new ArrayList<Item>();
 
 		for (int i = 0; i < storage.size(); i++) {
-			if (storage.get(i)!=null&&storage.get(i).getType() == type || (type == ItemType.ARMOR
+			if (storage.get(i)!=null&&(storage.get(i)!=null&&storage.get(i).getType() == type || (type == ItemType.ARMOR
 					&& (storage.get(i).getType() == ItemType.BOOTS || storage.get(i).getType() == ItemType.CHESTPLATE
 							|| storage.get(i).getType() == ItemType.LEGGINGS
-							|| storage.get(i).getType() == ItemType.HELMET))) {
+							|| storage.get(i).getType() == ItemType.HELMET)))) {
 				selection.add(storage.get(i));
 			}
 		}
