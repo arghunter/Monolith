@@ -25,6 +25,7 @@ import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.weapons.MeleeWeapon;
 import GameObjects.Player.items.weapons.Weapon;
+import GameObjects.elementalDamage.StatusEffect;
 import GameObjects.mobs.Mob;
 import GameObjects.Player.items.consumables.Consumable;
 import general.ImageSystem;
@@ -172,7 +173,7 @@ public class Player extends MovingObject {
 		if (i instanceof Weapon) {
 			return (Weapon) i;
 		} else {
-			return (Weapon) new MeleeWeapon("Stick", 1, 10, 100, 10, Math.PI / 4);
+			return (Weapon) new MeleeWeapon("Stick", 1, 10, 100, 10, StatusEffect.NONE, 0, 0, Math.PI / 4);
 		}
 	}
 
@@ -256,7 +257,7 @@ public class Player extends MovingObject {
 		if (!isDead) {
 			Item item = inventory.getEquippedItem();
 			if (item == null) {
-				Weapon weapon = new MeleeWeapon("Fist", 1, 10, 100, 3, 300);
+				Weapon weapon=(Weapon) new MeleeWeapon("Stick", 1, 10, 100, 10, StatusEffect.NONE, 0, 0, Math.PI / 4);
 				weapon.primaryFire(mobs, this);
 				return;
 			}

@@ -117,6 +117,9 @@ public abstract class MovingObject extends GameObject {
 	// Scales to prevent strafing from being faster
 	public void move(Direction direction) {
 		int n=dist;
+		if (System.currentTimeMillis() - lastMovement < this.currentMovementDelay) {
+			return;
+		}
 		if (direction == Direction.NORTHEAST || direction == Direction.SOUTHWEST || direction == Direction.SOUTHEAST
 				|| direction == Direction.NORTHWEST) {
 			// Magic number
@@ -124,9 +127,7 @@ public abstract class MovingObject extends GameObject {
 		} else {
 			this.currentMovementDelay = this.movementDelay;
 		}
-		if (System.currentTimeMillis() - lastMovement < this.currentMovementDelay) {
-			return;
-		}
+
 
 		int newX = getX();
 		int newY = getY();

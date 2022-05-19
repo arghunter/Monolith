@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import GameObjects.Player.Player;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
+import GameObjects.elementalDamage.StatusEffect;
 import GameObjects.mobs.Mob;
 
 public abstract class Weapon extends Item{
@@ -22,16 +23,30 @@ public abstract class Weapon extends Item{
 	private double attackDelay;
 	private double currentAttackDelay;
 	private double lastAttack=0;
+	private StatusEffect effect;
+	private double duration;
+	private double chance;
 	//Constructor
-	public Weapon(String name,int tier,int damage,int range, int attackSpeed) 
+	public Weapon(String name,int tier,int damage,int range, int attackSpeed,StatusEffect effect,double duration,double chance) 
 	{
 		super(name,ItemType.WEAPON,tier);
 		this.damage=damage;
 		this.range=range;
 		this.attackSpeed=attackSpeed;
 		this.attackDelay= Math.round(60*1000.0/attackSpeed);
-		
+		this.effect=effect;
+		this.duration=duration;
+		this.chance=chance;
 		this.currentAttackDelay=attackDelay;
+	}
+	public StatusEffect getEffect() {
+		return effect;
+	}
+	public double getDuration() {
+		return duration;
+	}
+	public double getChance() {
+		return chance;
 	}
 	//Abstract fire methods
 	public abstract void primaryFire(ArrayList<Mob> mobs,Player player);

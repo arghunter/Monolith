@@ -34,7 +34,7 @@ public class MainMenu implements ActionListener {
 	//Fields
 	Player player;
 	Button[] menuButtons = new Button[3];// 0=storageButton, 1=arsenalButton, 2==skillDisplayButton
-	Button[] gameModeButtons = new Button[2];// 0=adventureButton 1==survivalButton
+	Button[] gameModeButtons = new Button[1];// 0=adventureButton 1==survivalButton
 	Button escape;
 	Button settingsMenu;
 	InventoryMenu inventoryMenu;
