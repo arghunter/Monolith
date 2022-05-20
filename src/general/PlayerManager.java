@@ -91,7 +91,13 @@ public class PlayerManager implements Runnable {
 			{
 				if(Main.status==GameStatus.RUNNING) 
 				{
-					input.updatePlayer(player);
+					try 
+					{
+						input.updatePlayer(player);
+
+					}catch(Exception e) 
+					{
+					}
 				}else if(Main.status==GameStatus.MAIN_MENU) 
 				{
 					input.updatePlayerAngle(player);
