@@ -71,25 +71,26 @@ public class PlayerUI implements MouseWheelListener {
 		try 
 		{
 			g.drawString(""+player.getCurrentHealth(), 100, 100);
+			g.fillRect(100, 100,Math.max((int)(66*Math.log10(player.getCurrentHealth())),0) , 5);
+			g.setColor(new Color(0, 219, 227));
+			g.drawString(""+player.getCurrentShields(), 100+(int)(66*Math.log10(player.getCurrentHealth())), 100);
+			g.fillRect(100+(int)(66*Math.log10(player.getCurrentHealth())), 100,Math.max((int)(66*Math.log10(player.getCurrentShields())),0) , 5);
+			g.setColor(new Color(100,100,100));
+			g.fillRect(100, 120, 250, 5);
+			g.setColor(new Color(200,200,200));
+			g.fillRect(100, 120, 250*player.getCurrentXP()/player.getXpToNextLevel(), 5);
+			g.setFont(text.deriveFont(30f));
+			g.drawString("Level:"+player.getLevel(), 100, 150);
+			for(int i=0;i<arsenalItems.length;i++) 
+			{
+				arsenalItems[i].draw(g);
+			}
 
 		}catch(Exception e) 
 		{
 			
 		}
-		g.fillRect(100, 100,Math.max((int)(66*Math.log10(player.getCurrentHealth())),0) , 5);
-		g.setColor(new Color(0, 219, 227));
-		g.drawString(""+player.getCurrentShields(), 100+(int)(66*Math.log10(player.getCurrentHealth())), 100);
-		g.fillRect(100+(int)(66*Math.log10(player.getCurrentHealth())), 100,Math.max((int)(66*Math.log10(player.getCurrentShields())),0) , 5);
-		g.setColor(new Color(100,100,100));
-		g.fillRect(100, 120, 250, 5);
-		g.setColor(new Color(200,200,200));
-		g.fillRect(100, 120, 250*player.getCurrentXP()/player.getXpToNextLevel(), 5);
-		g.setFont(text.deriveFont(30f));
-		g.drawString("Level:"+player.getLevel(), 100, 150);
-		for(int i=0;i<arsenalItems.length;i++) 
-		{
-			arsenalItems[i].draw(g);
-		}
+	
 	}
 	@Override
 	//Selects a different item in the arsenal

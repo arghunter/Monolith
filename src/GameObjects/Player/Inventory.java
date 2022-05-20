@@ -48,6 +48,7 @@ public class Inventory {
 		arsenal[10] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.VIRAL,5,0.5, 10/ 18.0 * Math.PI));
 		arsenal[11] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.FROST,5,0.5, 10/ 18.0 * Math.PI));
 		arsenal[12] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.FIRE,5,0.5, 10/ 18.0 * Math.PI));
+		arsenal[13] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.TOXIN,5,0.5, 10/ 18.0 * Math.PI));
 
 
 //		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
