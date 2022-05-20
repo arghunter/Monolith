@@ -133,12 +133,6 @@ public class ItemReader {
 					effect=StatusEffect.GAS;
 				}else if(ef.equals("VIRAL")) {
 					effect=StatusEffect.VIRAL;
-				}else if(ef.equals("SLASH")) {
-					effect=StatusEffect.SLASH;
-				}else if(ef.equals("IMPACT")) {
-					effect=StatusEffect.IMPACT;
-				}else if(ef.equals("PUNCTURE")) {
-					effect=StatusEffect.PUNCTURE;
 				}
 				meleeWeapons[i][j]=new MeleeWeapon(item.substring(0,positions[0]),Integer.parseInt(item.substring(positions[0]+1,positions[1])),Integer.parseInt(item.substring(positions[1]+1,positions[2])),Integer.parseInt(item.substring(positions[2]+1,positions[3])),Integer.parseInt(item.substring(positions[3]+1,positions[4])),effect,Integer.parseInt(item.substring(positions[5]+1,positions[6])),Integer.parseInt(item.substring(positions[6]+1,positions[7])),Double.parseDouble(item.substring(positions[7]+1)));
 			}
