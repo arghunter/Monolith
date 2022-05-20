@@ -36,7 +36,7 @@ import java.util.LinkedList;
 import general.Collider;
 import general.Constants;
 
-public class Adventure {
+public class Adventure implements Runnable {
 	private Player player;
 
 	
@@ -68,10 +68,14 @@ public class Adventure {
 	//Time
 	private int t=0;
 	private TextureGenerator texture;
-	
+	private Thread thread;
+	private Collider collider;
 	private int topLeftCornerX=((int)Main.WIDTH-(Constants.ROOMSIZEX*32))/2;
 	private int topLeftCornerY=((int)Main.HEIGHT-(Constants.ROOMSIZEY*32))/2;
 	private long initTime=System.currentTimeMillis();
+	private Graphics2D g;
+	private int JPanelX;
+	private int JPanelY;
 	//Current background color
 	Color bgColor=Color.WHITE;
 	
@@ -80,6 +84,8 @@ public class Adventure {
 		Main.status=GameStatus.RUNNING;
 		this.player=player;
 		this.input=input;
+		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
+		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
 		for(int i=0;i<Constants.YSIZE;i++) {
 			for(int j=0;j<Constants.XSIZE;j++) {
 				timeSinceLastSpawn[i][j]=-5000;
@@ -87,11 +93,11 @@ public class Adventure {
 			}
 		}
 		player.setMobs(mobList[curRoomY][curRoomX]);
-		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 		texture=new TextureGenerator(curRoom,curRoomX*(curRoomY)+curRoomX+curRoomY+initTime,topLeftCornerX,topLeftCornerY,1);
-		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
+		
 		mapGenerator.visitRoom(curRoomX, curRoomY);
 		pauseMenu=new PauseMenu(player,panel,initTime,mapGenerator);
+		start();
 //		System.out.println(curRoom);
 //		projectile = new StraightProjectile(player.getX(),player.getY());
 //		projectile.setRoom(curRoom);
@@ -163,7 +169,7 @@ public class Adventure {
 		curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 		texture=new TextureGenerator(curRoom,curRoomX*(curRoomY)+curRoomX+curRoomY+initTime,topLeftCornerX,topLeftCornerY,1);
 		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
-		
+		collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
 		mapGenerator.visitRoom(curRoomX, curRoomY);
 		
 	}
@@ -182,37 +188,19 @@ public class Adventure {
 	
 	//Render the player and the mobs
 	public void draw(Graphics2D g,int JPanelX,int JPanelY) {
+		this.g=g;
+		this.JPanelX=JPanelX;
+		this.JPanelY=JPanelY;
+		
 		if(Main.status==GameStatus.RUNNING) {
 
 			
-			this.actions();
-			curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
-			Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
+
 			paintBackground(g);
 //			projectile.setRoom(curRoom);
 			//Spawn new mobs
-			if(!(mobList[curRoomY][curRoomX]==null)) {
-				if(t-timeSinceLastSpawn[curRoomY][curRoomX]>5000) {
-					int[] n=mobSpawner.generateMobs(player.getLevel());
-					for(int i=0;i<n.length;i++) {
-						System.out.print(n[i]+" ");
-						if(n[i]==0) {
-							mobList[curRoomY][curRoomX].add(new Zombie(topLeftCornerX+64+32*(int) (Math.random() * (Constants.ROOMSIZEX-4)), topLeftCornerY+64+32*(int) (Math.random() * (Constants.ROOMSIZEY-4)), 64, 64));
-						}else if(n[i]==1) {
-							mobList[curRoomY][curRoomX].add(new Spider(topLeftCornerX+64+32*(int) (Math.random() * (Constants.ROOMSIZEX-4)), topLeftCornerY+64+32*(int) (Math.random() * (Constants.ROOMSIZEY-4)), 64, 64));
-						}else if(n[i]==2) {
-							mobList[curRoomY][curRoomX].add(new Balkrada(topLeftCornerX+64+32*(int) (Math.random() * (Constants.ROOMSIZEX-4)), topLeftCornerY+64+32*(int) (Math.random() * (Constants.ROOMSIZEY-4)), 96, 187));
-						}
-						if(collider.isColliding(mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size()-1).getRect(),mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size()-1))){
-							mobList[curRoomY][curRoomX].remove(mobList[curRoomY][curRoomX].size()-1);
-						}
-					}
-					resetMobSpawnTime();
-				}
-				for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
-					mobList[curRoomY][curRoomX].get(i).action(player);
-				}
-			}
+
+
 //			projectile.draw(g);
 //			System.out.println("Here");
 			if(texture!=null) 
@@ -234,7 +222,6 @@ public class Adventure {
 //			}
 			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
 				if(!(mobList[curRoomY][curRoomX]==null)) {
-					collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),mobList[curRoomY][curRoomX].get(i));
 					mobList[curRoomY][curRoomX].get(i).render(g);
 				}
 			}
@@ -253,6 +240,79 @@ public class Adventure {
 		}
 		pauseMenu.draw(g, JPanelX, JPanelY);
 
+	}
+
+	public void start() 
+	{
+		if (thread == null) {
+	         thread = new Thread (this, ""+System.currentTimeMillis());
+	         thread.start ();
+	      }
+	}
+	@Override
+	public void run() {
+		while(true) 
+		{
+			if(Main.status==GameStatus.RUNNING) 
+			{
+				this.actions();
+				curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
+				if(collider==null) 
+				{
+					collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
+
+				}
+//				Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
+//				projectile.setRoom(curRoom);
+				//Spawn new mobs
+				if(!(mobList[curRoomY][curRoomX]==null)) {
+					if(t-timeSinceLastSpawn[curRoomY][curRoomX]>5000) {
+						int[] n=mobSpawner.generateMobs(player.getLevel());
+						for(int i=0;i<n.length;i++) {
+							if(n[i]==0) {
+								mobList[curRoomY][curRoomX].add(new Zombie(topLeftCornerX+64+32*(int) (Math.random() * (Constants.ROOMSIZEX-4)), topLeftCornerY+64+32*(int) (Math.random() * (Constants.ROOMSIZEY-4)), 64, 64));
+							}else if(n[i]==1) {
+								mobList[curRoomY][curRoomX].add(new Spider(topLeftCornerX+64+32*(int) (Math.random() * (Constants.ROOMSIZEX-4)), topLeftCornerY+64+32*(int) (Math.random() * (Constants.ROOMSIZEY-4)), 64, 64));
+							}else if(n[i]==2) {
+								mobList[curRoomY][curRoomX].add(new Balkrada(topLeftCornerX+64+32*(int) (Math.random() * (Constants.ROOMSIZEX-4)), topLeftCornerY+64+32*(int) (Math.random() * (Constants.ROOMSIZEY-4)), 96, 187));
+							}
+							if(collider.isColliding(mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size()-1).getRect(),mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size()-1))){
+								mobList[curRoomY][curRoomX].remove(mobList[curRoomY][curRoomX].size()-1);
+							}
+						}
+						resetMobSpawnTime();
+					}
+					for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
+						mobList[curRoomY][curRoomX].get(i).action(player);
+					}
+				}
+
+				for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
+					if(!(mobList[curRoomY][curRoomX]==null)) {
+						collider.checkCollides(mobList[curRoomY][curRoomX].get(i).getRect(),mobList[curRoomY][curRoomX].get(i));
+						
+					}
+				}
+				if(g!=null) 
+				{
+					draw(g,JPanelX,JPanelY);
+				}
+				try {
+					thread.sleep(10);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			try {
+				thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
 	}
 	
 	

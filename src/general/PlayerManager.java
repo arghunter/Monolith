@@ -19,15 +19,16 @@ import render.GameStatus;
 import render.Main;
 import ui.SkillSelectionMenu;
 
-public class PlayerManager implements ActionListener {
+public class PlayerManager implements Runnable {
 	private Player player;
 	private PlayerInputParser input;
-	private Timer timer=new Timer(5,this);
+	
 	private SkillSelectionMenu skillSelectionMenu;
 	private JPanel panel;
 	private Graphics2D g;
-	private Timer colorChanger=new Timer(400,this);
+	
 	private Color textColor=new Color(200,200,200);
+	private Thread thread;
 	public PlayerManager(JPanel panel) 
 	{
 		this.panel=panel;
@@ -36,8 +37,8 @@ public class PlayerManager implements ActionListener {
 	{
 		player=p;
 		this.input=input;
-		timer.start();
-		colorChanger.start();
+		start();
+
 	}
 	public void draw(Graphics2D g,int JPanelX,int JPanelY) 
 	{
@@ -62,43 +63,56 @@ public class PlayerManager implements ActionListener {
 		}
 	}
 
+
+	public void start() 
+	{
+		if (thread == null) {
+	         thread = new Thread (this, ""+System.currentTimeMillis());
+	         thread.start ();
+	      }
+	}
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(input!=null) 
+	public void run() {
+		while(true) 
 		{
-			if(Main.status==GameStatus.RUNNING) 
+			if(input!=null) 
 			{
-				input.updatePlayer(player);
-			}else if(Main.status==GameStatus.MAIN_MENU) 
-			{
-				input.updatePlayerAngle(player);
-			}
-		}
-
-		if(player.getSkillsNeeded()>0) 
-		{
-			if(input.isEnterPressed()) 
-			{
-				if(player.getSkillsNeeded()>0) 
+				if(Main.status==GameStatus.RUNNING) 
 				{
-					if (skillSelectionMenu == null || !this.skillSelectionMenu.isActive()) {
-						skillSelectionMenu = null;
-						skillSelectionMenu = new SkillSelectionMenu(player.getSkills(),840, panel);
-						player.levelUP();
+					input.updatePlayer(player);
+				}else if(Main.status==GameStatus.MAIN_MENU) 
+				{
+					input.updatePlayerAngle(player);
+				}
+			}
 
+			if(player.getSkillsNeeded()>0) 
+			{
+				if(input.isEnterPressed()) 
+				{
+					if(player.getSkillsNeeded()>0) 
+					{
+						if (skillSelectionMenu == null || !this.skillSelectionMenu.isActive()) {
+							skillSelectionMenu = null;
+							skillSelectionMenu = new SkillSelectionMenu(player.getSkills(),840, panel);
+							player.levelUP();
+
+						}
 					}
 				}
 			}
-		}
-		if(e.getSource()==colorChanger)
-		{
+			
+			
 			Random rng=new Random();
-
 			textColor=new Color(rng.nextInt(256),rng.nextInt(256),rng.nextInt(256));
+			try {
+				thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
-		
-		
-
 		
 	}
 

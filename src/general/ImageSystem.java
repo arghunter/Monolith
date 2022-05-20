@@ -5,12 +5,19 @@
 package general;
 
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
+import javax.swing.Timer;
+
+import GameObjects.elementalDamage.StatusEffect;
 
 public class ImageSystem {
 	//Fields
@@ -23,6 +30,7 @@ public class ImageSystem {
 	private int y;
 	private double scaleX=1.0;
 	private double scaleY=1.0;
+
 	//Constructor
 	public ImageSystem(int x,int y,Image pic) 
 	{
@@ -93,6 +101,11 @@ public class ImageSystem {
 		this.y+=y;
 	    transform.translate(x, y);
 	}
+	public AffineTransform getTransform() 
+	{
+		return transform;
+	}
+
 	
 	//Sets the rotation of this image
 	public void setRotation(double radians) 
@@ -112,9 +125,18 @@ public class ImageSystem {
 	//Draws this image
 	public void drawImage(Graphics2D g)
 	 {
-	    g.drawImage(picture, transform, null);
+
+			
+		g.drawImage(picture, transform, null);
+
+
 	    
 	  
 	 }
+
+
+
+
+
 
 }

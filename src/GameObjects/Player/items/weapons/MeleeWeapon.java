@@ -72,6 +72,7 @@ public class MeleeWeapon extends Weapon {
 	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		if(canFire()) 
 		{
+			int totalStatus=0;
 			for(Mob m : mobs) {
 				if(graphic!=null) {
 				}
@@ -79,10 +80,10 @@ public class MeleeWeapon extends Weapon {
 					Arc2D.Double attackArc = new Arc2D.Double((int)player.getX()-super.getRange(), (int)player.getY()-super.getRange(), super.getRange()*2, super.getRange()*2, (int)((-player.getAngle()-sweepAngle/2)*180/Math.PI), (int)(sweepAngle * 180/Math.PI),Arc2D.PIE);
 					if(attackArc.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
 						System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
-						if(Math.random()<=getChance()) 
+						if(totalStatus<3&&Math.random()<=getChance()) 
 						{
 							Damage dmg=new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)),getEffect(),getDuration(),m,player,mobs);
-
+							totalStatus++;
 						}else 
 						{
 							Damage dmg=new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)),StatusEffect.NONE,0,m,player,mobs);

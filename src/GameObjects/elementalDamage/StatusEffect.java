@@ -11,8 +11,6 @@ public enum StatusEffect {
 	CORROSION,
 	GAS,
 	VIRAL,
-	SLASH,
-	IMPACT,
-	PUNCTURE
+
 
 }

@@ -63,6 +63,7 @@ public class LongRangeWeapon extends Weapon {
 	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		if(canFire()) 
 		{
+			int totalStatus=0;
 			for(Mob m : mobs) {
 				if(graphic!=null) {
 				}
@@ -71,10 +72,10 @@ public class LongRangeWeapon extends Weapon {
 					
 					if(attackRect.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
 						System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
-						if(Math.random()<=getChance()) 
+						if(totalStatus<2&&Math.random()<=getChance()) 
 						{
 							Damage dmg= new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4])+1)),getEffect(),getDuration(),m,player,mobs);
-
+							totalStatus++;
 						}else 
 						{
 							Damage dmg= new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4])+1)),StatusEffect.NONE,0,m,player,mobs);

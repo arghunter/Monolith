@@ -39,6 +39,11 @@ public abstract class Mob extends MovingObject {
 	public void setStat(int statNum, int newValue) {
 		stats[statNum] = newValue;
 	}
+	//Returns the value of the given stat
+	public int getStat(int statNum) 
+	{
+		return stats[statNum];
+	}
 	//Sets all Stats
 	public void setAllStats(int[] stats) {
 		if (stats.length == 6) {

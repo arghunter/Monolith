@@ -52,8 +52,14 @@ public class KeyboardInputParser {
 				player.move(Direction.EAST);
 			}
 		}
-		
-		c.checkCollides(player.getRect(), player);
+		try 
+		{
+			c.checkCollides(player.getRect(), player);
+
+		}catch(Exception e) 
+		{
+			
+		}
 	}
 
 	// Returns true if the escape key is pressed

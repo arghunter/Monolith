@@ -38,11 +38,17 @@ public class Inventory {
 		arsenal[1] = (new Armor("PrismarineChestplate", 0, ItemType.CHESTPLATE, 100, 205, 250, BattleSuitSet.NONE));
 		arsenal[2] = (new Armor("PrismarineLeggings", 0, ItemType.LEGGINGS, 100, 205, 205, BattleSuitSet.NONE));
 		arsenal[3] = (new Armor("PrismarineBoots", 0, ItemType.BOOTS, 100, 100, 100, BattleSuitSet.NONE));
-		arsenal[10] = (new LongRangeWeapon("Rusty Sword", 0, 20, 500, 120,StatusEffect.FIRE,5,0.5, 100, 3/ 18.0 * Math.PI));
-		arsenal[15] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.FROST,5,0.5, 3/ 18.0 * Math.PI));
+//		arsenal[10] = (new LongRangeWeapon("Rusty Sword", 0, 20, 500, 120,StatusEffect.FIRE,5,0.5, 100, 3/ 18.0 * Math.PI));
+//		arsenal[15] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.FROST,5,0.5, 3/ 18.0 * Math.PI));
 		arsenal[4] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.LIGHTNING,5,0.5, 10/ 18.0 * Math.PI));
 		arsenal[5] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.ROT,5,0.5, 10/ 18.0 * Math.PI));
 		arsenal[6] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.BLAST,5,0.5, 10/ 18.0 * Math.PI));
+		arsenal[8] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.CORROSION,5,0.5, 10/ 18.0 * Math.PI));
+		arsenal[9] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.GAS,5,0.5, 10/ 18.0 * Math.PI));
+		arsenal[10] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.VIRAL,5,0.5, 10/ 18.0 * Math.PI));
+		arsenal[11] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.FROST,5,0.5, 10/ 18.0 * Math.PI));
+		arsenal[12] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.FIRE,5,0.5, 10/ 18.0 * Math.PI));
+
 
 //		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
 
