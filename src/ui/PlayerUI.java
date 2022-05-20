@@ -59,29 +59,23 @@ public class PlayerUI implements MouseWheelListener {
 		}
 		g.setFont(text.deriveFont(60f));
 		g.setColor(new Color(213, 13, 13));
-		for (int i = 0; i < 1; i++) {
-			try {
-				g.drawString("" + Integer.toString(player.getCurrentHealth()), 100, 100);
-				g.fillRect(100, 100, Math.max((int) (66 * Math.log10(player.getCurrentHealth())), 0), 5);
-				g.setColor(new Color(0, 219, 227));
-				g.drawString("" + Integer.toString(player.getCurrentShields()),
-						100 + (int) (66 * Math.log10(player.getCurrentHealth())), 100);
-				g.fillRect(100 + (int) (66 * Math.log10(player.getCurrentHealth())), 100,
-						Math.max((int) (66 * Math.log10(player.getCurrentShields())), 0), 5);
-				g.setColor(new Color(100, 100, 100));
-				g.fillRect(100, 120, 250, 5);
-				g.setColor(new Color(200, 200, 200));
-				g.fillRect(100, 120, 250 * player.getCurrentXP() / player.getXpToNextLevel(), 5);
-				g.setFont(text.deriveFont(30f));
-				g.drawString("Level:" + Integer.toString(player.getLevel()), 100, 150);
-				for (int j = 0; j < arsenalItems.length; j++) {
-					arsenalItems[j].draw(g);
-				}
-			} catch (Exception e) {
-				i--;
-			}
-		}
 
+		g.drawString("" + Integer.toString(player.getCurrentHealth()), 100, 100);
+		g.fillRect(100, 100, Math.max((int) (66 * Math.log10(player.getCurrentHealth())), 0), 5);
+		g.setColor(new Color(0, 219, 227));
+		g.drawString("" + Integer.toString(player.getCurrentShields()),
+				100 + (int) (66 * Math.log10(player.getCurrentHealth())), 100);
+		g.fillRect(100 + (int) (66 * Math.log10(player.getCurrentHealth())), 100,
+				Math.max((int) (66 * Math.log10(player.getCurrentShields())), 0), 5);
+		g.setColor(new Color(100, 100, 100));
+		g.fillRect(100, 120, 250, 5);
+		g.setColor(new Color(200, 200, 200));
+		g.fillRect(100, 120, 250 * player.getCurrentXP() / player.getXpToNextLevel(), 5);
+		g.setFont(text.deriveFont(30f));
+		g.drawString("Level:" + Integer.toString(player.getLevel()), 100, 150);
+		for (int j = 0; j < arsenalItems.length; j++) {
+			arsenalItems[j].draw(g);
+		}
 
 	}
 

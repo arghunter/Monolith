@@ -293,8 +293,8 @@ public class Player extends MovingObject {
 
 	@Override
 	//Renders the player
-	public void render(Graphics2D g) {
-		ui.draw(g);
+	public synchronized void render(Graphics2D g) {
+
 
 //		System.out.println("Here");
 		
@@ -304,6 +304,7 @@ public class Player extends MovingObject {
 		super.getImage().drawAnimation(g);
 		regen();
 		super.setMovementDelay(stats[7] + buffs[7]);
+		ui.draw(g);
 
 	}
 

@@ -71,16 +71,21 @@ public class LongRangeWeapon extends Weapon {
 					Polygon attackRect = this.rotate(new Rectangle(player.getX() - attackWidth/2,player.getY() - super.getRange(),attackWidth,super.getRange()),new Point(player.getX(),player.getY()),(player.getAngle()+Math.PI) + Math.random()*randAngle);
 					
 					if(attackRect.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
+						
 						System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
-						if(totalStatus<2&&Math.random()<=getChance()) 
+						synchronized(mobs) 
 						{
-							Damage dmg= new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4])+1)),getEffect(),getDuration(),m,player,mobs);
-							totalStatus++;
-						}else 
-						{
-							Damage dmg= new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4])+1)),StatusEffect.NONE,0,m,player,mobs);
+							if(totalStatus<2&&Math.random()<=getChance()) 
+							{
+								Damage dmg= new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4])+1)),getEffect(),getDuration(),m,player,mobs);
+								totalStatus++;
+							}else 
+							{
+								Damage dmg= new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4])+1)),StatusEffect.NONE,0,m,player,mobs);
 
+							}
 						}
+
 					}
 				}
 			}

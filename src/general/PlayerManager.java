@@ -40,7 +40,7 @@ public class PlayerManager implements Runnable {
 		start();
 
 	}
-	public void draw(Graphics2D g,int JPanelX,int JPanelY) 
+	public synchronized void draw(Graphics2D g,int JPanelX,int JPanelY) 
 	{
 		if(skillSelectionMenu!=null&&skillSelectionMenu.isActive()) 
 		{
@@ -59,18 +59,12 @@ public class PlayerManager implements Runnable {
 			}
 			g.setFont(text.deriveFont(30f));
 //			System.out.println(thread.getName());
-			for(int i=0;i<1;i++) 
-			{
-				try 
-				{
-					g.drawString("Press Enter To Learn New Skills("+player.getSkillsNeeded()+")", JPanelX, JPanelY);
 
-				}catch(Exception e) 
-				{
-					i--;
-				}
+			g.drawString("Press Enter To Learn New Skills("+player.getSkillsNeeded()+")", JPanelX, JPanelY);
 
-			}
+			
+
+			
 			
 		}
 	}

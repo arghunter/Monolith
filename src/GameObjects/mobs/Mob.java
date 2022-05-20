@@ -62,7 +62,7 @@ public abstract class Mob extends MovingObject {
 		damage = damage / ((int) ((0.5 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5) + 1) + 1;
 		health -= damage;
 
-		if (health < 0) {
+		if (health < 0&&!super.isDead()) {
 			super.setDead(true);
 			player.addXP((playerLevel + 8) * 8);
 //			Item item = ItemGeneration.getItem(player, playerLevel, playerLevel / 5);
@@ -77,13 +77,13 @@ public abstract class Mob extends MovingObject {
 	public void takeDamageIgnoreArmor(Player player, int damage) {
 		health -= damage;
 
-		if (health < 0) {
+		if (health < 0&&!super.isDead()) {
 			super.setDead(true);
 			player.addXP((playerLevel + 8) * 8);
-			Item item = ItemGeneration.getItem(player, playerLevel, playerLevel / 5);
-			if (item != null) {
-				player.getInventory().addToStorage(item);
-			}
+//			Item item = ItemGeneration.getItem(player, playerLevel, playerLevel / 5);
+//			if (item != null) {
+//				player.getInventory().addToStorage(item);
+//			}
 		}
 		this.damageNumber = damage;
 		this.dmgTime = System.currentTimeMillis();
