@@ -201,7 +201,7 @@ public class Damage implements Runnable {
 				{
 					if(chain<3&&euclidDist(enemy.getX(), enemy.getY(), mobs.get(i).getX(), mobs.get(i).getY())<200&&tickDamage>=0&&Math.random()*4<(1-(double)euclidDist(enemy.getX(), enemy.getY(), mobs.get(i).getX(), mobs.get(i).getY())/200)) 
 					{
-						Damage dmg=new Damage((int)(tickDamage-euclidDist(enemy.getX(),enemy.getY(),source.getX(),source.getY())/20),Math.random()<0.1?StatusEffect.VIRAL:StatusEffect.NONE,duration/4,mobs.get(i),source,mobs,chain+1);
+						Damage dmg=new Damage((int)(tickDamage-euclidDist(enemy.getX(),enemy.getY(),source.getX(),source.getY())/50),Math.random()<0.8?StatusEffect.VIRAL:StatusEffect.NONE,duration,mobs.get(i),source,mobs,chain+1);
 						break;
 					}
 				}

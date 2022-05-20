@@ -20,88 +20,86 @@ import mapGeneration.ItemGeneration;
 import GameObjects.Direction;
 
 public abstract class Mob extends MovingObject {
-	//Fields
+	// Fields
 	// speed, damage, health, armor, attackspeed, attack range
 	private int[] baseStats = new int[6];
-	private int[] stats=new int[6];
+	private int[] stats = new int[6];
 	private double lastAttack = System.currentTimeMillis();
-	private int playerLevel=1;
-	private int damageNumber=0;
-	private static final int DMG_DURATION=500;
-	private long dmgTime=0;
-	
-	//Constructors
+	private int playerLevel = 1;
+	private int damageNumber = 0;
+	private static final int DMG_DURATION = 500;
+	private long dmgTime = 0;
+
+	// Constructors
 	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames) {
-		super(x, y, movementDelay, width, height, name, numFrames,stats[2]);
+		super(x, y, movementDelay, width, height, name, numFrames, stats[2]);
 		this.baseStats = stats;
 	}
-	//Sets this mobs stats
+
+	// Sets this mobs stats
 	public void setStat(int statNum, int newValue) {
 		stats[statNum] = newValue;
 	}
-	//Returns the value of the given stat
-	public int getStat(int statNum) 
-	{
+
+	// Returns the value of the given stat
+	public int getStat(int statNum) {
 		return stats[statNum];
 	}
-	//Sets all Stats
+
+	// Sets all Stats
 	public void setAllStats(int[] stats) {
 		if (stats.length == 6) {
 			this.stats = stats;
 		}
 	}
-	//Returns the health of this mob
+
+	// Returns the health of this mob
 	public int getHealth() {
 		return health;
 	}
-	
-	public void takeDamage(Player player,int damage) 
-	{
-		damage = damage/((int) ((0.5 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5)+1)+1;
-		health-=damage;
 
-		if(health<0) 
-		{
+	public void takeDamage(Player player, int damage) {
+		damage = damage / ((int) ((0.5 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5) + 1) + 1;
+		health -= damage;
+
+		if (health < 0) {
 			super.setDead(true);
-			player.addXP((playerLevel+8)*8);
-			Item item=ItemGeneration.getItem(playerLevel,playerLevel/5 );
-			if(item!=null) 
-			{
+			player.addXP((playerLevel + 8) * 8);
+			Item item = ItemGeneration.getItem(playerLevel, playerLevel / 5);
+			if (item != null) {
 				player.getInventory().addToStorage(item);
 			}
 		}
-		this.damageNumber=damage;
-		this.dmgTime=System.currentTimeMillis();
+		this.damageNumber = damage;
+		this.dmgTime = System.currentTimeMillis();
 	}
-	public void takeDamageIgnoreArmor(Player player,int damage) 
-	{
-		health-=damage;
 
-		if(health<0) 
-		{
+	public void takeDamageIgnoreArmor(Player player, int damage) {
+		health -= damage;
+
+		if (health < 0) {
 			super.setDead(true);
-			player.addXP((playerLevel+8)*8);
-			Item item=ItemGeneration.getItem(playerLevel,playerLevel/5 );
-			if(item!=null) 
-			{
+			player.addXP((playerLevel + 8) * 8);
+			Item item = ItemGeneration.getItem(playerLevel, playerLevel / 5);
+			if (item != null) {
 				player.getInventory().addToStorage(item);
 			}
 		}
-		this.damageNumber=damage;
-		this.dmgTime=System.currentTimeMillis();
+		this.damageNumber = damage;
+		this.dmgTime = System.currentTimeMillis();
 	}
-	
-	//Makes this mob complete its next action, either moving or attacking the player.
+
+	// Makes this mob complete its next action, either moving or attacking the
+	// player.
 	public int action(Player player) {
-		playerLevel=player.getLevel();
-		updateAngle(player.getX(),player.getY());
-		for(int i=1;i<4;i++) 
-		{
-			stats[i]=baseStats[i]*playerLevel/5;
+		playerLevel = player.getLevel();
+		updateAngle(player.getX(), player.getY());
+		for (int i = 1; i < 4; i++) {
+			stats[i] = baseStats[i] * playerLevel / 5;
 		}
-		stats[0]=baseStats[0];
-		stats[4]=baseStats[4];
-		stats[5]=baseStats[5];
+		stats[0] = baseStats[0];
+		stats[4] = baseStats[4];
+		stats[5] = baseStats[5];
 		int curX = this.getX();
 		int curY = this.getY();
 
@@ -111,7 +109,7 @@ public abstract class Mob extends MovingObject {
 		if ((diffX) * (diffX) + (diffY) * (diffY) < stats[5] * stats[5]) {
 			if (System.currentTimeMillis() - lastAttack > 60000.0 / stats[4]) {
 				player.takeDamage(stats[1]);
-				lastAttack=System.currentTimeMillis();
+				lastAttack = System.currentTimeMillis();
 			}
 
 		} else {
@@ -148,10 +146,9 @@ public abstract class Mob extends MovingObject {
 		}
 		return 0;
 	}
-	public void render(Graphics2D g) 
-	{
-		if(System.currentTimeMillis()-dmgTime<DMG_DURATION&&this.damageNumber>0) 
-		{
+
+	public void render(Graphics2D g) {
+		if (System.currentTimeMillis() - dmgTime < DMG_DURATION && this.damageNumber > 0) {
 			g.setColor(Constants.TEXTCOLOR);
 			Font text = null;
 			try {
@@ -164,7 +161,18 @@ public abstract class Mob extends MovingObject {
 			}
 
 			g.setFont(text.deriveFont(30f));
-			g.drawString(""+damageNumber,this.getX(),this.getY()-(System.currentTimeMillis()-dmgTime)/6);
+
+			for (int i = 0; i < 1; i++) {
+				try {
+					g.drawString("" + Integer.toString(damageNumber), this.getX(),
+							this.getY() - (System.currentTimeMillis() - dmgTime) / 6);
+
+				} catch (ClassCastException e) {
+					i--;
+					System.out.println("Heresdfs");
+				}
+			}
+
 		}
 	}
 

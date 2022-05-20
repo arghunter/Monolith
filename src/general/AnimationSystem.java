@@ -80,7 +80,7 @@ public class AnimationSystem implements  Runnable {
 			switch (status) {
 			case FROST:
 				g.setColor(new Color(185, 205, 226, 75));
-				g.fillOval(0, 0, statusImage.getWidth(), statusImage.getHeight());
+				g.fillRect(0, 0, statusImage.getWidth(), statusImage.getHeight());
 				break;
 			case FIRE:
 				g.setColor(new Color(226, 88, 34, 75));
