@@ -21,6 +21,7 @@ public class Damage implements Runnable {
 	private Player source;
 	private int tickDamage;
 	private ArrayList<Mob> mobs;
+	public static boolean statusEffectEnabled=true;
 //	private Timer timer=new Timer(1000,this);
 	Thread thread;
 	private int mobDist;
@@ -37,7 +38,11 @@ public class Damage implements Runnable {
 
 		mobDist=enemy.getDist();
 		mobArmor=enemy.getStat(3);
-		enemy.getImage().setStatus(effect, duration);
+		if(statusEffectEnabled) 
+		{
+			enemy.getImage().setStatus(effect, duration);
+
+		}
 		switch(effect) 
 		{
 		
@@ -150,16 +155,20 @@ public class Damage implements Runnable {
 		case LIGHTNING:
 			enemy.setCurrentMovementDelay(500);
 			enemy.takeDamage(source,tickDamage);
-			for(int i=0;i<mobs.size();i++) 
+			if(statusEffectEnabled) 
 			{
-				if((mobs.get(i)!=null)&&(mobs.get(i)!=enemy)) 
+				for(int i=0;i<mobs.size();i++) 
 				{
-					if(chain<5&&euclidDist(enemy.getX(), enemy.getY(), mobs.get(i).getX(), mobs.get(i).getY())<80&&tickDamage!=0) 
+					if((mobs.get(i)!=null)&&(mobs.get(i)!=enemy)) 
 					{
-						Damage dmg=new Damage(tickDamage/2,StatusEffect.LIGHTNING,duration/4,mobs.get(i),source,mobs,chain+1);
+						if(chain<5&&euclidDist(enemy.getX(), enemy.getY(), mobs.get(i).getX(), mobs.get(i).getY())<80&&tickDamage!=0) 
+						{
+							Damage dmg=new Damage(tickDamage/2,StatusEffect.LIGHTNING,duration/4,mobs.get(i),source,mobs,chain+1);
+						}
 					}
 				}
 			}
+
 			break;
 		case ROT:
 			enemy.setDist(1);
@@ -177,35 +186,43 @@ public class Damage implements Runnable {
 			enemy.takeDamage(source,tickDamage);
 			enemy.setDist(0);
 			chain=0;
-			for(int i=0;i<mobs.size();i++) 
+			if(statusEffectEnabled) 
 			{
-				if((mobs.get(i)!=null)&&(mobs.get(i)!=enemy)) 
+				for(int i=0;i<mobs.size();i++) 
 				{
-					if(euclidDist(enemy.getX(), enemy.getY(), mobs.get(i).getX(), mobs.get(i).getY())<200&&tickDamage!=0) 
+					if((mobs.get(i)!=null)&&(mobs.get(i)!=enemy)) 
 					{
-						Damage dmg=new Damage(tickDamage,StatusEffect.NONE,0,mobs.get(i),source,mobs);
-						chain++;
-					}
-					if(chain>20) 
-					{
-						break;
+						if(euclidDist(enemy.getX(), enemy.getY(), mobs.get(i).getX(), mobs.get(i).getY())<200&&tickDamage!=0) 
+						{
+							Damage dmg=new Damage(tickDamage,StatusEffect.NONE,0,mobs.get(i),source,mobs);
+							chain++;
+						}
+						if(chain>20) 
+						{
+							break;
+						}
 					}
 				}
 			}
+
 			break;
 		case VIRAL:
 			enemy.takeDamage(source,tickDamage);
-			for(int i=0;i<mobs.size();i++) 
+			if(statusEffectEnabled) 
 			{
-				if((mobs.get(i)!=null)&&(mobs.get(i)!=enemy)) 
+				for(int i=0;i<mobs.size();i++) 
 				{
-					if(chain<3&&euclidDist(enemy.getX(), enemy.getY(), mobs.get(i).getX(), mobs.get(i).getY())<200&&tickDamage>=0&&Math.random()*4<(1-(double)euclidDist(enemy.getX(), enemy.getY(), mobs.get(i).getX(), mobs.get(i).getY())/200)) 
+					if((mobs.get(i)!=null)&&(mobs.get(i)!=enemy)) 
 					{
-						Damage dmg=new Damage((int)(tickDamage-euclidDist(enemy.getX(),enemy.getY(),source.getX(),source.getY())/50),Math.random()<0.8?StatusEffect.VIRAL:StatusEffect.NONE,duration,mobs.get(i),source,mobs,chain+1);
-						break;
+						if(chain<3&&euclidDist(enemy.getX(), enemy.getY(), mobs.get(i).getX(), mobs.get(i).getY())<200&&tickDamage>=0&&Math.random()*4<(1-(double)euclidDist(enemy.getX(), enemy.getY(), mobs.get(i).getX(), mobs.get(i).getY())/200)) 
+						{
+							Damage dmg=new Damage((int)(tickDamage-euclidDist(enemy.getX(),enemy.getY(),source.getX(),source.getY())/50),Math.random()<0.8?StatusEffect.VIRAL:StatusEffect.NONE,duration,mobs.get(i),source,mobs,chain+1);
+							break;
+						}
 					}
 				}
 			}
+			
 
 		}
 		

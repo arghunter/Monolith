@@ -47,7 +47,7 @@ public class PlayerUI implements MouseWheelListener {
 	}
 
 	// Draws the UI
-	public void draw(Graphics2D g) {
+	public synchronized void draw(Graphics2D g) {
 		Font text = null;
 		try {
 			text = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Exo_2/static/Exo2-Medium.ttf"));
@@ -112,7 +112,7 @@ public class PlayerUI implements MouseWheelListener {
 	}
 
 	// Updates the menu
-	public void update() {
+	public synchronized void update() {
 
 		arsenalItems[0] = new PlayerUIArsenalItem(player.getInventory().getHelemet(), 1184 + 1070, 989 + 96);
 		arsenalItems[1] = new PlayerUIArsenalItem(player.getInventory().getChestplate(), 1280 + 1070, 989 + 96);

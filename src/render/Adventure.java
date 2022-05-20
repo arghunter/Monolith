@@ -10,6 +10,7 @@ import mapGeneration.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.*;
 
@@ -114,7 +115,7 @@ public class Adventure implements Runnable {
 	public String[][] getRoom() {
 		return curRoom;
 	}
-	public void actions() {
+	public synchronized void actions() {
 
 		topLeftCornerX=(int)Main.WIDTH/2-(Constants.ROOMSIZEX*16);
 		topLeftCornerY=(int)Main.HEIGHT/2-(Constants.ROOMSIZEY*16);
@@ -243,10 +244,15 @@ public class Adventure implements Runnable {
 					}
 				}
 				pauseMenu.draw(g, JPanelX, JPanelY);
-
+				Main.slow-=10;
+				if(Main.slow<0) 
+				{
+					Main.slow=0;
+				}
 			}catch(Exception e) 
 			{
 				j--;
+				Main.slow+=1000;
 			}
 		}
 	
@@ -257,6 +263,8 @@ public class Adventure implements Runnable {
 		if (thread == null) {
 	         thread = new Thread (this, ""+System.currentTimeMillis());
 	         thread.start ();
+	         
+
 	      }
 	}
 	@Override
@@ -308,14 +316,14 @@ public class Adventure implements Runnable {
 					draw(g,JPanelX,JPanelY);
 				}
 				try {
-					thread.sleep(10);
+					thread.sleep(10+(long)(Main.slow/100));
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			try {
-				thread.sleep(10);
+				thread.sleep(10+(long)(Main.slow/100));
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

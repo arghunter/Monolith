@@ -40,7 +40,7 @@ public class PlayerManager implements Runnable {
 		start();
 
 	}
-	public void draw(Graphics2D g,int JPanelX,int JPanelY) 
+	public synchronized void draw(Graphics2D g,int JPanelX,int JPanelY) 
 	{
 		if(skillSelectionMenu!=null&&skillSelectionMenu.isActive()) 
 		{
@@ -64,10 +64,15 @@ public class PlayerManager implements Runnable {
 				try 
 				{
 					g.drawString("Press Enter To Learn New Skills("+player.getSkillsNeeded()+")", JPanelX, JPanelY);
-
+					Main.slow-=10;
+					if(Main.slow<0) 
+					{
+						Main.slow=0;
+					}
 				}catch(Exception e) 
 				{
 					i--;
+					Main.slow+=1000;
 				}
 
 			}
@@ -124,7 +129,7 @@ public class PlayerManager implements Runnable {
 			Random rng=new Random();
 			textColor=new Color(rng.nextInt(256),rng.nextInt(256),rng.nextInt(256));
 			try {
-				thread.sleep(10);
+				thread.sleep(10+(long)(Main.slow/100));
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

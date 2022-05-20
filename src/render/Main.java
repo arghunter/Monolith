@@ -3,6 +3,7 @@ package render;
 import javax.swing.*;
 
 import GameObjects.Player.Player;
+import GameObjects.elementalDamage.Damage;
 import general.PlayerManager;
 import general.SaveSystem;
 import input.PlayerInputParser;
@@ -25,6 +26,7 @@ public class Main extends JPanel implements ActionListener {
 	public static final double WIDTH= 2560.0;
 	public static final double HEIGHT= 1377.0;
 	public static GameStatus status=GameStatus.MAIN_MENU;
+	public static double slow=0;
 	public Main(){
 		
 		JFrame w = new JFrame("Monolith");
@@ -62,6 +64,14 @@ public class Main extends JPanel implements ActionListener {
 		menu.draw(g,getXOnScreen(), getYOnScreen());
 		input.setGraphics(g);
 		manager.draw(g, getXOnScreen(), getYOnScreen());
+		System.out.println(slow);
+		if(slow>3000) 
+		{
+			Damage.statusEffectEnabled=false;
+		}else 
+		{
+			Damage.statusEffectEnabled=true;
+		}
 //		System.out.println(player.getInventory());
 		
 	}

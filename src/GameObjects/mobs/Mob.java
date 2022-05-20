@@ -58,7 +58,7 @@ public abstract class Mob extends MovingObject {
 		return health;
 	}
 
-	public void takeDamage(Player player, int damage) {
+	public synchronized void takeDamage(Player player, int damage) {
 		damage = damage / ((int) ((0.5 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5) + 1) + 1;
 		health -= damage;
 
@@ -74,7 +74,7 @@ public abstract class Mob extends MovingObject {
 		this.dmgTime = System.currentTimeMillis();
 	}
 
-	public void takeDamageIgnoreArmor(Player player, int damage) {
+	public synchronized void takeDamageIgnoreArmor(Player player, int damage) {
 		health -= damage;
 
 		if (health < 0) {
@@ -147,7 +147,7 @@ public abstract class Mob extends MovingObject {
 		return 0;
 	}
 
-	public void render(Graphics2D g) {
+	public synchronized void render(Graphics2D g) {
 		if (System.currentTimeMillis() - dmgTime < DMG_DURATION && this.damageNumber > 0) {
 			g.setColor(Constants.TEXTCOLOR);
 			Font text = null;
