@@ -65,7 +65,7 @@ public abstract class Mob extends MovingObject {
 		if (health < 0) {
 			super.setDead(true);
 			player.addXP((playerLevel + 8) * 8);
-			Item item = ItemGeneration.getItem(playerLevel, playerLevel / 5);
+			Item item = ItemGeneration.getItem(player, playerLevel, playerLevel / 5);
 			if (item != null) {
 				player.getInventory().addToStorage(item);
 			}
@@ -80,7 +80,7 @@ public abstract class Mob extends MovingObject {
 		if (health < 0) {
 			super.setDead(true);
 			player.addXP((playerLevel + 8) * 8);
-			Item item = ItemGeneration.getItem(playerLevel, playerLevel / 5);
+			Item item = ItemGeneration.getItem(player, playerLevel, playerLevel / 5);
 			if (item != null) {
 				player.getInventory().addToStorage(item);
 			}
