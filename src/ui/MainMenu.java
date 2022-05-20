@@ -45,7 +45,6 @@ public class MainMenu implements ActionListener {
 	private boolean hidden = false;
 	private JPanel panel;
 	private PlayerInputParser input;
-	private Tutorial tutorial;
 	//Constructor
 	public MainMenu(Player player, JPanel panel,PlayerInputParser input) {
 		this.player = player;
@@ -221,7 +220,6 @@ public class MainMenu implements ActionListener {
 						switch(i) 
 						{
 						case 0:
-							tutorial=new Tutorial(player,input,panel);
 							adventure=new Adventure(player,input,panel);
 							inventoryMenu.setHidden(true);
 							this.hidden=true;

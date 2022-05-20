@@ -75,7 +75,7 @@ public class Tutorial {
 	
 	
 	public Tutorial(Player player,PlayerInputParser input,JPanel panel) {
-		Main.status=GameStatus.RUNNING;
+		Main.status=GameStatus.TUTORIAL;
 		this.player=player;
 		this.input=input;
 		for(int i=0;i<Constants.YSIZE;i++) {
@@ -90,10 +90,6 @@ public class Tutorial {
 		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
 		mapGenerator.visitRoom(curRoomX, curRoomY);
 		pauseMenu=new PauseMenu(player,panel,initTime,mapGenerator);
-
-	
-
-
 	}
 	
 	public int getTLCX() {

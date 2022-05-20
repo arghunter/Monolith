@@ -4,6 +4,7 @@
 
 package mapGeneration;
 
+import GameObjects.Player.*;
 import GameObjects.Player.items.*;
 import GameObjects.mobs.Mob;
 import general.Constants;
@@ -25,15 +26,14 @@ public class ItemGeneration {
 		 							   {2,2,10,30,30,10,4,4,2,1,5}};   //40+
 	
 	public static Random randNums=new Random(Constants.FIXEDSEED);
+	private static ItemReader r;
 	
-	
-	public static Item getItem(int playerLevel,int mobLevel) {
+	public static Item getItem(Player player,int playerLevel,int mobLevel) {
+		if(r==null) {
+			r=new ItemReader(player);
+		}
 		int averageLevel=(playerLevel+mobLevel*4)/5;
 		
 		return null;
 	}
-	
-
-	
-	
 }
