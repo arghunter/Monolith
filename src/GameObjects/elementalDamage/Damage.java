@@ -40,6 +40,9 @@ public class Damage implements ActionListener {
 			break;
 		case ROT:
 			tickDamage=damage/2;
+			break;
+		case TOXIN:
+			tickDamage=damage/5;
 		}
 		tick();
 		timer.start();
@@ -54,11 +57,16 @@ public class Damage implements ActionListener {
 		if(damage!=0) {
 			start=System.currentTimeMillis();
 			(enemy).takeDamage(source,damage);
-			damage=0;
+			
 			if(effect==StatusEffect.FIRE) 
 			{
+				damage=0;
 				return;
+			}else if(effect==StatusEffect.BLAST) 
+			{
+				enemy.setCoordsMove(enemy.getX()+(int)((Math.random()*300)-150), enemy.getY()+(int)((Math.random()*300)-150));
 			}
+			damage=0;
 		}
 		
 		switch(effect) 
@@ -86,6 +94,11 @@ public class Damage implements ActionListener {
 		case ROT:
 			enemy.setDist(1);
 			enemy.takeDamage(source,tickDamage);
+			break;
+		case TOXIN:
+			enemy.takeDamage(source, tickDamage/2);
+			enemy.takeDamageIgnoreArmor(source, tickDamage/2);
+			break;
 
 		}
 		

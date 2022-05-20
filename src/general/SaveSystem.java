@@ -25,10 +25,12 @@ public class SaveSystem implements WindowListener {
 	{
 		
 		input = new FileInput("save.txt");
+		
 		try {
 			savedPlayer=new Player(300,300,1,64,64,panel,input.next());
 		}catch( Exception e) 
 		{
+			System.out.println("Why am i here");
 			savedPlayer=new Player(300,300,64,64,panel);
 		}
 		

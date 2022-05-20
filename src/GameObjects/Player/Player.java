@@ -63,7 +63,7 @@ public class Player extends MovingObject {
 	public Player(int x, int y, int width, int height, JPanel panel) {
 		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
-
+//		System.out.println();
 		inventory = new Inventory(this);
 		super.dist = 3;
 		stats[3] = (int) inventory.getHealth() + 100;

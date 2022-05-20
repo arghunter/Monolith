@@ -42,6 +42,7 @@ public class Inventory {
 		arsenal[15] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.FROST,5,0.5, 3/ 18.0 * Math.PI));
 		arsenal[4] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.LIGHTNING,5,0.5, 10/ 18.0 * Math.PI));
 		arsenal[5] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.ROT,5,0.5, 10/ 18.0 * Math.PI));
+		arsenal[6] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.BLAST,5,0.5, 10/ 18.0 * Math.PI));
 
 //		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
 
@@ -51,8 +52,8 @@ public class Inventory {
 		this.addToStorage(new Material("Crystal", 0, 100000));
 		StatType[] buffTypes = { StatType.HEALTH, StatType.REGEN };
 		int[] buffs = { 1000, 500 };
-//		arsenal[5] = new Consumable("Baklava", 0, 10, 64,
-//				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs()));
+		arsenal[7] = new Consumable("Baklava", 0, 10, 64,
+				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs()));
 		this.addToStorage(new Consumable("Baklava", 0, 10, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
 		this.addToStorage(new Consumable("Baklava", 0, 50, 64,
@@ -63,7 +64,7 @@ public class Inventory {
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
 		this.addToStorage(new Blueprint("Baklava", 0, 10, it, new Consumable("Baklava", 0, 15, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())), this));
-		
+		System.out.println("dfoisdhfiusdhf");
 
 //		arsenal[6] = (new Consumable("Baklava", 0, 50, 64,
 //				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
@@ -82,6 +83,8 @@ public class Inventory {
 		storage = new ArrayList<Item>();
 		
 		String[] parts = saveData.split("`~`");
+		System.out.println("adiushuyshf");
+
 
 
 		String[] arsenalItems = (parts[1].substring(9, parts[1].length() - 8)).split("Item:");
@@ -131,14 +134,15 @@ public class Inventory {
 		} else if (s.contains("WEAPON")) {
 			if(s.contains("MeleeWeapon")) 
 			{
+				System.out.println(Arrays.toString(parts));
 				return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]) ,Integer.parseInt(parts[3]),
-						Integer.parseInt(parts[4]),Integer.parseInt(parts[5]),StatusEffect.valueOf(parts[6]),(int) Double.parseDouble(parts[7]),(int) Double.parseDouble(parts[8]), Integer.parseInt(parts[9].replace(",(","")));
+						Integer.parseInt(parts[4]),(int)Double.parseDouble(parts[5]),StatusEffect.valueOf(parts[6]),(int) Double.parseDouble(parts[7]), Double.parseDouble(parts[8]), Double.parseDouble(parts[9].replace(",(","")));
 //				return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[3]),
 //						Integer.parseInt(parts[4]), (int) Double.parseDouble(parts[5]), Double.parseDouble(parts[].replace(",(","")));
 			}else if(s.contains("LongRangeWeapon")) 
 			{
 				return new LongRangeWeapon(parts[0], Integer.parseInt(parts[1]) ,Integer.parseInt(parts[3]),
-						Integer.parseInt(parts[4]),Integer.parseInt(parts[5]),StatusEffect.valueOf(parts[6]),(int) Double.parseDouble(parts[7]),(int) Double.parseDouble(parts[8]), Integer.parseInt(parts[9].replace(",(","")),Double.parseDouble(parts[10].replace(",(","")));
+						Integer.parseInt(parts[4]),(int)Double.parseDouble(parts[5]),StatusEffect.valueOf(parts[6]),(int) Double.parseDouble(parts[7]), Double.parseDouble(parts[8]), Integer.parseInt(parts[9].replace(",(","")),Double.parseDouble(parts[10].replace(",(","")));
 			}
 			
 		} else if (s.contains("CONSUMABLE")) {
