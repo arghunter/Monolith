@@ -86,6 +86,21 @@ public class AnimationSystem implements  Runnable {
 				g.setColor(new Color(226, 88, 34, 75));
 				g.fillRect(0, 0, statusImage.getWidth(), statusImage.getHeight());
 				break;
+			case LIGHTNING:
+				g.setColor(new Color(253, 208, 35,75));
+				g.fillRect(0, 0, statusImage.getWidth(), statusImage.getHeight());
+				break;
+			case ROT:
+				g.setColor(new Color(23,0,0,75));
+				g.fillRect(0, 0, statusImage.getWidth(), statusImage.getHeight());
+				g.setColor(new Color(100,0,0));
+				for(int i=0;i<10;i++) 
+				{
+					g.fillOval((int)(Math.random()*statusImage.getWidth()),(int)(Math.random()*statusImage.getHeight()), 5, 5);
+
+				}
+
+
 
 			}
 		} catch (Exception e) {
@@ -115,6 +130,14 @@ public class AnimationSystem implements  Runnable {
 		pics[frameNumber].drawImage(g);
 		if (statusImage != null && status != StatusEffect.NONE) {
 			g.drawImage(statusImage, pics[0].getTransform(), null);
+			switch(status) 
+			{
+			case LIGHTNING:
+				g.setColor(new Color(253, 208, 35,50));
+				g.fillOval(pics[0].getX()-80, pics[0].getY()-80, 160, 160);
+				break;
+			
+			}
 		}
 
 	}
