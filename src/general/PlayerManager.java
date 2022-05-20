@@ -58,8 +58,19 @@ public class PlayerManager implements Runnable {
 				e.printStackTrace();
 			}
 			g.setFont(text.deriveFont(30f));
-			System.out.println(thread.getName());
-			g.drawString("Press Enter To Learn New Skills("+player.getSkillsNeeded()+")", JPanelX, JPanelY);
+//			System.out.println(thread.getName());
+			for(int i=0;i<1;i++) 
+			{
+				try 
+				{
+					g.drawString("Press Enter To Learn New Skills("+player.getSkillsNeeded()+")", JPanelX, JPanelY);
+
+				}catch(Exception e) 
+				{
+					i--;
+				}
+
+			}
 			
 		}
 	}

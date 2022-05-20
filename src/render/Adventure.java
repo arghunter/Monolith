@@ -188,58 +188,68 @@ public class Adventure implements Runnable {
 	
 	//Render the player and the mobs
 	public void draw(Graphics2D g,int JPanelX,int JPanelY) {
-		this.g=g;
-		this.JPanelX=JPanelX;
-		this.JPanelY=JPanelY;
-		
-		if(Main.status==GameStatus.RUNNING) {
-
-			
-
-			paintBackground(g);
-//			projectile.setRoom(curRoom);
-			//Spawn new mobs
-
-
-//			projectile.draw(g);
-//			System.out.println("Here");
-			if(texture!=null) 
-			{
-				texture.draw(g);
-			}
-//			if(!(curRoom==null)) {
-//				for(int i=0;i<mapGenerator.getRoomSizeY();i++) {
-//					for(int j=0;j<mapGenerator.getRoomSizeX();j++) {
-//						g.setColor(Color.WHITE);
-//						if(curRoom[i][j].equals("11")) {
-//							g.setColor(Color.BLACK);
-//						}else if(curRoom[i][j].equals("22")) {
-//							g.setColor(Color.RED);
-//						}
-//						g.fillRect(topLeftCornerX+j*32,topLeftCornerY+i*32,32,32);
-//					}
-//				}
-//			}
-			for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
-				if(!(mobList[curRoomY][curRoomX]==null)) {
-					mobList[curRoomY][curRoomX].get(i).render(g);
-				}
-			}
-//			collider.checkCollides(player.getRect(),player);
-
-			player.render(g);
-
-		}
-		if(input.isEscapePressed()) 
+		for(int j=0;j<1;j++) 
 		{
-			if(Main.status==GameStatus.RUNNING) {
-				Main.status=GameStatus.PAUSED;
-			}else if(Main.status==GameStatus.PAUSED) {
-				Main.status=GameStatus.RUNNING;
+			try 
+			{
+				this.g=g;
+				this.JPanelX=JPanelX;
+				this.JPanelY=JPanelY;
+				
+				if(Main.status==GameStatus.RUNNING) {
+
+					
+
+					paintBackground(g);
+//					projectile.setRoom(curRoom);
+					//Spawn new mobs
+
+
+//					projectile.draw(g);
+//					System.out.println("Here");
+					if(texture!=null) 
+					{
+						texture.draw(g);
+					}
+//					if(!(curRoom==null)) {
+//						for(int i=0;i<mapGenerator.getRoomSizeY();i++) {
+//							for(int j=0;j<mapGenerator.getRoomSizeX();j++) {
+//								g.setColor(Color.WHITE);
+//								if(curRoom[i][j].equals("11")) {
+//									g.setColor(Color.BLACK);
+//								}else if(curRoom[i][j].equals("22")) {
+//									g.setColor(Color.RED);
+//								}
+//								g.fillRect(topLeftCornerX+j*32,topLeftCornerY+i*32,32,32);
+//							}
+//						}
+//					}
+					for(int i=0;i<mobList[curRoomY][curRoomX].size();i++) {
+						if(!(mobList[curRoomY][curRoomX]==null)) {
+							mobList[curRoomY][curRoomX].get(i).render(g);
+						}
+					}
+//					collider.checkCollides(player.getRect(),player);
+
+					player.render(g);
+
+				}
+				if(input.isEscapePressed()) 
+				{
+					if(Main.status==GameStatus.RUNNING) {
+						Main.status=GameStatus.PAUSED;
+					}else if(Main.status==GameStatus.PAUSED) {
+						Main.status=GameStatus.RUNNING;
+					}
+				}
+				pauseMenu.draw(g, JPanelX, JPanelY);
+
+			}catch(Exception e) 
+			{
+				j--;
 			}
 		}
-		pauseMenu.draw(g, JPanelX, JPanelY);
-
+	
 	}
 
 	public void start() 

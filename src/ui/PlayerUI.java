@@ -74,13 +74,14 @@ public class PlayerUI implements MouseWheelListener {
 				g.fillRect(100, 120, 250 * player.getCurrentXP() / player.getXpToNextLevel(), 5);
 				g.setFont(text.deriveFont(30f));
 				g.drawString("Level:" + Integer.toString(player.getLevel()), 100, 150);
-			} catch (ClassCastException e) {
+				for (int j = 0; j < arsenalItems.length; j++) {
+					arsenalItems[j].draw(g);
+				}
+			} catch (Exception e) {
 				i--;
 			}
 		}
-		for (int i = 0; i < arsenalItems.length; i++) {
-			arsenalItems[i].draw(g);
-		}
+
 
 	}
 

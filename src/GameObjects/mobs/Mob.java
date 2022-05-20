@@ -167,9 +167,8 @@ public abstract class Mob extends MovingObject {
 					g.drawString("" + Integer.toString(damageNumber), this.getX(),
 							this.getY() - (System.currentTimeMillis() - dmgTime) / 6);
 
-				} catch (ClassCastException e) {
+				} catch (Exception e) {
 					i--;
-					System.out.println("Heresdfs");
 				}
 			}
 
