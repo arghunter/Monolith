@@ -38,9 +38,11 @@ public class Inventory {
 		arsenal[1] = (new Armor("PrismarineChestplate", 0, ItemType.CHESTPLATE, 100, 205, 250, BattleSuitSet.NONE));
 		arsenal[2] = (new Armor("PrismarineLeggings", 0, ItemType.LEGGINGS, 100, 205, 205, BattleSuitSet.NONE));
 		arsenal[3] = (new Armor("PrismarineBoots", 0, ItemType.BOOTS, 100, 100, 100, BattleSuitSet.NONE));
-		arsenal[10] = (new LongRangeWeapon("Rusty Sword", 0, 200, 500, 600,StatusEffect.FIRE,5,0.5, 100, 3/ 18.0 * Math.PI));
-		arsenal[15] = (new MeleeWeapon("Rusty Sword", 0, 200, 500, 600,StatusEffect.FROST,5,0.5, 3/ 18.0 * Math.PI));
-		
+		arsenal[10] = (new LongRangeWeapon("Rusty Sword", 0, 20, 500, 120,StatusEffect.FIRE,5,0.5, 100, 3/ 18.0 * Math.PI));
+		arsenal[15] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.FROST,5,0.5, 3/ 18.0 * Math.PI));
+		arsenal[4] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.LIGHTNING,5,0.5, 10/ 18.0 * Math.PI));
+		arsenal[5] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.ROT,5,0.5, 10/ 18.0 * Math.PI));
+
 //		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
 
 		this.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
@@ -49,8 +51,8 @@ public class Inventory {
 		this.addToStorage(new Material("Crystal", 0, 100000));
 		StatType[] buffTypes = { StatType.HEALTH, StatType.REGEN };
 		int[] buffs = { 1000, 500 };
-		arsenal[5] = new Consumable("Baklava", 0, 10, 64,
-				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs()));
+//		arsenal[5] = new Consumable("Baklava", 0, 10, 64,
+//				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs()));
 		this.addToStorage(new Consumable("Baklava", 0, 10, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
 		this.addToStorage(new Consumable("Baklava", 0, 50, 64,
@@ -63,8 +65,8 @@ public class Inventory {
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())), this));
 		
 
-		arsenal[6] = (new Consumable("Baklava", 0, 50, 64,
-				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
+//		arsenal[6] = (new Consumable("Baklava", 0, 50, 64,
+//				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
 //		arsenal[7] = (new MeleeWeapon("Rusty Sword", 0, 200, 100, 120, 10 / 18.0 * Math.PI));
 //		arsenal[8] = (new MeleeWeapon("Night Harvester", 0, 500, 170, 20, 12 / 18.0 * Math.PI));
 //		arsenal[9] = (new MeleeWeapon("Silver Rapier", 0, 80, 120, 240, 8 / 18.0 * Math.PI));

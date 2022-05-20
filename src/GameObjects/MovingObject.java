@@ -41,6 +41,7 @@ public abstract class MovingObject extends GameObject {
 		System.out.println(this.image);
 		this.health = Integer.MAX_VALUE;
 	}
+
 	//Alternate constructor
 	public MovingObject(int startX, int startY, int movementDelay, int width, int height, String name, int numFrames, int health) {
 		super(width, height);
@@ -170,6 +171,15 @@ public abstract class MovingObject extends GameObject {
 	}
 	public void setAngle(double angle) {
 		this.angle = angle;
+	}
+	public int getDist() {
+		return dist;
+	}
+	public void setDist(int dist) {
+		this.dist = dist;
+	}
+	public void setImage(AnimationSystem image) {
+		this.image = image;
 	}
 
 }

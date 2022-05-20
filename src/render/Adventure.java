@@ -92,10 +92,10 @@ public class Adventure {
 		input.setRoom(curRoom,topLeftCornerX,topLeftCornerY);
 		mapGenerator.visitRoom(curRoomX, curRoomY);
 		pauseMenu=new PauseMenu(player,panel,initTime,mapGenerator);
-		System.out.println(curRoom);
-		projectile = new StraightProjectile(player.getX(),player.getY());
-		projectile.setRoom(curRoom);
-		System.out.println("hi");
+//		System.out.println(curRoom);
+//		projectile = new StraightProjectile(player.getX(),player.getY());
+//		projectile.setRoom(curRoom);
+//		System.out.println("hi");
 	}
 	
 	public int getTLCX() {
@@ -189,7 +189,7 @@ public class Adventure {
 			curRoom=mapGenerator.getRoom(curRoomX, curRoomY);
 			Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
 			paintBackground(g);
-			projectile.setRoom(curRoom);
+//			projectile.setRoom(curRoom);
 			//Spawn new mobs
 			if(!(mobList[curRoomY][curRoomX]==null)) {
 				if(t-timeSinceLastSpawn[curRoomY][curRoomX]>5000) {
@@ -213,7 +213,7 @@ public class Adventure {
 					mobList[curRoomY][curRoomX].get(i).action(player);
 				}
 			}
-			projectile.draw(g);
+//			projectile.draw(g);
 //			System.out.println("Here");
 			if(texture!=null) 
 			{
