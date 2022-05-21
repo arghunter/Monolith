@@ -18,9 +18,13 @@ public class Projectile {
 	ArrayList<Mob> entities;
 	ImageSystem img;
 	public Projectile(String[][] room, Path path, int x, int y, Image picture) {
+		System.out.println(room);
 		collider = new Collider(room);
-		path = new Path(new ArrayList<Point>());
+		System.out.println("hi1");
+		this.path = path;
+		System.out.println("hi2");
 		img = new ImageSystem(x,y,picture);
+		System.out.println("hi4");
 	}
 	public void moveToNext() {
 		Point p = path.getNextPoint();
@@ -43,5 +47,11 @@ public class Projectile {
 			return true;
 		}
 		return false;
+	}
+	public int getX() {
+		return img.getX();
+	}
+	public int getY() {
+		return img.getY();
 	}
 }
