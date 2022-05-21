@@ -8,20 +8,25 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import GameObjects.Player.Player;
+import render.GameStatus;
+import render.Main;
 
-public class PlayerUI implements MouseWheelListener {
+public class PlayerUI implements MouseWheelListener,ActionListener {
 	// Fields
 	Player player;
 	PlayerUIArsenalItem[] arsenalItems = new PlayerUIArsenalItem[16];
-
+	Timer deathTimer;
 	// Constructor
 	public PlayerUI(Player player, JPanel panel) {
 		panel.addMouseWheelListener(this);
@@ -76,6 +81,12 @@ public class PlayerUI implements MouseWheelListener {
 		for (int j = 0; j < arsenalItems.length; j++) {
 			arsenalItems[j].draw(g);
 		}
+		if(player.isDead()&&deathTimer==null) 
+		{
+			deathTimer=new Timer(5000,this);
+			deathTimer.start();
+			
+		}
 
 	}
 
@@ -125,6 +136,16 @@ public class PlayerUI implements MouseWheelListener {
 		arsenalItems[14] = new PlayerUIArsenalItem(player.getInventory().getArsenal()[14], 1088 + 1070, 1181);
 		arsenalItems[15] = new PlayerUIArsenalItem(player.getInventory().getArsenal()[15], 1088 + 1070, 989 + 96);
 		arsenalItems[player.getInventory().getEquipped()].setSelected(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==deathTimer) 
+		{
+			Main.setStatus(GameStatus.MAIN_MENU);
+			player.revive();
+		}
+		
 	}
 
 }

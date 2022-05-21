@@ -15,8 +15,8 @@ public class Zombie extends Mob {
 	//speed, damage, health, armor, attackspeed,attack range
 	public static final int[] stats={10,10,100,0,60,48};
 	//Constructor
-	public Zombie(int x,int y,int width,int height) {
-		super(x,y,stats[0],stats,width,height,"Zombie",17);
+	public Zombie(int x,int y) {
+		super(x,y,stats[0],stats,64,64,"Zombie",17);
 	}
 	
 

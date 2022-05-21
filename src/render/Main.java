@@ -1,8 +1,6 @@
 package render;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+
 import javax.swing.*;
 
 import GameObjects.Player.Player;
@@ -15,11 +13,9 @@ import ui.MainMenu;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 public class Main extends JPanel implements ActionListener {
-	MainMenu menu;
+	static MainMenu menu;
 	PlayerInputParser input;
 	private SaveSystem save;
 	private Player player;
@@ -57,6 +53,7 @@ public class Main extends JPanel implements ActionListener {
 		new AudioPlayer("Duel",AudioPlayer.LOOPING);
 		
 	}
+
 	
 	public void paintComponent(Graphics graphic) {
 		Graphics2D g=(Graphics2D)graphic;
@@ -81,6 +78,14 @@ public class Main extends JPanel implements ActionListener {
 	
 	public void initInput(JFrame frame,Component component) {
 		this.input = new PlayerInputParser(frame,component);
+	}
+	public static void setStatus(GameStatus status) 
+	{
+		if(Main.status==GameStatus.RUNNING&&status==GameStatus.MAIN_MENU) 
+		{
+			menu.backToMain();
+		}
+		Main.status=status;
 	}
 
 	@Override

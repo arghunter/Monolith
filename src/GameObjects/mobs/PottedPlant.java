@@ -1,17 +1,14 @@
-//Author: Peter Ferolito  
-//Date: 5/16/22
-//Rev: 01
-//Notes: IceDrake mob
 package GameObjects.mobs;
 
 import java.awt.Graphics2D;
 
-public class IceDrake extends Mob {
+public class PottedPlant extends Mob {
 	//speed, damage, health, armor, attackspeed, attack range
-		public static final int[] stats={20,20,500,5,40,100};
+		public static final int[] stats={20,1,5,0,40,60};
 		//Constructor
-		public IceDrake(int x,int y) {
-			super(x,y,stats[0],stats,640,560,"IceDrake",1);
+		public PottedPlant(int x,int y) {
+			super(x,y,stats[0],stats,64,64,"PottedPlant",1);
+			super.dist=0;
 		}
 		
 
@@ -23,4 +20,5 @@ public class IceDrake extends Mob {
 			super.getImage().drawAnimation(g);
 			
 		}
+
 }

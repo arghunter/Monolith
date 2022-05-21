@@ -144,6 +144,14 @@ public class Player extends MovingObject {
 		}
 
 	}
+	public void revive() 
+	{
+		health=stats[3];
+		currentShields=stats[6];
+		isDead=false;
+		this.setCoordsMove(1280, 668);
+
+	}
 
 	// Returns the skilltree
 	public SkillTree getSkills() {

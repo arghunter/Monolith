@@ -102,11 +102,11 @@ public class MobSpawnerTester extends JPanel implements ActionListener {
 				for(int i=0;i<n.length;i++) {
 					System.out.print(n[i]+" ");
 					if(n[i]==0) {
-						mobList[curRoomY][curRoomX].add(new Zombie((int) (Math.random() * 1200), (int) (Math.random() * 1100), 64, 64));
+						mobList[curRoomY][curRoomX].add(new Zombie((int) (Math.random() * 1200), (int) (Math.random() * 1100)));
 					}else if(n[i]==1) {
-						mobList[curRoomY][curRoomX].add(new Spider((int) (Math.random() * 1200), (int) (Math.random() * 1100), 64, 64));
+						mobList[curRoomY][curRoomX].add(new Spider((int) (Math.random() * 1200), (int) (Math.random() * 1100)));
 					}else if(n[i]==2) {
-						mobList[curRoomY][curRoomX].add(new Balkrada((int) (Math.random() * 1200), (int) (Math.random() * 1100), 96, 187));
+						mobList[curRoomY][curRoomX].add(new Balkrada((int) (Math.random() * 1200), (int) (Math.random() * 1100)));
 					}
 				}
 			}

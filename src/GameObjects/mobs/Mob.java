@@ -4,7 +4,7 @@
 //Notes: An implementation of a mbo
 package GameObjects.mobs;
 
-import java.awt.Font;
+import java.awt.Font; 
 import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -119,7 +119,7 @@ public abstract class Mob extends MovingObject {
 			if (System.currentTimeMillis() - lastAttack > 60000.0 / stats[4]) {
 				player.takeDamage(stats[1]);
 				lastAttack = System.currentTimeMillis();
-				if(System.currentTimeMillis()-lastSound>3000) 
+				if(System.currentTimeMillis()-lastSound>3000+Math.random()*2000) 
 				{
 					new AudioPlayer("monster_000"+sound,AudioPlayer.ONE_TIME);
 

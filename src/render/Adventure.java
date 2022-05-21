@@ -247,20 +247,17 @@ public class Adventure implements Runnable {
 						int[] n = mobSpawner.generateMobs(player.getLevel());
 						for (int i = 0; i < n.length; i++) {
 							if (n[i] == 0) {
-								mobList[curRoomY][curRoomX].add(new Zombie(
+								mobList[curRoomY][curRoomX].add(new Cactus(
 										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
-										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4)),
-										64, 64));
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
 							} else if (n[i] == 1) {
 								mobList[curRoomY][curRoomX].add(new Spider(
 										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
-										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4)),
-										64, 64));
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
 							} else if (n[i] == 2) {
 								mobList[curRoomY][curRoomX].add(new Balkrada(
 										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
-										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4)),
-										96, 187));
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
 							}
 							if (collider.isColliding(
 									mobList[curRoomY][curRoomX].get(mobList[curRoomY][curRoomX].size() - 1).getRect(),
