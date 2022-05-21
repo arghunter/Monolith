@@ -95,8 +95,7 @@ public class Adventure implements Runnable {
 		pauseMenu = new PauseMenu(player, panel, initTime, mapGenerator);
 		start();
 //		System.out.println(curRoom);
-//		projectile = new StraightProjectile(player.getX(),player.getY());
-//		projectile.setRoom(curRoom);
+		projectile = new StraightProjectile(player.getX(),player.getY(),curRoom);
 //		System.out.println("hi");
 	}
 
@@ -195,8 +194,8 @@ public class Adventure implements Runnable {
 //					projectile.setRoom(curRoom);
 			// Spawn new mobs
 
-//					projectile.draw(g);
-//					System.out.println("Here");
+			
+			System.out.println("Here");
 			if (texture != null) {
 				texture.draw(g);
 			}
@@ -219,7 +218,7 @@ public class Adventure implements Runnable {
 			}
 		}
 		pauseMenu.draw(g, JPanelX, JPanelY);
-
+		projectile.draw(g);
 	}
 
 	public void start() {
