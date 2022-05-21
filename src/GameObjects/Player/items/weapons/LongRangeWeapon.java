@@ -20,6 +20,7 @@ import GameObjects.Player.Player;
 import GameObjects.elementalDamage.Damage;
 import GameObjects.elementalDamage.StatusEffect;
 import GameObjects.mobs.Mob;
+import general.AudioPlayer;
 import general.ImageSystem;
 
 public class LongRangeWeapon extends Weapon {
@@ -63,6 +64,7 @@ public class LongRangeWeapon extends Weapon {
 	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		if(canFire()) 
 		{
+			new AudioPlayer("Gun_0001",AudioPlayer.ONE_TIME);
 			int totalStatus=0;
 			for(Mob m : mobs) {
 				if(graphic!=null) {

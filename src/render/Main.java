@@ -1,8 +1,12 @@
 package render;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 import GameObjects.Player.Player;
+import general.AudioPlayer;
 import general.PlayerManager;
 import general.SaveSystem;
 import input.PlayerInputParser;
@@ -11,6 +15,7 @@ import ui.MainMenu;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Main extends JPanel implements ActionListener {
@@ -49,6 +54,7 @@ public class Main extends JPanel implements ActionListener {
 		menu=new MainMenu(player,this,input);
 		timer.start();
 		w.setVisible(true);
+		new AudioPlayer("Duel",AudioPlayer.LOOPING);
 		
 	}
 	
@@ -81,11 +87,14 @@ public class Main extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		save.save(player);
 		repaint();
+	
+
 		
 		
 	}
 
 	public static void main(String args[]) {
 		Main theGame = new Main();
+
 	}
 }

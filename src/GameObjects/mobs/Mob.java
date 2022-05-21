@@ -11,10 +11,12 @@ import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Random;
 
 import GameObjects.MovingObject;
 import GameObjects.Player.Player;
 import GameObjects.Player.items.Item;
+import general.AudioPlayer;
 import general.Constants;
 import mapGeneration.ItemGeneration;
 import GameObjects.Direction;
@@ -29,11 +31,15 @@ public abstract class Mob extends MovingObject {
 	private int damageNumber = 0;
 	private static final int DMG_DURATION = 500;
 	private long dmgTime = 0;
+	private int sound;
+	private long lastSound=System.currentTimeMillis();
 
 	// Constructors
 	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames) {
 		super(x, y, movementDelay, width, height, name, numFrames, stats[2]);
 		this.baseStats = stats;
+		Random rng=new Random();
+		sound=rng.nextInt(10)+1;
 	}
 
 	// Sets this mobs stats
@@ -92,6 +98,7 @@ public abstract class Mob extends MovingObject {
 	// Makes this mob complete its next action, either moving or attacking the
 	// player.
 	public int action(Player player) {
+		
 		playerLevel = player.getLevel();
 		updateAngle(player.getX(), player.getY());
 		for (int i = 1; i < 4; i++) {
@@ -105,11 +112,19 @@ public abstract class Mob extends MovingObject {
 
 		int diffX = curX - player.getX();
 		int diffY = curY - player.getY();
-
+	
+		
+		
 		if ((diffX) * (diffX) + (diffY) * (diffY) < stats[5] * stats[5]) {
 			if (System.currentTimeMillis() - lastAttack > 60000.0 / stats[4]) {
 				player.takeDamage(stats[1]);
 				lastAttack = System.currentTimeMillis();
+				if(System.currentTimeMillis()-lastSound>3000) 
+				{
+					new AudioPlayer("monster_000"+sound,AudioPlayer.ONE_TIME);
+
+				}
+
 			}
 
 		} else {
