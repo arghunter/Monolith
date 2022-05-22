@@ -53,6 +53,15 @@ public class Projectile  {
 					return;
 				}
 			}
+//			if(this.collidingWithPlayer(Adventure.getPlayer())) 
+//			{
+//				for(ActionListener a:actionListeners) 
+//				{
+//					a.actionPerformed(new ActionEvent(Adventure.getPlayer(),453798,"Hit"));
+//				}
+//				this.img=null;
+//				return;
+//			}
 		}
 
 	}

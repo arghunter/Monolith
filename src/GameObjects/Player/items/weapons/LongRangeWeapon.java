@@ -65,13 +65,12 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 		g.fill(attackRect);
 		img.drawImage(g);
 		for (Projectile p : projectiles) {
-			if(p.getImage()==null) 
-			{
+			if (p.getImage() == null) {
 				projectiles.remove(p);
 				continue;
 			}
 			p.draw(g);
-			
+
 		}
 	}
 
@@ -88,9 +87,13 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		if (canFire()) {
 			new AudioPlayer("Gun_0001", AudioPlayer.ONE_TIME);
-			projectiles.add(new StraightProjectile(player.getX(), player.getY(), 2,
+
+			projectiles.add(new StraightProjectile(
+					player.getX() - 2 * (int) (img.getHeight() * Math.cos(player.getAngle() + Math.PI)),
+					player.getY() - 2 * (int) (img.getHeight() * Math.sin(player.getAngle() + Math.PI)), 2,
 					new ImageIcon("imgs/" + super.getName().replace(" ", "") + "/" + super.getName().replace(" ", "")
 							+ "Projectile0.png").getImage()));
+
 			projectiles.get(projectiles.size() - 1).addActionListener(this);
 			projectiles.get(projectiles.size() - 1).rotate(player.getAngle());
 		}
@@ -127,19 +130,23 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		Mob m = (Mob) e.getSource();
-		ArrayList<Mob> mobs=Adventure.getMobs();
-		synchronized (mobs) {
-			Damage dmg;
-			if (Math.random() <= getChance()) {
-				dmg = new Damage((int) (super.getDamage() * (Math.log10(Adventure.getPlayer().getStats()[4]) + 1)), getEffect(),
-						getDuration(), m, Adventure.getPlayer(), mobs);
+		try {
+			Mob m = (Mob) e.getSource();
+			ArrayList<Mob> mobs = Adventure.getMobs();
+			synchronized (mobs) {
+				Damage dmg;
+				if (Math.random() <= getChance()) {
+					dmg = new Damage((int) (super.getDamage() * (Math.log10(Adventure.getPlayer().getStats()[4]) + 1)),
+							getEffect(), getDuration(), m, Adventure.getPlayer(), mobs);
 
-			} else {
-				dmg = new Damage((int) (super.getDamage() * (Math.log10(Adventure.getPlayer().getStats()[4]) + 1)), StatusEffect.NONE,
-						0, m, Adventure.getPlayer(), mobs);
+				} else {
+					dmg = new Damage((int) (super.getDamage() * (Math.log10(Adventure.getPlayer().getStats()[4]) + 1)),
+							StatusEffect.NONE, 0, m, Adventure.getPlayer(), mobs);
+
+				}
 
 			}
+		} catch (Exception ex) {
 
 		}
 
