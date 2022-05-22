@@ -5,15 +5,15 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class StraightProjectile extends Projectile{
+public class ExponentialProjectile extends Projectile{
 	String[][] room;
 	final static FunctionImplementer p = new FunctionImplementer() {
 		@Override
 		public int doFunc(int x) {
-			return 0;
+			return (int)(Math.pow(2,x/100.0));
 		}
 	};
-	public StraightProjectile(int x, int y, String[][] room) {
+	public ExponentialProjectile(int x, int y, String[][] room) {
 		super(room,new FuncPath(p,0).getPath(y),x,y,new ImageIcon("imgs/Baklava/Baklava0.png").getImage());
 		this.room = room;
 	}

@@ -95,7 +95,7 @@ public class Adventure implements Runnable {
 		pauseMenu = new PauseMenu(player, panel, initTime, mapGenerator);
 		start();
 //		System.out.println(curRoom);
-		//projectile = new StraightProjectile(player.getX(),player.getY(),curRoom);
+		projectile = new StraightProjectile(player.getX(),player.getY(),curRoom);
 //		System.out.println("hi");
 	}
 
@@ -218,7 +218,7 @@ public class Adventure implements Runnable {
 			}
 		}
 		pauseMenu.draw(g, JPanelX, JPanelY);
-		//projectile.draw(g);
+		projectile.draw(g);
 	}
 
 	public void start() {

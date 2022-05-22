@@ -13,8 +13,8 @@ public class FuncPath {
 	public Path getPath(int length) {
 		ArrayList<Point> path = new ArrayList<>();
 		int startVal = func.doFunc(startX);
-		for(int i = 0; i < length; i++) {
-			path.add(new Point(i,func.doFunc(startX+i)));
+		for(int i = 1; i < length; i++) {
+			path.add(new Point(1,func.doFunc(startX+i)-func.doFunc(startX+i-1)));
 		}
 		return new Path(path);
 	}
