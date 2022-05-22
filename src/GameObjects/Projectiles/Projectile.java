@@ -39,7 +39,7 @@ public class Projectile  {
 			
 			Point p = path.getNextPoint();
 			img.setRotation(0);
-			img.move(p.x, p.y);
+			img.move(p.x,p.y);
 			img.setRotation(angle);
 			for(Mob m:Adventure.getMobs()) 
 			{
@@ -102,7 +102,7 @@ public class Projectile  {
 	}
 	public void rotate(double radians) 
 	{
-//		path.rotate(new Point(Adventure.getPlayer().getX(),Adventure.getPlayer().getY()), radians);
+		path.rotate(new Point(Adventure.getPlayer().getX(),Adventure.getPlayer().getY()), radians);
 		img.setRotation(radians);
 		this.angle=radians;
 		
