@@ -1,6 +1,6 @@
 package ui;
 
-import java.awt.Color; 
+import java.awt.Color;  
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.FontMetrics;
@@ -21,7 +21,6 @@ import input.MouseInputParser;
 import mapGeneration.MapGenerator;
 import render.GameStatus;
 import render.Main;
-import render.Tester;
 
 public class PauseMenu implements ActionListener {
 
@@ -89,8 +88,8 @@ public class PauseMenu implements ActionListener {
 
 	// Creates a nice looking gradient centered around the mouse
 	private static BufferedImage createGradient() {
-		int width = (int) Tester.WIDTH;
-		int height = (int) Tester.HEIGHT;
+		int width = (int) Main.WIDTH;
+		int height = (int) Main.HEIGHT;
 
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = img.createGraphics();

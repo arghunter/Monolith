@@ -12,8 +12,7 @@ public class MazeGenerator {
 	private double branchingAmount=0.5;      //Higher=more branches
 	
 	public MazeGenerator() {
-		
-	}
+			}
 	
 	public MazeGenerator(int seed) {
 		randomNums=new Random(seed);

@@ -4,7 +4,7 @@
 // Notes: Represents a skill selection menu
 package ui;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
@@ -22,7 +22,6 @@ import general.Constants;
 import input.MouseInputParser;
 import render.GameStatus;
 import render.Main;
-import render.Tester;
 import skills.GenericSkill;
 import skills.MultipleSkill;
 import skills.Skill;
@@ -366,8 +365,8 @@ public class SkillSelectionMenu implements ActionListener {
 	}
 	//Creates  a gradient for the background
 	private static BufferedImage createGradient(int JPanelX, int JPanelY) {
-		int width = (int) Tester.WIDTH;
-		int height = (int) Tester.HEIGHT;
+		int width = (int) Main.WIDTH;
+		int height = (int) Main.HEIGHT;
 
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = img.createGraphics();

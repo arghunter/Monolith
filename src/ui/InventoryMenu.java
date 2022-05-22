@@ -4,7 +4,7 @@
 // Notes: Represents a menu that displays the inventory
 package ui;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
@@ -31,7 +31,7 @@ import GameObjects.Player.items.materials.Material;
 import GameObjects.Player.items.weapons.MeleeWeapon;
 import general.Constants;
 import input.MouseInputParser;
-import render.Tester;
+import render.Main;
 
 public class InventoryMenu implements MouseWheelListener,ActionListener {
 	//Fields
@@ -201,8 +201,8 @@ public class InventoryMenu implements MouseWheelListener,ActionListener {
 	}
 	//Draws a gradient with bounds centered around the player mouse
 	private static BufferedImage createGradient(int JPanelX,int JPanelY) {
-	    int width = (int) Tester.WIDTH;
-	    int height = (int) Tester.HEIGHT;
+	    int width = (int) Main.WIDTH;
+	    int height = (int) Main.HEIGHT;
 	    
 	    BufferedImage img = new
 	        BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
