@@ -41,6 +41,7 @@ public class Projectile  {
 			img.setRotation(0);
 			img.move(p.x,p.y);
 			img.setRotation(angle);
+			System.out.println(Adventure.getMobs());
 			for(Mob m:Adventure.getMobs()) 
 			{
 				if(this.collidingWithMob(m)) 

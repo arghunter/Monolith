@@ -4,7 +4,7 @@
 // Notes: Represents an arsenal menu
 package ui;
 
-import java.awt.Color;
+import java.awt.Color; 
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.armor.Armor;
 import general.Constants;
@@ -31,7 +31,7 @@ import javax.swing.JPanel;
 import GameObjects.Player.ArsenalFullException;
 import GameObjects.Player.Inventory;
 import input.MouseInputParser;
-import render.Tester;
+import render.Main;
 
 public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMotionListener, MouseListener {
 	
@@ -245,8 +245,8 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 	//Creates a nice looking gradient centered around the mouse
 	private static BufferedImage createGradient() {
-		int width = (int) Tester.WIDTH;
-		int height = (int) Tester.HEIGHT;
+		int width = (int) Main.WIDTH;
+		int height = (int) Main.HEIGHT;
 
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = img.createGraphics();

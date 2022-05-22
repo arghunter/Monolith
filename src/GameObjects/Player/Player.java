@@ -39,12 +39,6 @@ public class Player extends MovingObject {
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH, StatType.XP };
 	private int[] stats = { 10, 25, 60, 100, 10, 30, 10000, 0, 15, 100 };
 	private int[] buffs = new int[10];
-
-
-
-
-
-
 	private int currentLevel = 0;
 	private int currentXP = 0;
 	private int xpToNextLevel = 1000;

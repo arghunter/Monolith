@@ -58,7 +58,6 @@ public class Adventure implements Runnable {
 	// Stores the current list of mobs in the room
 	private static ArrayList<Mob>[][] mobList = new ArrayList[Constants.YSIZE][Constants.XSIZE];
 
-	private StraightProjectile projectile;
 	private PauseMenu pauseMenu;
 	private PlayerInputParser input;
 	// Time
@@ -70,8 +69,7 @@ public class Adventure implements Runnable {
 	private int topLeftCornerY = ((int) Main.HEIGHT - (Constants.ROOMSIZEY * 32)) / 2;
 	private long initTime = System.currentTimeMillis();
 	private Graphics2D g;
-	private int JPanelX;
-	private int JPanelY;
+
 	// Current background color
 	Color bgColor = Color.WHITE;
 
@@ -95,7 +93,6 @@ public class Adventure implements Runnable {
 		pauseMenu = new PauseMenu(player, panel, initTime, mapGenerator);
 		start();
 //		System.out.println(curRoom);
-		projectile = new StraightProjectile(player.getX(),player.getY(),5);
 //		System.out.println("hi");
 	}
 
@@ -195,7 +192,7 @@ public class Adventure implements Runnable {
 			// Spawn new mobs
 
 			
-			System.out.println("Here");
+//			System.out.println("Here");
 			if (texture != null) {
 				texture.draw(g);
 			}
@@ -218,11 +215,10 @@ public class Adventure implements Runnable {
 			}
 		}
 		pauseMenu.draw(g, JPanelX, JPanelY);
-		projectile.draw(g);
 	}
 	public static ArrayList<Mob> getMobs()
 	{
-		return Adventure.mobList[curRoomX][curRoomY];
+		return Adventure.mobList[curRoomY][curRoomX];
 	}
 	public static Player getPlayer() 
 	{

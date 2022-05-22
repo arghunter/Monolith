@@ -4,7 +4,7 @@
 // Notes: Displays all current skills of the player
 package ui;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 import general.Constants;
 import input.MouseInputParser;
-import render.Tester;
+import render.Main;
 import skills.GenericSkill;
 import skills.MultipleSkill;
 import skills.Skill;
@@ -211,8 +211,8 @@ public class SkillDisplayMenu implements ActionListener {
 	}
 	//Creates a gradient
 	private static BufferedImage createGradient(int JPanelX, int JPanelY) {
-		int width = (int) Tester.WIDTH;
-		int height = (int) Tester.HEIGHT;
+		int width = (int) Main.WIDTH;
+		int height = (int) Main.HEIGHT;
 
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = img.createGraphics();
