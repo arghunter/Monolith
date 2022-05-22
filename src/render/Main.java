@@ -50,7 +50,7 @@ public class Main extends JPanel implements ActionListener {
 		menu=new MainMenu(player,this,input);
 		timer.start();
 		w.setVisible(true);
-		new AudioPlayer("Duel",AudioPlayer.LOOPING);
+//		new AudioPlayer("Duel",AudioPlayer.LOOPING);
 		
 	}
 

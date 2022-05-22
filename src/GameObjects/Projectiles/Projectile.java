@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import GameObjects.MovingObject;
@@ -11,21 +13,42 @@ import GameObjects.Player.Player;
 import GameObjects.mobs.Mob;
 import general.Collider;
 import general.ImageSystem;
+import render.Adventure;
 
-public class Projectile implements Runnable {
+public class Projectile  {
 	private Path path;
 	private ImageSystem img;
 	private int speed;
-	private Thread thread;
+	private double lastFired=System.currentTimeMillis();
+    private ActionListener[] actionListeners=new ActionListener[0];
+
 	public Projectile(Path path, int x, int y,int speed, Image picture) {
 		this.path = path;
 		img = new ImageSystem(x,y,picture);
 		this.speed=speed;
-		start();
 	}
 	public void moveToNext() {
-		Point p = path.getNextPoint();
-		img.move(p.x, p.y);
+		int numTimes=(int)((System.currentTimeMillis()-lastFired)/speed);
+		lastFired=System.currentTimeMillis();
+		for(int j=0;j<numTimes;j++) 
+		{
+			
+			Point p = path.getNextPoint();
+			img.move(p.x, p.y);
+			for(Mob m:Adventure.getMobs()) 
+			{
+				if(this.collidingWithMob(m)) 
+				{
+					for(ActionListener a:actionListeners) 
+					{
+						a.actionPerformed(new ActionEvent(m,453798,"Hit"));
+					}
+					this.img=null;
+					return;
+				}
+			}
+		}
+
 	}
 	public Rectangle getBoundingRect() {
 		int x = img.getX();
@@ -36,7 +59,12 @@ public class Projectile implements Runnable {
 	}
 	
 	public void draw(Graphics2D g) {
-		img.drawImage(g);
+		if(img!=null) 
+		{
+			img.drawImage(g);
+			moveToNext();
+		}
+
 	}
 	public boolean collidingWithPlayer(Player player) {
 		return player.getRect().intersects(getBoundingRect());
@@ -52,26 +80,21 @@ public class Projectile implements Runnable {
 	public int getY() {
 		return img.getY();
 	}
-	public void start() 
+	public ImageSystem getImage() 
 	{
-		if (thread == null) {
-	         thread = new Thread (this, ""+System.currentTimeMillis());
-	         thread.start ();
-	      }
+		return img;
 	}
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		while(true) 
-		{
-			moveToNext();
-			try {
-				thread.sleep(speed);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+    //Adds an action listener to this object
+    public void addActionListener(ActionListener listener) 
+    {
+    	ActionListener[] temp=new ActionListener[actionListeners.length+1];
+    	for(int i=0;i<actionListeners.length;i++) 
+    	{
+    		temp[i]=actionListeners[i];
+    	}
+    	temp[actionListeners.length]=listener;
+    	actionListeners=temp;
+    }
 
-	}
+
 }

@@ -37,11 +37,11 @@ import general.Collider;
 import general.Constants;
 
 public class Adventure implements Runnable {
-	private Player player;
+	private static Player player;
 
 	// Coordinates of the current room
-	private int curRoomX = 0;
-	private int curRoomY = 0;
+	private static int curRoomX = 0;
+	private static int curRoomY = 0;
 
 	// Time since the last spawning of mobs (in actions)
 	private int[][] timeSinceLastSpawn = new int[Constants.YSIZE][Constants.XSIZE];
@@ -56,7 +56,7 @@ public class Adventure implements Runnable {
 	private String[][] curRoom;
 
 	// Stores the current list of mobs in the room
-	private ArrayList<Mob>[][] mobList = new ArrayList[Constants.YSIZE][Constants.XSIZE];
+	private static ArrayList<Mob>[][] mobList = new ArrayList[Constants.YSIZE][Constants.XSIZE];
 
 	private StraightProjectile projectile;
 	private PauseMenu pauseMenu;
@@ -219,6 +219,14 @@ public class Adventure implements Runnable {
 		}
 		pauseMenu.draw(g, JPanelX, JPanelY);
 		projectile.draw(g);
+	}
+	public static ArrayList<Mob> getMobs()
+	{
+		return Adventure.mobList[curRoomX][curRoomY];
+	}
+	public static Player getPlayer() 
+	{
+		return player;
 	}
 
 	public void start() {
