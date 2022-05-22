@@ -144,6 +144,9 @@ public class PlayerUI implements MouseWheelListener,ActionListener {
 		{
 			Main.setStatus(GameStatus.MAIN_MENU);
 			player.revive();
+			deathTimer.stop();
+			
+			deathTimer=null;
 		}
 		
 	}

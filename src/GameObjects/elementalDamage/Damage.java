@@ -37,6 +37,7 @@ public class Damage implements Runnable {
 
 		mobDist=enemy.getDist();
 		mobArmor=enemy.getStat(3);
+		if(effect!=StatusEffect.NONE)
 		enemy.getImage().setStatus(effect, duration);
 		switch(effect) 
 		{
@@ -162,7 +163,7 @@ public class Damage implements Runnable {
 			}
 			break;
 		case ROT:
-			enemy.setDist(1);
+			enemy.setDist(Math.min(mobDist, 1));
 			enemy.takeDamage(source,tickDamage);
 			break;
 		case TOXIN:

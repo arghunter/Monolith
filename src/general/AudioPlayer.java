@@ -53,6 +53,10 @@ public class AudioPlayer implements Runnable {
 			{
 				playSound();
 			}
+			if(type==AudioPlayer.ONE_TIME) 
+			{
+				break;
+			}
 			try {
 				thread.sleep(10);
 			} catch (InterruptedException e) {
