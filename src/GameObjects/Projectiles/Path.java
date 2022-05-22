@@ -10,8 +10,13 @@ public class Path {
 		this.arr = arr;
 	}
 	public Point getNextPoint() {
+		
 		Point p = arr.get(iter);
 		iter++;
+		if(iter>=arr.size()) 
+		{
+			iter--;
+		}
 		return p;
 	}
 	public boolean isFinished() {
@@ -22,7 +27,7 @@ public class Path {
 	}
 	//Implement later
 	public void rotate(Point p, double angle) {
-		ArrayList<Point> newArr = new ArrayList<Point>()
+		ArrayList<Point> newArr = new ArrayList<Point>();
 		for(int i = 0; i < arr.size(); i++) {
 			int height = arr.get(i).x-p.y;
 			int width = arr.get(i).x-p.x;

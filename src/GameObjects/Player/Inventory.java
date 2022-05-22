@@ -49,7 +49,7 @@ public class Inventory {
 		arsenal[11] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.FROST,5,0.5, 10/ 18.0 * Math.PI));
 		arsenal[12] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.FIRE,5,0.5, 10/ 18.0 * Math.PI));
 		arsenal[13] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.TOXIN,5,0.5, 10/ 18.0 * Math.PI));
-		arsenal[14] = (new LongRangeWeapon("Rusty Sword", 0, 10, 110, 120,StatusEffect.TOXIN,5,0.5, 50,1));
+		arsenal[14] = (new LongRangeWeapon("Rusty Sword", 0, 10, 500, 120,StatusEffect.TOXIN,5,0.5, 50,1,4));
 
 
 //		this.addToStorage(new MeleeWeapon("Baklava", 0, 0, 0, 0, 2));
@@ -150,7 +150,7 @@ public class Inventory {
 			}else if(s.contains("LongRangeWeapon")) 
 			{
 				return new LongRangeWeapon(parts[0], Integer.parseInt(parts[1]) ,Integer.parseInt(parts[3]),
-						Integer.parseInt(parts[4]),(int)Double.parseDouble(parts[5]),StatusEffect.valueOf(parts[6]),(int) Double.parseDouble(parts[7]), Double.parseDouble(parts[8]), Integer.parseInt(parts[9].replace(",(","")),Double.parseDouble(parts[10].replace(",(","")));
+						Integer.parseInt(parts[4]),(int)Double.parseDouble(parts[5]),StatusEffect.valueOf(parts[6]),(int) Double.parseDouble(parts[7]), Double.parseDouble(parts[8]), Integer.parseInt(parts[9].replace(",(","")),Double.parseDouble(parts[10].replace(",(","")),Integer.parseInt(parts[11].replace(",(","")));
 			}
 			
 		} else if (s.contains("CONSUMABLE")) {

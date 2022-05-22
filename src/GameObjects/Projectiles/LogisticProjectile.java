@@ -13,8 +13,8 @@ public class LogisticProjectile extends Projectile{
 			return (int)(500*(1/(1+Math.pow(Math.E, -x/50.0))));
 		}
 	};
-	public LogisticProjectile(int x, int y, String[][] room) {
-		super(room,new FuncPath(p,-150).getPath(y),x,y,new ImageIcon("imgs/Baklava/Baklava0.png").getImage());
+	public LogisticProjectile(int x, int y,int speed) {
+		super(new FuncPath(p,-150).getPath(y),x,y,speed,new ImageIcon("imgs/Baklava/Baklava0.png").getImage());
 		this.room = room;
 	}
 	public void draw(Graphics2D g) {

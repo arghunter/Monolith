@@ -12,19 +12,16 @@ import GameObjects.mobs.Mob;
 import general.Collider;
 import general.ImageSystem;
 
-public class Projectile {
-	Collider collider;
-	Path path;
-	ArrayList<Mob> entities;
-	ImageSystem img;
-	public Projectile(String[][] room, Path path, int x, int y, Image picture) {
-		System.out.println(room);
-		collider = new Collider(room);
-		System.out.println("hi1");
+public class Projectile implements Runnable {
+	private Path path;
+	private ImageSystem img;
+	private int speed;
+	private Thread thread;
+	public Projectile(Path path, int x, int y,int speed, Image picture) {
 		this.path = path;
-		System.out.println("hi2");
 		img = new ImageSystem(x,y,picture);
-		System.out.println("hi4");
+		this.speed=speed;
+		start();
 	}
 	public void moveToNext() {
 		Point p = path.getNextPoint();
@@ -40,18 +37,41 @@ public class Projectile {
 	
 	public void draw(Graphics2D g) {
 		img.drawImage(g);
-		moveToNext();
 	}
 	public boolean collidingWithPlayer(Player player) {
-		if(player.getRect().intersects(getBoundingRect())) {
-			return true;
-		}
-		return false;
+		return player.getRect().intersects(getBoundingRect());
+
+	}
+	public boolean collidingWithMob(Mob m) 
+	{
+		return m.getRect().intersects(getBoundingRect());
 	}
 	public int getX() {
 		return img.getX();
 	}
 	public int getY() {
 		return img.getY();
+	}
+	public void start() 
+	{
+		if (thread == null) {
+	         thread = new Thread (this, ""+System.currentTimeMillis());
+	         thread.start ();
+	      }
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while(true) 
+		{
+			moveToNext();
+			try {
+				thread.sleep(speed);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 	}
 }
