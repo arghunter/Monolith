@@ -92,6 +92,7 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 					new ImageIcon("imgs/" + super.getName().replace(" ", "") + "/" + super.getName().replace(" ", "")
 							+ "Projectile0.png").getImage()));
 			projectiles.get(projectiles.size() - 1).addActionListener(this);
+			projectiles.get(projectiles.size() - 1).rotate(player.getAngle());
 		}
 	}
 

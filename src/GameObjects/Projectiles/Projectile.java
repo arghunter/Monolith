@@ -66,6 +66,10 @@ public class Projectile  {
 		}
 
 	}
+	public void rotate(double radians) 
+	{
+		path.rotate(new Point(Adventure.getPlayer().getX(),Adventure.getPlayer().getY()), radians);
+	}
 	public boolean collidingWithPlayer(Player player) {
 		return player.getRect().intersects(getBoundingRect());
 

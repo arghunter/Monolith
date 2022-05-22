@@ -9,7 +9,7 @@ public class StraightProjectile extends Projectile{
 	final static FunctionImplementer p = new FunctionImplementer() {
 		@Override
 		public int doFunc(int x) {
-			return x+1;
+			return 0;
 		}
 	};
 	public StraightProjectile(int x, int y,int speed) {
