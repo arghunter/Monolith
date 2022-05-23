@@ -117,7 +117,11 @@ public class Projectile  {
 	public void rotate(double radians) 
 	{
 		path.rotate(new Point(Adventure.getPlayer().getX(),Adventure.getPlayer().getY()), radians);
-		img.setRotation(radians);
+		if(img!=null) 
+		{
+			img.setRotation(radians);
+
+		}
 		this.angle=radians;
 		
 	}
@@ -130,10 +134,24 @@ public class Projectile  {
 		return getBounds().intersects((Rectangle2D)m.getRect());
 	}
 	public int getX() {
-		return img.getX();
+		if(img!=null) 
+		{
+			return img.getX();
+
+		}else 
+		{
+			return -1;
+		}
 	}
 	public int getY() {
-		return img.getY();
+		if(img!=null) 
+		{
+			return img.getY();
+
+		}else 
+		{
+			return -1;
+		}
 	}
 	public ImageSystem getImage() 
 	{

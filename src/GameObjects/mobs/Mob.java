@@ -25,14 +25,14 @@ public abstract class Mob extends MovingObject {
 	// Fields
 	// speed, damage, health, armor, attackspeed, attack range
 	private int[] baseStats = new int[6];
-	private int[] stats = new int[6];
-	private double lastAttack = System.currentTimeMillis();
-	private int playerLevel = 1;
+	protected int[] stats = new int[6];
+	protected double lastAttack = System.currentTimeMillis();
+	protected int playerLevel = 1;
 	private int damageNumber = 0;
 	private static final int DMG_DURATION = 500;
 	private long dmgTime = 0;
-	private int sound;
-	private long lastSound=System.currentTimeMillis();
+	protected int sound;
+	protected long lastSound=System.currentTimeMillis();
 
 	// Constructors
 	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames) {
@@ -97,7 +97,7 @@ public abstract class Mob extends MovingObject {
 
 	// Makes this mob complete its next action, either moving or attacking the
 	// player.
-	public int action(Player player) {
+	public void action(Player player) {
 		
 		playerLevel = player.getLevel();
 		updateAngle(player.getX(), player.getY());
@@ -159,7 +159,7 @@ public abstract class Mob extends MovingObject {
 				this.move(toMove);
 			}
 		}
-		return 0;
+		
 	}
 
 	public void render(Graphics2D g) {

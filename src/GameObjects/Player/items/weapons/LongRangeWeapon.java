@@ -66,14 +66,29 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 		img.drawImage(g);
 		synchronized(projectiles) 
 		{
-			for (Projectile p : projectiles) {
-				if (p.getImage() == null) {
-					projectiles.remove(p);
-					continue;
-				}
-				p.draw(g);
+			try 
+			{
+				for (Projectile p : projectiles) {
 
+					try 
+					{
+						p.draw(g);
+						if (p.getImage() == null) {
+							projectiles.remove(p);
+							continue;
+						}
+					}catch(Exception e) 
+					{
+						
+					}
+
+
+				}
+			}catch(Exception e) 
+			{
+				
 			}
+			
 		}
 
 	}
