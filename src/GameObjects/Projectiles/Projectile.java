@@ -42,11 +42,11 @@ public class Projectile  {
 		this.orgY=y;
 	}
 	public void moveToNext() {
-		int numTimes=(int)((System.currentTimeMillis()-lastFired)/speed);
+		/*int numTimes=(int)((System.currentTimeMillis()-lastFired)/speed);
 		lastFired=System.currentTimeMillis();
 		for(int j=0;j<numTimes;j++) 
-		{
-			
+		{*/
+		while(!path.isFinished()) {
 			Point p = path.getNextPoint();
 			img.setRotation(0);
 			img.move(p.x,p.y);
@@ -91,6 +91,8 @@ public class Projectile  {
 
 			}
 		}
+			
+		//}
 
 	}
 	public Polygon getBounds() {
