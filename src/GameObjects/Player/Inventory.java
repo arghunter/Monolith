@@ -179,6 +179,16 @@ public class Inventory {
 	public Item[] getArsenal() {
 		return arsenal;
 	}
+	public void clearAllProjectiles() 
+	{
+		for(int i=0;i<arsenal.length;i++) 
+		{
+			if(arsenal[i]!=null&&arsenal[i].getClass()==LongRangeWeapon.class) 
+			{
+				((LongRangeWeapon)arsenal[i]).clearAllProjectiles();
+			}
+		}
+	}
 	//Returns the storage
 	public ArrayList<Item> getStorage() {
 		return storage;

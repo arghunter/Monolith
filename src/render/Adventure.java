@@ -161,6 +161,7 @@ public class Adventure implements Runnable {
 		synchronized (mobList) {
 			player.setMobs(mobList[curRoomY][curRoomX]);
 		}
+		player.getInventory().clearAllProjectiles();
 
 		curRoom = mapGenerator.getRoom(curRoomX, curRoomY);
 		texture = new TextureGenerator(curRoom, curRoomX * (curRoomY) + curRoomX + curRoomY + initTime, topLeftCornerX,

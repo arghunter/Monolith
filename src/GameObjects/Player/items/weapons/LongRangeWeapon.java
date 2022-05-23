@@ -103,6 +103,10 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 			}
 		}
 	}
+	public void clearAllProjectiles() 
+	{
+		projectiles=new ArrayList<Projectile>();
+	}
 
 	public Polygon rotate(Rectangle r, Point p, double angle) {
 		int[] currX = new int[4];
