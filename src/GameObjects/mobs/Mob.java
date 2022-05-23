@@ -65,7 +65,7 @@ public abstract class Mob extends MovingObject {
 	}
 
 	public void takeDamage(Player player, int damage) {
-		damage = damage / ((int) ((0.5 * Math.log(stats[1] * Math.log(stats[1]))) + 0.5) + 1) + 1;
+		damage = damage /((((int) ((0.5 * Math.log(stats[4] * Math.log(stats[4]))) + 0.5) + 1)));
 		health -= damage;
 
 		if (health < 0&&!super.isDead()) {
