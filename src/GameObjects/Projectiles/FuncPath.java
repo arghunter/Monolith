@@ -10,11 +10,11 @@ public class FuncPath {
 		this.func = func;
 		this.startX = startX;
 	}
-	public Path getPath(int length) {
+	public Path getPath(int length,int speed) {
 		ArrayList<Point> path = new ArrayList<>();
 		int startVal = func.doFunc(startX);
-		for(int i = 1; i < length; i++) {
-			path.add(new Point(1,func.doFunc(startX+i)-func.doFunc(startX+i-1)));
+		for(int i = 1; i < length; i += speed) {
+			path.add(new Point((int)speed,func.doFunc(startX+i)-func.doFunc(startX+i-1)));
 		}
 		return new Path(path);
 	}
