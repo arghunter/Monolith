@@ -40,12 +40,14 @@ public class Main extends JPanel implements ActionListener {
 		manager=new PlayerManager(this);
 		try {
 			save = new SaveSystem(this);
+			player = save.loadSave();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Save system broken");
+			player=new Player(300,300,64,64,this);
 		}
 		w.addWindowListener(save);
-		player = save.loadSave();
 		manager.setPlayer(player,input);
 		menu=new MainMenu(player,this,input);
 		timer.start();

@@ -44,6 +44,7 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 		super(name, tier, damage, range, attackSpeed, effect, duration, statusChance);
 		this.attackWidth = attackWidth;
 		this.randAngle = randAngle;
+		this.speed=speed;
 		img = new ImageSystem(0, 0,
 				(new ImageIcon("imgs/" + name.replace(" ", "") + "/" + name.replace(" ", "") + 0 + ".png").getImage()));
 
@@ -53,6 +54,7 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 		super(lw);
 		this.attackWidth=lw.getAttackWidth();
 		this.randAngle=lw.getRandAngle();
+		this.speed=lw.speed;
 		img = new ImageSystem(0, 0,
 				(new ImageIcon("imgs/" + super.getName().replace(" ", "") + "/" + super.getName().replace(" ", "") + 0 + ".png").getImage()));
 
@@ -128,7 +130,7 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 			synchronized(projectiles) {
 			projectiles.add(new StraightProjectile(
 					player.getX() - 2 * (int) (img.getHeight() * Math.cos(player.getAngle() + Math.PI)),
-					player.getY() - 2 * (int) (img.getHeight() * Math.sin(player.getAngle() + Math.PI)), 2,
+					player.getY() - 2 * (int) (img.getHeight() * Math.sin(player.getAngle() + Math.PI)), speed,
 					new ImageIcon("imgs/" + super.getName().replace(" ", "") + "/" + super.getName().replace(" ", "")
 							+ "Projectile0.png").getImage(),super.getRange()));
 
