@@ -1,0 +1,16 @@
+0
+0
+0
+0
+0
+0
+0
+0
+0
+4
+Prismarine_Helm~8~HELMET~100~205~205~NONE
+Prismarine_Chestplate~8~CHESTPLATE~100~205~250~NONE
+Prismarine_Leggings~8~LEGGINGS~100~205~205~NONE
+Prismarine_Boots~8~BOOTS~100~100~100~NONE
+0
+0

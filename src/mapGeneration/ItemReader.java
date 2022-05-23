@@ -1,3 +1,7 @@
+//Author: Peter Ferolito
+//Date: 5/18/22
+//Notes: Reads the items out of the files
+
 package mapGeneration;
 
 import skills.StatType;
@@ -25,6 +29,7 @@ public class ItemReader {
 	public Consumable[][] consumables;
 	public Material[][] materials;
 	public LongRangeWeapon[][] longRangeWeapons;
+	public Armor[][] armor;
 	private Player player;
 	
 	public ItemReader(Player player) {
@@ -41,7 +46,25 @@ public class ItemReader {
 	public void readItems(Player player) throws FileNotFoundException{
 		FileInput input;
 		input=new FileInput("ItemsAndMobs/Armor.txt");
-		
+		armor=new Armor[11][];
+		for(int i=0;i<11;i++) {
+			int tempNum=Integer.parseInt(input.next());
+			armor[i]=new Armor[tempNum];
+			for(int j=0;j<tempNum;j++) {
+				String item=input.next();
+				item=item.replace('_',' ');
+				String[] splitItem=item.split("~",-1);
+				ItemType IT=ItemType.HELMET;
+				if(splitItem[2].equals("CHESTPLATE")) {
+					IT=ItemType.CHESTPLATE;
+				}else if(splitItem[2].equals("LEGGINGS")) {
+					IT=ItemType.LEGGINGS;
+				}else if(splitItem[2].equals("BOOTS")) {
+					IT=ItemType.BOOTS;
+				}
+				armor[i][j]=new Armor(splitItem[0],Integer.parseInt(splitItem[1]),IT,Integer.parseInt(splitItem[3]),Integer.parseInt(splitItem[4]),Integer.parseInt(splitItem[5]),BattleSuitSet.NONE);
+			}
+		}
 		
 		input=new FileInput("ItemsAndMobs/Consumables.txt");
 		consumables=new Consumable[11][];
@@ -50,32 +73,33 @@ public class ItemReader {
 			consumables[i]=new Consumable[tempNum];
 			for(int j=0;j<tempNum;j++) {
 				String item=input.next();
+				item=item.replace('_',' ');
 				String[] splitItem=item.split("~",-1);
 				int numBuffs=(splitItem.length-6)/2;
 				StatType[] theBuffs=new StatType[numBuffs];
 				int[] theValues=new int[numBuffs];
 				for(int k=5;k<5+numBuffs;k++) {
-					if(splitItem[k]=="SPEED") {
+					if(splitItem[k].equals("SPEED")) {
 						theBuffs[k-5]=StatType.SPEED;
-					}else if(splitItem[k]=="STRENGTH") {
+					}else if(splitItem[k].equals("STRENGTH")) {
 						theBuffs[k-5]=StatType.STRENGTH;
-					}else if(splitItem[k]=="ACCURACY") {
+					}else if(splitItem[k].equals("ACCURACY")) {
 						theBuffs[k-5]=StatType.ACCURACY;
-					}else if(splitItem[k]=="HEALTH") {
+					}else if(splitItem[k].equals("HEALTH")) {
 						theBuffs[k-5]=StatType.HEALTH;
-					}else if(splitItem[k]=="REGEN") {
+					}else if(splitItem[k].equals("REGEN")) {
 						theBuffs[k-5]=StatType.REGEN;
-					}else if(splitItem[k]=="SHIELD") {
+					}else if(splitItem[k].equals("SHIELD")) {
 						theBuffs[k-5]=StatType.SHIELD;
-					}else if(splitItem[k]=="ARMOR") {
+					}else if(splitItem[k].equals("ARMOR")) {
 						theBuffs[k-5]=StatType.ARMOR;
-					}else if(splitItem[k]=="ATTACKSPEED") {
+					}else if(splitItem[k].equals("ATTACKSPEED")) {
 						theBuffs[k-5]=StatType.ATTACKSPEED;
-					}else if(splitItem[k]=="POWER") {
+					}else if(splitItem[k].equals("POWER")) {
 						theBuffs[k-5]=StatType.POWER;
-					}else if(splitItem[k]=="XP") {
+					}else if(splitItem[k].equals("XP")) {
 						theBuffs[k-5]=StatType.XP;
-					}else if(splitItem[k]=="MULTIPLE") {
+					}else if(splitItem[k].equals("MULTIPLE")) {
 						theBuffs[k-5]=StatType.MULTIPLE;
 					}else {
 						theBuffs[k-5]=StatType.HEALTH;

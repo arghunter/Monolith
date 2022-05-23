@@ -16,6 +16,7 @@ public class Material extends Item {
 		this.count=Math.ceil(count);
 		
 	}
+	
 	//Adds a material to this one
 	public void add(Material material) 
 	{
