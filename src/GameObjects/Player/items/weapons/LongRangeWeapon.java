@@ -73,8 +73,8 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 	public void drawWeapon(Player player, Graphics2D g) {
 		// System.out.println("hi");
 		g.setColor(new Color(255, 0, 0, 50));
-		img.move((int) (player.getX() - (img.getX()) + 64 * Math.cos(player.getAngle())),
-				(int) (player.getY() - (img.getY() - 64 * Math.sin(player.getAngle()))));
+		img.move((int) (player.getX() - (img.getX()) + ((img.getHeight()+5) * Math.cos(player.getAngle()))),
+				(int) (player.getY() - (img.getY() - ((img.getHeight()+5) * Math.sin(player.getAngle())))));
 		img.setRotation(player.getAngle());
 
 		graphic = g;

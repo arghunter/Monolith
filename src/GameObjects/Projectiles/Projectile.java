@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import GameObjects.MovingObject;
 import GameObjects.Player.Player;
+import GameObjects.Player.items.weapons.LongRangeWeapon;
 import GameObjects.mobs.Mob;
 import general.Collider;
 import general.Constants;
@@ -69,12 +70,25 @@ public class Projectile  {
 			}
 			if(this.collidingWithPlayer(Adventure.getPlayer())) 
 			{
+				boolean isPlayer=false;
 				for(ActionListener a:actionListeners) 
 				{
+					try 
+					{
+						LongRangeWeapon lw=((LongRangeWeapon)a);
+						isPlayer=true;
+					}catch(Exception e) 
+					{
+						
+					}
 					a.actionPerformed(new ActionEvent(Adventure.getPlayer(),453798,"Hit"));
 				}
-				this.img=null;
-				return;
+				if(!isPlayer) 
+				{
+					this.img=null;
+					return;
+				}
+
 			}
 		}
 

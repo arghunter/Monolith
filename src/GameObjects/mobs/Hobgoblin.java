@@ -37,8 +37,8 @@ public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	public void fireProjectile() {
 		projectiles.add(new StraightProjectile(
 				this.getX() - 2 * (int) (64 * Math.cos(this.getAngle() + Math.PI)),
-				this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 6,
-				new ImageIcon("imgs/Spore/Spore0.png").getImage(), stats[5]));
+				this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 2,
+				new ImageIcon("imgs/Arrow/Arrow0.png").getImage(), stats[5]));
 		projectiles.get(projectiles.size() - 1).addActionListener(this);
 		projectiles.get(projectiles.size() - 1).rotate(this.getAngle());
 
