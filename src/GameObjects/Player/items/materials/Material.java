@@ -16,6 +16,12 @@ public class Material extends Item {
 		this.count=Math.ceil(count);
 		
 	}
+	public Material(Material m) 
+	{
+		super(m.getName(),ItemType.MATERIAL,m.getTier());
+		this.count=m.getCount();
+	}
+	
 	//Adds a material to this one
 	public void add(Material material) 
 	{

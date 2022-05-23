@@ -39,6 +39,20 @@ public abstract class Weapon extends Item{
 		this.chance=chance;
 		this.currentAttackDelay=attackDelay;
 	}
+	public Weapon(Weapon w) 
+	{
+		super(w.getName(),ItemType.WEAPON,w.getTier());
+		this.damage=w.getDamage();
+		this.range=w.getRange();
+		this.attackSpeed=w.getAttackSpeed();
+		this.attackDelay= Math.round(60*1000.0/attackSpeed);
+		this.effect=w.getEffect();
+		this.duration=w.getDuration();
+		this.chance=w.getChance();
+		this.currentAttackDelay=attackDelay;
+		
+
+	}
 	public StatusEffect getEffect() {
 		return effect;
 	}
@@ -60,7 +74,7 @@ public abstract class Weapon extends Item{
 		return range;
 	}
 	//Retursn the attack speed
-	public double getAttackSpeed() {
+	public int getAttackSpeed() {
 		return attackSpeed;
 	}
 	//Returns the attack delay

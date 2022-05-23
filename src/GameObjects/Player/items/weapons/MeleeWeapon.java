@@ -37,7 +37,22 @@ public class MeleeWeapon extends Weapon {
 		int i=rng.nextInt(4)+1;
 		sound=i;
 	}
+	public MeleeWeapon(MeleeWeapon mw) 
+	{
+		super(mw);
+		this.sweepAngle=mw.getSweepAngle();
+		img=new ImageSystem(0,0,(new ImageIcon("imgs/"+super.getName().replace(" ", "")+"/"+super.getName().replace(" ", "")+0+".png").getImage()));
+		sound=mw.getSound();
 
+		
+	}
+
+	public double getSweepAngle() {
+		return sweepAngle;
+	}
+	public int getSound() {
+		return sound;
+	}
 	@Override
 	//Draws this weapon 
 	public void drawWeapon(Player player, Graphics2D g) {

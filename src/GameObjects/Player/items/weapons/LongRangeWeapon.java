@@ -48,7 +48,26 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 				(new ImageIcon("imgs/" + name.replace(" ", "") + "/" + name.replace(" ", "") + 0 + ".png").getImage()));
 
 	}
+	public LongRangeWeapon(LongRangeWeapon lw) 
+	{
+		super(lw);
+		this.attackWidth=lw.getAttackWidth();
+		this.randAngle=lw.getRandAngle();
+		img = new ImageSystem(0, 0,
+				(new ImageIcon("imgs/" + super.getName().replace(" ", "") + "/" + super.getName().replace(" ", "") + 0 + ".png").getImage()));
 
+		
+	}
+
+	public double getRandAngle() {
+		return randAngle;
+	}
+	public int getAttackWidth() {
+		return attackWidth;
+	}
+	public int getSpeed() {
+		return speed;
+	}
 	@Override
 	// Draws this weapon
 	public void drawWeapon(Player player, Graphics2D g) {

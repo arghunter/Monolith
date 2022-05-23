@@ -28,8 +28,20 @@ public class Blueprint extends Item {
 		this.inventory = inventory;
 
 	}
+	public Blueprint(Blueprint bp) 
+	{
+		super(bp.getName(),ItemType.BLUEPRINT,bp.getTier());
+		this.components=new Item[bp.getComponents().length];
+		for(int i=0;i<bp.getComponents().length;i++) 
+		{
+			components[i]=bp.getComponents()[i];
+			
+		}
+		product=bp.product;
+		inventory=bp.inventory;
+	}
 	//Add the blueprint to this one
-	public void add(Blueprint blueprint) {
+	public void add(Blueprint blueprint) { 
 		count += Math.round(blueprint.getCount());
 
 	}

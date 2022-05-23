@@ -20,6 +20,13 @@ public class Consumable extends Item {
 		this.buff=buff;
 		
 	}
+	public Consumable(Consumable c) 
+	{
+		super(c.getName(),ItemType.CONSUMABLE,c.getTier());
+		this.maxStack=c.getMaxStack();
+		this.add(c.getCount());
+		this.buff=new Buff(c.buff);
+	}
 	//Adds a number to the count of this consumable
 	private long add(long num) 
 	{

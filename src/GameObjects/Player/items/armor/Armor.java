@@ -26,6 +26,15 @@ public class Armor extends Item {
 		this.set = set;
 
 	}
+	public Armor(Armor armor) 
+	{
+		super(armor.getName(),armor.getType(),armor.getTier());
+		this.armor = armor.getArmor();
+		this.shields = armor.getShields();
+		this.health = armor.getHealth();
+		this.set = armor.getSet();
+		
+	}
 	//Returns the armor value
 	public int getArmor() {
 		return armor;
