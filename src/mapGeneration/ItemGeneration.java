@@ -9,9 +9,14 @@ import GameObjects.Player.items.*;
 import GameObjects.mobs.Mob;
 import general.Constants;
 import java.util.Random;
+import GameObjects.Player.items.armor.*;
+import GameObjects.Player.items.blueprints.*;
+import GameObjects.Player.items.consumables.*;
+import GameObjects.Player.items.materials.*;
+import GameObjects.Player.items.weapons.*;
 
 public class ItemGeneration {
-	public static int[] typeProbs = {40,20,20,20};
+	public static int[] typeProbs = {55,15,15,15};
 	//Material, weapon, armor, consumables
 	public static int[][] tierProbs = {{35,25,15,10,5,3,2,2,1,1,1}, //0-3
 		 							   {30,30,15,10,5,3,2,2,1,1,1},   //4-7
@@ -33,7 +38,43 @@ public class ItemGeneration {
 			r=new ItemReader(player);
 		}
 		int averageLevel=(playerLevel+mobLevel*4)/5;
-		
+		int randNum=randNums.nextInt(100);
+		int tier=-1;
+		while(randNum>=0 && tier<=10) {
+			tier++;
+			randNum-=tierProbs[averageLevel/4][tier];
+		}
+		int itemType=randNums.nextInt(100);
+		if(0<=itemType && itemType<typeProbs[0]) {
+			return new Material(r.materials[tier][randNums.nextInt(r.materials[tier].length)]);
+		}else { 
+			if(typeProbs[0]<=itemType && itemType<typeProbs[1]) {
+				//if(randNums.nextInt(11)<3) {
+					
+				//}else {
+					if(r.meleeWeapons[tier].length==0) {
+						return new Material(r.materials[tier][randNums.nextInt(r.materials[tier].length)]);
+					}else {
+						return new MeleeWeapon(r.meleeWeapons[tier][randNums.nextInt(r.meleeWeapons[tier].length)]);
+					}
+				//}
+			}else if(typeProbs[1]<=itemType && itemType<typeProbs[2]) {
+				if(r.armor[tier].length==0) {
+					return new Material(r.materials[tier][randNums.nextInt(r.materials[tier].length)]);
+				}else{
+					return new Armor(r.armor[tier][randNums.nextInt(r.armor[tier].length)]);
+				}
+			}else if(typeProbs[2]<=itemType && itemType<typeProbs[3]) {
+				if(r.consumables[tier].length==0) {
+					return new Material(r.materials[tier][randNums.nextInt(r.materials[tier].length)]);
+				}else {
+					return new Consumable(r.consumables[tier][randNums.nextInt(r.consumables[tier].length)]);
+				}
+			}
+		}
 		return null;
+	}
+	
+	public static void main(String[] args) {
 	}
 }
