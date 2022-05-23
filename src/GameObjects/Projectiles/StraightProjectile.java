@@ -12,11 +12,11 @@ public class StraightProjectile extends Projectile{
 			return 0;
 		}
 	};
-	public StraightProjectile(int x, int y,int speed) {
-		super(new FuncPath(p,0).getPath(y),x,y,speed,new ImageIcon("imgs/Baklava/Baklava0.png").getImage());
+	public StraightProjectile(int x, int y,int speed,int range) {
+		super(new FuncPath(p,0).getPath(y),x,y,speed,new ImageIcon("imgs/Baklava/Baklava0.png").getImage(),range);
 	}
-	public StraightProjectile(int x, int y,int speed,Image img) {
-		super(new FuncPath(p,0).getPath(y),x,y,speed,img);
+	public StraightProjectile(int x, int y,int speed,Image img,int range) {
+		super(new FuncPath(p,0).getPath(y),x,y,speed,img,range);
 	}
 	public void draw(Graphics2D g) {
 		super.draw(g);

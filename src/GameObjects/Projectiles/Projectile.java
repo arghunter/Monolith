@@ -14,8 +14,11 @@ import GameObjects.MovingObject;
 import GameObjects.Player.Player;
 import GameObjects.mobs.Mob;
 import general.Collider;
+import general.Constants;
 import general.ImageSystem;
 import render.Adventure;
+import render.Main;
+import render.TextureGenerator;
 
 public class Projectile  {
 	private Path path;
@@ -25,11 +28,17 @@ public class Projectile  {
     private ActionListener[] actionListeners=new ActionListener[0];
     private Polygon bounds;
     private double angle;
+    private int range;
+    private int orgX;
+    private int orgY;
 
-	public Projectile(Path path, int x, int y,int speed, Image picture) {
+	public Projectile(Path path, int x, int y,int speed, Image picture,int range) {
 		this.path = path;
 		img = new ImageSystem(x,y,picture);
 		this.speed=speed;
+		this.range=range;
+		this.orgX=x;
+		this.orgY=y;
 	}
 	public void moveToNext() {
 		int numTimes=(int)((System.currentTimeMillis()-lastFired)/speed);
@@ -41,7 +50,11 @@ public class Projectile  {
 			img.setRotation(0);
 			img.move(p.x,p.y);
 			img.setRotation(angle);
-			System.out.println(Adventure.getMobs());
+			if(Math.sqrt(Math.pow((this.getX()-orgX),2)+Math.pow((this.getY()-orgY),2))>range-2*img.getHeight()||this.getX()< ((int) Main.WIDTH - (Constants.ROOMSIZEX * 32)) / 2+64||this.getY()<((int) Main.HEIGHT - (Constants.ROOMSIZEY * 32)) / 2+64||this.getX()> ((int) Main.WIDTH - (Constants.ROOMSIZEX * 32)) / 2+TextureGenerator.calcWidth(1)-64||this.getY()>((int) Main.HEIGHT - (Constants.ROOMSIZEY * 32)) / 2+TextureGenerator.calcHeight(1)-64) 
+			{
+				this.img=null;
+				return;
+			}
 			for(Mob m:Adventure.getMobs()) 
 			{
 				if(this.collidingWithMob(m)) 
@@ -54,15 +67,15 @@ public class Projectile  {
 					return;
 				}
 			}
-//			if(this.collidingWithPlayer(Adventure.getPlayer())) 
-//			{
-//				for(ActionListener a:actionListeners) 
-//				{
-//					a.actionPerformed(new ActionEvent(Adventure.getPlayer(),453798,"Hit"));
-//				}
-//				this.img=null;
-//				return;
-//			}
+			if(this.collidingWithPlayer(Adventure.getPlayer())) 
+			{
+				for(ActionListener a:actionListeners) 
+				{
+					a.actionPerformed(new ActionEvent(Adventure.getPlayer(),453798,"Hit"));
+				}
+				this.img=null;
+				return;
+			}
 		}
 
 	}

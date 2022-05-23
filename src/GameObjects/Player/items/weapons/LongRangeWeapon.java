@@ -64,14 +64,18 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 				new Point(player.getX(), player.getY()), (player.getAngle() + Math.PI));
 		g.fill(attackRect);
 		img.drawImage(g);
-		for (Projectile p : projectiles) {
-			if (p.getImage() == null) {
-				projectiles.remove(p);
-				continue;
-			}
-			p.draw(g);
+		synchronized(projectiles) 
+		{
+			for (Projectile p : projectiles) {
+				if (p.getImage() == null) {
+					projectiles.remove(p);
+					continue;
+				}
+				p.draw(g);
 
+			}
 		}
+
 	}
 
 	// Distance calculations
@@ -87,15 +91,16 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		if (canFire()) {
 			new AudioPlayer("Gun_0001", AudioPlayer.ONE_TIME);
-
+			synchronized(projectiles) {
 			projectiles.add(new StraightProjectile(
 					player.getX() - 2 * (int) (img.getHeight() * Math.cos(player.getAngle() + Math.PI)),
 					player.getY() - 2 * (int) (img.getHeight() * Math.sin(player.getAngle() + Math.PI)), 2,
 					new ImageIcon("imgs/" + super.getName().replace(" ", "") + "/" + super.getName().replace(" ", "")
-							+ "Projectile0.png").getImage()));
+							+ "Projectile0.png").getImage(),super.getRange()));
 
 			projectiles.get(projectiles.size() - 1).addActionListener(this);
 			projectiles.get(projectiles.size() - 1).rotate(player.getAngle());
+			}
 		}
 	}
 
