@@ -47,6 +47,7 @@ public class Projectile  {
 		for(int j=0;j<numTimes;j++) 
 		{*/
 		while(!path.isFinished()) {
+			System.out.println("hi");
 			Point p = path.getNextPoint();
 			img.setRotation(0);
 			img.move(p.x,p.y);
