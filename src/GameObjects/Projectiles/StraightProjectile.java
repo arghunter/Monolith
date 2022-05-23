@@ -5,24 +5,20 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class StraightProjectile {
-	String[][] room;
-	Projectile projectile;
-	public StraightProjectile(int x, int y) {
-		FunctionImplementer p = new FunctionImplementer() {
-			@Override
-			public int doFunc(int x) {
-				return (int) Math.random() * 10;
-			}
-		};
-		FuncPath funcPath = new FuncPath(p, 0);
-		Projectile projectile= new Projectile(room,funcPath.getPath(y),x,y,new ImageIcon("imgs/Baklava0.png").getImage());
-		this.projectile = projectile;
+public class StraightProjectile extends Projectile{
+	final static FunctionImplementer p = new FunctionImplementer() {
+		@Override
+		public int doFunc(int x) {
+			return 0;
+		}
+	};
+	public StraightProjectile(int x, int y,int speed,int range) {
+		super(new FuncPath(p,0).getPath(y),x,y,speed,new ImageIcon("imgs/Baklava/Baklava0.png").getImage(),range);
 	}
-	public void setRoom(String[][] room) {
-		this.room = room;
+	public StraightProjectile(int x, int y,int speed,Image img,int range) {
+		super(new FuncPath(p,0).getPath(y),x,y,speed,img,range);
 	}
 	public void draw(Graphics2D g) {
-		projectile.draw(g);
+		super.draw(g);
 	}
 }

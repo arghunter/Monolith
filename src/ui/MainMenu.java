@@ -180,6 +180,16 @@ public class MainMenu implements ActionListener {
 
 		return img;
 	}
+	public void backToMain() 
+	{
+		player.updateUI();
+		inventoryMenu.setHidden(true);
+		inventoryMenu.update();
+		this.hidden=false;
+		arsenalMenu.setHidden(true);
+		arsenalMenu.update();
+		skillMenu.setActive(false);
+	}
 
 	@Override
 	//Decides which submenu should be shown;

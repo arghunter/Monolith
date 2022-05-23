@@ -78,10 +78,14 @@ public class ArsenalMenuItem extends RenderableMenuItem {
 				}else if(item.getType()==ItemType.WEAPON)
 				{
 					Weapon weapon=(Weapon) item;
-					g.drawString(weapon.getDamage()+" Damage", 2180-metrics.stringWidth("+" +weapon.getDamage()+" Damage")/2, 300);
-					g.drawString(weapon.getAttackSpeed()+" APM", 2180-metrics.stringWidth("+" +weapon.getAttackSpeed()+" APM")/2, 350);
-					g.drawString(weapon.getRange()+" Range", 2180-metrics.stringWidth("+" +weapon.getRange()+" Range")/2, 400);
-								
+					g.drawString(weapon.getDamage()+" Damage", 2180-metrics.stringWidth(weapon.getDamage()+" Damage")/2, 300);
+					g.drawString(weapon.getAttackSpeed()+" APM", 2180-metrics.stringWidth(weapon.getAttackSpeed()+" APM")/2, 350);
+					g.drawString(weapon.getRange()+" Range", 2180-metrics.stringWidth(weapon.getRange()+" Range")/2, 400);
+					g.drawString(""+weapon.getEffect(), 2180-metrics.stringWidth(""+weapon.getEffect())/2, 450);
+					g.drawString((weapon.getChance()*100)+"% Chance", 2180-metrics.stringWidth((weapon.getChance()*100)+"% Chance")/2, 500);
+					g.drawString((weapon.getDuration())+" Duration", 2180-metrics.stringWidth((weapon.getDuration())+" Duration")/2, 550);
+
+
 				}else if(item.getType()==ItemType.CONSUMABLE) 
 				{
 					Consumable consumable=(Consumable)item;

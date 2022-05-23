@@ -5,11 +5,12 @@
  
 package GameObjects.Player.items.weapons;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.awt.Graphics2D;
 import java.awt.geom.Arc2D;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 
@@ -17,6 +18,7 @@ import GameObjects.Player.Player;
 import GameObjects.elementalDamage.Damage;
 import GameObjects.elementalDamage.StatusEffect;
 import GameObjects.mobs.Mob;
+import general.AudioPlayer;
 import general.ImageSystem;
 
 public class MeleeWeapon extends Weapon {
@@ -25,12 +27,15 @@ public class MeleeWeapon extends Weapon {
 	private double sweepAngle;
 	private Graphics2D graphic;
 	private ImageSystem img;
+	private int sound;
 	//Constructors
 	public MeleeWeapon(String name,int tier,int damage,int range,int attackSpeed,StatusEffect effect,double duration ,double statusChance,double sweepAngle) {
 		super(name,tier,damage,range,attackSpeed, effect, duration, statusChance);
 		this.sweepAngle=sweepAngle;
 		img=new ImageSystem(0,0,(new ImageIcon("imgs/"+name.replace(" ", "")+"/"+name.replace(" ", "")+0+".png").getImage()));
-
+		Random rng=new Random();
+		int i=rng.nextInt(4)+1;
+		sound=i;
 	}
 
 	@Override
@@ -72,6 +77,8 @@ public class MeleeWeapon extends Weapon {
 	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		if(canFire()) 
 		{
+			
+			new  AudioPlayer("sword_swing_000"+sound,AudioPlayer.ONE_TIME);
 			int totalStatus=0;
 			for(Mob m : mobs) {
 				if(graphic!=null) {
@@ -80,19 +87,24 @@ public class MeleeWeapon extends Weapon {
 					Arc2D.Double attackArc = new Arc2D.Double((int)player.getX()-super.getRange(), (int)player.getY()-super.getRange(), super.getRange()*2, super.getRange()*2, (int)((-player.getAngle()-sweepAngle/2)*180/Math.PI), (int)(sweepAngle * 180/Math.PI),Arc2D.PIE);
 					if(attackArc.intersects(m.getRect().getX(),m.getRect().getY(),m.getRect().width,m.getRect().height)) {
 						System.out.println("damageDone " + (int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
-						if(totalStatus<3&&Math.random()<=getChance()) 
+						synchronized(mobs) 
 						{
-							Damage dmg=new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)),getEffect(),getDuration(),m,player,mobs);
-							totalStatus++;
-						}else 
-						{
-							Damage dmg=new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)),StatusEffect.NONE,0,m,player,mobs);
+							if(totalStatus<3&&Math.random()<=getChance()) 
+							{
+								Damage dmg=new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)),getEffect(),getDuration(),m,player,mobs);
+								totalStatus++;
+							}else 
+							{
+								Damage dmg=new Damage((int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)),StatusEffect.NONE,0,m,player,(mobs));
 
+							}
 						}
+
 //						m.takeDamage(player,(int)(super.getDamage()*(Math.log10(player.getStats()[4]+player.getStats()[8])+1)));
 					}
 				}
 			}
+
 		}
 		
 		

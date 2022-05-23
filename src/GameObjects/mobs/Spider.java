@@ -15,8 +15,8 @@ public class Spider extends Mob {
 	//speed, damage, health, armor, attackspeed, attack range
 	public static final int[] stats={5,10,50,0,120,20};
 	//Constructors
-	public Spider(int x,int y,int width,int height) {
-		super(x,y,stats[0],stats,width,height,"Spider",3);
+	public Spider(int x,int y) {
+		super(x,y,stats[0],stats,64,64,"Spider",3);
 	}
 	
 

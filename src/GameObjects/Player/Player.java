@@ -39,12 +39,6 @@ public class Player extends MovingObject {
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH, StatType.XP };
 	private int[] stats = { 10, 25, 60, 100, 10, 30, 10000, 0, 15, 100 };
 	private int[] buffs = new int[10];
-
-
-
-
-
-
 	private int currentLevel = 0;
 	private int currentXP = 0;
 	private int xpToNextLevel = 1000;
@@ -142,6 +136,14 @@ public class Player extends MovingObject {
 				health = stats[3] + buffs[3];
 			}
 		}
+
+	}
+	public void revive() 
+	{
+		health=stats[3];
+		currentShields=stats[6];
+		isDead=false;
+		this.setCoordsMove(1280, 668);
 
 	}
 
@@ -293,8 +295,8 @@ public class Player extends MovingObject {
 
 	@Override
 	//Renders the player
-	public void render(Graphics2D g) {
-		ui.draw(g);
+	public synchronized void render(Graphics2D g) {
+
 
 //		System.out.println("Here");
 		
@@ -304,6 +306,7 @@ public class Player extends MovingObject {
 		super.getImage().drawAnimation(g);
 		regen();
 		super.setMovementDelay(stats[7] + buffs[7]);
+		ui.draw(g);
 
 	}
 
