@@ -246,7 +246,7 @@ public class Adventure implements Runnable {
 //				Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
 //				projectile.setRoom(curRoom);
 				// Spawn new mobs
-				if (!(mobList[curRoomY][curRoomX] == null)) {
+				if (!(mobList[curRoomY][curRoomX] == null) && !(curRoomX==0 && curRoomY==0)) {
 					if (t - timeSinceLastSpawn[curRoomY][curRoomX] > 5000) {
 						int[] n = mobSpawner.generateMobs(player.getLevel());
 						for (int i = 0; i < n.length; i++) {
