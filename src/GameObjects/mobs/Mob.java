@@ -31,15 +31,17 @@ public abstract class Mob extends MovingObject {
 	private int damageNumber = 0;
 	private static final int DMG_DURATION = 500;
 	private long dmgTime = 0;
+	private int xpDropped = 1;
 	protected int sound;
 	protected long lastSound=System.currentTimeMillis();
 
 	// Constructors
-	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames) {
+	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames,int xp) {
 		super(x, y, movementDelay, width, height, name, numFrames, stats[2]);
 		this.baseStats = stats;
 		Random rng=new Random();
 		sound=rng.nextInt(10)+1;
+		xpDropped=xp;
 	}
 
 	// Sets this mobs stats

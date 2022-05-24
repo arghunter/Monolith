@@ -18,12 +18,13 @@ import general.AudioPlayer;
 
 public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	// speed, damage, health, armor, attackspeed, attack range
-	public static final int[] stats = { 20, 38, 250, 5, 20, 500 };
+	public static final int[] stats = { 20, 35, 250, 10, 20, 500 };
+	public static final int xpDropped=12;
 	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	int type = (int) (Math.random()*3);
 	// Constructor
 	public Hobgoblin(int x, int y) {
-		super(x, y, stats[0], stats, 64, 64, "Hobgoblin", 1);
+		super(x, y, stats[0], stats, 64, 64, "Hobgoblin", 1,xpDropped);
 		super.dist = 1;
 	}
 

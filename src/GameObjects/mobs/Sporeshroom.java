@@ -14,11 +14,12 @@ import general.AudioPlayer;
 
 public class Sporeshroom extends Mob implements RangedMob,ActionListener {
 	// speed, damage, health, armor, attackspeed, attack range
-	public static final int[] stats = { 20, 100, 250, 5, 12, 500 };
+	public static final int[] stats = { 20, 5, 100, 5, 60, 500 };
+	public static final int xpDropped=3;
 	private ArrayList<Projectile> projectiles=new ArrayList<Projectile>();
 	// Constructor
 	public Sporeshroom(int x,int y) {
-				super(x,y,stats[0],stats,64,64,"Sporeshroom",7);
+				super(x,y,stats[0],stats,64,64,"Sporeshroom",7,xpDropped);
 				super.dist=0;
 			}
 

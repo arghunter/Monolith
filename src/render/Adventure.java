@@ -256,11 +256,11 @@ public class Adventure implements Runnable {
 										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
 										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
 							} else if (n[i] == 1) {
-								mobList[curRoomY][curRoomX].add(new Spider(
+								mobList[curRoomY][curRoomX].add(new Goblin(
 										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
 										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
 							} else if (n[i] == 2) {
-								mobList[curRoomY][curRoomX].add(new Balkrada(
+								mobList[curRoomY][curRoomX].add(new Troll(
 										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
 										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
 							}
