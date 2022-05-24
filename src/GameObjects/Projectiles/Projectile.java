@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import GameObjects.MovingObject;
 import GameObjects.Player.Player;
+import GameObjects.Player.abilities.Ability;
 import GameObjects.Player.items.weapons.LongRangeWeapon;
 import GameObjects.mobs.Mob;
 import general.AnimationSystem;
@@ -83,9 +84,18 @@ public class Projectile implements Runnable  {
 						isPlayer=true;
 					}catch(Exception e) 
 					{
-						
+						try 
+						{
+							Ability abl=((Ability)a);
+							isPlayer=true;
+						}catch(Exception ex) 
+						{
+							a.actionPerformed(new ActionEvent(Adventure.getPlayer(),453798,"Hit"));
+
+						}
+
 					}
-					a.actionPerformed(new ActionEvent(Adventure.getPlayer(),453798,"Hit"));
+					
 				}
 				if(!isPlayer) 
 				{

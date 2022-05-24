@@ -72,5 +72,26 @@ public class KeyboardInputParser {
 		return input.isEnterPressed();
 
 	}
+	public boolean isOnePressed() {
+		return input.isOnePressed();
+	}
+
+
+
+	public boolean isTwoPressed() {
+		return input.isTwoPressed();
+	}
+
+
+
+	public boolean isThreePressed() {
+		return input.isThreePressed();
+	}
+
+
+
+	public boolean isFourPressed() {
+		return input.isFourPressed();
+	}
 
 }

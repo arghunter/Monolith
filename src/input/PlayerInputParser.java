@@ -56,6 +56,22 @@ public class PlayerInputParser {
 			lastCoolDown=System.currentTimeMillis();
 			
 		}
+		if(keyboard.isOnePressed()) 
+		{
+			player.useAbility(0);
+		}
+		if(keyboard.isTwoPressed()) 
+		{
+			player.useAbility(1);
+		}
+		if(keyboard.isThreePressed()) 
+		{
+			player.useAbility(2);
+		}
+		if(keyboard.isFourPressed()) 
+		{
+			player.useAbility(3);
+		}
 
 	}
 

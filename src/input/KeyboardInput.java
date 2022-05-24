@@ -22,6 +22,10 @@ public class KeyboardInput implements KeyListener {
 	private boolean dPressed = false;
 	private boolean escapePressed=false;
 	private boolean enterPressed=false;
+	private boolean onePressed=false;
+	private boolean twoPressed=false;
+	private boolean threePressed=false;
+	private boolean fourPressed=false;
 	
 	//Constructor
 	public KeyboardInput(Component component) 
@@ -70,6 +74,19 @@ public class KeyboardInput implements KeyListener {
 		}else if(e.getKeyCode()==KeyEvent.VK_ENTER) 
 		{
 			enterPressed=true;
+		}else if(e.getKeyCode()==KeyEvent.VK_1) 
+		{
+			onePressed=true;
+			
+		}else if(e.getKeyCode()==KeyEvent.VK_2) 
+		{
+			twoPressed=true;
+		}else if(e.getKeyCode()==KeyEvent.VK_3) 
+		{
+			threePressed=true;
+		}else if(e.getKeyCode()==KeyEvent.VK_4) 
+		{
+			fourPressed=true;
 		}
 	}
 	
@@ -106,6 +123,19 @@ public class KeyboardInput implements KeyListener {
 		}else if(e.getKeyCode()==KeyEvent.VK_ENTER) 
 		{
 			enterPressed=false;
+		}else if(e.getKeyCode()==KeyEvent.VK_1) 
+		{
+			onePressed=false;
+			
+		}else if(e.getKeyCode()==KeyEvent.VK_2) 
+		{
+			twoPressed=false;
+		}else if(e.getKeyCode()==KeyEvent.VK_3) 
+		{
+			threePressed=false;
+		}else if(e.getKeyCode()==KeyEvent.VK_4) 
+		{
+			fourPressed=false;
 		}
 	}
 	
@@ -113,6 +143,30 @@ public class KeyboardInput implements KeyListener {
 
 
 
+
+
+
+	public boolean isOnePressed() {
+		return onePressed;
+	}
+
+
+
+	public boolean isTwoPressed() {
+		return twoPressed;
+	}
+
+
+
+	public boolean isThreePressed() {
+		return threePressed;
+	}
+
+
+
+	public boolean isFourPressed() {
+		return fourPressed;
+	}
 
 
 

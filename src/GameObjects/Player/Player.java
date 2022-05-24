@@ -21,6 +21,10 @@ import javax.swing.JPanel;
 
 import GameObjects.Direction;
 import GameObjects.MovingObject;
+import GameObjects.Player.abilities.Ability;
+import GameObjects.Player.abilities.Dodge;
+import GameObjects.Player.abilities.FireBall;
+import GameObjects.Player.abilities.ShadowFall;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.weapons.MeleeWeapon;
@@ -49,6 +53,7 @@ public class Player extends MovingObject {
 	private long lastRegen;
 	private ArrayList<Mob> mobs = new ArrayList<>();
 	private int skillsNeeded=0;
+	private Ability[] abilities=new Ability[4];
 
 	
 
@@ -68,6 +73,10 @@ public class Player extends MovingObject {
 		currentShields = stats[6];
 		ui = new PlayerUI(this, panel);
 		lastRegen = System.currentTimeMillis();
+		abilities[0]=new Dodge();
+		abilities[1]=new FireBall();
+		abilities[2]=new Dodge();
+		abilities[3]=new ShadowFall();
 
 	}
 
@@ -92,6 +101,10 @@ public class Player extends MovingObject {
 		lastRegen = System.currentTimeMillis();
 
 		ui = new PlayerUI(this, panel);
+		abilities[0]=new Dodge();
+		abilities[1]=new FireBall();
+		abilities[2]=new Dodge();
+		abilities[3]=new ShadowFall();
 
 	}
 
@@ -168,6 +181,10 @@ public class Player extends MovingObject {
 			skillsNeeded--;
 		}
 	}
+	public void useAbility(int num) 
+	{
+		abilities[num].start();
+	}
 
 	// Returns the weapon
 	public Weapon getWeapon() {
@@ -187,6 +204,7 @@ public class Player extends MovingObject {
 	public int getSkillsNeeded() {
 		return skillsNeeded;
 	}
+	
 
 	// Returns current health
 	public int getCurrentHealth() {
@@ -305,6 +323,10 @@ public class Player extends MovingObject {
 
 		super.getImage().drawAnimation(g);
 		regen();
+		for(int i=0;i<abilities.length;i++) 
+		{
+			abilities[i].draw(g);
+		}
 		super.setMovementDelay(stats[7] + buffs[7]);
 		ui.draw(g);
 
