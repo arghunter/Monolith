@@ -25,6 +25,7 @@ import GameObjects.Player.abilities.Ability;
 import GameObjects.Player.abilities.Dodge;
 import GameObjects.Player.abilities.FireBall;
 import GameObjects.Player.abilities.ShadowFall;
+import GameObjects.Player.abilities.WindGust;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.weapons.MeleeWeapon;
@@ -60,9 +61,7 @@ public class Player extends MovingObject {
 
 	// Constructor
 	public Player(int x, int y, int width, int height, JPanel panel) {
-		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
-//		System.out.println();
 		inventory = new Inventory(this);
 		super.dist = 3;
 		stats[3] = (int) inventory.getHealth() + 100;
@@ -75,14 +74,13 @@ public class Player extends MovingObject {
 		lastRegen = System.currentTimeMillis();
 		abilities[0]=new Dodge();
 		abilities[1]=new FireBall();
-		abilities[2]=new Dodge();
+		abilities[2]=new WindGust();
 		abilities[3]=new ShadowFall();
 
 	}
 
 	// Save data constructor
 	public Player(int x, int y, int id, int width, int height, JPanel panel, String saveData) {
-		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
 		String[] splitData=saveData.split(":;:~~~:;:");
 		super.dist = 3;
@@ -103,7 +101,7 @@ public class Player extends MovingObject {
 		ui = new PlayerUI(this, panel);
 		abilities[0]=new Dodge();
 		abilities[1]=new FireBall();
-		abilities[2]=new Dodge();
+		abilities[2]=new WindGust();
 		abilities[3]=new ShadowFall();
 
 	}
@@ -151,6 +149,7 @@ public class Player extends MovingObject {
 		}
 
 	}
+	//Revives the player and starts the game over
 	public void revive() 
 	{
 		health=stats[3];
@@ -174,6 +173,7 @@ public class Player extends MovingObject {
 	public StatType[] getStatTypes() {
 		return statTypes;
 	}
+	//Levels the player up after skill grant
 	public void levelUP() 
 	{
 		if(skillsNeeded>0) 
@@ -181,10 +181,12 @@ public class Player extends MovingObject {
 			skillsNeeded--;
 		}
 	}
+	//Uses the given player ability
 	public void useAbility(int num) 
 	{
 		abilities[num].start();
 	}
+	//Returns all of the players abilities
 	public Ability[] getAbilities() 
 	{
 		return abilities;
@@ -338,12 +340,12 @@ public class Player extends MovingObject {
 
 
 
-
+	//Returns the players current XP
 	public int getCurrentXP() {
 		return currentXP;
 	}
 
-
+	//Returns the xp to next level
 	public int getXpToNextLevel() {
 		return xpToNextLevel;
 	}

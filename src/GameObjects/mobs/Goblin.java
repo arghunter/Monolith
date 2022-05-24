@@ -1,13 +1,19 @@
+//Author: Peter Ferolito   
+//Date: 5/20/22
+//Rev: 01
+//Notes: Goblin mob
 package GameObjects.mobs;
 
 import java.awt.Graphics2D;
 
 public class Goblin extends Mob {
 	//speed, damage, health, armor, attackspeed, attack range
-	public static final int[] stats={20,38,250,5,20,100};
+	public static final int[] stats={15,8,60,5,60,60};
+	public static final int xpDropped=4;
+
 	//Constructor
 	public Goblin(int x,int y) {
-		super(x,y,stats[0],stats,64,64,"Goblin",1);
+		super(x,y,stats[0],stats,64,64,"Goblin",1,xpDropped);
 	}
 	
 

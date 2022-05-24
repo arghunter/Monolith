@@ -146,8 +146,7 @@ public class Inventory {
 				System.out.println(Arrays.toString(parts));
 				return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]) ,Integer.parseInt(parts[3]),
 						Integer.parseInt(parts[4]),(int)Double.parseDouble(parts[5]),StatusEffect.valueOf(parts[6]),(int) Double.parseDouble(parts[7]), Double.parseDouble(parts[8]), Double.parseDouble(parts[9].replace(",(","")));
-//				return new MeleeWeapon(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[3]),
-//						Integer.parseInt(parts[4]), (int) Double.parseDouble(parts[5]), Double.parseDouble(parts[].replace(",(","")));
+
 			}else if(s.contains("LongRangeWeapon")) 
 			{
 				return new LongRangeWeapon(parts[0], Integer.parseInt(parts[1]) ,Integer.parseInt(parts[3]),

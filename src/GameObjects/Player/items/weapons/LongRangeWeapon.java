@@ -129,9 +129,7 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 			new AudioPlayer("Gun_0001", AudioPlayer.ONE_TIME);
 			synchronized(projectiles) {
 			projectiles.add(new StraightProjectile(
-					player.getX()-new ImageIcon("imgs/" + super.getName().replace(" ", "") + "/" + super.getName().replace(" ", "")
-							+ "Projectile0.png").getImage().getHeight(null)/2,
-					player.getY(), speed,
+					player.getX(),player.getY(), speed,
 					(super.getName().replace(" ", "")+ "Projectile"),super.getRange()));
 
 			projectiles.get(projectiles.size() - 1).addActionListener(this);

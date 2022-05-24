@@ -1,15 +1,9 @@
-//Author: Armaan Gomes   
-//Date: 5/20/22
-//Rev: 01
-//Notes: 
 package GameObjects.Player.abilities;
 
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
 
 import GameObjects.Player.Player;
 import GameObjects.Projectiles.Projectile;
@@ -19,18 +13,19 @@ import GameObjects.elementalDamage.StatusEffect;
 import GameObjects.mobs.Mob;
 import render.Adventure;
 
-public class FireBall extends Ability implements ActionListener {
+public class WindGust extends Ability implements ActionListener {
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 
-	public FireBall() {
-		super(0, 10);
-
+	public WindGust() {
+		super(0, 5);
 	}
+
+
 
 	@Override
 	public void init() {
 		Player player = Adventure.getPlayer();
-		projectiles.add(new StraightProjectile(player.getX(), player.getY(), 8, ("Fireball"), 300));
+		projectiles.add(new StraightProjectile(player.getX(), player.getY(), 20, ("Fireball"), 300));
 		projectiles.get(projectiles.size() - 1).addActionListener(this);
 		projectiles.get(projectiles.size() - 1).rotate(player.getAngle());
 	}
@@ -85,7 +80,8 @@ public class FireBall extends Ability implements ActionListener {
 			for (Mob m : Adventure.getMobs()) {
 				if (Math.sqrt(Math.pow((m.getX() - hit.getX()), 2)
 						+ Math.pow((m.getY() - hit.getY()), 2)) < 100) {
-					new Damage(50, StatusEffect.FIRE, 5, m, Adventure.getPlayer(), Adventure.getMobs());
+					new Damage((int)(100-Math.sqrt(Math.pow((m.getX() - hit.getX()), 2)
+							+ Math.pow((m.getY() - hit.getY()), 2))), StatusEffect.BLAST, 5, m, Adventure.getPlayer(), Adventure.getMobs());
 				}
 			}
 		} catch (ClassCastException ex) {
@@ -93,5 +89,4 @@ public class FireBall extends Ability implements ActionListener {
 		}
 
 	}
-
 }

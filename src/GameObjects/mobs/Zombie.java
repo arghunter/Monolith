@@ -13,10 +13,11 @@ import GameObjects.Direction;
 public class Zombie extends Mob {
 	//Fields
 	//speed, damage, health, armor, attackspeed,attack range
-	public static final int[] stats={10,10,100,0,60,48};
+	public static final int[] stats={30,15,70,0,20,60};
+	public static final int xpDropped=3;
 	//Constructor
 	public Zombie(int x,int y) {
-		super(x,y,stats[0],stats,64,64,"Zombie",17);
+		super(x,y,stats[0],stats,64,64,"Zombie",17,xpDropped);
 	}
 	
 

@@ -1,7 +1,7 @@
 //Author: Peter Ferolito 
 //Date: 5/12/22
 //Rev: 01
-//Notes: An implementation of a mbo
+//Notes: An implementation of a mob
 package GameObjects.mobs;
 
 import java.awt.Font; 
@@ -31,15 +31,17 @@ public abstract class Mob extends MovingObject {
 	private int damageNumber = 0;
 	private static final int DMG_DURATION = 500;
 	private long dmgTime = 0;
+	private int xpDropped = 1;
 	protected int sound;
 	protected long lastSound=System.currentTimeMillis();
 
 	// Constructors
-	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames) {
+	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames,int xp) {
 		super(x, y, movementDelay, width, height, name, numFrames, stats[2]);
 		this.baseStats = stats;
 		Random rng=new Random();
 		sound=rng.nextInt(10)+1;
+		xpDropped=xp;
 	}
 
 	// Sets this mobs stats
@@ -63,7 +65,7 @@ public abstract class Mob extends MovingObject {
 	public int getHealth() {
 		return health;
 	}
-
+	//Makes this mob take damage
 	public void takeDamage(Player player, int damage) {
 		damage = damage /((((int) ((0.5 * Math.log(stats[4] * Math.log(stats[4]))) + 0.5) + 1)));
 		health -= damage;
@@ -79,7 +81,7 @@ public abstract class Mob extends MovingObject {
 		this.damageNumber = damage;
 		this.dmgTime = System.currentTimeMillis();
 	}
-
+	//Makes this mob take damagew withoug accounting for armor
 	public void takeDamageIgnoreArmor(Player player, int damage) {
 		health -= damage;
 
@@ -102,7 +104,7 @@ public abstract class Mob extends MovingObject {
 		playerLevel = player.getLevel();
 		updateAngle(player.getX(), player.getY());
 		for (int i = 1; i < 4; i++) {
-			stats[i] = baseStats[i] * playerLevel / 5;
+			stats[i] = baseStats[i] * (playerLevel+1) / 5;
 		}
 		stats[0] = baseStats[0];
 		stats[4] = baseStats[4];
@@ -161,7 +163,7 @@ public abstract class Mob extends MovingObject {
 		}
 		
 	}
-
+	//Renders this mob
 	public void render(Graphics2D g) {
 		if (System.currentTimeMillis() - dmgTime < DMG_DURATION && this.damageNumber > 0) {
 			g.setColor(Constants.TEXTCOLOR);

@@ -1,4 +1,4 @@
-//Author: Peter Ferolito  
+//Author: Peter Ferolito   
 //Date: 5/12/22
 //Rev: 01
 //Notes: Balkrada mob
@@ -12,10 +12,11 @@ import GameObjects.Direction;
 
 public class Balkrada extends Mob {
 	//speed, damage, health, armor, attackspeed, attack range
-	public static final int[] stats={20,20,500,5,40,100};
+	public static final int[] stats={20,200,2000,300,30,90};
+	public static final int xpDropped=400;
 	//Constructor
 	public Balkrada(int x,int y) {
-		super(x,y,stats[0],stats,96,187,"Balkrada",22);
+		super(x,y,stats[0],stats,96,187,"Balkrada",22,xpDropped);
 	}
 	
 
