@@ -131,25 +131,26 @@ public class Adventure implements Runnable {
 				}
 			}
 		}
-
-		// If the player is off the map, move the player and change the room
-		if ((player.getX() > topLeftCornerX + Constants.ROOMSIZEX * 32) && (curRoomX + 1 < Constants.ROOMSIZEX)) {
-			curRoomX++;
-			player.setCoordsMove(player.getX() - 32 * (Constants.ROOMSIZEX - 1), player.getY());
-			changeRoom();
-		} else if ((player.getX() < topLeftCornerX) && (curRoomX - 1 >= 0)) {
-			curRoomX--;
-			player.setCoordsMove(player.getX() + 32 * (Constants.ROOMSIZEX - 1), player.getY());
-			changeRoom();
-		} else if ((player.getY() > topLeftCornerY + Constants.ROOMSIZEY * 32)
-				&& (curRoomY + 1 < Constants.ROOMSIZEY)) {
-			curRoomY++;
-			player.setCoordsMove(player.getX(), player.getY() - 32 * (Constants.ROOMSIZEY - 1));
-			changeRoom();
-		} else if (player.getY() < topLeftCornerY && (curRoomY - 1 >= 0)) {
-			curRoomY--;
-			player.setCoordsMove(player.getX(), player.getY() + 32 * (Constants.ROOMSIZEY - 1));
-			changeRoom();
+		synchronized (player) {
+			// If the player is off the map, move the player and change the room
+			if ((player.getX() > topLeftCornerX + Constants.ROOMSIZEX * 32) && (curRoomX + 1 < Constants.ROOMSIZEX)) {
+				curRoomX++;
+				player.setCoordsMove(player.getX() - 32 * (Constants.ROOMSIZEX - 1), player.getY());
+				changeRoom();
+			} else if ((player.getX() < topLeftCornerX) && (curRoomX - 1 >= 0)) {
+				curRoomX--;
+				player.setCoordsMove(player.getX() + 32 * (Constants.ROOMSIZEX - 1), player.getY());
+				changeRoom();
+			} else if ((player.getY() > topLeftCornerY + Constants.ROOMSIZEY * 32)
+					&& (curRoomY + 1 < Constants.ROOMSIZEY)) {
+				curRoomY++;
+				player.setCoordsMove(player.getX(), player.getY() - 32 * (Constants.ROOMSIZEY - 1));
+				changeRoom();
+			} else if (player.getY() < topLeftCornerY && (curRoomY - 1 >= 0)) {
+				curRoomY--;
+				player.setCoordsMove(player.getX(), player.getY() + 32 * (Constants.ROOMSIZEY - 1));
+				changeRoom();
+			}
 		}
 	}
 
@@ -192,7 +193,6 @@ public class Adventure implements Runnable {
 //					projectile.setRoom(curRoom);
 			// Spawn new mobs
 
-			
 //			System.out.println("Here");
 			if (texture != null) {
 				texture.draw(g);
@@ -217,12 +217,12 @@ public class Adventure implements Runnable {
 		}
 		pauseMenu.draw(g, JPanelX, JPanelY);
 	}
-	public static ArrayList<Mob> getMobs()
-	{
+
+	public static ArrayList<Mob> getMobs() {
 		return Adventure.mobList[curRoomY][curRoomX];
 	}
-	public static Player getPlayer() 
-	{
+
+	public static Player getPlayer() {
 		return player;
 	}
 
@@ -246,7 +246,7 @@ public class Adventure implements Runnable {
 //				Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
 //				projectile.setRoom(curRoom);
 				// Spawn new mobs
-				if (!(mobList[curRoomY][curRoomX] == null) && !(curRoomX==0 && curRoomY==0)) {
+				if (!(mobList[curRoomY][curRoomX] == null) && !(curRoomX == 0 && curRoomY == 0)) {
 					if (t - timeSinceLastSpawn[curRoomY][curRoomX] > 5000) {
 						int[] n = mobSpawner.generateMobs(player.getLevel());
 						for (int i = 0; i < n.length; i++) {

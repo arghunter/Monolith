@@ -21,7 +21,7 @@ import render.Adventure;
 import render.Main;
 import render.TextureGenerator;
 
-public class Projectile  {
+public class Projectile implements Runnable  {
 	private Path path;
 	private ImageSystem img;
 	private int speed;
@@ -32,6 +32,7 @@ public class Projectile  {
     private int range;
     private int orgX;
     private int orgY;
+    private Thread thread;
 
 	public Projectile(Path path, int x, int y,int speed, Image picture,int range) {
 		this.path = path;
@@ -40,19 +41,20 @@ public class Projectile  {
 		this.range=range;
 		this.orgX=x;
 		this.orgY=y;
+		start();
 	}
 	public void moveToNext() {
 		/*int numTimes=(int)((System.currentTimeMillis()-lastFired)/speed);
 		lastFired=System.currentTimeMillis();
 		for(int j=0;j<numTimes;j++) 
 		{*/
-		while(!path.isFinished()) {
-			System.out.println("hi");
+		//while(!path.isFinished()) {
 			Point p = path.getNextPoint();
+			if(img!=null) {
 			img.setRotation(0);
 			img.move(p.x,p.y);
 			img.setRotation(angle);
-			if(Math.sqrt(Math.pow((this.getX()-orgX),2)+Math.pow((this.getY()-orgY),2))>range-2*img.getHeight()||this.getX()< ((int) Main.WIDTH - (Constants.ROOMSIZEX * 32)) / 2+64||this.getY()<((int) Main.HEIGHT - (Constants.ROOMSIZEY * 32)) / 2+64||this.getX()> ((int) Main.WIDTH - (Constants.ROOMSIZEX * 32)) / 2+TextureGenerator.calcWidth(1)-64||this.getY()>((int) Main.HEIGHT - (Constants.ROOMSIZEY * 32)) / 2+TextureGenerator.calcHeight(1)-64) 
+			if(Math.sqrt(Math.pow((this.getX()-orgX),2)+Math.pow((this.getY()-orgY),2))>range||this.getX()< ((int) Main.WIDTH - (Constants.ROOMSIZEX * 32)) / 2+64||this.getY()<((int) Main.HEIGHT - (Constants.ROOMSIZEY * 32)) / 2+64||this.getX()> ((int) Main.WIDTH - (Constants.ROOMSIZEX * 32)) / 2+TextureGenerator.calcWidth(1)-64||this.getY()>((int) Main.HEIGHT - (Constants.ROOMSIZEY * 32)) / 2+TextureGenerator.calcHeight(1)-64) 
 			{
 				this.img=null;
 				return;
@@ -89,9 +91,11 @@ public class Projectile  {
 					this.img=null;
 					return;
 				}
+			
 
 			}
-		}
+			}
+		//}
 			
 		//}
 
@@ -127,7 +131,6 @@ public class Projectile  {
 		if(img!=null) 
 		{
 			img.drawImage(g);
-			moveToNext();
 		}
 
 	}
@@ -185,6 +188,27 @@ public class Projectile  {
     	temp[actionListeners.length]=listener;
     	actionListeners=temp;
     }
+	public void start() 
+	{
+		if (thread == null) {
+	         thread = new Thread (this, ""+System.currentTimeMillis());
+	         thread.start ();
+	      }
+	}
+	@Override
+	public void run() {
+		while(!path.isFinished()) 
+		{
+			moveToNext();
+			try {
+				thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
 
 
 }

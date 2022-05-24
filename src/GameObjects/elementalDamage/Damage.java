@@ -75,7 +75,7 @@ public class Damage implements Runnable {
 		this.damage=damage;
 		this.effect=effect;
 		this.duration=duration;
-		this.enemy=enemy;
+		this.enemy=enemy; 
 		this.source=source;
 		this.mobs=mobs;
 		mobDist=enemy.getDist();
