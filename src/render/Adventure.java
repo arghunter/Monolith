@@ -5,6 +5,7 @@
 package render;
 
 import input.PlayerInputParser;
+import java.util.Random;
 import mapGeneration.*;
 
 import java.awt.*;
@@ -69,7 +70,7 @@ public class Adventure implements Runnable {
 	private int topLeftCornerY = ((int) Main.HEIGHT - (Constants.ROOMSIZEY * 32)) / 2;
 	private long initTime = System.currentTimeMillis();
 	private Graphics2D g;
-
+	private Random rand = new Random();
 	// Current background color
 	Color bgColor = Color.WHITE;
 
@@ -252,15 +253,67 @@ public class Adventure implements Runnable {
 						int[] n = mobSpawner.generateMobs(player.getLevel());
 						for (int i = 0; i < n.length; i++) {
 							if (n[i] == 0) {
-								mobList[curRoomY][curRoomX].add(new Hobgoblin(
+								mobList[curRoomY][curRoomX].add(new Spider(
 										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
 										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
 							} else if (n[i] == 1) {
-								mobList[curRoomY][curRoomX].add(new Goblin(
+								mobList[curRoomY][curRoomX].add(new Zombie(
 										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
 										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
 							} else if (n[i] == 2) {
+								mobList[curRoomY][curRoomX].add(new Goblin(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 3) {
+								mobList[curRoomY][curRoomX].add(new Orc(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 4) {
+								mobList[curRoomY][curRoomX].add(new Hobgoblin(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 5) {
+								mobList[curRoomY][curRoomX].add(new Shadow(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 6) {
+								mobList[curRoomY][curRoomX].add(new ArmorPlant(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 7) {
+								mobList[curRoomY][curRoomX].add(new SpeedPlant(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 8) {
+								mobList[curRoomY][curRoomX].add(new HealthPlant(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 9) {
+								mobList[curRoomY][curRoomX].add(new DamagePlant(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 10) {
+								mobList[curRoomY][curRoomX].add(new PottedPlant(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 11) {
+								mobList[curRoomY][curRoomX].add(new Cactus(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 12) {
+								mobList[curRoomY][curRoomX].add(new Sporeshroom(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 13) {
 								mobList[curRoomY][curRoomX].add(new Troll(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 14) {
+								mobList[curRoomY][curRoomX].add(new Balkrada(
+										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
+										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
+							} else if (n[i] == 15) {
+								mobList[curRoomY][curRoomX].add(new IceDrake(
 										topLeftCornerX + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEX - 4)),
 										topLeftCornerY + 64 + 32 * (int) (Math.random() * (Constants.ROOMSIZEY - 4))));
 							}
