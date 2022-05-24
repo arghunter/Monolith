@@ -185,6 +185,10 @@ public class Player extends MovingObject {
 	{
 		abilities[num].start();
 	}
+	public Ability[] getAbilities() 
+	{
+		return abilities;
+	}
 
 	// Returns the weapon
 	public Weapon getWeapon() {

@@ -87,6 +87,11 @@ public class PlayerUI implements MouseWheelListener,ActionListener {
 			deathTimer.start();
 			
 		}
+		g.setColor(new Color(126,254,255,200));
+		g.fillOval(100, 1275, 38, 38);
+		g.fillRoundRect(100+38/2, 1275+34,200 ,5,10, 2);
+		g.setFont(text.deriveFont(20f));
+		g.drawString(((int)(((player.getAbilities()[0].getCooldown()+player.getAbilities()[0].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[0].getStartTime()))/1000)>0?(int)(((player.getAbilities()[0].getCooldown()+player.getAbilities()[0].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[0].getStartTime()))/1000):0)+"    "+((int)(((player.getAbilities()[1].getCooldown()+player.getAbilities()[1].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[1].getStartTime()))/1000)>0?(int)(((player.getAbilities()[1].getCooldown()+player.getAbilities()[1].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[1].getStartTime()))/1000):0)+"    "+((int)(((player.getAbilities()[2].getCooldown()+player.getAbilities()[2].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[2].getStartTime()))/1000)>0?(int)(((player.getAbilities()[2].getCooldown()+player.getAbilities()[2].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[2].getStartTime()))/1000):0)+"    "+((int)(((player.getAbilities()[3].getCooldown()+player.getAbilities()[3].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[3].getStartTime()))/1000)>0?(int)(((player.getAbilities()[3].getCooldown()+player.getAbilities()[3].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[3].getStartTime()))/1000):0)+"    ", 150, 1275+30);
 
 	}
 
