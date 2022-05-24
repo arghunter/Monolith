@@ -114,11 +114,11 @@ public class Adventure implements Runnable {
 		topLeftCornerY = (int) Main.HEIGHT / 2 - (Constants.ROOMSIZEY * 16);
 
 		t++;
-		if (t > 2000000000) {
-			t -= 2000000000;
+		if (t > 20000) {
+			t -= 20000;
 			for (int i = 0; i < Constants.YSIZE; i++) {
 				for (int j = 0; j < Constants.XSIZE; j++) {
-					timeSinceLastSpawn[i][j] -= 2000000000;
+					timeSinceLastSpawn[i][j] -= 20000;
 				}
 			}
 		}
@@ -233,9 +233,10 @@ public class Adventure implements Runnable {
 		}
 	}
 
+
 	@Override
 	public void run() {
-		while (true) {
+		while (!player.isDead()) {
 			if (Main.status == GameStatus.RUNNING) {
 				this.actions();
 				curRoom = mapGenerator.getRoom(curRoomX, curRoomY);
@@ -297,6 +298,11 @@ public class Adventure implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		if(player.isDead()) 
+		{
+			curRoomX=0;
+			curRoomY=0;
 		}
 
 	}

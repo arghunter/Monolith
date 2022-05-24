@@ -18,7 +18,7 @@ import general.AudioPlayer;
 
 public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	// speed, damage, health, armor, attackspeed, attack range
-	public static final int[] stats = { 20, 38, 250, 5, 20, 500 };
+	public static final int[] stats = { 20, 38, 250, 5, 20000, 500 };
 	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	int type = (int) (Math.random()*3);
 	// Constructor

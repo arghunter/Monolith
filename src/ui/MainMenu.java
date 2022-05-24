@@ -189,6 +189,8 @@ public class MainMenu implements ActionListener {
 		arsenalMenu.setHidden(true);
 		arsenalMenu.update();
 		skillMenu.setActive(false);
+		
+		adventure=null;
 	}
 
 	@Override

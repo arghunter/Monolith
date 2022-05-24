@@ -155,7 +155,9 @@ public abstract class MovingObject extends GameObject {
 	}
 	//Sets this objects coordinates
 	public void setCoordsMove(int x,int y) {
+		
 		image.move(x-this.x,y-this.y);
+		
 		this.x=x;
 		this.y=y;
 	}
@@ -163,7 +165,7 @@ public abstract class MovingObject extends GameObject {
 	public boolean isDead() {
 		return isDead;
 	}
-	public void setDead(boolean isDead) {
+	public void setDead(boolean isDead) { 
 		this.isDead = isDead;
 	}
 	public void setCurrentMovementDelay(double currentMovementDelay) {
