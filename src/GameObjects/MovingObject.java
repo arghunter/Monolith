@@ -1,4 +1,4 @@
-//Author: Peter Ferolito 
+//Author: Peter Ferolito  
 //Date: 5/12/22
 //Rev: 01
 //Notes: A extension of game object that is built for movement.
@@ -165,21 +165,27 @@ public abstract class MovingObject extends GameObject {
 	public boolean isDead() {
 		return isDead;
 	}
+	//Sets isDead
 	public void setDead(boolean isDead) { 
 		this.isDead = isDead;
 	}
+	//Sets the currntMovementDelay
 	public void setCurrentMovementDelay(double currentMovementDelay) {
 		this.currentMovementDelay = currentMovementDelay;
 	}
+	//Sets the angle
 	public void setAngle(double angle) {
 		this.angle = angle;
 	}
+	//Gets the movement distance per tick
 	public int getDist() {
 		return dist;
 	}
+	//Sets the distance per tick
 	public void setDist(int dist) {
 		this.dist = dist;
 	}
+	//Sets the animation system of this image
 	public void setImage(AnimationSystem image) {
 		this.image = image;
 	}

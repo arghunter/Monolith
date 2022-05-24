@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/20/22
+//Rev:01
+//Notes: Represents a system for elemental damage
 package GameObjects.elementalDamage;
 
 import java.awt.Color;
@@ -16,12 +20,10 @@ public class Damage implements Runnable {
 	private int damage;
 	private StatusEffect effect;
 	private double duration;
-	private long start=System.currentTimeMillis();
 	private Mob enemy;
 	private Player source;
 	private int tickDamage;
 	private ArrayList<Mob> mobs;
-//	private Timer timer=new Timer(1000,this);
 	Thread thread;
 	private int mobDist;
 	private int mobArmor;
@@ -116,7 +118,6 @@ public class Damage implements Runnable {
 	{
 		
 		if(damage!=0) {
-			start=System.currentTimeMillis();
 			(enemy).takeDamage(source,damage);
 			
 			if(effect==StatusEffect.FIRE) 

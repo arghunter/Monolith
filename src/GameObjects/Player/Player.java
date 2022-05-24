@@ -25,6 +25,7 @@ import GameObjects.Player.abilities.Ability;
 import GameObjects.Player.abilities.Dodge;
 import GameObjects.Player.abilities.FireBall;
 import GameObjects.Player.abilities.ShadowFall;
+import GameObjects.Player.abilities.WindGust;
 import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.weapons.MeleeWeapon;
@@ -75,7 +76,7 @@ public class Player extends MovingObject {
 		lastRegen = System.currentTimeMillis();
 		abilities[0]=new Dodge();
 		abilities[1]=new FireBall();
-		abilities[2]=new Dodge();
+		abilities[2]=new WindGust();
 		abilities[3]=new ShadowFall();
 
 	}
@@ -103,7 +104,7 @@ public class Player extends MovingObject {
 		ui = new PlayerUI(this, panel);
 		abilities[0]=new Dodge();
 		abilities[1]=new FireBall();
-		abilities[2]=new Dodge();
+		abilities[2]=new WindGust();
 		abilities[3]=new ShadowFall();
 
 	}
