@@ -1,3 +1,7 @@
+//Author: Peter Ferolito   
+//Date: 5/20/22
+//Rev: 01
+//Notes: A ranged mob that shoots spores at player. Also apparently from Plants versus Zombies. I really need to be more updated on pop culture
 package GameObjects.mobs;
 
 import java.awt.Graphics2D;
@@ -23,6 +27,7 @@ public class Sporeshroom extends Mob implements RangedMob,ActionListener {
 				super.dist=0;
 			}
 
+	
 	@Override
 	// Renders this object
 	public void render(Graphics2D g) {
@@ -33,6 +38,7 @@ public class Sporeshroom extends Mob implements RangedMob,ActionListener {
 	}
 
 	@Override
+	//Fires a spore
 	public void fireProjectile() {
 		projectiles.add(new StraightProjectile(this.getX()- 2 * (int) (super.getImage().getHeight() * Math.cos(this.getAngle() + Math.PI)),this.getY()- 2 * (int) (super.getImage().getHeight() * Math.sin(this.getAngle() + Math.PI)),6,"Spore",stats[5]));
 		projectiles.get(projectiles.size() - 1).addActionListener(this);
@@ -40,6 +46,7 @@ public class Sporeshroom extends Mob implements RangedMob,ActionListener {
 	}
 
 	@Override
+	//Renders all projectiles that this mob has fired
 	public void renderProjectiles(Graphics2D g) {
 		try 
 		{
@@ -68,6 +75,7 @@ public class Sporeshroom extends Mob implements RangedMob,ActionListener {
 
 	}
 	@Override 
+	//Overriden action that account for firing projectiles
 	public void action(Player player) 
 	{
 		playerLevel = player.getLevel();

@@ -1,3 +1,7 @@
+//Author: Armaan Gomes   
+//Date: 5/20/22
+//Rev: 01
+//Notes: 
 package GameObjects.Player.abilities;
 
 import java.awt.Graphics2D;
@@ -26,7 +30,7 @@ public class FireBall extends Ability implements ActionListener {
 	@Override
 	public void init() {
 		Player player = Adventure.getPlayer();
-		projectiles.add(new StraightProjectile(player.getX(), player.getY(), 20, ("Fireball"), 300));
+		projectiles.add(new StraightProjectile(player.getX(), player.getY(), 8, ("Fireball"), 300));
 		projectiles.get(projectiles.size() - 1).addActionListener(this);
 		projectiles.get(projectiles.size() - 1).rotate(player.getAngle());
 	}

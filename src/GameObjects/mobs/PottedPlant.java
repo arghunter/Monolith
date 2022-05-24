@@ -1,3 +1,7 @@
+//Author: Peter Ferolito   
+//Date: 5/20/22
+//Rev: 01
+//Notes: An implementation of a potted plant. It is embarrasing if a player dies to one of these.
 package GameObjects.mobs;
 
 import java.awt.Graphics2D;

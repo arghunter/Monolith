@@ -61,9 +61,7 @@ public class Player extends MovingObject {
 
 	// Constructor
 	public Player(int x, int y, int width, int height, JPanel panel) {
-		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
-//		System.out.println();
 		inventory = new Inventory(this);
 		super.dist = 3;
 		stats[3] = (int) inventory.getHealth() + 100;
@@ -83,7 +81,6 @@ public class Player extends MovingObject {
 
 	// Save data constructor
 	public Player(int x, int y, int id, int width, int height, JPanel panel, String saveData) {
-		// Just going to use the helmet image for player
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
 		String[] splitData=saveData.split(":;:~~~:;:");
 		super.dist = 3;
@@ -152,6 +149,7 @@ public class Player extends MovingObject {
 		}
 
 	}
+	//Revives the player and starts the game over
 	public void revive() 
 	{
 		health=stats[3];
@@ -175,6 +173,7 @@ public class Player extends MovingObject {
 	public StatType[] getStatTypes() {
 		return statTypes;
 	}
+	//Levels the player up after skill grant
 	public void levelUP() 
 	{
 		if(skillsNeeded>0) 
@@ -182,10 +181,12 @@ public class Player extends MovingObject {
 			skillsNeeded--;
 		}
 	}
+	//Uses the given player ability
 	public void useAbility(int num) 
 	{
 		abilities[num].start();
 	}
+	//Returns all of the players abilities
 	public Ability[] getAbilities() 
 	{
 		return abilities;
@@ -339,12 +340,12 @@ public class Player extends MovingObject {
 
 
 
-
+	//Returns the players current XP
 	public int getCurrentXP() {
 		return currentXP;
 	}
 
-
+	//Returns the xp to next level
 	public int getXpToNextLevel() {
 		return xpToNextLevel;
 	}

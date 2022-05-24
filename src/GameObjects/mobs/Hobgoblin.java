@@ -1,3 +1,7 @@
+//Author: Peter Ferolito   
+//Date: 5/20/22
+//Rev: 01
+//Notes: A ranged Hobgoblin archer
 package GameObjects.mobs;
 
 import java.awt.Graphics2D;
@@ -38,6 +42,7 @@ public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	}
 
 	@Override
+	//Fires a projectile
 	public void fireProjectile() {
 		switch(type) {
 			case 0: projectiles.add(new StraightProjectile(
@@ -64,6 +69,7 @@ public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	}
 
 	@Override
+	//Renders all projectiles this object has fired
 	public void renderProjectiles(Graphics2D g) {
 		try {
 			for (Projectile p : projectiles) {
@@ -85,6 +91,7 @@ public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	}
 
 	@Override
+	//Overridden action from mob to account for firing projectiles
 	public void action(Player player) {
 		playerLevel = player.getLevel();
 		updateAngle(player.getX(), player.getY());
@@ -146,6 +153,7 @@ public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	}
 
 	@Override
+	//Damage calculations of projectile hit;
 	public void actionPerformed(ActionEvent e) {
 		try {
 			Player p = (Player) e.getSource();

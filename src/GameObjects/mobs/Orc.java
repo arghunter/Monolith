@@ -1,3 +1,7 @@
+//Author: Peter Ferolito   
+//Date: 5/20/22
+//Rev: 01
+//Notes: An orc mob implementation
 package GameObjects.mobs;
 
 import java.awt.Graphics2D;

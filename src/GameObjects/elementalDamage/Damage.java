@@ -17,6 +17,7 @@ import GameObjects.Player.Player;
 import GameObjects.mobs.Mob;
 
 public class Damage implements Runnable {
+	//Fields
 	private int damage;
 	private StatusEffect effect;
 	private double duration;
@@ -28,6 +29,7 @@ public class Damage implements Runnable {
 	private int mobDist;
 	private int mobArmor;
 	private int chain=0;
+	//Constructor
 	public Damage(int damage,StatusEffect effect,double duration,Mob enemy,Player source,ArrayList<Mob> mobs) 
 	{
 		this.damage=damage;
@@ -113,7 +115,7 @@ public class Damage implements Runnable {
 		
 		
 	}
-	
+	//A tick of Damage, happens onceevery second
 	public void tick() 
 	{
 		
@@ -212,6 +214,7 @@ public class Damage implements Runnable {
 		}
 		
 	}
+	//Starts this damage object
 	public void start() 
 	{
 		if (thread == null) {
@@ -219,6 +222,7 @@ public class Damage implements Runnable {
 	         thread.start ();
 	      }
 	}
+	//Runs and ends this damage object
 	@Override
 	public void run() {
 		for(int i=0;i<=duration;i++) 

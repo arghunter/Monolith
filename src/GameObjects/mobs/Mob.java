@@ -1,7 +1,7 @@
 //Author: Peter Ferolito 
 //Date: 5/12/22
 //Rev: 01
-//Notes: An implementation of a mbo
+//Notes: An implementation of a mob
 package GameObjects.mobs;
 
 import java.awt.Font; 
@@ -65,7 +65,7 @@ public abstract class Mob extends MovingObject {
 	public int getHealth() {
 		return health;
 	}
-
+	//Makes this mob take damage
 	public void takeDamage(Player player, int damage) {
 		damage = damage /((((int) ((0.5 * Math.log(stats[4] * Math.log(stats[4]))) + 0.5) + 1)));
 		health -= damage;
@@ -81,7 +81,7 @@ public abstract class Mob extends MovingObject {
 		this.damageNumber = damage;
 		this.dmgTime = System.currentTimeMillis();
 	}
-
+	//Makes this mob take damagew withoug accounting for armor
 	public void takeDamageIgnoreArmor(Player player, int damage) {
 		health -= damage;
 
@@ -163,7 +163,7 @@ public abstract class Mob extends MovingObject {
 		}
 		
 	}
-
+	//Renders this mob
 	public void render(Graphics2D g) {
 		if (System.currentTimeMillis() - dmgTime < DMG_DURATION && this.damageNumber > 0) {
 			g.setColor(Constants.TEXTCOLOR);

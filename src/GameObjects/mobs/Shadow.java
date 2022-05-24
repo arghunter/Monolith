@@ -1,3 +1,7 @@
+//Author: Peter Ferolito   
+//Date: 5/20/22
+//Rev: 01
+//Notes: AN implementation of a shadow mob that looks like the player
 package GameObjects.mobs;
 
 import java.awt.Graphics2D;
