@@ -53,7 +53,7 @@ public class Main extends JPanel implements ActionListener {
 		menu=new MainMenu(player,this,input);
 		timer.start();
 		w.setVisible(true);
-		String[] songs={"Duel","DragonAwakened","Echoes"};
+		String[] songs={"Duel","DragonAwakened","Echoes","DragonCastle","EndlessStorm"};
 		new Playlist(songs);
 		
 	}
