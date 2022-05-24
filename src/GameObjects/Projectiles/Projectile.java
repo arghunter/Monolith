@@ -14,6 +14,7 @@ import GameObjects.MovingObject;
 import GameObjects.Player.Player;
 import GameObjects.Player.items.weapons.LongRangeWeapon;
 import GameObjects.mobs.Mob;
+import general.AnimationSystem;
 import general.Collider;
 import general.Constants;
 import general.ImageSystem;
@@ -23,7 +24,7 @@ import render.TextureGenerator;
 
 public class Projectile implements Runnable  {
 	private Path path;
-	private ImageSystem img;
+	private AnimationSystem img;
 	private int speed;
 	private double lastFired=System.currentTimeMillis();
     private ActionListener[] actionListeners=new ActionListener[0];
@@ -34,9 +35,9 @@ public class Projectile implements Runnable  {
     private int orgY;
     private Thread thread;
 
-	public Projectile(Path path, int x, int y,int speed, Image picture,int range) {
+	public Projectile(Path path, int x, int y,int speed, String name,int range) {
 		this.path = path;
-		img = new ImageSystem(x,y,picture);
+		img = new AnimationSystem(x,y,20,name);
 		this.speed=speed;
 		this.range=range;
 		this.orgX=x;
@@ -130,7 +131,7 @@ public class Projectile implements Runnable  {
 	public void draw(Graphics2D g) {
 		if(img!=null) 
 		{
-			img.drawImage(g);
+			img.drawAnimation(g);
 		}
 
 	}
@@ -173,7 +174,7 @@ public class Projectile implements Runnable  {
 			return -1;
 		}
 	}
-	public ImageSystem getImage() 
+	public AnimationSystem getImage() 
 	{
 		return img;
 	}

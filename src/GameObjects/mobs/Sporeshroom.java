@@ -33,7 +33,7 @@ public class Sporeshroom extends Mob implements RangedMob,ActionListener {
 
 	@Override
 	public void fireProjectile() {
-		projectiles.add(new StraightProjectile(this.getX()- 2 * (int) (super.getImage().getHeight() * Math.cos(this.getAngle() + Math.PI)),this.getY()- 2 * (int) (super.getImage().getHeight() * Math.sin(this.getAngle() + Math.PI)),6,new ImageIcon("imgs/Spore/Spore0.png").getImage(),stats[5]));
+		projectiles.add(new StraightProjectile(this.getX()- 2 * (int) (super.getImage().getHeight() * Math.cos(this.getAngle() + Math.PI)),this.getY()- 2 * (int) (super.getImage().getHeight() * Math.sin(this.getAngle() + Math.PI)),6,"Spore",stats[5]));
 		projectiles.get(projectiles.size() - 1).addActionListener(this);
 		projectiles.get(projectiles.size() - 1).rotate(this.getAngle());
 	}

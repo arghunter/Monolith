@@ -20,9 +20,9 @@ public class AudioPlayer implements Runnable {
 		
 		start();
 	}
-	private void stop() 
+	public Clip getClip() 
 	{
-		
+		return c; 
 	}
 	private void start() {
 		if (thread == null) {
@@ -30,7 +30,7 @@ public class AudioPlayer implements Runnable {
 			thread.start();
 		}
 	}
-	public  void playSound() {
+	public void playSound() {
 	    try {
 	        AudioInputStream audio = AudioSystem.getAudioInputStream(new File("audio/"+name+".wav"));
 	        c = AudioSystem.getClip();

@@ -132,6 +132,14 @@ public class AnimationSystem implements  Runnable {
 
 	
 	}
+	public int getX() 
+	{
+		return pics[0].getX();
+	}
+	public int getY() 
+	{
+		return pics[0].getY();
+	}
 
 	public int getWidth() {
 		return pics[0].getWidth();

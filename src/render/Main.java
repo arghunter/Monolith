@@ -6,6 +6,7 @@ import javax.swing.*;
 import GameObjects.Player.Player;
 import general.AudioPlayer;
 import general.PlayerManager;
+import general.Playlist;
 import general.SaveSystem;
 import input.PlayerInputParser;
 import ui.MainMenu;
@@ -52,7 +53,8 @@ public class Main extends JPanel implements ActionListener {
 		menu=new MainMenu(player,this,input);
 		timer.start();
 		w.setVisible(true);
-//		new AudioPlayer("Duel",AudioPlayer.LOOPING);
+		String[] songs={"Duel","DragonAwakened","Echoes"};
+		new Playlist(songs);
 		
 	}
 

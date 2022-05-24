@@ -18,7 +18,7 @@ import general.AudioPlayer;
 
 public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	// speed, damage, health, armor, attackspeed, attack range
-	public static final int[] stats = { 20, 38, 250, 5, 20000, 500 };
+	public static final int[] stats = { 20, 38, 250, 5, 20, 500 };
 	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	int type = (int) (Math.random()*3);
 	// Constructor
@@ -42,19 +42,19 @@ public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 			case 0: projectiles.add(new StraightProjectile(
 						this.getX() - 2 * (int) (64 * Math.cos(this.getAngle() + Math.PI)),
 						this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 2,
-						new ImageIcon("imgs/Arrow/Arrow0.png").getImage(), stats[5]));
+						"Arrow", stats[5]));
 			break;
 			case 1:
 				projectiles.add(new CurlyProjectile(
 						this.getX() - 2 * (int) (64 * Math.cos(this.getAngle() + Math.PI)),
 						this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 2,
-						new ImageIcon("imgs/Arrow/Arrow0.png").getImage(), stats[5]));
+						"Arrow", stats[5]));
 			break;	
 			case 2:
 				projectiles.add(new LogisticProjectile(
 						this.getX() - 2 * (int) (64 * Math.cos(this.getAngle() + Math.PI)),
 						this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 2,
-						new ImageIcon("imgs/Arrow/Arrow0.png").getImage(), stats[5]));
+						"Arrow", stats[5]));
 			break;
 		}
 		projectiles.get(projectiles.size() - 1).addActionListener(this);

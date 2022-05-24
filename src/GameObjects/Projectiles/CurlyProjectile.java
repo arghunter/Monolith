@@ -13,11 +13,8 @@ public class CurlyProjectile extends Projectile{
 			return (int)(Math.sin(x/100.0) * 100);
 		}
 	};
-	public CurlyProjectile(int x, int y,int speed,int range) {
-		super(new FuncPath(p,0).getPath(y,speed),x,y, speed,new ImageIcon("imgs/Baklava/Baklava0.png").getImage(),range);
-		this.room = room;
-	}
-	public CurlyProjectile(int x, int y,int speed,Image img,int range) {
+
+	public CurlyProjectile(int x, int y,int speed,String img,int range) {
 		super(new FuncPath(p,0).getPath(y,speed),x,y,speed,img,range);
 	}
 	public void draw(Graphics2D g) {
