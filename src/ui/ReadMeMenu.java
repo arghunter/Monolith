@@ -23,7 +23,7 @@ import render.Main;
 public class ReadMeMenu implements MouseWheelListener {
 	private int shiftY=275;
 	private boolean hidden=true;
-	private String text="In a world overrun with monsters, the elite soar in their spacecrafts high above while the poor scramble at the bases of monoliths of protection, the last remaining sanctuaries of humanity. You are a scavenger from one of these havens. Your refuge is failing, the monolith crumbling. You must embark on a quest to find another monolith, and restore your sanctuary. Perhaps then, with the combined force of civilizations, the tide can change and humankind can once again reclaim their world. Explore the dungeon. Get powerful items. Learn new skills. Kill the monsters. aygyft Find the monolith. This is your quest. WASD for movement, right click for using your equipped item. Scroll to scroll through your arsenal. Go to the Arsenal Menu to swap items from your inventory to your arsenal and vica versa. Go to the inventory menu to view your inventory and construct blueprints. Go to the Skills menu to view your skills and activate or disable them. When you level up make sure to press Enter to gain a new skill. Kepp an eye on your Health(Red) and Shields(Blue) in the top left corner. Additionally keep an eye on your ability cooldowns in the bottom left corner. Use your abilities with the keys 1 2 3 and 4. Made by: Armaan Gomes, Peter Ferolito, and Adithya Giri. Additional credits to Makai Symphony for providing the sound track and various artists for providing textures. Finally have fun!" ;
+	private String text="In a world overrun with monsters, the elite soar in their spacecrafts high above while the poor scramble at the bases of monoliths of protection, the last remaining sanctuaries of humanity. You are a scavenger from one of these havens. Your refuge is failing, the monolith crumbling. You must embark on a quest to find another monolith, and restore your sanctuary. Perhaps then, with the combined force of civilizations, the tide can change and humankind can once again reclaim their world. Explore the dungeon. Get powerful items. Learn new skills. Kill the monsters. Find the monolith. This is your quest. WASD for movement, right click for using your equipped item. Scroll to scroll through your arsenal. Go to the Arsenal Menu to swap items from your inventory to your arsenal and vica versa. Go to the inventory menu to view your inventory and construct blueprints. Go to the Skills menu to view your skills and activate or disable them. When you level up make sure to press Enter to gain a new skill. Kepp an eye on your Health(Red) and Shields(Blue) in the top left corner. Additionally keep an eye on your ability cooldowns in the bottom left corner. Use your abilities with the keys 1 2 3 and 4. Made by: Armaan Gomes, Peter Ferolito, and Adithya Giri. Additional credits to Makai Symphony for providing the sound track and various artists for providing textures. Finally, have fun!" ;
 	private int margins=275;
 	
 	public ReadMeMenu(JPanel panel) 
@@ -61,7 +61,7 @@ public class ReadMeMenu implements MouseWheelListener {
 				}else 
 				{
 					g.drawString(line, margins, shiftY+60*lineNum);
-					line="";
+					line=word;
 					lineNum++;
 				}
 			}
