@@ -46,7 +46,7 @@ public class Player extends MovingObject {
 	private int[] buffs = new int[10];
 	private int currentLevel = 0;
 	private int currentXP = 0;
-	private int xpToNextLevel = 1000;
+	private int xpToNextLevel = 1;
 	private PlayerUI ui;
 	private Inventory inventory;
 	private int currentShields;
@@ -109,7 +109,7 @@ public class Player extends MovingObject {
 	// Alters the players health and shield values based on damage dealt and armor
 	public void takeDamage(int damage) {
 		if (!isDead) {
-			damage = damage/(int) (( 0.5*Math.log(stats[1] * Math.log(stats[1]))) + 0.5)+1;
+			damage = (int)(damage/Math.log(18+stats[4])+damage*0.2);
 			if (currentShields > 0) {
 				currentShields = Math.max(0, currentShields - damage);
 			} else {
@@ -265,9 +265,10 @@ public class Player extends MovingObject {
 
 	// Adds xp to the player and skilltree
 	public void addXP(int xp) {
+		System.out.println(xpToNextLevel+" "+xp);
 		if (!isDead) {
-			skills.addXP(xp / 2);
-			currentXP += (xp + 1) / 2;
+			skills.addXP(xp);
+			currentXP += xp;
 			while (currentXP >= xpToNextLevel) {
 				currentLevel++;
 				currentXP -= xpToNextLevel;
