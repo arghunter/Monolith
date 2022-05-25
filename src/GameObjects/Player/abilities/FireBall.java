@@ -1,7 +1,7 @@
 //Author: Armaan Gomes   
 //Date: 5/20/22
 //Rev: 01
-//Notes: 
+//Notes: A fire ball
 package GameObjects.Player.abilities;
 
 import java.awt.Graphics2D;

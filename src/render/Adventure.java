@@ -164,7 +164,7 @@ public class Adventure implements Runnable {
 			player.setMobs(mobList[curRoomY][curRoomX]);
 		}
 		player.getInventory().clearAllProjectiles();
-
+		player.clearAbilities();
 		curRoom = mapGenerator.getRoom(curRoomX, curRoomY);
 		texture = new TextureGenerator(curRoom, curRoomX * (curRoomY) + curRoomX + curRoomY + initTime, topLeftCornerX,
 				topLeftCornerY, 1);

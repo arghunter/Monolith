@@ -25,16 +25,21 @@ public class ShadowFall extends Ability {
 		long numTimes=(System.currentTimeMillis()-lastTick)/200;
 		for(long i=0;i<numTimes;i++) 
 		{
-			System.out.println("ShadowFAlling");
-			
-			for (Mob m : Adventure.getMobs()) {
-				if (Math.sqrt(Math.pow((m.getX() - Adventure.getPlayer().getX()), 2)
-						+ Math.pow((m.getY() - Adventure.getPlayer().getY()), 2)) < 200) {
-					new Damage(40, StatusEffect.NONE, 5, m, Adventure.getPlayer(), Adventure.getMobs());
-					damageTotal+=40;
+			try 
+			{
+				for (Mob m : Adventure.getMobs()) {
+					if (Math.sqrt(Math.pow((m.getX() - Adventure.getPlayer().getX()), 2)
+							+ Math.pow((m.getY() - Adventure.getPlayer().getY()), 2)) < 200) {
+						new Damage(40, StatusEffect.NONE, 5, m, Adventure.getPlayer(), Adventure.getMobs());
+						damageTotal+=40;
+					}
 				}
+				lastTick=System.currentTimeMillis();
+			}catch(Exception e) 
+			{
+				
 			}
-			lastTick=System.currentTimeMillis();
+		
 		}
 		
 	}
@@ -44,7 +49,7 @@ public class ShadowFall extends Ability {
 		for (Mob m : Adventure.getMobs()) {
 			if (Math.sqrt(Math.pow((m.getX() - Adventure.getPlayer().getX()), 2)
 					+ Math.pow((m.getY() - Adventure.getPlayer().getY()), 2)) < 300) {
-				new Damage(damageTotal, StatusEffect.ROT, 5, m, Adventure.getPlayer(), Adventure.getMobs());
+				new Damage(damageTotal/2, StatusEffect.ROT, 5, m, Adventure.getPlayer(), Adventure.getMobs());
 			}
 		}
 	}

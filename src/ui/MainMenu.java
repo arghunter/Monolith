@@ -34,13 +34,14 @@ import render.Tutorial;
 public class MainMenu implements ActionListener {
 	//Fields
 	Player player;
-	Button[] menuButtons = new Button[4];// 0=storageButton, 1=arsenalButton, 2==skillDisplayButton
+	Button[] menuButtons = new Button[5];// 0=storageButton, 1=arsenalButton, 2==skillDisplayButton
 	Button[] gameModeButtons = new Button[1];// 0=adventureButton 1==survivalButton
 	Button escape;
 	Button settingsMenu;
 	InventoryMenu inventoryMenu;
 	ArsenalMenu arsenalMenu;
 	SkillDisplayMenu skillMenu;
+	private ClassMenu classMenu;
 	private ReadMeMenu readMe;
 	private Adventure adventure;
 	private boolean hidden = false;
@@ -52,6 +53,7 @@ public class MainMenu implements ActionListener {
 		this.input=input;
 		this.panel=panel;
 		readMe=new ReadMeMenu(panel);
+		classMenu=new ClassMenu(panel,player);
 		Point[] menuPoints = { new Point(0, 266), new Point(0, 466), new Point(400, 466), new Point(400, 266) };
 
 		for (int i = 0; i < menuButtons.length; i++) {
@@ -67,6 +69,9 @@ public class MainMenu implements ActionListener {
 				text = "Skills";
 				break;
 			case 3:
+				text="Class";
+				break;
+			case 4:
 				text="ReadMe";
 				break;
 
@@ -126,6 +131,7 @@ public class MainMenu implements ActionListener {
 			arsenalMenu.update();
 			readMe.setHidden(true);
 			skillMenu.setActive(false);
+			classMenu.setHidden(true);
 		}
 		if (!hidden) {
 			g.drawImage(createGradient(JPanelX, JPanelY), 0, 0, null);
@@ -157,6 +163,7 @@ public class MainMenu implements ActionListener {
 		arsenalMenu.draw(g, JPanelX, JPanelY);
 		skillMenu.render(g, JPanelX, JPanelY);
 		readMe.draw(g, JPanelX, JPanelY);
+		classMenu.draw(g, JPanelX, JPanelY);
 		if(hidden&&Main.status==GameStatus.MAIN_MENU) 
 		{
 			escape.draw(g, JPanelX, JPanelY);
@@ -197,7 +204,8 @@ public class MainMenu implements ActionListener {
 		arsenalMenu.update();
 		readMe.setHidden(true);
 		skillMenu.setActive(false);
-		
+		classMenu.setHidden(true);
+
 		adventure=null;
 	}
 
@@ -218,6 +226,8 @@ public class MainMenu implements ActionListener {
 							arsenalMenu.setHidden(true);
 							readMe.setHidden(true);
 							skillMenu.setActive(false);
+							classMenu.setHidden(true);
+
 							break;
 						case 1:
 							inventoryMenu.setHidden(true);
@@ -225,6 +235,8 @@ public class MainMenu implements ActionListener {
 							arsenalMenu.setHidden(false);
 							readMe.setHidden(true);
 							skillMenu.setActive(false);
+							classMenu.setHidden(true);
+
 							break;
 						case 2:
 							inventoryMenu.setHidden(true);
@@ -232,6 +244,8 @@ public class MainMenu implements ActionListener {
 							arsenalMenu.setHidden(true);
 							skillMenu.setActive(true);
 							readMe.setHidden(true);
+							classMenu.setHidden(true);
+
 
 							break;
 						case 3:
@@ -239,7 +253,17 @@ public class MainMenu implements ActionListener {
 							this.hidden=true;
 							arsenalMenu.setHidden(true);
 							skillMenu.setActive(false);
+							readMe.setHidden(true);
+							classMenu.setHidden(false);
+							break;
+						case 4:
+							inventoryMenu.setHidden(true);
+							this.hidden=true;
+							arsenalMenu.setHidden(true);
+							skillMenu.setActive(false);
 							readMe.setHidden(false);
+							classMenu.setHidden(true);
+
 							break;
 							
 						}
@@ -258,6 +282,8 @@ public class MainMenu implements ActionListener {
 							arsenalMenu.setHidden(true);
 							skillMenu.setActive(false);
 							readMe.setHidden(true);
+							classMenu.setHidden(true);
+
 
 							
 						}
@@ -285,6 +311,8 @@ public class MainMenu implements ActionListener {
 					arsenalMenu.update();
 					skillMenu.setActive(false);
 					readMe.setHidden(true);
+					classMenu.setHidden(true);
+
 
 				}
 			}catch(Exception ex) 
