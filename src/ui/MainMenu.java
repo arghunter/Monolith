@@ -34,14 +34,15 @@ import render.Tutorial;
 public class MainMenu implements ActionListener {
 	//Fields
 	Player player;
-	Button[] menuButtons = new Button[3];// 0=storageButton, 1=arsenalButton, 2==skillDisplayButton
+	Button[] menuButtons = new Button[4];// 0=storageButton, 1=arsenalButton, 2==skillDisplayButton
 	Button[] gameModeButtons = new Button[1];// 0=adventureButton 1==survivalButton
 	Button escape;
 	Button settingsMenu;
 	InventoryMenu inventoryMenu;
 	ArsenalMenu arsenalMenu;
 	SkillDisplayMenu skillMenu;
-	Adventure adventure;
+	private ReadMeMenu readMe;
+	private Adventure adventure;
 	private boolean hidden = false;
 	private JPanel panel;
 	private PlayerInputParser input;
@@ -50,6 +51,7 @@ public class MainMenu implements ActionListener {
 		this.player = player;
 		this.input=input;
 		this.panel=panel;
+		readMe=new ReadMeMenu(panel);
 		Point[] menuPoints = { new Point(0, 266), new Point(0, 466), new Point(400, 466), new Point(400, 266) };
 
 		for (int i = 0; i < menuButtons.length; i++) {
@@ -63,6 +65,10 @@ public class MainMenu implements ActionListener {
 				break;
 			case 2:
 				text = "Skills";
+				break;
+			case 3:
+				text="ReadMe";
+				break;
 
 			}
 			menuButtons[i] = new Button(menuPoints, new Color((212) / 2, (175) / 2, (55) / 2, 0), text);
@@ -81,8 +87,7 @@ public class MainMenu implements ActionListener {
 			case 0:
 				text = "Adventure";
 				break;
-			case 1:
-				text = "Survival";
+
 			}
 			gameModeButtons[i] = new Button(gamePoints, new Color((212) / 2, (175) / 2, (55) / 2, 0), text);
 			gameModeButtons[i].setFontColor(Constants.TEXTCOLOR);
@@ -119,6 +124,7 @@ public class MainMenu implements ActionListener {
 			this.hidden=false;
 			arsenalMenu.setHidden(true);
 			arsenalMenu.update();
+			readMe.setHidden(true);
 			skillMenu.setActive(false);
 		}
 		if (!hidden) {
@@ -150,6 +156,7 @@ public class MainMenu implements ActionListener {
 		inventoryMenu.draw(g, JPanelX, JPanelY);
 		arsenalMenu.draw(g, JPanelX, JPanelY);
 		skillMenu.render(g, JPanelX, JPanelY);
+		readMe.draw(g, JPanelX, JPanelY);
 		if(hidden&&Main.status==GameStatus.MAIN_MENU) 
 		{
 			escape.draw(g, JPanelX, JPanelY);
@@ -188,6 +195,7 @@ public class MainMenu implements ActionListener {
 		this.hidden=false;
 		arsenalMenu.setHidden(true);
 		arsenalMenu.update();
+		readMe.setHidden(true);
 		skillMenu.setActive(false);
 		
 		adventure=null;
@@ -208,12 +216,14 @@ public class MainMenu implements ActionListener {
 							inventoryMenu.setHidden(false);
 							this.hidden=true;
 							arsenalMenu.setHidden(true);
+							readMe.setHidden(true);
 							skillMenu.setActive(false);
 							break;
 						case 1:
 							inventoryMenu.setHidden(true);
 							this.hidden=true;
 							arsenalMenu.setHidden(false);
+							readMe.setHidden(true);
 							skillMenu.setActive(false);
 							break;
 						case 2:
@@ -221,7 +231,17 @@ public class MainMenu implements ActionListener {
 							this.hidden=true;
 							arsenalMenu.setHidden(true);
 							skillMenu.setActive(true);
+							readMe.setHidden(true);
+
 							break;
+						case 3:
+							inventoryMenu.setHidden(true);
+							this.hidden=true;
+							arsenalMenu.setHidden(true);
+							skillMenu.setActive(false);
+							readMe.setHidden(false);
+							break;
+							
 						}
 					}
 				}
@@ -237,6 +257,8 @@ public class MainMenu implements ActionListener {
 							this.hidden=true;
 							arsenalMenu.setHidden(true);
 							skillMenu.setActive(false);
+							readMe.setHidden(true);
+
 							
 						}
 					}
@@ -262,6 +284,8 @@ public class MainMenu implements ActionListener {
 					arsenalMenu.setHidden(true);
 					arsenalMenu.update();
 					skillMenu.setActive(false);
+					readMe.setHidden(true);
+
 				}
 			}catch(Exception ex) 
 			{

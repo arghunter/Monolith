@@ -322,7 +322,6 @@ public class Player extends MovingObject {
 	public synchronized void render(Graphics2D g) {
 
 
-//		System.out.println("Here");
 		
 		
 		renderWeapon(g);
