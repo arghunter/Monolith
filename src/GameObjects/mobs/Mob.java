@@ -72,7 +72,7 @@ public abstract class Mob extends MovingObject {
 
 		if (health < 0&&!super.isDead()) {
 			super.setDead(true);
-			player.addXP((playerLevel + 8) * 8);
+			player.addXP(xpDropped);
 //			Item item = ItemGeneration.getItem(player, playerLevel, playerLevel / 5);
 //			if (item != null) {
 //				player.getInventory().addToStorage(item);

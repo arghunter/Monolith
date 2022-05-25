@@ -46,7 +46,7 @@ public class Player extends MovingObject {
 	private int[] buffs = new int[10];
 	private int currentLevel = 0;
 	private int currentXP = 0;
-	private int xpToNextLevel = 1000;
+	private int xpToNextLevel = 1;
 	private PlayerUI ui;
 	private Inventory inventory;
 	private int currentShields;
