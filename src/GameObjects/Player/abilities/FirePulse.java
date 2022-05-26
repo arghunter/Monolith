@@ -32,7 +32,7 @@ public class FirePulse extends Ability {
 	public void runAbility() {
 		try 
 		{
-			long numTimes = (System.currentTimeMillis() - lastTick) / 1000;
+			long numTimes = (System.currentTimeMillis() - lastTick) / 2000;
 
 			for (long i = 0; i < numTimes; i++) {
 
