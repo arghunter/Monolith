@@ -37,7 +37,7 @@ public class MobSpawner {
 		
 	}
 	
-	//Spawns mobs using the default probabilities
+	//Spawns mobs using the default probabilities  
 	public int[] generateMobs(int playerLevel) {
 		int mobRatio=0;
 		mobRatio=playerLevel/4;

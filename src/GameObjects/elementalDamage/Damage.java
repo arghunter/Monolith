@@ -25,7 +25,7 @@ public class Damage implements Runnable {
 	private Player source;
 	private int tickDamage;
 	private ArrayList<Mob> mobs;
-	Thread thread;
+	private Thread thread;
 	private int mobDist;
 	private int mobArmor;
 	private int chain=0;
@@ -69,7 +69,6 @@ public class Damage implements Runnable {
 		}
 		tick();
 		start();
-//		timer.start();
 		
 		
 		
@@ -108,14 +107,13 @@ public class Damage implements Runnable {
 			tickDamage=3*damage/4;
 		}
 		tick();
-//		timer.start();
 		start();
 		this.chain=chain;
 		
 		
 		
 	}
-	//A tick of Damage, happens onceevery second
+	//A tick of Damage, happens once every second
 	public void tick() 
 	{
 		

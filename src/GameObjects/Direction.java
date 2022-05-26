@@ -7,7 +7,7 @@ package GameObjects;
 public enum Direction
 {
 	NORTH,
-	SOUTH,
+	SOUTH, 
 	EAST,
 	WEST,
 	NORTHWEST,

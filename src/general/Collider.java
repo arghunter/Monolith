@@ -57,7 +57,7 @@ public class Collider {
 	public boolean isColliding(Rectangle playerRect,MovingObject object){
 		for(Rectangle r : objects) {
 			//.out.println(r+"    " + playerRect);
-			if(r.intersects(playerRect)) {
+			if(r.intersects(playerRect)) { 
 				return true;
 			}
 		}

@@ -23,12 +23,13 @@ import general.AudioPlayer;
 public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	// speed, damage, health, armor, attackspeed, attack range
 	public static final int[] stats = { 20, 35, 250, 10, 20, 500 };
-	public static final int xpDropped=12;
+	public static final int xpDropped = 12;
 	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
-	int type = (int) (Math.random()*3);
+	int type = (int) (Math.random() * 3);
+
 	// Constructor
 	public Hobgoblin(int x, int y) {
-		super(x, y, stats[0], stats, 64, 64, "Hobgoblin", 1,xpDropped);
+		super(x, y, stats[0], stats, 64, 64, "Hobgoblin", 1, xpDropped);
 		super.dist = 1;
 	}
 
@@ -42,25 +43,20 @@ public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	}
 
 	@Override
-	//Fires a projectile
+	// Fires a projectile
 	public void fireProjectile() {
-		switch(type) {
-			case 0: projectiles.add(new StraightProjectile(
-						this.getX() - 2 * (int) (64 * Math.cos(this.getAngle() + Math.PI)),
-						this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 2,
-						"Arrow", stats[5]));
+		switch (type) {
+		case 0:
+			projectiles.add(new StraightProjectile(this.getX() - 2 * (int) (64 * Math.cos(this.getAngle() + Math.PI)),
+					this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 2, "Arrow", stats[5]));
 			break;
-			case 1:
-				projectiles.add(new CurlyProjectile(
-						this.getX() - 2 * (int) (64 * Math.cos(this.getAngle() + Math.PI)),
-						this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 2,
-						"Arrow", stats[5]));
-			break;	
-			case 2:
-				projectiles.add(new LogisticProjectile(
-						this.getX() - 2 * (int) (64 * Math.cos(this.getAngle() + Math.PI)),
-						this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 2,
-						"Arrow", stats[5]));
+		case 1:
+			projectiles.add(new CurlyProjectile(this.getX() - 2 * (int) (64 * Math.cos(this.getAngle() + Math.PI)),
+					this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 2, "Arrow", stats[5]));
+			break;
+		case 2:
+			projectiles.add(new LogisticProjectile(this.getX() - 2 * (int) (64 * Math.cos(this.getAngle() + Math.PI)),
+					this.getY() - 2 * (int) (64 * Math.sin(this.getAngle() + Math.PI)), 2, "Arrow", stats[5]));
 			break;
 		}
 		projectiles.get(projectiles.size() - 1).addActionListener(this);
@@ -69,7 +65,7 @@ public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	}
 
 	@Override
-	//Renders all projectiles this object has fired
+	// Renders all projectiles this object has fired
 	public void renderProjectiles(Graphics2D g) {
 		try {
 			for (Projectile p : projectiles) {
@@ -91,7 +87,7 @@ public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	}
 
 	@Override
-	//Overridden action from mob to account for firing projectiles
+	// Overridden action from mob to account for firing projectiles
 	public void action(Player player) {
 		playerLevel = player.getLevel();
 		updateAngle(player.getX(), player.getY());
@@ -153,7 +149,7 @@ public class Hobgoblin extends Mob implements RangedMob, ActionListener {
 	}
 
 	@Override
-	//Damage calculations of projectile hit;
+	// Damage calculations of projectile hit;
 	public void actionPerformed(ActionEvent e) {
 		try {
 			Player p = (Player) e.getSource();

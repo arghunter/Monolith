@@ -15,7 +15,7 @@ import javax.swing.Timer;
 
 import GameObjects.elementalDamage.StatusEffect;
 
-public class AnimationSystem implements  Runnable {
+public class AnimationSystem implements Runnable {
 	// Fields
 	private long delay;
 	private long lastFrame = System.currentTimeMillis();
@@ -69,9 +69,10 @@ public class AnimationSystem implements  Runnable {
 		}
 	}
 
+	// Adds particle effects based on elemental damage
 	public void setStatus(StatusEffect status, double duration) {
 		this.status = status;
-		endTime=(long) (System.currentTimeMillis()+duration*1000);
+		endTime = (long) (System.currentTimeMillis() + duration * 1000);
 
 		statusImage = new BufferedImage(pics[0].getWidth(), pics[0].getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = statusImage.createGraphics();
@@ -87,98 +88,88 @@ public class AnimationSystem implements  Runnable {
 				g.fillOval(0, 0, statusImage.getWidth(), statusImage.getHeight());
 				break;
 			case LIGHTNING:
-				g.setColor(new Color(253, 208, 35,75));
+				g.setColor(new Color(253, 208, 35, 75));
 				g.fillOval(0, 0, statusImage.getWidth(), statusImage.getHeight());
 				break;
 			case ROT:
-				g.setColor(new Color(23,0,0,75));
+				g.setColor(new Color(23, 0, 0, 75));
 				g.fillOval(0, 0, statusImage.getWidth(), statusImage.getHeight());
-				g.setColor(new Color(50,0,0));
-				for(int i=0;i<10;i++) 
-				{
-					g.fillOval((int)(Math.random()*statusImage.getWidth()),(int)(Math.random()*statusImage.getHeight()), 5, 5);
+				g.setColor(new Color(50, 0, 0));
+				for (int i = 0; i < 10; i++) {
+					g.fillOval((int) (Math.random() * statusImage.getWidth()),
+							(int) (Math.random() * statusImage.getHeight()), 5, 5);
 
 				}
 				break;
 			case TOXIN:
-				g.setColor(new Color(27,200,12,75));
+				g.setColor(new Color(27, 200, 12, 75));
 				g.fillOval(0, 0, statusImage.getWidth(), statusImage.getHeight());
-				g.setColor(new Color(27,200,12,100));
-				for(int i=0;i<10;i++) 
-				{
-					g.fillOval((int)(Math.random()*statusImage.getWidth()),(int)(Math.random()*statusImage.getHeight()), 5, 5);
+				g.setColor(new Color(27, 200, 12, 100));
+				for (int i = 0; i < 10; i++) {
+					g.fillOval((int) (Math.random() * statusImage.getWidth()),
+							(int) (Math.random() * statusImage.getHeight()), 5, 5);
 
 				}
 				break;
 			case CORROSION:
-				g.setColor(new Color(167,52,21,75));
+				g.setColor(new Color(167, 52, 21, 75));
 				g.fillOval(0, 0, statusImage.getWidth(), statusImage.getHeight());
 				break;
 			case GAS:
-				g.setColor(new Color(41,156,105,75));
+				g.setColor(new Color(41, 156, 105, 75));
 				g.fillOval(0, 0, statusImage.getWidth(), statusImage.getHeight());
 			case VIRAL:
-				g.setColor(new Color(234,127,195,75));
+				g.setColor(new Color(234, 127, 195, 75));
 				g.fillOval(0, 0, statusImage.getWidth(), statusImage.getHeight());
-
-
-
-
 
 			}
 		} catch (Exception e) {
 
 		}
 
-	
 	}
-	public int getX() 
-	{
+
+	// Returns the x of this animation system
+	public int getX() {
 		return pics[0].getX();
 	}
-	public int getY() 
-	{
+
+	// Returns the y of this animation system
+	public int getY() {
 		return pics[0].getY();
 	}
 
+	// Returns the width of this animation
 	public int getWidth() {
 		return pics[0].getWidth();
 	}
 
+	// Returns the height of this animation
 	public int getHeight() {
 		return pics[0].getHeight();
 	}
 
-	// Draws the current frame of the animation
+	// Draws the current frame of the animation and status effect
 	public void drawAnimation(Graphics2D g) {
-//		if (System.currentTimeMillis() - this.lastFrame >= this.delay && numFrames > 1) {
-//			frameNumber++;
-//			if (frameNumber >= numFrames) {
-//				frameNumber = 0;
-//			}
-//
-//		}
+
 		pics[frameNumber].drawImage(g);
 		if (statusImage != null && status != StatusEffect.NONE) {
 			g.drawImage(statusImage, pics[0].getTransform(), null);
-			switch(status) 
-			{
+			switch (status) {
 			case LIGHTNING:
-				g.setColor(new Color(253, 208, 35,50));
-				g.fillOval(pics[0].getX()-80, pics[0].getY()-80, 160, 160);
+				g.setColor(new Color(253, 208, 35, 50));
+				g.fillOval(pics[0].getX() - 80, pics[0].getY() - 80, 160, 160);
 				break;
 			case GAS:
-				g.setColor(new Color(41,156,105,50));
-				g.fillOval(pics[0].getX()-200, pics[0].getY()-200, 400, 400);
-			
+				g.setColor(new Color(41, 156, 105, 50));
+				g.fillOval(pics[0].getX() - 200, pics[0].getY() - 200, 400, 400);
 
 			}
 		}
 
 	}
 
-
-
+	// Starts this animation
 	public void start() {
 		if (thread == null) {
 			thread = new Thread(this, "" + System.currentTimeMillis());
@@ -187,6 +178,7 @@ public class AnimationSystem implements  Runnable {
 	}
 
 	@Override
+	// Runs this animation
 	public void run() {
 		while (true) {
 
@@ -197,9 +189,8 @@ public class AnimationSystem implements  Runnable {
 				}
 
 			}
-			if(System.currentTimeMillis()>endTime) 
-			{
-				status=StatusEffect.NONE;
+			if (System.currentTimeMillis() > endTime) {
+				status = StatusEffect.NONE;
 			}
 			try {
 				thread.sleep(30);

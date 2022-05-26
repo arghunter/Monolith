@@ -43,7 +43,7 @@ public class SkillTree {
 			{
 				this.addSkill(this.parseMultipleSkillData(skillStrings[i]));
 			}else 
-			{
+			{ 
 				this.addSkill(this.parseSkillData(skillStrings[i]));
 				
 			}

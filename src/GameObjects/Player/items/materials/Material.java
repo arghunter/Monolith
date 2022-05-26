@@ -42,7 +42,7 @@ public class Material extends Item {
 		return null;
 	}
 
-	// Returns Count
+	// Returns Count 
 	public double getCount() {
 		return count;
 	}

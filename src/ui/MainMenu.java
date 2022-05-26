@@ -4,7 +4,7 @@
 // Notes: Represents a main menu
 package ui;
 
-import java.awt.Color; 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.FontMetrics;
@@ -13,47 +13,44 @@ import java.awt.Point;
 import java.awt.RadialGradientPaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JPanel;
-
 import GameObjects.Player.Player;
 import general.Constants;
-
 import input.MouseInputParser;
 import input.PlayerInputParser;
 import render.Adventure;
 import render.GameStatus;
 import render.Main;
-import render.Tutorial;
 
 public class MainMenu implements ActionListener {
-	//Fields
-	Player player;
-	Button[] menuButtons = new Button[5];// 0=storageButton, 1=arsenalButton, 2==skillDisplayButton
-	Button[] gameModeButtons = new Button[1];// 0=adventureButton 1==survivalButton
-	Button escape;
-	Button settingsMenu;
-	InventoryMenu inventoryMenu;
-	ArsenalMenu arsenalMenu;
-	SkillDisplayMenu skillMenu;
+	// Fields
+	private Player player;
+	private Button[] menuButtons = new Button[5];
+	private Button[] gameModeButtons = new Button[1];
+	private Button escape;
+	private Button settingsMenu;
+	private InventoryMenu inventoryMenu;
+	private ArsenalMenu arsenalMenu;
+	private SkillDisplayMenu skillMenu;
 	private ClassMenu classMenu;
 	private ReadMeMenu readMe;
 	private Adventure adventure;
 	private boolean hidden = false;
 	private JPanel panel;
 	private PlayerInputParser input;
-	//Constructor
-	public MainMenu(Player player, JPanel panel,PlayerInputParser input) {
+
+	// Constructor
+	public MainMenu(Player player, JPanel panel, PlayerInputParser input) {
 		this.player = player;
-		this.input=input;
-		this.panel=panel;
-		readMe=new ReadMeMenu(panel);
-		classMenu=new ClassMenu(panel,player);
+		this.input = input;
+		this.panel = panel;
+		readMe = new ReadMeMenu(panel);
+		classMenu = new ClassMenu(panel, player);
 		Point[] menuPoints = { new Point(0, 266), new Point(0, 466), new Point(400, 466), new Point(400, 266) };
 
 		for (int i = 0; i < menuButtons.length; i++) {
@@ -69,10 +66,10 @@ public class MainMenu implements ActionListener {
 				text = "Skills";
 				break;
 			case 3:
-				text="Class";
+				text = "Class";
 				break;
 			case 4:
-				text="ReadMe";
+				text = "ReadMe";
 				break;
 
 			}
@@ -103,7 +100,7 @@ public class MainMenu implements ActionListener {
 				gamePoints[j].y += 200;
 			}
 		}
-		
+
 		inventoryMenu = new InventoryMenu(player.getInventory(), panel);
 		inventoryMenu.setHidden(true);
 		arsenalMenu = new ArsenalMenu(player.getInventory(), panel);
@@ -111,22 +108,22 @@ public class MainMenu implements ActionListener {
 		skillMenu = new SkillDisplayMenu(player.getSkills(), panel);
 		skillMenu.setActive(false);
 		player.setCoordsMove(1280, 668);
-		Point[] backPoints= {new Point(0,10),new Point(0,160),new Point(150,160),new Point(150,10)};
-		escape=new Button(backPoints, new Color((212) / 2, (175) / 2, (55) / 2, 0),"Back");
+		Point[] backPoints = { new Point(0, 10), new Point(0, 160), new Point(150, 160), new Point(150, 10) };
+		escape = new Button(backPoints, new Color((212) / 2, (175) / 2, (55) / 2, 0), "Back");
 		escape.setFontColor(Constants.TEXTCOLOR);
 		escape.addActionListener(this);
 		panel.add(escape);
 
 	}
-	//Draws this menu
+
+	// Draws this menu
 	public void draw(Graphics2D g, int JPanelX, int JPanelY) {
-		
-		if(input.isEscapePressed()&&Main.status==GameStatus.MAIN_MENU) 
-		{
+
+		if (input.isEscapePressed() && Main.status == GameStatus.MAIN_MENU) {
 			player.updateUI();
 			inventoryMenu.setHidden(true);
 			inventoryMenu.update();
-			this.hidden=false;
+			this.hidden = false;
 			arsenalMenu.setHidden(true);
 			arsenalMenu.update();
 			readMe.setHidden(true);
@@ -157,24 +154,22 @@ public class MainMenu implements ActionListener {
 			}
 			player.render(g);
 		}
-	
-		
+
 		inventoryMenu.draw(g, JPanelX, JPanelY);
 		arsenalMenu.draw(g, JPanelX, JPanelY);
 		skillMenu.render(g, JPanelX, JPanelY);
 		readMe.draw(g, JPanelX, JPanelY);
 		classMenu.draw(g, JPanelX, JPanelY);
-		if(hidden&&Main.status==GameStatus.MAIN_MENU) 
-		{
+		if (hidden && Main.status == GameStatus.MAIN_MENU) {
 			escape.draw(g, JPanelX, JPanelY);
 		}
-		if(adventure!=null) 
-		{
-			adventure.draw(g,JPanelX,JPanelY);
+		if (adventure != null) {
+			adventure.draw(g, JPanelX, JPanelY);
 		}
 
 	}
-	//Fancy gradient creation
+
+	// Fancy gradient creation
 	private static BufferedImage createGradient(int JPanelX, int JPanelY) {
 		int width = (int) Main.WIDTH;
 		int height = (int) Main.HEIGHT;
@@ -194,23 +189,23 @@ public class MainMenu implements ActionListener {
 
 		return img;
 	}
-	public void backToMain() 
-	{
+	//Sends the player back to main
+	public void backToMain() {
 		player.updateUI();
 		inventoryMenu.setHidden(true);
 		inventoryMenu.update();
-		this.hidden=false;
+		this.hidden = false;
 		arsenalMenu.setHidden(true);
 		arsenalMenu.update();
 		readMe.setHidden(true);
 		skillMenu.setActive(false);
 		classMenu.setHidden(true);
 
-		adventure=null;
+		adventure = null;
 	}
 
 	@Override
-	//Decides which submenu should be shown;
+	// Decides which submenu should be shown;
 	public void actionPerformed(ActionEvent e) {
 
 		if (!hidden) {
@@ -222,7 +217,7 @@ public class MainMenu implements ActionListener {
 						switch (i) {
 						case 0:
 							inventoryMenu.setHidden(false);
-							this.hidden=true;
+							this.hidden = true;
 							arsenalMenu.setHidden(true);
 							readMe.setHidden(true);
 							skillMenu.setActive(false);
@@ -231,7 +226,7 @@ public class MainMenu implements ActionListener {
 							break;
 						case 1:
 							inventoryMenu.setHidden(true);
-							this.hidden=true;
+							this.hidden = true;
 							arsenalMenu.setHidden(false);
 							readMe.setHidden(true);
 							skillMenu.setActive(false);
@@ -240,17 +235,16 @@ public class MainMenu implements ActionListener {
 							break;
 						case 2:
 							inventoryMenu.setHidden(true);
-							this.hidden=true;
+							this.hidden = true;
 							arsenalMenu.setHidden(true);
 							skillMenu.setActive(true);
 							readMe.setHidden(true);
 							classMenu.setHidden(true);
 
-
 							break;
 						case 3:
 							inventoryMenu.setHidden(true);
-							this.hidden=true;
+							this.hidden = true;
 							arsenalMenu.setHidden(true);
 							skillMenu.setActive(false);
 							readMe.setHidden(true);
@@ -258,71 +252,58 @@ public class MainMenu implements ActionListener {
 							break;
 						case 4:
 							inventoryMenu.setHidden(true);
-							this.hidden=true;
+							this.hidden = true;
 							arsenalMenu.setHidden(true);
 							skillMenu.setActive(false);
 							readMe.setHidden(false);
 							classMenu.setHidden(true);
 
 							break;
-							
+
 						}
 					}
 				}
-				for(int i=0;i<gameModeButtons.length;i++) 
-				{
-					if(b==gameModeButtons[i]) 
-					{
-						switch(i) 
-						{
+				for (int i = 0; i < gameModeButtons.length; i++) {
+					if (b == gameModeButtons[i]) {
+						switch (i) {
 						case 0:
-							adventure=new Adventure(player,input,panel);
+							adventure = new Adventure(player, input, panel);
 							inventoryMenu.setHidden(true);
-							this.hidden=true;
+							this.hidden = true;
 							arsenalMenu.setHidden(true);
 							skillMenu.setActive(false);
 							readMe.setHidden(true);
 							classMenu.setHidden(true);
 
-
-							
 						}
 					}
 				}
-				
 
 			} catch (Exception ex) {
 
 			}
-			
+
 		}
-		if(hidden) 
-		{
-			try 
-			{
-				Button b=(Button)e.getSource();
-				if(b==escape) 
-				{
+		if (hidden) {
+			try {
+				Button b = (Button) e.getSource();
+				if (b == escape) {
 					player.updateUI();
 					inventoryMenu.setHidden(true);
 					inventoryMenu.update();
-					this.hidden=false;
+					this.hidden = false;
 					arsenalMenu.setHidden(true);
 					arsenalMenu.update();
 					skillMenu.setActive(false);
 					readMe.setHidden(true);
 					classMenu.setHidden(true);
 
-
 				}
-			}catch(Exception ex) 
-			{
-				
+			} catch (Exception ex) {
+
 			}
 		}
 
 	}
-
-
 
 }

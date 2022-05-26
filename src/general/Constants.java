@@ -17,3 +17,4 @@ public class Constants {
 	public static final Color TEXTCOLOR=new Color((212*4)/5,(175*4)/5,(55*4)/5);
 	public static final int FIXEDSEED=0;
 }
+ 

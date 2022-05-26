@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/21/22
+//Rev: 01
+//Notes displays all rooms the player has explored on the screen. Can draw 496000 images without crashing
 package ui;
 
 import java.awt.Color;
@@ -20,6 +24,7 @@ import render.Main;
 import render.TextureGenerator;
 
 public class MapVisual implements MouseWheelListener, MouseMotionListener, MouseListener {
+	// Fields
 	private MapGenerator map;
 	private long initTime;
 	private double scale = 1;
@@ -28,10 +33,9 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 	private int lastY = -1;
 	private int shiftX;
 	private int shiftY;
-	private boolean hidden=true;
+	private boolean hidden = true;
 
-
-
+	// Constructor
 	public MapVisual(MapGenerator map, long initTime, JPanel panel) {
 		this.map = map;
 
@@ -42,16 +46,16 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 		for (int i = 0; i < textures.length; i++) {
 			for (int j = 0; j < textures[0].length; j++) {
 				if (map.hasVisited(i, j)) {
-					textures[i][j] = new TextureGenerator(map.getRoom(i, j),i*(j)+i+j+initTime,
+					textures[i][j] = new TextureGenerator(map.getRoom(i, j), i * (j) + i + j + initTime,
 							0 + TextureGenerator.calcWidth(scale) * i, +TextureGenerator.calcHeight(scale) * j, scale);
 
 				}
 			}
 		}
-		
 
 	}
 
+	// Draws the map
 	public void draw(Graphics2D g) {
 		g.setColor(new Color(212 / 6, 175 / 6, 55 / 6));
 		g.fillRect(0, 0, (int) Main.WIDTH + 1, (int) Main.HEIGHT + 1);
@@ -64,16 +68,19 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 			}
 		}
 	}
-	public void setHidden(boolean hidden) 
-	{
-		this.hidden=hidden;
+
+	// Sets hidden
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
 	}
-	public boolean getHidden() 
-	{
+
+	// Returns hidden
+	public boolean getHidden() {
 		return hidden;
 	}
 
 	@Override
+	// Makes the map move in response to mouse drag
 	public void mouseDragged(MouseEvent e) {
 		for (int i = 0; i < textures.length; i++) {
 			for (int j = 0; j < textures[0].length; j++) {
@@ -96,9 +103,9 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 		// TODO Auto-generated method stub
 
 	}
-	
 
 	@Override
+	// Scales the map
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		scale += -1 * 0.01 * e.getScrollAmount() * e.getPreciseWheelRotation();
 		if (scale < 0.09) {
@@ -123,6 +130,7 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 	}
 
 	@Override
+	// Sets last x and y to begin drag
 	public void mousePressed(MouseEvent e) {
 		if (lastX == -1 || lastY == -1) {
 			lastX = (int) MouseInputParser.getX();
@@ -132,6 +140,7 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 	}
 
 	@Override
+	// Drops the map into place
 	public void mouseReleased(MouseEvent e) {
 		lastX = -1;
 		lastY = -1;
@@ -159,7 +168,5 @@ public class MapVisual implements MouseWheelListener, MouseMotionListener, Mouse
 		// TODO Auto-generated method stub
 
 	}
-
-
 
 }

@@ -4,7 +4,7 @@
 // Notes: Displays all current skills of the player
 package ui;
 
-import java.awt.Color; 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
@@ -28,11 +28,12 @@ import skills.SkillTree;
 import skills.StatType;
 
 public class SkillDisplayMenu implements ActionListener {
-	//Fields
+	// Fields
 	private GenericSkill[] currentSkills;
 	private Button[] currentSkillButtons;
 	private boolean isActive = true;
-	//Constructor
+
+	// Constructor
 	public SkillDisplayMenu(SkillTree tree, JPanel panel) {
 
 		this.currentSkills = new GenericSkill[tree.getSkills().size()];
@@ -91,7 +92,8 @@ public class SkillDisplayMenu implements ActionListener {
 		}
 
 	}
-	//Color decision based on skill type 
+
+	// Color decision based on skill type
 	public Color skillColor(GenericSkill skill) {
 		Color color = null;
 		switch (skill.getType()) {
@@ -141,7 +143,8 @@ public class SkillDisplayMenu implements ActionListener {
 		}
 		return color;
 	}
-	//Renders this menu
+
+	// Renders this menu
 	public void render(Graphics2D g, int JPanelX, int JPanelY) {
 		if (isActive) {
 			g.drawImage(createGradient(JPanelX, JPanelY), JPanelX, JPanelY, null);
@@ -209,7 +212,8 @@ public class SkillDisplayMenu implements ActionListener {
 		}
 
 	}
-	//Creates a gradient
+
+	// Creates a gradient
 	private static BufferedImage createGradient(int JPanelX, int JPanelY) {
 		int width = (int) Main.WIDTH;
 		int height = (int) Main.HEIGHT;
@@ -231,7 +235,7 @@ public class SkillDisplayMenu implements ActionListener {
 	}
 
 	@Override
-	//Disables or enables clicked skills
+	// Disables or enables clicked skills
 	public void actionPerformed(ActionEvent e) {
 		if (this.isActive) {
 			Button b = (Button) e.getSource();
@@ -253,7 +257,8 @@ public class SkillDisplayMenu implements ActionListener {
 		}
 
 	}
-	//Sets isActive
+
+	// Sets isActive
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}

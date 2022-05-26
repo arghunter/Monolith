@@ -96,7 +96,7 @@ public class MapGenerator {
 					for (int m = 0; m < ROOMSIZEX; m++) {
 						// Read in the tile
 						rooms[i][j][k][m] = s.substring(m * 2, m * 2 + 2);
-					}
+					} 
 				}
 			}
 		}

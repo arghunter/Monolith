@@ -10,3 +10,4 @@ public class SkillUpdateException extends Exception {
 		super(errorMessage);
 	}
 }
+ 

@@ -46,7 +46,7 @@ public abstract class MovingObject extends GameObject {
 	public MovingObject(int startX, int startY, int movementDelay, int width, int height, String name, int numFrames, int health) {
 		super(width, height);
 		setMovementDelay(movementDelay);
-		setCoords(startX, startY);
+		setCoords(startX, startY); 
 		this.image =new AnimationSystem(x,y,movementDelay*6,name);
 		System.out.println(this.image);
 		this.health = health;

@@ -1,7 +1,7 @@
 //Author: Armaan Gomes   
 //Date: 5/20/22
 //Rev: 01
-//Notes: A fire ball
+//Notes: A fire ball ability
 package GameObjects.Player.abilities;
 
 import java.awt.Graphics2D;
@@ -20,14 +20,17 @@ import GameObjects.mobs.Mob;
 import render.Adventure;
 
 public class FireBall extends Ability implements ActionListener {
-	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+	// Fields
+	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 
+	// Constructor
 	public FireBall() {
 		super(0, 10);
 
 	}
 
 	@Override
+	// Fires the fire ball
 	public void init() {
 		Player player = Adventure.getPlayer();
 		projectiles.add(new StraightProjectile(player.getX(), player.getY(), 8, ("Fireball"), 300));
@@ -46,6 +49,7 @@ public class FireBall extends Ability implements ActionListener {
 	}
 
 	@Override
+	// Draws all fire balls
 	public void draw(Graphics2D g) {
 
 		synchronized (projectiles) {
@@ -63,33 +67,29 @@ public class FireBall extends Ability implements ActionListener {
 
 				}
 			} catch (Exception e) {
-				
+
 			}
 
-
 		}
-		for(Projectile p:projectiles) 
-		{
-	
+		for (Projectile p : projectiles) {
 
-				p.draw(g);
-			
+			p.draw(g);
+
 		}
 
 	}
 
 	@Override
+	// If the fire ball hits deal damage in an aoe radius
 	public void actionPerformed(ActionEvent e) {
 		try {
 			Mob hit = (Mob) e.getSource();
 			for (Mob m : Adventure.getMobs()) {
-				if (Math.sqrt(Math.pow((m.getX() - hit.getX()), 2)
-						+ Math.pow((m.getY() - hit.getY()), 2)) < 100) {
+				if (Math.sqrt(Math.pow((m.getX() - hit.getX()), 2) + Math.pow((m.getY() - hit.getY()), 2)) < 100) {
 					new Damage(50, StatusEffect.FIRE, 5, m, Adventure.getPlayer(), Adventure.getMobs());
 				}
 			}
 		} catch (ClassCastException ex) {
-			System.out.println("Here");
 		}
 
 	}

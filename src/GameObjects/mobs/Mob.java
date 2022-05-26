@@ -4,7 +4,7 @@
 //Notes: An implementation of a mob
 package GameObjects.mobs;
 
-import java.awt.Font; 
+import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -33,15 +33,16 @@ public abstract class Mob extends MovingObject {
 	private long dmgTime = 0;
 	private int xpDropped = 1;
 	protected int sound;
-	protected long lastSound=System.currentTimeMillis();
+	protected long lastSound = System.currentTimeMillis();
 
 	// Constructors
-	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames,int xp) {
+	public Mob(int x, int y, int movementDelay, int[] stats, int width, int height, String name, int numFrames,
+			int xp) {
 		super(x, y, movementDelay, width, height, name, numFrames, stats[2]);
 		this.baseStats = stats;
-		Random rng=new Random();
-		sound=rng.nextInt(10)+1;
-		xpDropped=xp;
+		Random rng = new Random();
+		sound = rng.nextInt(10) + 1;
+		xpDropped = xp;
 	}
 
 	// Sets this mobs stats
@@ -65,12 +66,13 @@ public abstract class Mob extends MovingObject {
 	public int getHealth() {
 		return health;
 	}
-	//Makes this mob take damage
+
+	// Makes this mob take damage
 	public void takeDamage(Player player, int damage) {
-		damage = (int)(damage/Math.log(18+stats[4])+damage*0.2);
+		damage = (int) (damage / Math.log(18 + stats[4]) + damage * 0.2);
 		health -= damage;
 
-		if (health < 0&&!super.isDead()) {
+		if (health < 0 && !super.isDead()) {
 			super.setDead(true);
 			player.addXP(xpDropped);
 //			Item item = ItemGeneration.getItem(player, playerLevel, playerLevel / 5);
@@ -81,11 +83,12 @@ public abstract class Mob extends MovingObject {
 		this.damageNumber = damage;
 		this.dmgTime = System.currentTimeMillis();
 	}
-	//Makes this mob take damagew withoug accounting for armor
+
+	// Makes this mob take damagew withoug accounting for armor
 	public void takeDamageIgnoreArmor(Player player, int damage) {
 		health -= damage;
 
-		if (health < 0&&!super.isDead()) {
+		if (health < 0 && !super.isDead()) {
 			super.setDead(true);
 			player.addXP((playerLevel + 8) * 8);
 //			Item item = ItemGeneration.getItem(player, playerLevel, playerLevel / 5);
@@ -100,11 +103,11 @@ public abstract class Mob extends MovingObject {
 	// Makes this mob complete its next action, either moving or attacking the
 	// player.
 	public void action(Player player) {
-		
+
 		playerLevel = player.getLevel();
 		updateAngle(player.getX(), player.getY());
 		for (int i = 1; i < 4; i++) {
-			stats[i] = baseStats[i] * (playerLevel+1) / 5;
+			stats[i] = baseStats[i] * (playerLevel + 1) / 5;
 		}
 		stats[0] = baseStats[0];
 		stats[4] = baseStats[4];
@@ -114,16 +117,13 @@ public abstract class Mob extends MovingObject {
 
 		int diffX = curX - player.getX();
 		int diffY = curY - player.getY();
-	
-		
-		
+
 		if ((diffX) * (diffX) + (diffY) * (diffY) < stats[5] * stats[5]) {
 			if (System.currentTimeMillis() - lastAttack > 60000.0 / stats[4]) {
 				player.takeDamage(stats[1]);
 				lastAttack = System.currentTimeMillis();
-				if(System.currentTimeMillis()-lastSound>3000+Math.random()*2000) 
-				{
-					new AudioPlayer("monster_000"+sound,AudioPlayer.ONE_TIME);
+				if (System.currentTimeMillis() - lastSound > 3000 + Math.random() * 2000) {
+					new AudioPlayer("monster_000" + sound, AudioPlayer.ONE_TIME);
 
 				}
 
@@ -161,9 +161,10 @@ public abstract class Mob extends MovingObject {
 				this.move(toMove);
 			}
 		}
-		
+
 	}
-	//Renders this mob
+
+	// Renders this mob
 	public void render(Graphics2D g) {
 		if (System.currentTimeMillis() - dmgTime < DMG_DURATION && this.damageNumber > 0) {
 			g.setColor(Constants.TEXTCOLOR);

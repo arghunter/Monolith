@@ -30,7 +30,7 @@ public abstract class GenericSkill {
 		this.nextLevelXp=(int)Math.pow(4, tier+6);
 		
 	}
-
+ 
 	
 	//Returns stat type
 	public StatType getType() {

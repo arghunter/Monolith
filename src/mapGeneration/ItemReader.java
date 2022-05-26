@@ -49,7 +49,7 @@ public class ItemReader {
 		armor=new Armor[11][];
 		for(int i=0;i<11;i++) {
 			int tempNum=Integer.parseInt(input.next());
-			armor[i]=new Armor[tempNum];
+			armor[i]=new Armor[tempNum]; 
 			for(int j=0;j<tempNum;j++) {
 				String item=input.next();
 				item=item.replace('_',' ');

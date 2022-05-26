@@ -33,7 +33,6 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 	// Fields
 	private double randAngle;
 	private int attackWidth;
-	private Graphics2D graphic;
 	private ImageSystem img;
 	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	private int speed;
@@ -44,72 +43,70 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 		super(name, tier, damage, range, attackSpeed, effect, duration, statusChance);
 		this.attackWidth = attackWidth;
 		this.randAngle = randAngle;
-		this.speed=speed;
+		this.speed = speed;
 		img = new ImageSystem(0, 0,
 				(new ImageIcon("imgs/" + name.replace(" ", "") + "/" + name.replace(" ", "") + 0 + ".png").getImage()));
 
 	}
-	public LongRangeWeapon(LongRangeWeapon lw) 
-	{
-		super(lw);
-		this.attackWidth=lw.getAttackWidth();
-		this.randAngle=lw.getRandAngle();
-		this.speed=lw.speed;
-		img = new ImageSystem(0, 0,
-				(new ImageIcon("imgs/" + super.getName().replace(" ", "") + "/" + super.getName().replace(" ", "") + 0 + ".png").getImage()));
 
-		
+	public LongRangeWeapon(LongRangeWeapon lw) {
+		super(lw);
+		this.attackWidth = lw.getAttackWidth();
+		this.randAngle = lw.getRandAngle();
+		this.speed = lw.speed;
+		img = new ImageSystem(0, 0, (new ImageIcon(
+				"imgs/" + super.getName().replace(" ", "") + "/" + super.getName().replace(" ", "") + 0 + ".png")
+						.getImage()));
+
 	}
 
+	// Returns the rand angle
 	public double getRandAngle() {
 		return randAngle;
 	}
+
+	// Returns the attackWidth
 	public int getAttackWidth() {
 		return attackWidth;
 	}
+
+	// Returns the projectile speed
 	public int getSpeed() {
 		return speed;
 	}
+
 	@Override
 	// Draws this weapon
 	public void drawWeapon(Player player, Graphics2D g) {
 		// System.out.println("hi");
 		g.setColor(new Color(255, 0, 0, 50));
-		img.move((int) (player.getX() - (img.getX()) + ((img.getHeight()+5) * Math.cos(player.getAngle()))),
-				(int) (player.getY() - (img.getY() - ((img.getHeight()+5) * Math.sin(player.getAngle())))));
+		img.move((int) (player.getX() - (img.getX()) + ((img.getHeight() + 5) * Math.cos(player.getAngle()))),
+				(int) (player.getY() - (img.getY() - ((img.getHeight() + 5) * Math.sin(player.getAngle())))));
 		img.setRotation(player.getAngle());
-
-		graphic = g;
 		Polygon attackRect = this.rotate(new Rectangle(player.getX() - attackWidth / 2,
 				player.getY() - super.getRange(), attackWidth, super.getRange()),
 				new Point(player.getX(), player.getY()), (player.getAngle() + Math.PI));
 		g.fill(attackRect);
 		img.drawImage(g);
-		synchronized(projectiles) 
-		{
-			try 
-			{
+		synchronized (projectiles) {
+			try {
 				for (Projectile p : projectiles) {
 
-					try 
-					{
+					try {
 						p.draw(g);
 						if (p.getImage() == null) {
 							projectiles.remove(p);
 							continue;
 						}
-					}catch(Exception e) 
-					{
-						
+					} catch (Exception e) {
+
 					}
 
-
 				}
-			}catch(Exception e) 
-			{
-				
+			} catch (Exception e) {
+
 			}
-			
+
 		}
 
 	}
@@ -127,21 +124,22 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 	public void primaryFire(ArrayList<Mob> mobs, Player player) {
 		if (canFire()) {
 			new AudioPlayer("Gun_0001", AudioPlayer.ONE_TIME);
-			synchronized(projectiles) {
-			projectiles.add(new StraightProjectile(
-					player.getX()-speed,player.getY(), speed,
-					(super.getName().replace(" ", "")+ "Projectile"),super.getRange()));
+			synchronized (projectiles) {
+				projectiles.add(new StraightProjectile(player.getX() - speed, player.getY(), speed,
+						(super.getName().replace(" ", "") + "Projectile"), super.getRange()));
 
-			projectiles.get(projectiles.size() - 1).addActionListener(this);
-			projectiles.get(projectiles.size() - 1).rotate(player.getAngle());
+				projectiles.get(projectiles.size() - 1).addActionListener(this);
+				projectiles.get(projectiles.size() - 1).rotate(player.getAngle());
 			}
 		}
 	}
-	public void clearAllProjectiles() 
-	{
-		projectiles=new ArrayList<Projectile>();
+
+	// Destroys all projectiles
+	public void clearAllProjectiles() {
+		projectiles = new ArrayList<Projectile>();
 	}
 
+	// Makes a rectangle rotate
 	public Polygon rotate(Rectangle r, Point p, double angle) {
 		int[] currX = new int[4];
 		int[] currY = new int[4];
@@ -162,6 +160,7 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 		return new Polygon(currX, currY, 4);
 	}
 
+	// toString for save data
 	public String toString() {
 		String s = "(Item:" + super.getName() + "/" + super.getTier() + "/" + super.getType() + "/" + getDamage() + "/"
 				+ getRange() + "/" + getAttackSpeed() + "/" + getEffect() + "/" + getDuration() + "/" + getChance()
@@ -171,6 +170,7 @@ public class LongRangeWeapon extends Weapon implements ActionListener {
 	}
 
 	@Override
+	// Projectile based damage
 	public void actionPerformed(ActionEvent e) {
 
 		try {

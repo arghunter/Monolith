@@ -22,11 +22,12 @@ import GameObjects.Player.Player;
 import render.GameStatus;
 import render.Main;
 
-public class PlayerUI implements MouseWheelListener,ActionListener {
+public class PlayerUI implements MouseWheelListener, ActionListener {
 	// Fields
 	Player player;
 	PlayerUIArsenalItem[] arsenalItems = new PlayerUIArsenalItem[16];
 	Timer deathTimer;
+
 	// Constructor
 	public PlayerUI(Player player, JPanel panel) {
 		panel.addMouseWheelListener(this);
@@ -81,17 +82,45 @@ public class PlayerUI implements MouseWheelListener,ActionListener {
 		for (int j = 0; j < arsenalItems.length; j++) {
 			arsenalItems[j].draw(g);
 		}
-		if(player.isDead()&&deathTimer==null) 
-		{
-			deathTimer=new Timer(5000,this);
+		if (player.isDead() && deathTimer == null) {
+			deathTimer = new Timer(5000, this);
 			deathTimer.start();
-			
+
 		}
-		g.setColor(new Color(126,254,255,200));
+		g.setColor(new Color(126, 254, 255, 200));
 		g.fillOval(100, 1275, 57, 57);
-		g.fillRoundRect(100+57/2, 1275+40,250 ,8,12, 2);
+		g.fillRoundRect(100 + 57 / 2, 1275 + 40, 250, 8, 12, 2);
 		g.setFont(text.deriveFont(30f));
-		g.drawString(((int)(((player.getAbilities()[0].getCooldown()+player.getAbilities()[0].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[0].getStartTime()))/1000)>0?(int)(((player.getAbilities()[0].getCooldown()+player.getAbilities()[0].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[0].getStartTime()))/1000):0)+"    "+((int)(((player.getAbilities()[1].getCooldown()+player.getAbilities()[1].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[1].getStartTime()))/1000)>0?(int)(((player.getAbilities()[1].getCooldown()+player.getAbilities()[1].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[1].getStartTime()))/1000):0)+"    "+((int)(((player.getAbilities()[2].getCooldown()+player.getAbilities()[2].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[2].getStartTime()))/1000)>0?(int)(((player.getAbilities()[2].getCooldown()+player.getAbilities()[2].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[2].getStartTime()))/1000):0)+"    "+((int)(((player.getAbilities()[3].getCooldown()+player.getAbilities()[3].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[3].getStartTime()))/1000)>0?(int)(((player.getAbilities()[3].getCooldown()+player.getAbilities()[3].getDuration())*1000-(System.currentTimeMillis()-player.getAbilities()[3].getStartTime()))/1000):0)+"    ", 170, 1275+30);
+		g.drawString(((int) (((player.getAbilities()[0].getCooldown() + player.getAbilities()[0].getDuration()) * 1000
+				- (System.currentTimeMillis() - player.getAbilities()[0].getStartTime())) / 1000) > 0
+						? (int) (((player.getAbilities()[0].getCooldown() + player.getAbilities()[0].getDuration())
+								* 1000 - (System.currentTimeMillis() - player.getAbilities()[0].getStartTime())) / 1000)
+						: 0)
+				+ "    "
+				+ ((int) (((player.getAbilities()[1].getCooldown() + player.getAbilities()[1].getDuration()) * 1000
+						- (System.currentTimeMillis() - player.getAbilities()[1].getStartTime())) / 1000) > 0
+								? (int) (((player.getAbilities()[1].getCooldown()
+										+ player.getAbilities()[1].getDuration()) * 1000
+										- (System.currentTimeMillis() - player.getAbilities()[1].getStartTime()))
+										/ 1000)
+								: 0)
+				+ "    "
+				+ ((int) (((player.getAbilities()[2].getCooldown() + player.getAbilities()[2].getDuration()) * 1000
+						- (System.currentTimeMillis() - player.getAbilities()[2].getStartTime())) / 1000) > 0
+								? (int) (((player.getAbilities()[2].getCooldown()
+										+ player.getAbilities()[2].getDuration()) * 1000
+										- (System.currentTimeMillis() - player.getAbilities()[2].getStartTime()))
+										/ 1000)
+								: 0)
+				+ "    "
+				+ ((int) (((player.getAbilities()[3].getCooldown() + player.getAbilities()[3].getDuration()) * 1000
+						- (System.currentTimeMillis() - player.getAbilities()[3].getStartTime())) / 1000) > 0
+								? (int) (((player.getAbilities()[3].getCooldown()
+										+ player.getAbilities()[3].getDuration()) * 1000
+										- (System.currentTimeMillis() - player.getAbilities()[3].getStartTime()))
+										/ 1000)
+								: 0)
+				+ "    ", 170, 1275 + 30);
 
 	}
 
@@ -120,9 +149,6 @@ public class PlayerUI implements MouseWheelListener,ActionListener {
 		}
 
 	}
-	
-	
-	
 
 	// Updates the menu
 	public void update() {
@@ -147,16 +173,16 @@ public class PlayerUI implements MouseWheelListener,ActionListener {
 	}
 
 	@Override
+	// Revives the players and resets the game
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==deathTimer) 
-		{
+		if (e.getSource() == deathTimer) {
 			Main.setStatus(GameStatus.MAIN_MENU);
 			player.revive();
 			deathTimer.stop();
-			
-			deathTimer=null;
+
+			deathTimer = null;
 		}
-		
+
 	}
 
 }

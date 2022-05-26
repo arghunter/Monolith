@@ -14,12 +14,13 @@ import GameObjects.Player.items.consumables.Consumable;
 import GameObjects.Player.items.materials.Material;
 
 public class Blueprint extends Item {
-	//Fields
+	// Fields
 	private Item[] components;
 	private Item product;
 	private double count;
 	private Inventory inventory;
-	//Constructor
+
+	// Constructor
 	public Blueprint(String name, int tier, double count, Item[] components, Item product, Inventory inventory) {
 		super(name, ItemType.BLUEPRINT, tier);
 		this.components = components;
@@ -28,40 +29,45 @@ public class Blueprint extends Item {
 		this.inventory = inventory;
 
 	}
-	public Blueprint(Blueprint bp) 
-	{
-		super(bp.getName(),ItemType.BLUEPRINT,bp.getTier());
-		this.components=new Item[bp.getComponents().length];
-		for(int i=0;i<bp.getComponents().length;i++) 
-		{
-			components[i]=bp.getComponents()[i];
-			
+
+	public Blueprint(Blueprint bp) {
+		super(bp.getName(), ItemType.BLUEPRINT, bp.getTier());
+		this.components = new Item[bp.getComponents().length];
+		for (int i = 0; i < bp.getComponents().length; i++) {
+			components[i] = bp.getComponents()[i];
+
 		}
-		product=bp.product;
-		inventory=bp.inventory;
+		product = bp.product;
+		inventory = bp.inventory;
 	}
-	//Add the blueprint to this one
-	public void add(Blueprint blueprint) { 
+
+	// Add the blueprint to this one
+	public void add(Blueprint blueprint) {
 		count += Math.round(blueprint.getCount());
 
 	}
-	//Returns the count
+
+	// Returns the count
 	public double getCount() {
 		return count;
 	}
-	//Sets the count
+
+	// Sets the count
 	public void setCount(double count) {
 		this.count = count;
 	}
-	//Returns the components required to construct this blueprint
+
+	// Returns the components required to construct this blueprint
 	public Item[] getComponents() {
 		return components;
 	}
-	//Returns the product of this blueprint
+
+	// Returns the product of this blueprint
 	public Item getProduct() {
 		return product;
 	}
-	//Constructs this blueprint
+
+	// Constructs this blueprint
 	public void construct() throws MissingResourcesException {
 		System.out.println("here");
 		boolean[] requirementsFulfilled = new boolean[components.length];
@@ -149,8 +155,10 @@ public class Blueprint extends Item {
 	@Override
 	public String toString() {
 		return ("(Item:" + super.getName() + "/" + super.getType() + "/" + super.getTier() + "/" + count + "/"
-				+ "[components-++" + Arrays.toString(components).replace("Item:", "I:").replace("/", ";~;").replace(",","~;~") + "product-++"
-				+ product.toString().replace("Item:", "I:").replace("/", ";~~;") + "count-++" + count + "]");
+				+ "[components-++"
+				+ Arrays.toString(components).replace("Item:", "I:").replace("/", ";~;").replace(",", "~;~")
+				+ "product-++" + product.toString().replace("Item:", "I:").replace("/", ";~~;") + "count-++" + count
+				+ "]");
 	}
 
 }

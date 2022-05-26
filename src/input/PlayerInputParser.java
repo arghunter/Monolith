@@ -1,5 +1,5 @@
-//Author: Armaan Gomes
-//Date: 5/9/22
+//Author: Armaan Gomes 
+//Date: 5/20/22
 //Rev: 01
 //Notes: Complete player input functionality
 
@@ -15,80 +15,82 @@ import GameObjects.mobs.Mob;
 import general.Collider;
 
 public class PlayerInputParser {
-	
-	//Fields
+
+	// Fields
 	private KeyboardInputParser keyboard;
 	private MouseInputParser mouse;
-	private double lastCoolDown=System.currentTimeMillis();
-	
+	private double lastCoolDown = System.currentTimeMillis();
+
 	Graphics2D graphic;
 	Collider collider;
-	//Constructor
-	public PlayerInputParser(JFrame frame,Component component) {
+
+	// Constructor
+	public PlayerInputParser(JFrame frame, Component component) {
 		keyboard = new KeyboardInputParser(frame);
 		mouse = new MouseInputParser(component);
 	}
+
 	public void setGraphics(Graphics2D g) {
 		graphic = g;
 	}
-	//Returns the scaled mouse x
+
+	// Returns the scaled mouse x
 	public static double getMouseX() {
 		return MouseInputParser.getX();
 	}
-	//Returns the scaled mouse y
+
+	// Returns the scaled mouse y
 	public static double getMouseY() {
 		return MouseInputParser.getY();
 	}
-	//Returns the state of the given mouse button
+
+	// Returns the state of the given mouse button
 	public static boolean getMBPressed(int MB) {
 		return MouseInputParser.isMBDown(MB);
 	}
-	public void setRoom(String[][] room,int x,int y) {
-		collider=new Collider(room,x,y);
+
+	public void setRoom(String[][] room, int x, int y) {
+		collider = new Collider(room, x, y);
 	}
-	//Updates the player
+
+	// Updates the player
 	public void updatePlayer(Player player) {
-		keyboard.updatePlayerPos(player,collider);
+		keyboard.updatePlayerPos(player, collider);
 		mouse.updatePlayerAngle(player);
-		if(MouseInputParser.isMBDown(0)&&System.currentTimeMillis()-lastCoolDown>200) 
-		{
+		if (MouseInputParser.isMBDown(0) && System.currentTimeMillis() - lastCoolDown > 200) {
 			player.useItem(graphic);
-			lastCoolDown=System.currentTimeMillis();
-			
+			lastCoolDown = System.currentTimeMillis();
+
 		}
-		if(keyboard.isOnePressed()) 
-		{
+		if (keyboard.isOnePressed()) {
 			player.useAbility(0);
 		}
-		if(keyboard.isTwoPressed()) 
-		{
+		if (keyboard.isTwoPressed()) {
 			player.useAbility(1);
 		}
-		if(keyboard.isThreePressed()) 
-		{
+		if (keyboard.isThreePressed()) {
 			player.useAbility(2);
 		}
-		if(keyboard.isFourPressed()) 
-		{
+		if (keyboard.isFourPressed()) {
 			player.useAbility(3);
 		}
 
 	}
-
-	public void updatePlayerAngle(Player player) 
-	{
+	//Updates only the player's angle
+	public void updatePlayerAngle(Player player) {
 		mouse.updatePlayerAngle(player);
 	}
-	//Sets the scaling ratio
+
+	// Sets the scaling ratio
 	public void setRatio(double ratioX, double ratioY) {
 		mouse.setRatio(ratioX, ratioY);
 	}
-	//Return the state of the escape key
-	public boolean isEscapePressed() 
-	{
+
+	// Return the state of the escape key
+	public boolean isEscapePressed() {
 		return keyboard.isEscapePressed();
 	}
-	
+	//Returns if the key is pressed
 	public boolean isEnterPressed() {
 
 		return keyboard.isEnterPressed();

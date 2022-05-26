@@ -32,7 +32,7 @@ public class MultipleSkill extends GenericSkill {
 		this.skills=skills;
 	}
 	
-	@Override
+	@Override 
 	//Overridden setisActive 
 	public void setIsActive(boolean isActive) 
 	{

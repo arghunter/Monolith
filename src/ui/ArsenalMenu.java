@@ -4,7 +4,7 @@
 // Notes: Represents an arsenal menu
 package ui;
 
-import java.awt.Color; 
+import java.awt.Color;
 import GameObjects.Player.items.ItemType;
 import GameObjects.Player.items.armor.Armor;
 import general.Constants;
@@ -34,8 +34,8 @@ import input.MouseInputParser;
 import render.Main;
 
 public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMotionListener, MouseListener {
-	
-	//Fields
+
+	// Fields
 	private Inventory inventory;
 	private ArsenalMenuItem[] arsenalItems = new ArsenalMenuItem[16];
 	private boolean hidden = false;
@@ -46,7 +46,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	private int mouseP1X;
 	private int mouseP1Y;
 
-	//Constructor
+	// Constructor
 	public ArsenalMenu(Inventory inventory, JPanel panel) {
 		panel.addMouseWheelListener(this);
 		this.panel = panel;
@@ -179,7 +179,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 									|| (inventory.getStorage().get(i).getType() == ItemType.CONSUMABLE))))) {
 
 				items.add(new RenderableMenuItem(inventory.getStorage().get(i), 1400 + (i % 2 * 266),
-						(((i / 2)+1) * 266), panel));
+						(((i / 2) + 1) * 266), panel));
 				System.out.println(inventory.getStorage().get(i));
 				items.get(items.size() - 1).addActionListener(this);
 			}
@@ -187,15 +187,18 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 		}
 
 	}
-	//Retursn if this menu is hidden
+
+	// Retursn if this menu is hidden
 	public boolean isHidden() {
 		return hidden;
 	}
-	//Sets the is hidden boolean
+
+	// Sets the is hidden boolean
 	public void setHidden(boolean hidden) {
 		this.hidden = hidden;
 	}
-	//Draws this arsenal menu
+
+	// Draws this arsenal menu
 	public void draw(Graphics2D g, int JPanelX, int JPanelY) {
 		if (!hidden) {
 			g.drawImage(createGradient(), 0, 0, null);
@@ -243,7 +246,8 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 		}
 
 	}
-	//Creates a nice looking gradient centered around the mouse
+
+	// Creates a nice looking gradient centered around the mouse
 	private static BufferedImage createGradient() {
 		int width = (int) Main.WIDTH;
 		int height = (int) Main.HEIGHT;
@@ -261,7 +265,8 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 
 		return img;
 	}
-	//Updates this menu
+
+	// Updates this menu
 	public void update() {
 		for (int i = 0; i < items.size(); i++) {
 			items.get(i).dispose();
@@ -386,7 +391,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 			arsenalItems[i].addActionListener(this);
 		}
 		items = new ArrayList<RenderableMenuItem>();
-		int shift=0;
+		int shift = 0;
 		for (int i = 0; i < inventory.getStorage().size(); i++) {
 			if (inventory.getStorage().get(i) != null && (inventory.getStorage().get(i).getType() == ItemType.WEAPON
 					|| (inventory.getStorage().get(i).getType() == ItemType.CHESTPLATE)
@@ -395,11 +400,10 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 							|| (inventory.getStorage().get(i).getType() == ItemType.HELMET
 									|| (inventory.getStorage().get(i).getType() == ItemType.CONSUMABLE))))) {
 
-				items.add(new RenderableMenuItem(inventory.getStorage().get(i), 1400 + ((i+shift) % 2 * 266),
-						((((i+shift) / 2)+1) * 266), panel));
+				items.add(new RenderableMenuItem(inventory.getStorage().get(i), 1400 + ((i + shift) % 2 * 266),
+						((((i + shift) / 2) + 1) * 266), panel));
 				items.get(items.size() - 1).addActionListener(this);
-			}else 
-			{
+			} else {
 				shift--;
 			}
 
@@ -408,7 +412,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	@Override
-	//Checks if the mouse Wheel has been moved
+	// Checks if the mouse Wheel has been moved
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		if (!hidden) {
 			for (int i = 0; i < items.size(); i++) {
@@ -419,7 +423,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	@Override
-	//Selected the clicked item
+	// Selected the clicked item
 	public void actionPerformed(ActionEvent e) {
 		if (!hidden) {
 
@@ -437,7 +441,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	@Override
-	//Translation for drag and drop
+	// Translation for drag and drop
 	public void mouseDragged(MouseEvent e) {
 		if (dragItem != null) {
 			dragItem.translate((int) (MouseInputParser.getX() - mouseP1X), (int) (MouseInputParser.getY() - mouseP1Y));
@@ -459,7 +463,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	@Override
-	//Gets the selected item and preps for translation
+	// Gets the selected item and preps for translation
 	public void mousePressed(MouseEvent e) {
 		mouseP1X = (int) MouseInputParser.getX();
 		mouseP1Y = (int) MouseInputParser.getY();
@@ -478,7 +482,7 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 	}
 
 	@Override
-	//Drops the selected item in its respective position and updates the menu
+	// Drops the selected item in its respective position and updates the menu
 	public void mouseReleased(MouseEvent e) {
 		if (dragItem != null) {
 			if (dragItem.getClass() == ArsenalMenuItem.class && dragItem.getItem() != null) {
@@ -527,14 +531,12 @@ public class ArsenalMenu implements MouseWheelListener, ActionListener, MouseMot
 			} else if (dragItem.getClass() != ArsenalMenuItem.class) {
 				for (int i = 0; i < arsenalItems.length; i++) {
 					if (arsenalItems[i].isHovering()) {
-						if(i<4) 
-						{
-							if(dragItem.getItem().getClass()==Armor.class) 
-							{
-								inventory.addToArsenal((Armor)(dragItem.getItem()));
+						if (i < 4) {
+							if (dragItem.getItem().getClass() == Armor.class) {
+								inventory.addToArsenal((Armor) (dragItem.getItem()));
 							}
 							break;
-							
+
 						}
 						if (arsenalItems[i].getItem() == null) {
 							inventory.addToArsenal(dragItem.getItem(), i);

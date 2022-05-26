@@ -1,4 +1,4 @@
-//Author: Armaan Gomes
+//Author: Armaan Gomes 
 //Date: 5/10/22
 //Rev: 02
 //Notes: A player in monolith
@@ -43,7 +43,7 @@ import ui.PlayerUI;
 
 public class Player extends MovingObject {
 	// Fields
-	SkillTree skills;
+	private SkillTree skills;
 	private static StatType[] statTypes = { StatType.ACCURACY, StatType.ARMOR, StatType.ATTACKSPEED, StatType.HEALTH,
 			StatType.POWER, StatType.REGEN, StatType.SHIELD, StatType.SPEED, StatType.STRENGTH, StatType.XP };
 	private int[] stats = { 10, 25, 60, 100, 10, 30, 10000, 0, 15, 100 };
@@ -56,13 +56,10 @@ public class Player extends MovingObject {
 	private int currentShields;
 	private boolean isDead = false;
 	private long lastRegen;
-	private Classes classType=Classes.WARRIOR;
+	private Classes classType = Classes.WARRIOR;
 	private ArrayList<Mob> mobs = new ArrayList<>();
-	private int skillsNeeded=0;
-	private Ability[] abilities=new Ability[4];
-
-	
-
+	private int skillsNeeded = 0;
+	private Ability[] abilities = new Ability[4];
 
 	// Constructor
 	public Player(int x, int y, int width, int height, JPanel panel) {
@@ -84,15 +81,15 @@ public class Player extends MovingObject {
 	// Save data constructor
 	public Player(int x, int y, int id, int width, int height, JPanel panel, String saveData) {
 		super(x, y, 20, width, height, "DefaultHelmet", 1);
-		String[] splitData=saveData.split(":;:~~~:;:");
+		String[] splitData = saveData.split(":;:~~~:;:");
 		super.dist = 3;
-		inventory = new Inventory(splitData[1],this);
-		currentLevel=Integer.parseInt(splitData[2]);
-		currentXP=Integer.parseInt(splitData[3]);
-		this.xpToNextLevel=Integer.parseInt(splitData[4]);
-		skillsNeeded=Integer.parseInt(splitData[5]);
-		classType=Classes.valueOf(splitData[6]);
-		
+		inventory = new Inventory(splitData[1], this);
+		currentLevel = Integer.parseInt(splitData[2]);
+		currentXP = Integer.parseInt(splitData[3]);
+		this.xpToNextLevel = Integer.parseInt(splitData[4]);
+		skillsNeeded = Integer.parseInt(splitData[5]);
+		classType = Classes.valueOf(splitData[6]);
+
 		stats[3] = (int) inventory.getHealth();
 		stats[1] = (int) inventory.getArmor();
 		stats[6] = (int) inventory.getShields();
@@ -104,13 +101,12 @@ public class Player extends MovingObject {
 		ui = new PlayerUI(this, panel);
 		setClass(classType);
 
-
 	}
 
 	// Alters the players health and shield values based on damage dealt and armor
 	public void takeDamage(int damage) {
 		if (!isDead) {
-			damage = (int)(damage/Math.log(18+stats[4])+damage*0.2);
+			damage = (int) (damage / Math.log(18 + stats[4]) + damage * 0.2);
 			if (currentShields > 0) {
 				currentShields = Math.max(0, currentShields - damage);
 			} else {
@@ -150,91 +146,90 @@ public class Player extends MovingObject {
 		}
 
 	}
-	public Classes getClassType() 
-	{
+
+	// Returns the players class
+	public Classes getClassType() {
 		return classType;
 	}
-	public void setClass(Classes classType) 
-	{
-		this.classType=classType;
-		switch(classType) 
-		{
+
+	// Sets the players class
+	public void setClass(Classes classType) {
+		this.classType = classType;
+		switch (classType) {
 		case WARRIOR:
-			abilities[0]=new Dodge();
-			abilities[1]=new Dodge();
-			abilities[2]=new Dodge();
-			abilities[3]=new Dodge();
+			abilities[0] = new Dodge();
+			abilities[1] = new Dodge();
+			abilities[2] = new Dodge();
+			abilities[3] = new Dodge();
 			break;
 		case MAGE:
-			abilities[0]=new Heal();
-			abilities[1]=new Miasma();
-			abilities[2]=new WindGust();
-			abilities[3]=new ShadowFall();
+			abilities[0] = new Heal();
+			abilities[1] = new Miasma();
+			abilities[2] = new WindGust();
+			abilities[3] = new ShadowFall();
 			break;
 		case PYROMANIAC:
-			abilities[0]=new Dodge();
-			abilities[1]=new FireBall();
-			abilities[2]=new FirePulse();
-			abilities[3]=new MeteorShower();
+			abilities[0] = new Dodge();
+			abilities[1] = new FireBall();
+			abilities[2] = new FirePulse();
+			abilities[3] = new MeteorShower();
 		}
 	}
-	public static Ability[] getClassAbilities(Classes classType) 
-	{
-		Ability[] abilities=new Ability[4];
-		switch(classType) 
-		{
+
+	// Returns the abilities for each class
+	public static Ability[] getClassAbilities(Classes classType) {
+		Ability[] abilities = new Ability[4];
+		switch (classType) {
 		case WARRIOR:
-			abilities[0]=new Dodge();
-			abilities[1]=new Dodge();
-			abilities[2]=new Dodge();
-			abilities[3]=new Dodge();
+			abilities[0] = new Dodge();
+			abilities[1] = new Dodge();
+			abilities[2] = new Dodge();
+			abilities[3] = new Dodge();
 			break;
 		case MAGE:
-			abilities[0]=new Heal();
-			abilities[1]=new Miasma();
-			abilities[2]=new WindGust();
-			abilities[3]=new ShadowFall();
+			abilities[0] = new Heal();
+			abilities[1] = new Miasma();
+			abilities[2] = new WindGust();
+			abilities[3] = new ShadowFall();
 			break;
 		case PYROMANIAC:
-			abilities[0]=new Dodge();
-			abilities[1]=new FireBall();
-			abilities[2]=new FirePulse();
-			abilities[3]=new MeteorShower();
+			abilities[0] = new Dodge();
+			abilities[1] = new FireBall();
+			abilities[2] = new FirePulse();
+			abilities[3] = new MeteorShower();
 		}
 		return abilities;
 	}
-	//Revives the player and starts the game over
-	public void revive() 
-	{
-		health=stats[3];
-		currentShields=stats[6];
-		isDead=false;
+
+	// Revives the player and starts the game over
+	public void revive() {
+		health = stats[3];
+		currentShields = stats[6];
+		isDead = false;
 		this.setCoordsMove(1280, 668);
 
 	}
-	public void clearAbilities() 
-	{
-		for(Ability a:abilities) 
-		{
+
+	// Clears all abilities
+	public void clearAbilities() {
+		for (Ability a : abilities) {
 			a.end();
 		}
 	}
-	public void heal(int health) 
-	{
-		currentShields+=health;
-		if(currentShields>stats[6]+buffs[6]) 
-		{
-			health=currentShields-(stats[6]+buffs[6]);
-			currentShields=stats[6]+buffs[6];
-		}else 
-		{
-			health=0;
+
+	// Heals the player
+	public void heal(int health) {
+		currentShields += health;
+		if (currentShields > stats[6] + buffs[6]) {
+			health = currentShields - (stats[6] + buffs[6]);
+			currentShields = stats[6] + buffs[6];
+		} else {
+			health = 0;
 		}
-		if(health>0) 
-		{
-			this.health+=health;
+		if (health > 0) {
+			this.health += health;
 		}
-		
+
 	}
 
 	// Returns the skilltree
@@ -251,22 +246,36 @@ public class Player extends MovingObject {
 	public StatType[] getStatTypes() {
 		return statTypes;
 	}
-	//Levels the player up after skill grant
-	public void levelUP() 
-	{
-		if(skillsNeeded>0) 
-		{
+
+	// Levels the player up after skill grant
+	public void levelUP() {
+		if (skillsNeeded > 0) {
 			skillsNeeded--;
 		}
 	}
-	//Uses the given player ability
-	public void useAbility(int num) 
-	{
-		abilities[num].start();
+
+	// Uses the given player ability
+	public void useAbility(int num) {
+		if (num == 0) {
+			abilities[num].start();
+
+		} else if (num == 1) {
+			if (this.currentLevel >= 25) {
+				abilities[num].start();
+			}
+		} else if (num == 2) {
+			if (this.currentLevel >= 50) {
+				abilities[num].start();
+			}
+		} else if (num == 3) {
+			if (this.currentLevel >= 75) {
+				abilities[num].start();
+			}
+		}
 	}
-	//Returns all of the players abilities
-	public Ability[] getAbilities() 
-	{
+
+	// Returns all of the players abilities
+	public Ability[] getAbilities() {
 		return abilities;
 	}
 
@@ -284,11 +293,11 @@ public class Player extends MovingObject {
 	public int[] getStats() {
 		return stats;
 	}
-	//Gets the total number of skills needed
+
+	// Gets the total number of skills needed
 	public int getSkillsNeeded() {
 		return skillsNeeded;
 	}
-	
 
 	// Returns current health
 	public int getCurrentHealth() {
@@ -343,7 +352,7 @@ public class Player extends MovingObject {
 
 	// Adds xp to the player and skilltree
 	public void addXP(int xp) {
-		System.out.println(xpToNextLevel+" "+xp);
+		System.out.println(xpToNextLevel + " " + xp);
 		if (!isDead) {
 			skills.addXP(xp);
 			currentXP += xp;
@@ -362,7 +371,7 @@ public class Player extends MovingObject {
 		if (!isDead) {
 			Item item = inventory.getEquippedItem();
 			if (item == null) {
-				Weapon weapon=(Weapon) new MeleeWeapon("Stick", 1, 10, 100, 10, StatusEffect.NONE, 0, 0, Math.PI / 4);
+				Weapon weapon = (Weapon) new MeleeWeapon("Stick", 1, 10, 100, 10, StatusEffect.NONE, 0, 0, Math.PI / 4);
 				weapon.primaryFire(mobs, this);
 				return;
 			}
@@ -386,7 +395,8 @@ public class Player extends MovingObject {
 	// TODO to string part done
 	public String toString() {
 
-		return skills.toString()+":;:~~~:;:"+inventory.toString()+":;:~~~:;:"+currentLevel+":;:~~~:;:"+currentXP+":;:~~~:;:"+xpToNextLevel+":;:~~~:;:"+skillsNeeded+":;:~~~:;:"+classType;
+		return skills.toString() + ":;:~~~:;:" + inventory.toString() + ":;:~~~:;:" + currentLevel + ":;:~~~:;:"
+				+ currentXP + ":;:~~~:;:" + xpToNextLevel + ":;:~~~:;:" + skillsNeeded + ":;:~~~:;:" + classType;
 	}
 
 	// Renders the currently held weapon
@@ -397,17 +407,13 @@ public class Player extends MovingObject {
 	}
 
 	@Override
-	//Renders the player
+	// Renders the player
 	public synchronized void render(Graphics2D g) {
 
-
-		
-		
 		renderWeapon(g);
 		super.getImage().drawAnimation(g);
 		regen();
-		for(int i=0;i<abilities.length;i++) 
-		{
+		for (int i = 0; i < abilities.length; i++) {
 			abilities[i].draw(g);
 		}
 		super.setMovementDelay(stats[7] + buffs[7]);
@@ -415,14 +421,12 @@ public class Player extends MovingObject {
 
 	}
 
-
-
-	//Returns the players current XP
+	// Returns the players current XP
 	public int getCurrentXP() {
 		return currentXP;
 	}
 
-	//Returns the xp to next level
+	// Returns the xp to next level
 	public int getXpToNextLevel() {
 		return xpToNextLevel;
 	}

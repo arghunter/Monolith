@@ -46,7 +46,7 @@ public class ImageSystem {
 	
 
 
-
+ 
 	//Returns the image that this imageSystem represents
 	public Image getPicture() {
 		return picture;
@@ -101,6 +101,7 @@ public class ImageSystem {
 		this.y+=y;
 	    transform.translate(x, y);
 	}
+	//Returns the affine transform of this image system
 	public AffineTransform getTransform() 
 	{
 		return transform;

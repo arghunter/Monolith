@@ -7,9 +7,10 @@ package GameObjects.mobs;
 import java.awt.Graphics2D;
 
 public interface RangedMob {
-	//Fires  a projectile
+	// Fires a projectile
 	public abstract void fireProjectile();
-	//Renders all projectiles
+
+	// Renders all projectiles
 	public abstract void renderProjectiles(Graphics2D g);
 
 }

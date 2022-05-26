@@ -10,27 +10,27 @@ import render.Adventure;
 
 public class Dodge extends Ability {
 
-	//Construtor
+	// Construtor
 	public Dodge() {
 		super(0.1, 7);
-		
+
 	}
 
 	@Override
-	//Player speed up
+	// Player speed up
 	public void init() {
 		Adventure.getPlayer().setDist(15);
-		
+
 	}
 
 	@Override
 	public void runAbility() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	//Player speed down
+	// Player speed down
 	public void end() {
 		// TODO Auto-generated method stub
 		Adventure.getPlayer().setDist(3);
@@ -40,8 +40,7 @@ public class Dodge extends Ability {
 	@Override
 	public void draw(Graphics2D g) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
 
 }

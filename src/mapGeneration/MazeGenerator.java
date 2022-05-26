@@ -39,7 +39,7 @@ public class MazeGenerator {
 		LinkedList<Integer[]> stack=new LinkedList<Integer[]>();
 		Integer[] start={1,1};
 		stack.add(start);
-		
+		 
 		boolean[][] visited=new boolean[ySize][xSize];
 		char[][] maze=new char[2*ySize+1][2*xSize+1];
 		

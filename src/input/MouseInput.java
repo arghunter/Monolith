@@ -21,7 +21,7 @@ public class MouseInput implements MouseListener {
 	private static boolean[] buttonStates = new boolean[3];
 
 	// Constructor
-	
+
 	public MouseInput(Component component) {
 		this.component = component;
 		this.component.addMouseListener(this);
@@ -33,9 +33,8 @@ public class MouseInput implements MouseListener {
 
 	}
 
-
 	@Override
-	//Updates buttonStates based on which mouse button was pressed.
+	// Updates buttonStates based on which mouse button was pressed.
 	public void mousePressed(MouseEvent e) {
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
@@ -49,7 +48,7 @@ public class MouseInput implements MouseListener {
 	}
 
 	@Override
-	//Updates buttonStates based on which mouse button was released.
+	// Updates buttonStates based on which mouse button was released.
 	public void mouseReleased(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			buttonStates[0] = false;
@@ -72,6 +71,7 @@ public class MouseInput implements MouseListener {
 
 	}
 
+	// Returns the state of the buttons
 	public static boolean[] getButtonStates() {
 		return buttonStates;
 	}

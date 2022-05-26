@@ -15,93 +15,87 @@ import javax.swing.JPanel;
 import GameObjects.Player.Player;
 
 public class SaveSystem implements WindowListener {
-	//Fields
-	FileInput input;
-	PrintWriter output;
-	String save="";
-	Player savedPlayer;
-	//Constructor
-	public SaveSystem(JPanel panel) throws FileNotFoundException 
-	{
-		
+	// Fields
+	private FileInput input;
+	private PrintWriter output;
+	private String save = "";
+	private Player savedPlayer;
+
+	// Constructor
+	public SaveSystem(JPanel panel) throws FileNotFoundException {
+
 		input = new FileInput("save.txt");
-		
+
 		try {
-			savedPlayer=new Player(300,300,1,64,64,panel,input.next());
-		}catch( Exception e) 
-		{
-			System.out.println("Why am i here");
-			savedPlayer=new Player(300,300,64,64,panel);
+			savedPlayer = new Player(300, 300, 1, 64, 64, panel, input.next());
+		} catch (Exception e) {
+			savedPlayer = new Player(300, 300, 64, 64, panel);
 		}
-		
-		output=new PrintWriter("save.txt");
-		
-	}
-	//Saves the current player data
-	public void save(Player player) 
-	{
-		
-		save=player.toString();
+
+		output = new PrintWriter("save.txt");
 
 	}
-	//Writes the save to a file
-	public void writeSave() 
-	{
+
+	// Saves the current player data
+	public void save(Player player) {
+
+		save = player.toString();
+
+	}
+
+	// Writes the save to a file
+	public void writeSave() {
 		output.println(save);
 	}
-	//Loads the save
+
+	// Loads the save
 	public Player loadSave() {
-		
+
 		return savedPlayer;
 	}
 
 	@Override
 
 	public void windowOpened(WindowEvent e) {
-		
-		
+
 	}
 
 	@Override
-	//Writes the save when the window is closing
+	// Writes the save when the window is closing
 	public void windowClosing(WindowEvent e) {
 
 		writeSave();
 		output.close();
-		
-	
+
 	}
 
 	@Override
 	public void windowClosed(WindowEvent e) {
 
-		
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
-	
 
-	
+	}
+
 }

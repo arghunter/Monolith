@@ -1,5 +1,6 @@
-//Author: Peter Ferolito
+//Author: Peter Ferolito 
 //Date: 5/11/22
+//Rev:01
 //Notes: The engine for Adventure
 
 package render;
@@ -71,9 +72,7 @@ public class Adventure implements Runnable {
 	private long initTime = System.currentTimeMillis();
 	private Graphics2D g;
 	private Random rand = new Random();
-	// Current background color
-	Color bgColor = Color.WHITE;
-
+	//Constructor
 	public Adventure(Player player, PlayerInputParser input, JPanel panel) {
 		Main.status = GameStatus.RUNNING;
 		this.player = player;
@@ -93,26 +92,24 @@ public class Adventure implements Runnable {
 		mapGenerator.visitRoom(curRoomX, curRoomY);
 		pauseMenu = new PauseMenu(player, panel, initTime, mapGenerator);
 		start();
-//		System.out.println(curRoom);
-//		System.out.println("hi");
-	}
 
+	}
+	//Returns the topleftCornerX
 	public int getTLCX() {
 		return topLeftCornerX;
 	}
-
+	//Returns the topLeftCornerY
 	public int getTLCY() {
 		return topLeftCornerY;
 	}
-
+	//Returns the current room
 	public String[][] getRoom() {
 		return curRoom;
 	}
-
+	//All of the room management code
 	public synchronized void actions() {
 
-		topLeftCornerX = (int) Main.WIDTH / 2 - (Constants.ROOMSIZEX * 16);
-		topLeftCornerY = (int) Main.HEIGHT / 2 - (Constants.ROOMSIZEY * 16);
+
 
 		t++;
 		if (t > 20000) {
@@ -154,11 +151,11 @@ public class Adventure implements Runnable {
 			}
 		}
 	}
-
+	//Resets mob spawn time
 	private void resetMobSpawnTime() {
 		timeSinceLastSpawn[curRoomY][curRoomX] = t;
 	}
-
+	//All of the code required to change rooms
 	public void changeRoom() {
 		synchronized (mobList) {
 			player.setMobs(mobList[curRoomY][curRoomX]);
@@ -174,10 +171,7 @@ public class Adventure implements Runnable {
 
 	}
 
-	// Sets the background color
-	public void setBackground(Color c) {
-		bgColor = c;
-	}
+
 
 	// Paint the background
 	public void paintBackground(Graphics2D g) {
@@ -191,10 +185,8 @@ public class Adventure implements Runnable {
 		if (Main.status == GameStatus.RUNNING) {
 
 			paintBackground(g);
-//					projectile.setRoom(curRoom);
 			// Spawn new mobs
 
-//			System.out.println("Here");
 			if (texture != null) {
 				texture.draw(g);
 			}
@@ -204,7 +196,6 @@ public class Adventure implements Runnable {
 					mobList[curRoomY][curRoomX].get(i).render(g);
 				}
 			}
-//					collider.checkCollides(player.getRect(),player);
 
 			player.render(g);
 
@@ -219,14 +210,15 @@ public class Adventure implements Runnable {
 		pauseMenu.draw(g, JPanelX, JPanelY);
 	}
 
+	//Retuns the currentMobs
 	public static ArrayList<Mob> getMobs() {
 		return Adventure.mobList[curRoomY][curRoomX];
 	}
-
+	//Returns the current player
 	public static Player getPlayer() {
 		return player;
 	}
-
+	//Starts Adventure
 	public void start() {
 		if (thread == null) {
 			thread = new Thread(this, "" + System.currentTimeMillis());
@@ -234,8 +226,8 @@ public class Adventure implements Runnable {
 		}
 	}
 
-
 	@Override
+	//Runs adventure and spawns mobs
 	public void run() {
 		while (!player.isDead()) {
 			if (Main.status == GameStatus.RUNNING) {
@@ -245,8 +237,7 @@ public class Adventure implements Runnable {
 					collider = new Collider(curRoom, topLeftCornerX, topLeftCornerY);
 
 				}
-//				Collider collider = new Collider(curRoom,topLeftCornerX,topLeftCornerY);
-//				projectile.setRoom(curRoom);
+
 				// Spawn new mobs
 				if (!(mobList[curRoomY][curRoomX] == null) && !(curRoomX == 0 && curRoomY == 0)) {
 					if (t - timeSinceLastSpawn[curRoomY][curRoomX] > 5000) {
@@ -352,10 +343,9 @@ public class Adventure implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		if(player.isDead()) 
-		{
-			curRoomX=0;
-			curRoomY=0;
+		if (player.isDead()) {
+			curRoomX = 0;
+			curRoomY = 0;
 		}
 
 	}

@@ -1,3 +1,7 @@
+//Author: Armaan Gomes
+//Date: 5/16/22
+//Rev:01
+//Notes: Texture Generation for Adventure 
 package render;
 
 import java.awt.Graphics2D;
@@ -13,8 +17,10 @@ import general.Constants;
 import general.ImageSystem;
 
 public class TextureGenerator {
+	//Fields
 	private ImageSystem[][] imgs;
 	private double scale=1;
+	//Constructor
 	public TextureGenerator(String[][] room,long seed,int x,int y,double scale) 
 	{
 		int[][] roomCopy=new int[room.length+2][room[0].length+2];
@@ -123,7 +129,7 @@ public class TextureGenerator {
 		
 		
 	}
-
+	//Draws this texture
 	public  void draw(Graphics2D g) {
 		for(int i=0;i<imgs.length;i++) 
 		{
@@ -134,9 +140,9 @@ public class TextureGenerator {
 		}
 
 	}
-
+	//Flood fill to decide the  textures of the map
 	private static void floodFillRecurse(int array[][], int x, int y, int oldType, int newType) {
-// Base cases
+		// Base cases
 		if (x < 0 || x >= array.length || y < 0 || y >= array[0].length)
 			return;
 		if (array[x][y] != oldType)
@@ -149,14 +155,14 @@ public class TextureGenerator {
 		floodFillRecurse(array, x, y + 1, oldType, newType);
 		floodFillRecurse(array, x, y - 1, oldType, newType);
 	}
-
+	//More flood fill
 	private static void floodFill(int array[][], int x, int y, int newC) {
 		int prevC = array[x][y];
 		if (prevC == newC)
 			return;
 		floodFillRecurse(array, x, y, prevC, newC);
 	}
-	
+	//Checks for contrast between the two images
 	private static double contrast(BufferedImage img1,BufferedImage img2) 
 	{
 		if(img1.getHeight()!=img2.getHeight()&&img1.getWidth()!=img2.getWidth()) 
@@ -187,14 +193,17 @@ public class TextureGenerator {
 		}
 		
 	}
+	//Calculates the dimesions of this texture at a scale
 	public static int calcHeight(double scale) 
 	{
 		return (int)(32*scale*(Constants.ROOMSIZEY+2));
 	}
+	//Calculates the dimesions of this texture at a scale
 	public static int calcWidth(double scale) 
 	{
 		return (int)(32*scale*(Constants.ROOMSIZEX+2));
 	}
+	//Moves this texture
 	public void translate(int x,int y) 
 	{
 		for(int i=0;i<imgs.length;i++) 

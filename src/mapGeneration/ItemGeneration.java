@@ -44,7 +44,7 @@ public class ItemGeneration {
 			tier++;
 			randNum-=tierProbs[averageLevel/4][tier];
 		}
-		int itemType=randNums.nextInt(100);
+		int itemType=randNums.nextInt(100); 
 		if(0<=itemType && itemType<typeProbs[0]) {
 			return new Material(r.materials[tier][randNums.nextInt(r.materials[tier].length)]);
 		}else { 

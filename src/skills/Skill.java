@@ -34,7 +34,7 @@ public class Skill extends GenericSkill {
 	//Applies this skill to a value
 	public int apply(int value) {
 		this.modifiedPercent= percent * super.getTier();
-		switch (super.getType()) {
+		switch (super.getType()) { 
 			case ACCURACY:
 				int newAccuracy = (int) (value * (modifiedPercent / 100.0 + 1.0) + 0.5);
 				if (newAccuracy > 100) {

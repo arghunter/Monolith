@@ -8,12 +8,13 @@ import GameObjects.Player.items.Item;
 import GameObjects.Player.items.ItemType;
 
 public class Armor extends Item {
-	//Fields
+	// Fields
 	private int armor;
 	private int shields;
 	private int health;
 	private BattleSuitSet set;
-	//Constructor
+
+	// Constructor
 	public Armor(String name, int tier, ItemType type, int armor, int shields, int health, BattleSuitSet set) {
 		super(name, type, tier);
 		if (!(type == ItemType.BOOTS || type == ItemType.CHESTPLATE || type == ItemType.HELMET
@@ -26,32 +27,37 @@ public class Armor extends Item {
 		this.set = set;
 
 	}
-	public Armor(Armor armor) 
-	{
-		super(armor.getName(),armor.getType(),armor.getTier());
+
+	public Armor(Armor armor) {
+		super(armor.getName(), armor.getType(), armor.getTier());
 		this.armor = armor.getArmor();
 		this.shields = armor.getShields();
 		this.health = armor.getHealth();
 		this.set = armor.getSet();
-		
+
 	}
-	//Returns the armor value
+
+	// Returns the armor value
 	public int getArmor() {
 		return armor;
 	}
-	//Returns the shield boost
+
+	// Returns the shield boost
 	public int getShields() {
 		return shields;
 	}
-	//Returns the health
+
+	// Returns the health
 	public int getHealth() {
 		return health;
 	}
-	//Returns the battle suit set
+
+	// Returns the battle suit set
 	public BattleSuitSet getSet() {
 		return set;
 	}
-	//Returns the string representation for parsing
+
+	// Returns the string representation for parsing
 	public String toString() {
 		return "(Item:" + super.getName() + "/" + super.getType() + "/" + super.getTier() + "/" + armor + "/" + shields
 				+ "/" + health + "/" + set;

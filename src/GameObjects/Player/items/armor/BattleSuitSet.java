@@ -8,7 +8,7 @@ public enum BattleSuitSet {
 	NONE,
 	EMERALD,
 	PRISMARINE,
-	NIGHTSHADE,// don't ask why im just making up random names 
-	// other stuff
+	NIGHTSHADE,
+
 
 }

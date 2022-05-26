@@ -22,7 +22,7 @@ public class KeyboardInputParser {
 	}
 
 	// Updates the player position based on the keys currently presses
-	public void updatePlayerPos(Player player,Collider c) {
+	public void updatePlayerPos(Player player, Collider c) {
 		int leftComp = (input.isLeftPressed() || input.isaPressed() ? 1 : 0);
 		int rightComp = (input.isRightPressed() || input.isdPressed() ? 1 : 0);
 		int upComp = (input.isUpPressed() || input.iswPressed() ? 1 : 0);
@@ -52,13 +52,11 @@ public class KeyboardInputParser {
 				player.move(Direction.EAST);
 			}
 		}
-		try 
-		{
+		try {
 			c.checkCollides(player.getRect(), player);
 
-		}catch(Exception e) 
-		{
-			
+		} catch (Exception e) {
+
 		}
 	}
 
@@ -67,29 +65,25 @@ public class KeyboardInputParser {
 		return input.isEscapePressed();
 	}
 
+	// Returns if the key is pressed
 	public boolean isEnterPressed() {
 
 		return input.isEnterPressed();
 
 	}
+	// Returns if the key is pressed
 	public boolean isOnePressed() {
 		return input.isOnePressed();
 	}
-
-
-
+	//Returns if the key is pressed
 	public boolean isTwoPressed() {
 		return input.isTwoPressed();
 	}
-
-
-
+	//Returns if the key is pressed
 	public boolean isThreePressed() {
 		return input.isThreePressed();
 	}
-
-
-
+	//Returns if the key is pressed
 	public boolean isFourPressed() {
 		return input.isFourPressed();
 	}
