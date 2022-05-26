@@ -7,7 +7,7 @@ package general;
 import java.awt.Color;
 
 public class Constants {
-	public static final int NUMMOBS=3;
+	public static final int NUMMOBS=18;
 	public static final int NUMITEMS=0;
 	public static final int XSIZE=20;
 	public static final int YSIZE=15;

@@ -107,7 +107,7 @@ public abstract class Mob extends MovingObject {
 		playerLevel = player.getLevel();
 		updateAngle(player.getX(), player.getY());
 		for (int i = 1; i < 4; i++) {
-			stats[i] = baseStats[i] * (playerLevel + 1) / 5;
+			stats[i] = baseStats[i]+(int)Math.log(baseStats[i]) * (playerLevel+1) / 4;
 		}
 		stats[0] = baseStats[0];
 		stats[4] = baseStats[4];
