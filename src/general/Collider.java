@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Stroke;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import GameObjects.MovingObject;
@@ -42,22 +43,22 @@ public class Collider {
 			}
 		}
 	}
-	public void checkCollides(Rectangle playerRect,MovingObject object){
+	public void checkCollides(Rectangle2D rectangle2d,MovingObject object){
 		//g.setColor(Color.blue);
 		//g.drawRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
 		for(Rectangle r : objects) {
 			//.out.println(r+"    " + playerRect);
 			//g.drawRect(r.x, r.y, r.width, r.height);
-			if(r.intersects(playerRect)) {
+			if(r.intersects(rectangle2d)) {
 //				System.out.println("colliding");
 				object.restorePrevPosition();
 			}
 		}
 	}
-	public boolean isColliding(Rectangle playerRect,MovingObject object){
+	public boolean isColliding(Rectangle2D rectangle2d,MovingObject object){
 		for(Rectangle r : objects) {
 			//.out.println(r+"    " + playerRect);
-			if(r.intersects(playerRect)) { 
+			if(r.intersects(rectangle2d)) { 
 				return true;
 			}
 		}

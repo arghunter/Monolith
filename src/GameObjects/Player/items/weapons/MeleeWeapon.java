@@ -113,8 +113,8 @@ public class MeleeWeapon extends Weapon {
 							(int) player.getY() - super.getRange(), super.getRange() * 2, super.getRange() * 2,
 							(int) ((-player.getAngle() - sweepAngle / 2) * 180 / Math.PI),
 							(int) (sweepAngle * 180 / Math.PI), Arc2D.PIE);
-					if (attackArc.intersects(m.getRect().getX(), m.getRect().getY(), m.getRect().width,
-							m.getRect().height)) {
+					if (attackArc.intersects(m.getRect().getX(), m.getRect().getY(), m.getRect().getWidth(),
+							m.getRect().getHeight())) {
 						System.out.println("damageDone " + (int) (super.getDamage()
 								* (Math.log10(player.getStats()[4] + player.getStats()[8]) + 1)));
 						synchronized (mobs) {

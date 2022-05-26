@@ -6,8 +6,11 @@ package GameObjects;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.ImageIcon;
 
@@ -86,9 +89,30 @@ public abstract class MovingObject extends GameObject {
 		return x;
 	}
 	//Returns the bounding rectangle of this object
-	public Rectangle getRect() {
-		return new Rectangle(x-getWidth()/2,y-getHeight()/2,getWidth(),getHeight());
+	public Rectangle2D getRect() {
+		
+		return rotate(new Rectangle(x-getWidth()/2,y-getHeight()/2,getWidth(),getHeight()),new Point(this.x,this.y),angle);
 	}
+	// Makes a rectangle rotate
+		public Rectangle2D rotate(Rectangle r, Point p, double angle) {
+			int[] currX = new int[4];
+			int[] currY = new int[4];
+			currX[0] = r.x;
+			currY[0] = r.y;
+			currX[1] = r.x + r.width;
+			currY[1] = r.y;
+			currX[3] = r.x;
+			currY[3] = r.y + r.height;
+			currX[2] = r.x + r.width;
+			currY[2] = r.y + r.height;
+			for (int i = 0; i < 4; i++) {
+				int height = currY[i] - p.y;
+				int width = currX[i] - p.x;
+				currX[i] = (int) ((height * Math.cos(angle) - width * Math.sin(angle)) + p.x);
+				currY[i] = (int) ((height * Math.sin(angle) + width * Math.cos(angle)) + p.y);
+			}
+			return new Polygon(currX, currY, 4).getBounds2D();
+		}
 	// Returns a reference to the AnimationSystem in this class.
 	public AnimationSystem getImage() {
 		return image;
