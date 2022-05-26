@@ -20,16 +20,15 @@ public class PlayerInputParser {
 	private KeyboardInputParser keyboard;
 	private MouseInputParser mouse;
 	private double lastCoolDown = System.currentTimeMillis();
-
-	Graphics2D graphic;
-	Collider collider;
+	private Graphics2D graphic;
+	private Collider collider;
 
 	// Constructor
 	public PlayerInputParser(JFrame frame, Component component) {
 		keyboard = new KeyboardInputParser(frame);
 		mouse = new MouseInputParser(component);
 	}
-
+	//Sets the graphics
 	public void setGraphics(Graphics2D g) {
 		graphic = g;
 	}
@@ -48,7 +47,7 @@ public class PlayerInputParser {
 	public static boolean getMBPressed(int MB) {
 		return MouseInputParser.isMBDown(MB);
 	}
-
+	//Sets the room
 	public void setRoom(String[][] room, int x, int y) {
 		collider = new Collider(room, x, y);
 	}
