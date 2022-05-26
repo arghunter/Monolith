@@ -16,7 +16,7 @@ import GameObjects.Player.items.materials.*;
 import GameObjects.Player.items.weapons.*;
 
 public class ItemGeneration {
-	public static int[] typeProbs = {55,15,15,15};
+	public static int[] typeProbs = {55,70,85,100};
 	//Material, weapon, armor, consumables
 	public static int[][] tierProbs = {{35,25,15,10,5,3,2,2,1,1,1}, //0-3
 		 							   {30,30,15,10,5,3,2,2,1,1,1},   //4-7

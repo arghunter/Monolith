@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 public class IceDrake extends Mob {
 	// speed, damage, health, armor, attackspeed, attack range
 	public static final int[] stats = { 15, 160, 2000, 200, 40, 500 };
-	public static final int xpDropped = 500;
+	public static final int xpDropped = 600;
 
 	// Constructor
 	public IceDrake(int x, int y) {

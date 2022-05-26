@@ -13,7 +13,7 @@ import GameObjects.Direction;
 public class Balkrada extends Mob {
 	//speed, damage, health, armor, attackspeed, attack range
 	public static final int[] stats={20,200,2000,300,30,90};
-	public static final int xpDropped=400;
+	public static final int xpDropped=500;
 	//Constructor
 	public Balkrada(int x,int y) {
 		super(x,y,stats[0],stats,96,187,"Balkrada",22,xpDropped);
