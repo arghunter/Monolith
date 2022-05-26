@@ -416,6 +416,15 @@ public class Player extends MovingObject {
 		for (int i = 0; i < abilities.length; i++) {
 			abilities[i].draw(g);
 		}
+		if(super.getImage().getX()!=this.getX())
+		{
+			super.getImage().move(this.getX()-super.getImage().getX(), 0);
+		}
+		
+		if(super.getImage().getY()!=this.getY())
+		{
+			super.getImage().move(0, this.getY()-super.getImage().getY());
+		}
 		super.setMovementDelay(stats[7] + buffs[7]);
 		ui.draw(g);
 
