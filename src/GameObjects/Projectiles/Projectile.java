@@ -22,7 +22,12 @@ import general.ImageSystem;
 import render.Adventure;
 import render.Main;
 import render.TextureGenerator;
-
+/*
+ * Author: Adithya Giri
+ * Revs: 01
+ * Date: 5/20/22
+ * Notes: A projectile superclass that uses path. and various other components to create moving, and firable projectiles.
+ */
 public class Projectile implements Runnable  {
 	private Path path;
 	private AnimationSystem img;
@@ -35,7 +40,7 @@ public class Projectile implements Runnable  {
     private int orgX;
     private int orgY;
     private Thread thread;
-
+    // Instantiate the projectile
 	public Projectile(Path path, int x, int y,int speed, String name,int range) {
 		this.path = path;
 		img = new AnimationSystem(x,y,20,name);
@@ -45,6 +50,7 @@ public class Projectile implements Runnable  {
 		this.orgY=y;
 		start();
 	}
+	// Move to the next point specified by the path
 	public void moveToNext() {
 		/*int numTimes=(int)((System.currentTimeMillis()-lastFired)/speed);
 		lastFired=System.currentTimeMillis();
@@ -111,6 +117,7 @@ public class Projectile implements Runnable  {
 		//}
 
 	}
+	//Get the projectile bounds
 	public Polygon getBounds() {
 		int x = img.getX();
 		int y = img.getY();
@@ -118,6 +125,7 @@ public class Projectile implements Runnable  {
 		int height = img.getHeight();
 		return rotateBounds(new Rectangle(x-width/2,y-height/2,width,height),new Point(getX(),getY()),angle);
 	}
+	//Rotate the rectangular bounds to the proper angle for accurate collisions.
 	public Polygon rotateBounds(Rectangle r, Point p, double angle) {
 		int[] currX = new int[4];
 		int[] currY = new int[4];
@@ -137,7 +145,7 @@ public class Projectile implements Runnable  {
 		}
 		return new Polygon(currX, currY, 4);
 	}
-	
+	//Draw the projectile.
 	public void draw(Graphics2D g) {
 		if(img!=null) 
 		{
@@ -145,6 +153,7 @@ public class Projectile implements Runnable  {
 		}
 
 	}
+	//Rotate the path of the projectile.
 	public void rotate(double radians) 
 	{
 		path.rotate(new Point(Adventure.getPlayer().getX(),Adventure.getPlayer().getY()), radians);
@@ -156,10 +165,12 @@ public class Projectile implements Runnable  {
 		this.angle=radians;
 		
 	}
+	//Check if the projectile is colliding with the player
 	public boolean collidingWithPlayer(Player player) {
 		return getBounds().intersects(((Rectangle2D)player.getRect()));
 
 	}
+	//Check if the projectile is colliding with the specified mob
 	public boolean collidingWithMob(Mob m) 
 	{
 		return getBounds().intersects((Rectangle2D)m.getRect());
@@ -184,6 +195,7 @@ public class Projectile implements Runnable  {
 			return -1;
 		}
 	}
+	//Gets the image used by the animation system.
 	public AnimationSystem getImage() 
 	{
 		return img;
@@ -199,6 +211,7 @@ public class Projectile implements Runnable  {
     	temp[actionListeners.length]=listener;
     	actionListeners=temp;
     }
+    //Creates a new thread, to enable multithreading, and reduce lag
 	public void start() 
 	{
 		if (thread == null) {
@@ -206,6 +219,7 @@ public class Projectile implements Runnable  {
 	         thread.start ();
 	      }
 	}
+	//Runs the thread, making the projectile move, and enabling game to run faster.
 	@Override
 	public void run() {
 		while(!path.isFinished()) 

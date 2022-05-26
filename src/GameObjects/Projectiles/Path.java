@@ -2,13 +2,21 @@ package GameObjects.Projectiles;
 
 import java.awt.Point;
 import java.util.ArrayList;
-
+/*
+ * Author: Adithya Giri
+ * Revs: 01
+ * Date: 5/20/22
+ * Notes: A set of points, with useful functions like rotate, that allow you to manipulate the whole path. 
+ * Each point contains the amount the image needs to be offset.
+ */
 public class Path {
 	ArrayList<Point> arr;
 	int iter = 0;
+	//Constructs a new point
 	public Path(ArrayList<Point> arr) {
 		this.arr = arr;
 	}
+	//Gets the next point in the projectiles path.
 	public Point getNextPoint() {
 		
 		Point p = arr.get(iter);
@@ -19,13 +27,14 @@ public class Path {
 		}
 		return p;
 	}
+	//Returns true if the path is completed
 	public boolean isFinished() {
 		if(iter == arr.size()) {
 			return true;
 		}
 		return false;
 	}
-	//Implement later
+	//Rotates a path around a given point to accurately move the projectile.
 	public void rotate(Point p, double angle) {
 		System.out.println(arr);
 		angle = angle - Math.PI/2;
