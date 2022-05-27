@@ -115,6 +115,7 @@ public class ReadMeMenu implements MouseWheelListener {
 	@Override
 	// Scrolls through the text
 	public void mouseWheelMoved(MouseWheelEvent e) {
+		if(!hidden)
 		shiftY -= 40 * e.getPreciseWheelRotation();
 
 	}
