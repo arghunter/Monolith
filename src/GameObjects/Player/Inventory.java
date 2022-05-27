@@ -38,31 +38,91 @@ public class Inventory {
 		arsenal[2] = (new Armor("PrismarineLeggings", 0, ItemType.LEGGINGS, 100, 205, 205, BattleSuitSet.PRISMARINE));
 		arsenal[3] = (new Armor("PrismarineBoots", 0, ItemType.BOOTS, 100, 100, 100, BattleSuitSet.PRISMARINE));
 
-		arsenal[4] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120, StatusEffect.LIGHTNING, 5, 0.5,
+		arsenal[4] = (new MeleeWeapon("Lightning Sword", 0, 10, 110, 120, StatusEffect.LIGHTNING, 5, 0.5,
 				10 / 18.0 * Math.PI));
-		arsenal[5] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120, StatusEffect.ROT, 5, 0.5, 10 / 18.0 * Math.PI));
+		arsenal[5] = (new MeleeWeapon("Rot Sword", 0, 10, 110, 120, StatusEffect.ROT, 5, 0.5, 10 / 18.0 * Math.PI));
 		arsenal[6] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120, StatusEffect.BLAST, 5, 0.5, 10 / 18.0 * Math.PI));
-		arsenal[8] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120, StatusEffect.CORROSION, 5, 0.5,
+		arsenal[8] = (new MeleeWeapon("Corrosive Sword", 0, 10, 110, 120, StatusEffect.CORROSION, 5, 0.5,
 				10 / 18.0 * Math.PI));
-		arsenal[9] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120, StatusEffect.GAS, 5, 0.5, 10 / 18.0 * Math.PI));
-		arsenal[10] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120, StatusEffect.VIRAL, 5, 0.5,
+		arsenal[9] = (new MeleeWeapon("Gas Sword", 0, 10, 110, 120, StatusEffect.GAS, 5, 0.5, 10 / 18.0 * Math.PI));
+		arsenal[10] = (new MeleeWeapon("Viral Sword", 0, 10, 110, 120, StatusEffect.VIRAL, 5, 0.5,
 				10 / 18.0 * Math.PI));
-		arsenal[11] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120, StatusEffect.FROST, 5, 0.5,
+		arsenal[11] = (new MeleeWeapon("Frost Sword", 0, 10, 110, 120, StatusEffect.FROST, 5, 0.5,
 				10 / 18.0 * Math.PI));
-		arsenal[12] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120, StatusEffect.FIRE, 5, 0.5, 10 / 18.0 * Math.PI));
-		arsenal[13] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120, StatusEffect.TOXIN, 5, 0.5,
+		arsenal[12] = (new MeleeWeapon("Fire Sword", 0, 10, 110, 120, StatusEffect.FIRE, 5, 0.5, 10 / 18.0 * Math.PI));
+		arsenal[13] = (new MeleeWeapon("Toxic Sword", 0, 10, 110, 120, StatusEffect.TOXIN, 5, 0.5,
 				10 / 18.0 * Math.PI));
 		arsenal[15] = (new LongRangeWeapon("Hobgoblin Bow", 0, 10, 800, 60, StatusEffect.NONE, 0, 0.0, 25, 1, 50));
-		arsenal[4] = new LongRangeWeapon("Fire Bow", 6, 80, 1000, 20, StatusEffect.FIRE, 6, 0.6, 25, 0.1, 100);
+
+
+
+
+
+
+
 
 		this.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new LongRangeWeapon("Long Bow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100));
+		this.addToStorage(new Material("ToxicCrystal",0,100));
+		this.addToStorage(new Material("GasCrystal",0,100));
+		this.addToStorage(new Material("ViralCrystal",0,100));
+		this.addToStorage(new Material("CorrosiveCrystal",0,100));
+		this.addToStorage(new Material("RottingCrystal",0,100));
+		this.addToStorage(new Material("LightningCrystal",0,100));
+		this.addToStorage(new Material("FrostCrystal",0,100));
+		this.addToStorage(new Material("FireCrystal",0,100));
+		
+		Item[] fireBowComp= {new LongRangeWeapon("LongBow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100),new Material("FireCrystal",0,1)};
+		Item fireBow= new LongRangeWeapon("FireBow", 6, 80, 1000, 30, StatusEffect.FIRE, 6, 0.6, 25, 0.1, 100);
+		this.addToStorage(new Blueprint("FireBow",0,100,fireBowComp,fireBow,this));
+		Item[] frostBowComp= {new LongRangeWeapon("LongBow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100),new Material("FrostCrystal",0,1)};
+		Item frostBow= new LongRangeWeapon("FrostBow", 6, 80, 1000, 30, StatusEffect.FROST, 6, 0.6, 25, 0.1, 100);
+		this.addToStorage(new Blueprint("FrostBow",0,100,frostBowComp,frostBow,this));
+		Item[] lightningBowComp= {new LongRangeWeapon("LongBow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100),new Material("LightningCrystal",0,1)};
+		Item lightningBow= new LongRangeWeapon("LightningBow", 6, 80, 1000, 30, StatusEffect.LIGHTNING, 6, 0.6, 25, 0.1, 100);
+		this.addToStorage(new Blueprint("LightningBow",0,100,lightningBowComp,lightningBow,this));
+		Item[] rotBowComp= {new LongRangeWeapon("LongBow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100),new Material("RottingCrystal",0,1)};
+		Item rotBow= new LongRangeWeapon("RotBow", 6, 80, 1000, 30, StatusEffect.ROT, 6, 0.6, 25, 0.1, 100);
+		this.addToStorage(new Blueprint("RotBow",0,100,rotBowComp,rotBow,this));
+		Item[] corrosiveBowComp= {new LongRangeWeapon("LongBow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100),new Material("CorrosiveCrystal",0,1)};
+		Item corrosiveBow= new LongRangeWeapon("CorrosiveBow", 6, 80, 1000, 30, StatusEffect.CORROSION, 6, 0.6, 25, 0.1, 100);
+		this.addToStorage(new Blueprint("FireBow",0,100,corrosiveBowComp,corrosiveBow,this));
+		Item[] viralBowComp= {new LongRangeWeapon("LongBow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100),new Material("ViralCrystal",0,1)};
+		Item viralBow= new LongRangeWeapon("ViralBow", 6, 80, 1000, 30, StatusEffect.VIRAL, 6, 0.6, 25, 0.1, 100);
+		this.addToStorage(new Blueprint("ViralBow",0,100,viralBowComp,viralBow,this));
+		Item[] gasBowComp= {new LongRangeWeapon("LongBow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100),new Material("GasCrystal",0,1)};
+		Item gasBow= new LongRangeWeapon("GasBow", 6, 80, 1000, 30, StatusEffect.GAS, 6, 0.6, 25, 0.1, 100);
+		this.addToStorage(new Blueprint("GasBow",0,100,gasBowComp,gasBow,this));
+		Item[] toxicBowComp= {new LongRangeWeapon("LongBow", 6, 80, 1000, 30, StatusEffect.NONE, 6, 0.6, 25, 0.1, 100),new Material("ToxicCrystal",0,1)};
+		Item toxicBow= new LongRangeWeapon("ToxicBow", 6, 80, 1000, 30, StatusEffect.TOXIN, 6, 0.6, 25, 0.1, 100);
+		this.addToStorage(new Blueprint("ToxicBow",0,100,toxicBowComp,toxicBow,this));
+
 
 		Item[] it = { new Material("Crystal", 0, 100) };
 		this.addToStorage(new Material("Crystal", 0, 100000));
 		StatType[] buffTypes = { StatType.HEALTH, StatType.REGEN };
 		int[] buffs = { 1000, 500 };
-		arsenal[7] = new Consumable("Baklava", 0, 10, 64,
-				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs()));
+
 		this.addToStorage(new Consumable("Baklava", 0, 10, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
 		this.addToStorage(new Consumable("Baklava", 0, 50, 64,
@@ -74,8 +134,6 @@ public class Inventory {
 		this.addToStorage(new Blueprint("Baklava", 0, 10, it, new Consumable("Baklava", 0, 15, 64,
 				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())), this));
 
-		arsenal[6] = (new Consumable("Baklava", 0, 50, 64,
-				new Buff(buffTypes, buffs, 10, player.getStatTypes(), player.getBuffs())));
 		this.addToStorage(
 				new MeleeWeapon("Rusty Sword", 0, 200, 100, 120, StatusEffect.NONE, 0, 0.0, 10 / 18.0 * Math.PI));
 		this.addToStorage(

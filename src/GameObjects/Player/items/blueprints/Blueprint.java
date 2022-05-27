@@ -69,17 +69,17 @@ public class Blueprint extends Item {
 
 	// Constructs this blueprint
 	public void construct() throws MissingResourcesException {
-		System.out.println("here");
 		boolean[] requirementsFulfilled = new boolean[components.length];
 		ArrayList<Item> storage = inventory.getStorage();
 		for (int i = 0; i < components.length; i++) {
-
+			
 			if (components[i].getType() == ItemType.CONSUMABLE || components[i].getType() == ItemType.MATERIAL) {
 				double count = 0;
 				for (int j = storage.size() - 1; j >= 0; j--) {
-					if (storage.get(j).equals(components[i])) {
+
+					if (storage.get(j).equal(components[i])) {
 						if (components[i].getType() == ItemType.CONSUMABLE) {
-							count += ((Consumable) storage.get(i)).getCount();
+							count += ((Consumable) storage.get(j)).getCount();
 							if (count > ((((Consumable) components[i]).getCount()))) {
 								requirementsFulfilled[i] = true;
 								break;
@@ -96,13 +96,14 @@ public class Blueprint extends Item {
 
 			} else {
 				for (int j = 0; j < storage.size(); j++) {
-					if (storage.get(i).equals(components[i])) {
+
+					if (storage.get(j)!=null&&storage.get(j).equal((Item)components[i])) {
 						requirementsFulfilled[i] = true;
 						break;
 					}
 				}
 			}
-
+			System.out.println(Arrays.toString(requirementsFulfilled));
 			if (!requirementsFulfilled[i]) {
 				throw new MissingResourcesException("You are missing the resources required to construct this item");
 			}
@@ -110,7 +111,7 @@ public class Blueprint extends Item {
 		}
 		for (int i = 0; i < components.length; i++) {
 			for (int j = storage.size() - 1; j >= 0; j--) {
-				if (storage.get(j).equals(components[i])) {
+				if (storage.get(j).equal(components[i])) {
 					if (components[i].getType() == ItemType.CONSUMABLE) {
 						Consumable consumableComp = (Consumable) components[i];
 						Consumable consumableStorage = (Consumable) storage.get(j);

@@ -45,7 +45,7 @@ public abstract class Item {
 	}
 
 	// Checks if two items are the same.
-	public boolean equals(Item item) {
+	public boolean equal(Item item) {
 		return (item.getName().equals(this.name) && item.getType() == this.getType());
 	}
 
