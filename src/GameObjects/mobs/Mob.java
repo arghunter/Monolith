@@ -76,9 +76,11 @@ public abstract class Mob extends MovingObject {
 			super.setDead(true);
 			player.addXP(xpDropped);
 			Item item = ItemGeneration.getItem(player, playerLevel, playerLevel / 5);
-			if (item != null) {
-				player.getInventory().addToStorage(item);
+			try {
 				System.out.println(item);
+				player.getInventory().addToStorage(item);
+			} catch(Exception e) {
+				
 			}
 		}
 		this.damageNumber = damage;
@@ -94,7 +96,11 @@ public abstract class Mob extends MovingObject {
 			player.addXP((playerLevel + 8) * 8);
 			Item item = ItemGeneration.getItem(player, playerLevel, playerLevel / 5);
 			if (item != null) {
-				player.getInventory().addToStorage(item);
+				try {
+					player.getInventory().addToStorage(item);
+				} catch(Exception e) {
+					
+				}
 			}
 		}
 		this.damageNumber = damage;
