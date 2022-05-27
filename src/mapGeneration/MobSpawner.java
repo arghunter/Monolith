@@ -43,7 +43,7 @@ public class MobSpawner {
 	public ArrayList<Integer> generateMobs(int playerLevel) {
 		int[][] toUse=defaultProbs;
 		if(playerLevel<6) {
-			if(randNums.nextInt(playerLevel)%playerLevel==0) {
+			if((randNums.nextInt(Math.max(playerLevel,1))+1)%(playerLevel+1)==0) {
 				System.out.println("g");
 				toUse=gardenProbs;
 			}else {

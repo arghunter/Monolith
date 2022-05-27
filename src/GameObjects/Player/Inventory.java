@@ -53,7 +53,7 @@ public class Inventory {
 		arsenal[13] = (new MeleeWeapon("Rusty Sword", 0, 10, 110, 120, StatusEffect.TOXIN, 5, 0.5,
 				10 / 18.0 * Math.PI));
 		arsenal[15] = (new LongRangeWeapon("Hobgoblin Bow", 0, 10, 800, 60, StatusEffect.NONE, 0, 0.0, 25, 1, 50));
-		arsenal[4] = new LongRangeWeapon("Hobgoblin Bow", 6, 80, 1000, 20, StatusEffect.FIRE, 6, 0.6, 25, 0.1, 100);
+		arsenal[4] = new LongRangeWeapon("Fire Bow", 6, 80, 1000, 20, StatusEffect.FIRE, 6, 0.6, 25, 0.1, 100);
 
 		this.addToStorage(new Armor("Baklava", 0, ItemType.HELMET, 0, 0, 0, BattleSuitSet.EMERALD));
 
